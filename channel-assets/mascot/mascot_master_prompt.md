@@ -2,7 +2,11 @@ Mascot Master Prompt — ВСЕ НА ФУТБОЛ
 
 Назначение
 
-Этот файл фиксирует канонический внешний вид маскота канала «ВСЕ НА ФУТБОЛ» и правила для всех будущих генераций.
+Этот файл фиксирует канонический внешний вид маскота канала «ВСЕ НА ФУТБОЛ» и правила на случай, если библиотека поз снова откроется.
+
+Рабочая библиотека уже собрана. Новые позы по умолчанию не генерируем: для монтажа брать готовый ассет из `poses.json` по тегам.
+
+Канон внешности живёт только в `references/`. Все утверждённые жесты — в `poses/<category>/`.
 
 Главный принцип: маскот должен выглядеть как один и тот же персонаж во всех изображениях. Меняется поза, жест и настроение — не дизайн героя.
 
@@ -138,7 +142,7 @@ clean 2D cartoon / anime-comic illustration;
 
 5. STRICT IDENTITY LOCK — CRITICAL
 
-Every new pose MUST use the original canonical mascot reference image supplied by the user as the source of truth.
+Every new pose MUST use `references/mascot_reference_main.png` as the sole identity and color source of truth.
 
 Never use a previous generated pose as the identity reference.
 
@@ -352,7 +356,7 @@ sprite sheet;
 
 12. Базовый master prompt
 
-Use the provided ORIGINAL canonical reference image as the sole identity and color source of truth for the mascot.
+Use `references/mascot_reference_main.png` as the sole identity and color source of truth for the mascot. Never use a previous generated pose as the identity reference.
 
 Generate the same recurring mascot character with strict consistency.
 
@@ -527,34 +531,56 @@ If identity, jersey colors or hand anatomy drift from the canonical reference, r
 
 Если хотя бы один критический пункт нарушен — перегенерировать изображение.
 
-15. Рекомендуемая структура в проекте
+15. Производственная структура
 
 channel-assets/
   mascot/
     mascot_master_prompt.md
+    poses.json
     references/
-      mascot_reference_main.png
+      mascot_reference_main.png    # единственный identity / color source of truth
+      mascot_reference_hips.png    # вспомогательный эталон кистей, таза и шорт
     poses/
       neutral/
+      ready/
       explain/
-      point-left/
-      point-right/
       think/
+      count/
+      point/
+      listen/
       confused/
       laugh/
+      celebrate/
+      victory/
+      clap/
+      like/
+      thumbs/
+      argument/
       aggressive/
+      annoyed/
+      stop/
+      what-the-hell/
+      calm-down/
       shock/
       facepalm/
-      count-1/
-      count-2/
-      count-3/
-      celebrate/
       disappointed/
       sad/
       suspicious/
-      argument/
-      what-the-hell/
-      calm-down/
+      hold-ball/
+      card/
+      phone/
+      read/
+      write/
+      whisper/
+      pray/
+      protect/
+      respect/
+
+`references/` не склад поз. Туда не класть `think_*`, `count_*`, карточки и прочие жесты.
+
+Выбор ассета для выпуска — через `poses.json` по `category` и `tags`, не по памяти имён файлов.
+
+`handsVerified` в манифесте — ручной QC. Автоматически пальцы не считаем.
 
 16. Примечание
 

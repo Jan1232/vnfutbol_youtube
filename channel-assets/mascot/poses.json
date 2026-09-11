@@ -1,0 +1,1003 @@
+{
+  "version": 1,
+  "canonicalReference": "references/mascot_reference_main.png",
+  "auxiliaryReferences": [
+    {
+      "file": "references/mascot_reference_hips.png",
+      "role": "stance-and-hands",
+      "description": "Тот же канон, руки в боки. Вспомогательный эталон кистей, таза и шорт."
+    }
+  ],
+  "palette": {
+    "garnet": "#81162D",
+    "navy": "#172146"
+  },
+  "poses": [
+    {
+      "id": "neutral-one",
+      "file": "poses/neutral/neutral_pose_one.png",
+      "category": "neutral",
+      "description": "Базовая стойка анфас, руки вдоль тела. Рабочий двойник канонического референса.",
+      "tags": [
+        "neutral",
+        "idle",
+        "front",
+        "base",
+        "intro",
+        "calm"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "neutral-two",
+      "file": "poses/neutral/neutral_pose_two.png",
+      "category": "neutral",
+      "description": "Нейтральная стойка со скрещенными руками. Спокойный, закрытый, выжидающий тон.",
+      "tags": [
+        "neutral",
+        "idle",
+        "arms-crossed",
+        "closed",
+        "wait"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "neutral-three",
+      "file": "poses/neutral/neutral_pose_three.png",
+      "category": "neutral",
+      "description": "Нейтральная стойка, руки в боки. Уверенный базовый кадр с хорошо читаемыми кистями.",
+      "tags": [
+        "neutral",
+        "idle",
+        "hands-on-hips",
+        "confident",
+        "base"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "ready",
+      "file": "poses/ready/ready.png",
+      "category": "ready",
+      "description": "Боевая готовность: оба кулака у груди. Старт выпуска, напряжение перед моментом.",
+      "tags": [
+        "ready",
+        "fists",
+        "tension",
+        "start",
+        "hype"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "explain-one",
+      "file": "poses/explain/explain_pose_one.png",
+      "category": "explain",
+      "description": "Открытые ладони, объясняет или взвешивает аргументы.",
+      "tags": [
+        "explain",
+        "talk",
+        "open-hands",
+        "present",
+        "why"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "explain-two",
+      "file": "poses/explain/explain_pose_two.png",
+      "category": "explain",
+      "description": "Обе ладони раскрыты на разной высоте. Объясняет и одновременно взвешивает «с одной стороны / с другой».",
+      "tags": [
+        "explain",
+        "talk",
+        "open-hands",
+        "present",
+        "balance"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "explain-three",
+      "file": "poses/explain/explain_pose_three.png",
+      "category": "explain",
+      "description": "Широкий жест двумя открытыми ладонями. «Ну и что дальше?» или мягкий shrug во время разбора.",
+      "tags": [
+        "explain",
+        "talk",
+        "shrug",
+        "what",
+        "open-hands"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "explain-four",
+      "file": "poses/explain/explain_pose_four.png",
+      "category": "explain",
+      "description": "Левая рука в боку, правая объясняет. Уверенный комментарий, как ведущий у доски.",
+      "tags": [
+        "explain",
+        "talk",
+        "present",
+        "confident",
+        "one-hand"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "explain-five",
+      "file": "poses/explain/explain_pose_five.png",
+      "category": "explain",
+      "description": "Правая рука раскрыта к зрителю, левая в боку. Зеркальный уверенный explain.",
+      "tags": [
+        "explain",
+        "talk",
+        "present",
+        "confident",
+        "one-hand"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "explain-six",
+      "file": "poses/explain/explain_pose_six.png",
+      "category": "explain",
+      "description": "Ладонь протянута вперёд, вторая рука в боку. Подаёт тезис или предлагает вывод.",
+      "tags": [
+        "explain",
+        "talk",
+        "present",
+        "offer",
+        "one-hand"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "think-one",
+      "file": "poses/think/think_pose_one.png",
+      "category": "think",
+      "description": "Рука у подбородка, классическое размышление.",
+      "tags": [
+        "think",
+        "analysis",
+        "doubt",
+        "hmm",
+        "pause"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "think-two",
+      "file": "poses/think/think_pose_two.png",
+      "category": "think",
+      "description": "Палец у виска, вторая рука скрещена. «Дай подумать» или поиск логики в решении.",
+      "tags": [
+        "think",
+        "analysis",
+        "temple",
+        "hmm",
+        "doubt"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "think-three",
+      "file": "poses/think/think_pose_three.png",
+      "category": "think",
+      "description": "Рука у подбородка, вторая в боку. Спокойный аналитический кадр.",
+      "tags": [
+        "think",
+        "analysis",
+        "chin",
+        "consider"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "count-1",
+      "file": "poses/count/count_1.png",
+      "category": "count",
+      "description": "Показывает один палец. Первый пункт списка или «первое».",
+      "tags": [
+        "one",
+        "first",
+        "list",
+        "number",
+        "explain"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "count-2",
+      "file": "poses/count/count_2.png",
+      "category": "count",
+      "description": "Показывает два пальца. Второй пункт или «два момента».",
+      "tags": [
+        "two",
+        "list",
+        "number",
+        "explain"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "count-3",
+      "file": "poses/count/count_3.png",
+      "category": "count",
+      "description": "Показывает три пальца. Третий пункт или итог из трёх.",
+      "tags": [
+        "three",
+        "list",
+        "number",
+        "explain"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "point-left-one",
+      "file": "poses/point/point_left_pose_one.png",
+      "category": "point",
+      "description": "Правая рука указывает влево, левая в боку. Перевод внимания на повтор или графику слева.",
+      "tags": [
+        "point",
+        "left",
+        "look",
+        "aside",
+        "replay"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "point-left-two",
+      "file": "poses/point/point_left_pose_two.png",
+      "category": "point",
+      "description": "Указывает влево, вариант два.",
+      "tags": [
+        "point",
+        "left",
+        "look",
+        "aside"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "point-left-three",
+      "file": "poses/point/point_left_pose_three.png",
+      "category": "point",
+      "description": "Указывает влево, вариант три.",
+      "tags": [
+        "point",
+        "left",
+        "look",
+        "aside"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "point-right-one",
+      "file": "poses/point/point_right_pose_one.png",
+      "category": "point",
+      "description": "Указывает вправо, вариант один.",
+      "tags": [
+        "point",
+        "right",
+        "look",
+        "aside",
+        "replay"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "point-right-two",
+      "file": "poses/point/point_right_pose_two.png",
+      "category": "point",
+      "description": "Указывает вправо, вариант два.",
+      "tags": [
+        "point",
+        "right",
+        "look",
+        "aside"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "point-up",
+      "file": "poses/point/point_up.png",
+      "category": "point",
+      "description": "Указывает вверх. Акцент, идея, «вот это важно».",
+      "tags": [
+        "point",
+        "up",
+        "idea",
+        "emphasis"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "point-down",
+      "file": "poses/point/point_down.png",
+      "category": "point",
+      "description": "Указывает вниз. На таблицу, счёт или нижнюю треть.",
+      "tags": [
+        "point",
+        "down",
+        "score",
+        "lower-third"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "you",
+      "file": "poses/point/you.png",
+      "category": "point",
+      "description": "Палец в камеру. Прямое обращение к зрителю.",
+      "tags": [
+        "you",
+        "camera",
+        "address",
+        "point",
+        "accuse"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "look-there",
+      "file": "poses/point/look_there.png",
+      "category": "point",
+      "description": "Обе руки указывают в сторону. «Смотри туда», перевод внимания на повтор.",
+      "tags": [
+        "look",
+        "point",
+        "aside",
+        "replay",
+        "both-hands"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "listen",
+      "file": "poses/listen/listen.png",
+      "category": "listen",
+      "description": "Ладонь у уха. Слушает, ловит слух, ждёт новость.",
+      "tags": [
+        "listen",
+        "hear",
+        "rumor",
+        "news",
+        "wait"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "confused-one",
+      "file": "poses/confused/confused_pose_one.png",
+      "category": "confused",
+      "description": "Чешет затылок, вторая ладонь открыта. Классическое «я не понял».",
+      "tags": [
+        "confused",
+        "what",
+        "doubt",
+        "huh",
+        "scratch"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "confused-two",
+      "file": "poses/confused/confused_pose_two.png",
+      "category": "confused",
+      "description": "Непонимание, вариант два.",
+      "tags": [
+        "confused",
+        "what",
+        "doubt"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "confused-three",
+      "file": "poses/confused/confused_pose_three.png",
+      "category": "confused",
+      "description": "Непонимание, вариант три.",
+      "tags": [
+        "confused",
+        "what",
+        "doubt"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "laugh-one",
+      "file": "poses/laugh/laugh_pose_one.png",
+      "category": "laugh",
+      "description": "Смех, вариант один.",
+      "tags": [
+        "laugh",
+        "joke",
+        "funny",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "laugh-two",
+      "file": "poses/laugh/laugh_pose_two.png",
+      "category": "laugh",
+      "description": "Смех, вариант два.",
+      "tags": [
+        "laugh",
+        "joke",
+        "funny",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "laugh-three",
+      "file": "poses/laugh/laugh_pose_three.png",
+      "category": "laugh",
+      "description": "Смех, вариант три.",
+      "tags": [
+        "laugh",
+        "joke",
+        "funny",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "celebrate",
+      "file": "poses/celebrate/celebrate.png",
+      "category": "celebrate",
+      "description": "Празднование гола или победы.",
+      "tags": [
+        "celebrate",
+        "goal",
+        "win",
+        "joy"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "victory",
+      "file": "poses/victory/victory.png",
+      "category": "victory",
+      "description": "Победный жест.",
+      "tags": [
+        "victory",
+        "win",
+        "celebrate",
+        "success"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "clap",
+      "file": "poses/clap/clap.png",
+      "category": "clap",
+      "description": "Хлопки. Одобрение, саркастичные аплодисменты или «браво».",
+      "tags": [
+        "clap",
+        "applause",
+        "respect",
+        "sarcasm"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "like",
+      "file": "poses/like/like.png",
+      "category": "like",
+      "description": "Большой палец вверх, спокойный лайк. Мягче, чем thumbs-up.",
+      "tags": [
+        "like",
+        "thumbs-up",
+        "approve",
+        "good",
+        "cta"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "thumbs-up",
+      "file": "poses/thumbs/thumbs_up.png",
+      "category": "thumbs",
+      "description": "Чёткий thumbs-up. Одобрение, «нормально», CTA.",
+      "tags": [
+        "thumbs-up",
+        "approve",
+        "good",
+        "yes",
+        "cta"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "thumbs-down",
+      "file": "poses/thumbs/thumbs_down.png",
+      "category": "thumbs",
+      "description": "Thumbs-down. Несогласие, плохой момент, провал.",
+      "tags": [
+        "thumbs-down",
+        "reject",
+        "bad",
+        "no"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "argument",
+      "file": "poses/argument/argument.png",
+      "category": "argument",
+      "description": "Спорит: одна рука вперёд, вторая у груди. Разбор судейства или конфликта.",
+      "tags": [
+        "argument",
+        "debate",
+        "why",
+        "referee",
+        "talk"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "aggressive-one",
+      "file": "poses/aggressive/aggressive_pose_one.png",
+      "category": "aggressive",
+      "description": "Агрессивный тычок в камеру, вторая рука в кулаке. Обвинение, жёсткий разбор.",
+      "tags": [
+        "aggressive",
+        "point",
+        "you",
+        "accuse",
+        "confront"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "aggressive-two",
+      "file": "poses/aggressive/aggressive_pose_two.png",
+      "category": "aggressive",
+      "description": "Обе руки раскрыты вперёд, корпус на зрителя. Скорее «вы что несёте?», чем прямой тычок.",
+      "tags": [
+        "aggressive",
+        "why",
+        "frustrated",
+        "open-hands",
+        "confront"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "annoyed-one",
+      "file": "poses/annoyed/annoyed_pose_one.png",
+      "category": "annoyed",
+      "description": "Раздражение, вариант один.",
+      "tags": [
+        "annoyed",
+        "irritated",
+        "sigh",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "annoyed-two",
+      "file": "poses/annoyed/annoyed_pose_two.png",
+      "category": "annoyed",
+      "description": "Раздражение, вариант два.",
+      "tags": [
+        "annoyed",
+        "irritated",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "stop",
+      "file": "poses/stop/stop.png",
+      "category": "stop",
+      "description": "Ладонь вперёд: стоп, хватит, не надо так.",
+      "tags": [
+        "stop",
+        "halt",
+        "enough",
+        "no"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "what-the-hell",
+      "file": "poses/what-the-hell/what_the_hell.png",
+      "category": "what-the-hell",
+      "description": "Изумлённое «это что сейчас было?».",
+      "tags": [
+        "what-the-hell",
+        "shock",
+        "why",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "calm-down",
+      "file": "poses/calm-down/calm_down.png",
+      "category": "calm-down",
+      "description": "Жест «спокойно», остужает эмоции.",
+      "tags": [
+        "calm-down",
+        "easy",
+        "settle",
+        "peace"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "shock-one",
+      "file": "poses/shock/shocked_pose_one.png",
+      "category": "shock",
+      "description": "Обе ладони подняты, пальцы растопырены. Резкий шок от гола или решения.",
+      "tags": [
+        "shock",
+        "wow",
+        "reaction",
+        "goal",
+        "hands-up"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "shock-two",
+      "file": "poses/shock/shocked_pose_two.png",
+      "category": "shock",
+      "description": "Шок, вариант два.",
+      "tags": [
+        "shock",
+        "wow",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "shock-three",
+      "file": "poses/shock/shocked_pose_three.png",
+      "category": "shock",
+      "description": "Шок, вариант три.",
+      "tags": [
+        "shock",
+        "wow",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "facepalm-one",
+      "file": "poses/facepalm/facepalm_pose_one.png",
+      "category": "facepalm",
+      "description": "Ладонь на лице, вторая рука скрещена. Ошибка, стыд, «ну зачем».",
+      "tags": [
+        "facepalm",
+        "mistake",
+        "cringe",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "facepalm-two",
+      "file": "poses/facepalm/facepalm_pose_two.png",
+      "category": "facepalm",
+      "description": "Фейспалм, вариант два.",
+      "tags": [
+        "facepalm",
+        "mistake",
+        "cringe",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "disappointed",
+      "file": "poses/disappointed/disappointed.png",
+      "category": "disappointed",
+      "description": "Разочарование. Упущенный момент, слабая игра.",
+      "tags": [
+        "disappointed",
+        "miss",
+        "letdown",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "sad",
+      "file": "poses/sad/sad.png",
+      "category": "sad",
+      "description": "Грусть. Поражение, травма, тяжёлая новость.",
+      "tags": [
+        "sad",
+        "loss",
+        "injury",
+        "reaction"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "suspicious",
+      "file": "poses/suspicious/suspicious.png",
+      "category": "suspicious",
+      "description": "Подозрение. Странный трансфер, судейство, слух.",
+      "tags": [
+        "suspicious",
+        "side-eye",
+        "doubt",
+        "rumor"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "hold-ball",
+      "file": "poses/hold-ball/hold_ball.png",
+      "category": "hold-ball",
+      "description": "Держит футбольный мяч двумя руками. Интро, превью, «про футбол».",
+      "tags": [
+        "ball",
+        "prop",
+        "intro",
+        "football"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "yellow-card",
+      "file": "poses/card/yellow_card.png",
+      "category": "card",
+      "description": "Показывает жёлтую карточку. Предупреждение, мягкий приговор.",
+      "tags": [
+        "card",
+        "yellow",
+        "referee",
+        "warning",
+        "prop"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "red-card",
+      "file": "poses/card/red_card.png",
+      "category": "card",
+      "description": "Показывает красную карточку. Удаление, жёсткий приговор.",
+      "tags": [
+        "card",
+        "red",
+        "referee",
+        "send-off",
+        "prop"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "phone",
+      "file": "poses/phone/phone.png",
+      "category": "phone",
+      "description": "Смотрит в смартфон и тапает по экрану. Свежая новость, слух, пост в соцсетях.",
+      "tags": [
+        "phone",
+        "prop",
+        "news",
+        "rumor",
+        "transfer",
+        "scroll"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "read",
+      "file": "poses/read/read.png",
+      "category": "read",
+      "description": "Читает разворот газеты или заявления. Цитата, протокол, официальная бумага.",
+      "tags": [
+        "read",
+        "prop",
+        "quote",
+        "statement",
+        "newspaper"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "write",
+      "file": "poses/write/write.png",
+      "category": "write",
+      "description": "Пишет на планшете-клипборде. Заметка, список, протокол, «запишите».",
+      "tags": [
+        "write",
+        "prop",
+        "notes",
+        "list",
+        "clipboard"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "whisper",
+      "file": "poses/whisper/whisper.png",
+      "category": "whisper",
+      "description": "Шепчет на сторону. Инсайд, тихий слух, «между нами».",
+      "tags": [
+        "whisper",
+        "rumor",
+        "secret",
+        "aside"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "pray",
+      "file": "poses/pray/pray.png",
+      "category": "pray",
+      "description": "Сложенные руки. Надежда на VAR, гол, результат.",
+      "tags": [
+        "pray",
+        "hope",
+        "var",
+        "please"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "protect",
+      "file": "poses/protect/protect.png",
+      "category": "protect",
+      "description": "Защитный жест. Блок, «не трогайте», опека игрока.",
+      "tags": [
+        "protect",
+        "defend",
+        "block",
+        "guard"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    },
+    {
+      "id": "respect",
+      "file": "poses/respect/respect.png",
+      "category": "respect",
+      "description": "Жест уважения. Респект сопернику или ветерану.",
+      "tags": [
+        "respect",
+        "honor",
+        "tribute"
+      ],
+      "approved": true,
+      "transparent": true,
+      "handsVerified": true
+    }
+  ]
+}
