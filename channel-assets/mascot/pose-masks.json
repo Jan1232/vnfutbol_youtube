@@ -1,0 +1,453 @@
+{
+  "version": 1,
+  "masks": [
+    {
+      "basePose": "aggressive-one",
+      "file": "pose-masks/aggressive-one.png",
+      "status": "generated",
+      "sha256": "865a24ab02aced502afae735db1d06336d269d1207e972d3b6d3074cf13d254e",
+      "basePoseSha256": "555f825d326059bf106547320097207ad20efd6bc2757985bd5926c65c322639"
+    },
+    {
+      "basePose": "aggressive-two",
+      "file": "pose-masks/aggressive-two.png",
+      "status": "generated",
+      "sha256": "61b24350eb304104ce16043b53058aeaec0ad9e957028d6d0a518f5111aafffe",
+      "basePoseSha256": "fd52e556a0c0e0d9ba6698e004cb15bcd55bcff218ff403d94b1c790d5e53a9d"
+    },
+    {
+      "basePose": "annoyed-one",
+      "file": "pose-masks/annoyed-one.png",
+      "status": "generated",
+      "sha256": "70b48fbc7a5c85cb1fcfd0e4868559f920fe36ae28a97454c076fab7be5ab0bf",
+      "basePoseSha256": "57ca4b6f7a9cea7badab93c0cf5930e0cc5f0cd4e4c6389665c5433134abe24c"
+    },
+    {
+      "basePose": "annoyed-two",
+      "file": "pose-masks/annoyed-two.png",
+      "status": "generated",
+      "sha256": "bfaac2c92bc4594f6bd29156f9d9badb62a98ee22d41cd833a24aa287ca70dd4",
+      "basePoseSha256": "8fa49fa61356f9abf5d92dbcccb45a276645c2d434fa922fd4784845f889c0bf"
+    },
+    {
+      "basePose": "argument",
+      "file": "pose-masks/argument.png",
+      "status": "generated",
+      "sha256": "a51b38c242696f626866ea9e3272feb7c73202f91d2d5ad26e9e1c7334241ce4",
+      "basePoseSha256": "d93b5533906797f9115c2dc18980d41b4854a544674b856ea7e30e0018b707ed"
+    },
+    {
+      "basePose": "calm-down",
+      "file": "pose-masks/calm-down.png",
+      "status": "generated",
+      "sha256": "8ef0b504227632ddd39bc1685af8a56e4b8773d98490f7fe2b55f4c2429249e7",
+      "basePoseSha256": "e9f47680a5225a6103748e42c42b66a2d544bb2ef2d5abfe4d25125fa10b5791"
+    },
+    {
+      "basePose": "celebrate",
+      "file": "pose-masks/celebrate.png",
+      "status": "generated",
+      "sha256": "c8bc111e76a3664b8dafcc93788f4ea2f6eef89bfb6ce8524372c043e659305b",
+      "basePoseSha256": "6bc8d93d151b585217bde6ecd0e981a8372ade0490dfd47fbd4e02fe5ef1fc2f"
+    },
+    {
+      "basePose": "clap",
+      "file": "pose-masks/clap.png",
+      "status": "generated",
+      "sha256": "1ea2b9be5d8d058ac4962501f1261386ee11fdf0ae595d464e03336e58ef26ca",
+      "basePoseSha256": "86394b99a90abd81267f1a99d796b8ed8fff7038a0cbe912ee97b3fdf404da42"
+    },
+    {
+      "basePose": "confused-one",
+      "file": "pose-masks/confused-one.png",
+      "status": "generated",
+      "sha256": "433ded1b64ea8c51d4044c85aab15dce2429b498f80a3dd5545058a65e8ba672",
+      "basePoseSha256": "6669906c10bb14f80e6e98eb5e260e104c0d8c15b472e4c9f54d51cc382bf337"
+    },
+    {
+      "basePose": "confused-three",
+      "file": "pose-masks/confused-three.png",
+      "status": "generated",
+      "sha256": "05b4428b046dacb31e3dde681150d6f5672e919a8eb5611380fe6adcfbf7155c",
+      "basePoseSha256": "3a57dc53702bf2ce590f9a0eddaf6824b4ec7a5e0ba2338534a79e519a279427"
+    },
+    {
+      "basePose": "confused-two",
+      "file": "pose-masks/confused-two.png",
+      "status": "generated",
+      "sha256": "28d6a91aa18b4e51bbe316c319c2335952b5a256d6dabb655c0182238e73fddc",
+      "basePoseSha256": "40c9b9f68a70bab42bc41dad513429fe91756cd4930d943f27544243199a72a8"
+    },
+    {
+      "basePose": "count-1",
+      "file": "pose-masks/count-1.png",
+      "status": "generated",
+      "sha256": "48432fdad7525961a16f374af65408bcd9d5607d79bebf9944eec8b453f4784d",
+      "basePoseSha256": "313440836941c8cbd45058e562a579bfe09133ecf68b9e139a6d9f1ca718fff1"
+    },
+    {
+      "basePose": "count-2",
+      "file": "pose-masks/count-2.png",
+      "status": "generated",
+      "sha256": "24c42c3a098177efa7e9a9be30667ed128a750becde70e7d393ad5b7c03e3e84",
+      "basePoseSha256": "26082bb46bbef9a8021620419203284e46846c3c573a9aaa0503a925685c95a1"
+    },
+    {
+      "basePose": "count-3",
+      "file": "pose-masks/count-3.png",
+      "status": "generated",
+      "sha256": "19680972865a382002a95987a27f8ed4ff6738105163d73cc3fd7a431648c50e",
+      "basePoseSha256": "d0e4cfeb6d41641cd2fbedae10df447bc65ba9d42d408b5087911d2e40ac1ab8"
+    },
+    {
+      "basePose": "disappointed",
+      "file": "pose-masks/disappointed.png",
+      "status": "generated",
+      "sha256": "7085ed998c4f431c1e0bd3fc0aa17e6fd250b27e6f06d7e0f89ff6fb90d0179a",
+      "basePoseSha256": "b7c2773078606f074d6c70eabcead3bd5b1d4ab504ecad3770688301534decbc"
+    },
+    {
+      "basePose": "explain-five",
+      "file": "pose-masks/explain-five.png",
+      "status": "generated",
+      "sha256": "56dcc639285d5ea69dd4d5f4a39e9e4795729289671184672c2e92ddf4498566",
+      "basePoseSha256": "be06c183c51db0a9e83ab8fd89ca03d36c929cefd81f425c43e21f7041cf696f"
+    },
+    {
+      "basePose": "explain-four",
+      "file": "pose-masks/explain-four.png",
+      "status": "generated",
+      "sha256": "9002ef7a58415991de8dc63a60d02ac4470d74b6f0d9674eb20f3e8b95a15d11",
+      "basePoseSha256": "e89f9331b4def66f6b3faa0284c6febdde0c59009531996f0eb0b53ca1290a7e"
+    },
+    {
+      "basePose": "explain-one",
+      "file": "pose-masks/explain-one.png",
+      "status": "generated",
+      "sha256": "28b36cb1eb7eb11b2f46e5fa8a4b9b5465ae2569773b4965d3c23d7b4a338902",
+      "basePoseSha256": "07b5076b750b3471aeba61278332cc84e9eb0938ddbc9a7f85707c9fc77b4575"
+    },
+    {
+      "basePose": "explain-six",
+      "file": "pose-masks/explain-six.png",
+      "status": "generated",
+      "sha256": "0adf3592a0e679e627b0ac12596e45a66ce30f96d19bd61266fdbb0d1bb8198f",
+      "basePoseSha256": "b3e12f039c665decead75e4f4d5777ebf686565b25841862726e9c5278c66399"
+    },
+    {
+      "basePose": "explain-three",
+      "file": "pose-masks/explain-three.png",
+      "status": "generated",
+      "sha256": "765be991e4a34d2da7212f2859880a56b985cab9228ef23b6bfc56212c456750",
+      "basePoseSha256": "f158170ebef4c38a317596bf66aa6df33814385a9b7d33bc60d1499009e4c09f"
+    },
+    {
+      "basePose": "explain-two",
+      "file": "pose-masks/explain-two.png",
+      "status": "generated",
+      "sha256": "cc7805423a8d86722f134f13aba35be396c46374bf8cd2a780c47e54f8aa145b",
+      "basePoseSha256": "3d7252d08e0b98ce7ac046cff4e96c5e03c2af2a61f652709275535b765add37"
+    },
+    {
+      "basePose": "facepalm-one",
+      "file": "pose-masks/facepalm-one.png",
+      "status": "generated",
+      "sha256": "698e2ec0197c4d6da2d07a1b317c8debc1c3f3e1b981c9a720f6dca792ba160a",
+      "basePoseSha256": "b39ddb54a733c56c4a7587f12e95e4b4ad39179f47d306f62ef1363e4439e344"
+    },
+    {
+      "basePose": "facepalm-two",
+      "file": "pose-masks/facepalm-two.png",
+      "status": "generated",
+      "sha256": "168a4371a089e2d0ee995b7efffe1d01273875c84d9fd9786ea244a944b7ae36",
+      "basePoseSha256": "32df35da037d6dc80ffed730e48b1f9809a3390e48974caf5206001c0c344b8e"
+    },
+    {
+      "basePose": "hold-ball",
+      "file": "pose-masks/hold-ball.png",
+      "status": "generated",
+      "sha256": "98ab72b5f3cf792ba58640ae021b66e8b55e5998c88abb87e54e92cd8d624a8c",
+      "basePoseSha256": "5506992766281d40967fa0f679d5834aece54d2207617501803df16ac70f2ad7"
+    },
+    {
+      "basePose": "laugh-one",
+      "file": "pose-masks/laugh-one.png",
+      "status": "generated",
+      "sha256": "988926f698cf95263c3021c5ca7982b1f076c166f762fcf03ca2d13025c4208b",
+      "basePoseSha256": "87bd7a0eeec5117db10cd8aa4069f9d716a13f53aa414259e29b4029e7f3458f"
+    },
+    {
+      "basePose": "laugh-three",
+      "file": "pose-masks/laugh-three.png",
+      "status": "generated",
+      "sha256": "155da9ce36f7afd8259ec074da220b1c925455356998350467307ced195fa10b",
+      "basePoseSha256": "7cbd85443a8f7b62661016c83a61ba62f0c90acee2a06bb3abadb0ad8d8b21cf"
+    },
+    {
+      "basePose": "laugh-two",
+      "file": "pose-masks/laugh-two.png",
+      "status": "generated",
+      "sha256": "5f67760922b9f8f57fe4a1b701d40691d4853ce7e46959bb4422687eb4b8eaa7",
+      "basePoseSha256": "d583e4d7c5bf8e0decdf9b3ca1b1c2fd361b0acf74b2d583274d243b95841f5e"
+    },
+    {
+      "basePose": "like",
+      "file": "pose-masks/like.png",
+      "status": "generated",
+      "sha256": "93f741454154bd1b230cfc7e189e735a7b2e858e4c4d9d2a162fe71f8f36cd01",
+      "basePoseSha256": "7598408e7e137c9a9ad26923432781fbf7a9a04381640a27557fe745182c8e7e"
+    },
+    {
+      "basePose": "listen",
+      "file": "pose-masks/listen.png",
+      "status": "generated",
+      "sha256": "6457a82ed06674b3c07441b05ae559c0fc337c81abc6d979a49bb9d9fd04586a",
+      "basePoseSha256": "59f7d0a16fc4b6de3870442d6a8409f0c86a1a10e0fd6f64cedcd7b6b198c30f"
+    },
+    {
+      "basePose": "look-there",
+      "file": "pose-masks/look-there.png",
+      "status": "generated",
+      "sha256": "b3891ec818c9920653ff56eca1b1fa7d4c7a0e6893898fa1f10e712e4a4b4805",
+      "basePoseSha256": "fab2bb0d205adb094425c7d8ec3e08073848e673b4575b319a196e821face3e6"
+    },
+    {
+      "basePose": "neutral-one",
+      "file": "pose-masks/neutral-one.png",
+      "status": "generated",
+      "sha256": "f5229734d13c0c7141292bd592b6254ab5af096bceccd08145c151119901edd2",
+      "basePoseSha256": "2fe1b326d306be40239d207b87218ba7946780251b91ac20a7153e1904530a53"
+    },
+    {
+      "basePose": "neutral-three",
+      "file": "pose-masks/neutral-three.png",
+      "status": "generated",
+      "sha256": "817c045f725bf1e74f822d9ba14fc1281df804319d50fe80df1a110b5344cb3e",
+      "basePoseSha256": "e6f211df9a461abe2aad32f49683c05084b266a11d0538c264714af90661efb1"
+    },
+    {
+      "basePose": "neutral-two",
+      "file": "pose-masks/neutral-two.png",
+      "status": "generated",
+      "sha256": "a22833b38afe93ce8900c74534fc553cee80abd67ceabbb0f122df963da3bd52",
+      "basePoseSha256": "552831200f0530368c6ab0b5f9166a8bae98c6e3bb715b0c11b3ec61a1ac4ad0"
+    },
+    {
+      "basePose": "phone",
+      "file": "pose-masks/phone.png",
+      "status": "generated",
+      "sha256": "c8b4494e7bf2aaebd2668f75715f65087883c46128ad016abbc69a716a187336",
+      "basePoseSha256": "96d0d966603d73fd702e72271d77e7c1913b4147485edef82c009d2aa2ccd614"
+    },
+    {
+      "basePose": "point-down",
+      "file": "pose-masks/point-down.png",
+      "status": "generated",
+      "sha256": "e20e4df2aedb9edc60f98416bd88da402fcb1193c199e625a7d6d2deb1163867",
+      "basePoseSha256": "4f212315d8273d4f0da1adb18ed469ef1fdfe9555b39e2e29b5e1f79bd9cdd41"
+    },
+    {
+      "basePose": "point-left-one",
+      "file": "pose-masks/point-left-one.png",
+      "status": "generated",
+      "sha256": "4506badc7f82bcf2f826a3990ba72c398a394e1eea602dae538352a9b09c4b75",
+      "basePoseSha256": "863fcfce1f5a2f1570f063959663ab9eecfe9e925cf3ea8274e4a39143a1c305"
+    },
+    {
+      "basePose": "point-left-three",
+      "file": "pose-masks/point-left-three.png",
+      "status": "generated",
+      "sha256": "93cc94628db6733718425ce74cec67f142c239aab8d626c6640acaab87325b69",
+      "basePoseSha256": "64a287a225297a27029595f6b537163f701ef917d427c1e42abea0c3ba5038ab"
+    },
+    {
+      "basePose": "point-left-two",
+      "file": "pose-masks/point-left-two.png",
+      "status": "generated",
+      "sha256": "13ffe40bf0de947476458637d4651bbf401f0a90197418ff200de0ce112f4e58",
+      "basePoseSha256": "00904594a7705d3c001e62514c50ae9a9a3617d883c84f606fa673c1d310a37a"
+    },
+    {
+      "basePose": "point-right-one",
+      "file": "pose-masks/point-right-one.png",
+      "status": "generated",
+      "sha256": "efeef6d49bc42481342d4a7b179b79d9945b52e2e7d22f01551f3751d6d7a520",
+      "basePoseSha256": "f1c6cdcc752e4069f175a2fac440fb60406d6a3df4ba03a4f40bc960b220c341"
+    },
+    {
+      "basePose": "point-right-two",
+      "file": "pose-masks/point-right-two.png",
+      "status": "generated",
+      "sha256": "b2ac74fbafc5f82588564b2fda41b0160bed5f6f9302c5e1c72d591bb9009d2c",
+      "basePoseSha256": "81c43bcc6b1a1e9a02d4508e7fe37f605c525c667586a0676b75caad6274f324"
+    },
+    {
+      "basePose": "point-up",
+      "file": "pose-masks/point-up.png",
+      "status": "generated",
+      "sha256": "caeeaed78204eaa17edd7d3aca85dd6223d50ef1d495f83d6af87e60e22a45e4",
+      "basePoseSha256": "d35212059710693a210a63304f75fa04ada26b2bad83c72b21a0a2c8376c5fe6"
+    },
+    {
+      "basePose": "pray",
+      "file": "pose-masks/pray.png",
+      "status": "generated",
+      "sha256": "b62ed0d48392a57068c3e8871ea1c2106ea46238926ba2b261d108f5e4c3bcd1",
+      "basePoseSha256": "a02f682fe2edbc785e06c9d50f8c3f9204a67affab1a12eb13f79667f0f0b29a"
+    },
+    {
+      "basePose": "protect",
+      "file": "pose-masks/protect.png",
+      "status": "generated",
+      "sha256": "0c336eaf98f2d8b9f1b9b64e1abceca258159bcf1fb9e2337e106c29209ffac0",
+      "basePoseSha256": "d28d6f407e32b79b0146012024b2c3d02f0755bb8c3eabbfbcbfc431f2a32ebc"
+    },
+    {
+      "basePose": "read",
+      "file": "pose-masks/read.png",
+      "status": "generated",
+      "sha256": "e8759067a6f9a933a94c9e97242db67028c7332b5e1ef0204200483521d3b428",
+      "basePoseSha256": "33df579645adbc180cea7c0681617f1e681c3adba39b28727b640654c8cfe0d2"
+    },
+    {
+      "basePose": "ready",
+      "file": "pose-masks/ready.png",
+      "status": "generated",
+      "sha256": "64f35b6e83c092c93482108fef2e17a9376b28d38927c4fb6d681348937f0e7f",
+      "basePoseSha256": "25129f42202f5b0fe6f740984269f0e35ccaa5b0dce8e7edca5e4045f85c078c"
+    },
+    {
+      "basePose": "red-card",
+      "file": "pose-masks/red-card.png",
+      "status": "generated",
+      "sha256": "3714b312ec55e9dfbf128574f307f5ee6d05fc1c875209f9ef22feee21e5521e",
+      "basePoseSha256": "b8a6b4fc1ede1bf46f7fd137a41aa7b7fa350aae14a20b590981db9aaebf25e1"
+    },
+    {
+      "basePose": "respect",
+      "file": "pose-masks/respect.png",
+      "status": "generated",
+      "sha256": "a206b41e16d85d289ab5f0603e16a170024315de0035f5aa29da0d469146478b",
+      "basePoseSha256": "0e259f8d1b27bc461bbd0527c855d8b190aa30fba40c473a0890c03aa11a127e"
+    },
+    {
+      "basePose": "sad",
+      "file": "pose-masks/sad.png",
+      "status": "generated",
+      "sha256": "b8e11d53dec8dc14959190ce0a0379f554c55aaaf49ce481ecd52cddae1669c8",
+      "basePoseSha256": "8d615f709ca526168c43ce58a1bd567869ab8ec13e9ceb19ad26421ed98b28a1"
+    },
+    {
+      "basePose": "shock-one",
+      "file": "pose-masks/shock-one.png",
+      "status": "generated",
+      "sha256": "8fc86c7dfcabc8eecc319d09e504786e91625a6ce6ad0961c1343a4e4ae482ce",
+      "basePoseSha256": "9fc471c592209dfcc78333d8e7a1f4fcd22f87617690c067f651caf6e59cd4fa"
+    },
+    {
+      "basePose": "shock-three",
+      "file": "pose-masks/shock-three.png",
+      "status": "generated",
+      "sha256": "d9c54a96d94cb8ea0c3b32f277f9d88e5a8c76d7051138d99197af7e51779a1b",
+      "basePoseSha256": "62cd4d983280eb2306d58eaaa22a664fff2481963bc8f7c276630c694dd3a28c"
+    },
+    {
+      "basePose": "shock-two",
+      "file": "pose-masks/shock-two.png",
+      "status": "generated",
+      "sha256": "0b930453f1cd6a83407d7851ae140c71af041e95ff47bd0d9e180e099083aea5",
+      "basePoseSha256": "90647d112b8aad14fd91c71d0c549f448fcc734e05aec33ffa65f4087c69b227"
+    },
+    {
+      "basePose": "stop",
+      "file": "pose-masks/stop.png",
+      "status": "generated",
+      "sha256": "6ed86fdc0a30db0daa03ca9eb14de32448dcfbf01e8c9daa69f73acb47679153",
+      "basePoseSha256": "e49f28ce12411d1c22a74635e3bedda9901c51bc3ce22f02b6327b45fd68bd6b"
+    },
+    {
+      "basePose": "suspicious",
+      "file": "pose-masks/suspicious.png",
+      "status": "generated",
+      "sha256": "8de4c337913ba64007451bdd069aa09142eae79ad2ed66ceb1e49fc8511424a8",
+      "basePoseSha256": "21abba43bfc9a132edf1ce97fc30d2bb4891218c982983649e52f6371c9f195a"
+    },
+    {
+      "basePose": "think-one",
+      "file": "pose-masks/think-one.png",
+      "status": "generated",
+      "sha256": "0f0ee159117b6ff70fcf3bb4831274adf2affb4f5952c42577ac04417d7444c7",
+      "basePoseSha256": "da89496ac37e56c7f7c810d5d4c7dccab2154696a6a033227f619e9fc5969ea7"
+    },
+    {
+      "basePose": "think-three",
+      "file": "pose-masks/think-three.png",
+      "status": "generated",
+      "sha256": "01347365ee7646f64cd101acf81634d13532a07412a0a8bba2b3eba57186b5dc",
+      "basePoseSha256": "0ed44baa65506ee775b55997e436f2b84f2b367859f12957c5834bc088e9cf1a"
+    },
+    {
+      "basePose": "think-two",
+      "file": "pose-masks/think-two.png",
+      "status": "generated",
+      "sha256": "34163db6a156935d00c94ec61413d1621c854cf1e90b43fffb1e25e799fc526d",
+      "basePoseSha256": "5a13a0b645ffafa96e31271fd438514f466c4ea934ed8d33c03fafe424316740"
+    },
+    {
+      "basePose": "thumbs-down",
+      "file": "pose-masks/thumbs-down.png",
+      "status": "generated",
+      "sha256": "43f4c0b6fbb13f5e0d2429575fab883686333ba77bafd90d154e466b155c40c1",
+      "basePoseSha256": "5a6ef31214f6e61b39151c6be14f09dfe8de1d9f7eff88b9e1495884f9be819f"
+    },
+    {
+      "basePose": "thumbs-up",
+      "file": "pose-masks/thumbs-up.png",
+      "status": "generated",
+      "sha256": "1f9093b63554342aff68f1ac4f118829be17646c55a3c5c2cdc49b738f8cd15d",
+      "basePoseSha256": "5cfdd3e14b6bdc7e24a3dc66a2ab611cbc1ce6cd74dea9bea5ad18a13c09a8fc"
+    },
+    {
+      "basePose": "victory",
+      "file": "pose-masks/victory.png",
+      "status": "generated",
+      "sha256": "87ba40d51627321708a29d98f48887cff141a0748c049e9b8c74f041b8ff9632",
+      "basePoseSha256": "adce0a3e174d3bbc7adf9275c7f0add1f2e86fc9482748d688507ebc830793e0"
+    },
+    {
+      "basePose": "what-the-hell",
+      "file": "pose-masks/what-the-hell.png",
+      "status": "generated",
+      "sha256": "c2e48216e8565df218285893a2ed6f6d404ac567bff6a0347516de156e7b228c",
+      "basePoseSha256": "1c093dbc0868742bd8de7aabe30ea4801eac767617e71be8f276a967eb6c566a"
+    },
+    {
+      "basePose": "whisper",
+      "file": "pose-masks/whisper.png",
+      "status": "generated",
+      "sha256": "c3d93386e0add9f132838aa5a60d8c5592518d11e877623e837f23e535e97c4e",
+      "basePoseSha256": "666501cd65529a43139936bbc5ce3fc1c303665d021f690e34f6a53d33898672"
+    },
+    {
+      "basePose": "write",
+      "file": "pose-masks/write.png",
+      "status": "generated",
+      "sha256": "0168b24560608e165fb1c2ecd1196754eccaa3eb64ea32c06a7c04a83ebb513d",
+      "basePoseSha256": "bbba51507d2a6a2fbf638487ae42cba49438c4fce1e994fcf247df867068da53"
+    },
+    {
+      "basePose": "yellow-card",
+      "file": "pose-masks/yellow-card.png",
+      "status": "generated",
+      "sha256": "bbd5802870ef81207c4c22eafbf699b1ab7f0b398e87aaee6fdd881bb1bcdcc7",
+      "basePoseSha256": "b83353daf308f15c063eabcddc698338c5186e0ac25b702a1ff0182be1f3b52f"
+    },
+    {
+      "basePose": "you",
+      "file": "pose-masks/you.png",
+      "status": "generated",
+      "sha256": "ee3148d5efb256d3d8582db94fdf75d12720bdd8713bcaf3705cda0382727222",
+      "basePoseSha256": "4e124755baed94534882056c2d09f18718176d3b1663bc55f450f27d4055a1f1"
+    }
+  ]
+}

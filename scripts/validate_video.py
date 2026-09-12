@@ -12,6 +12,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MASCOT_MANIFEST = ROOT / "channel-assets" / "mascot" / "poses.json"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from mascot_common import (
+    DEFAULT_OUTFIT,
+    OUTFIT_INTENTS,
+    VARIANT_POLICIES,
+    entities_by_id,
+    outfit_by_id,
+    pose_by_id,
+    variant_by_pair,
+)
 
 REQUIRED_DIRS = (
     "research",
@@ -173,7 +183,44 @@ def validate_assets(payload, folder_name: str, report: Report) -> set[str]:
             value = asset.get(field, None)
             if value is not None and not isinstance(value, str):
                 report.error(f"{asset_id}: {field} must be string or null")
+        if asset.get("type") == "MASCOT" and asset.get("mascot") is not None:
+            if not isinstance(asset.get("mascot"), dict):
+                report.error(f"{asset_id}: mascot must be an object")
     return unique_ids(ids, "asset", report)
+
+
+def validate_mascot_assets(assets: list, video_dir: Path, report: Report) -> None:
+    entities = entities_by_id(video_dir)
+    for asset in assets:
+        if asset.get("type") != "MASCOT" or not isinstance(asset.get("mascot"), dict):
+            continue
+        asset_id = asset.get("id")
+        mascot = asset["mascot"]
+        pose_id = mascot.get("basePose")
+        if pose_id and pose_by_id(pose_id) is None:
+            report.error(f"{asset_id}: mascot.basePose `{pose_id}` does not exist")
+        intent = mascot.get("outfitIntent")
+        if intent is not None and intent not in OUTFIT_INTENTS:
+            report.error(f"{asset_id}: invalid outfitIntent `{intent}`")
+        policy = mascot.get("variantPolicy")
+        if policy is not None and policy not in VARIANT_POLICIES:
+            report.error(f"{asset_id}: invalid variantPolicy `{policy}`")
+        subject = mascot.get("subject")
+        if subject:
+            if not (video_dir / "context" / "entities.json").exists():
+                report.error(f"{asset_id}: subject is set but context/entities.json is missing")
+            elif subject not in entities:
+                report.error(f"{asset_id}: subject `{subject}` is missing from entities.json")
+        resolved = mascot.get("resolvedOutfit")
+        if resolved and outfit_by_id(resolved) is None:
+            report.error(f"{asset_id}: resolvedOutfit `{resolved}` is not in outfits.json")
+        if asset.get("status") == "ready" and resolved and resolved != DEFAULT_OUTFIT:
+            variant = variant_by_pair(pose_id, resolved) if pose_id else None
+            if variant is None or variant.get("status") != "approved":
+                report.error(
+                    f"{asset_id}: status=ready requires an approved outfit variant "
+                    f"for {pose_id} + {resolved}"
+                )
 
 
 def validate_voice(payload, script_ids: set[str], report: Report) -> set[str]:
@@ -305,7 +352,9 @@ def validate_video(video_dir: Path) -> Report:
     )
 
     if isinstance(assets_payload, dict):
-        for asset in assets_payload.get("assets") or []:
+        assets = assets_payload.get("assets") or []
+        validate_mascot_assets(assets, video_dir, report)
+        for asset in assets:
             if not isinstance(asset, dict):
                 continue
             for scene_id in asset.get("usedInScenes") or []:

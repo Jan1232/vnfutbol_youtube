@@ -32,7 +32,7 @@ REUSE  →  SEARCH  →  GENERATE
 
 1. **REUSE** — сначала готовое из `channel-assets/`.
 2. **SEARCH** — для маскота `scripts/find_asset.py`, для остального запись в `assets.json` со `sourceUrl` / `license` / `author`.
-3. **GENERATE** — только если библиотека и поиск не закрыли задачу. Для маскота этот шаг закрыт.
+3. **GENERATE** — только если библиотека и поиск не закрыли задачу. Новые позы маскота не генерируем. Новую форму собираем как слой одежды поверх неизменяемой позы.
 
 Этапы выпуска:
 
@@ -45,6 +45,43 @@ REUSE  →  SEARCH  →  GENERATE
 - **VOICE** — `voice.json`, TTS позже
 - **TIMELINE** — `timeline.json`
 - **DRAFT** — локальный render, не в git
+
+## Mascot Outfit System
+
+```text
+POSE + OUTFIT LAYER = FINAL MASCOT
+```
+
+Базовая поза неизменяема. В общей библиотеке хранится только слой одежды с прозрачностью. Полный AI-edit — промежуточный файл, не source of truth.
+
+```text
+AI VISUAL PLAN
+→ outfitIntent
+→ entities.json
+→ resolvedOutfit
+→ variant lookup
+→ REUSE if exists
+→ GENERATION JOB if missing
+→ AI full edit
+→ mask extraction
+→ outfit layer
+→ approval
+→ promote to shared library
+→ reuse forever
+```
+
+`default-home` — без overlay, берётся исходная поза. Текущий клуб не угадывается из интернета: он приходит из `context/entities.json`.
+
+Правила для visual plan: `docs/mascot-outfit-resolution.md`.
+
+```bash
+python scripts/generate_clothing_mask.py --all
+python scripts/validate_mascot_masks.py
+python scripts/resolve_mascot_outfit.py videos/<slug> --all
+python scripts/ensure_mascot_variants.py videos/<slug>
+python scripts/find_mascot_variant.py --pose argument --outfit spain-home
+python scripts/compose_mascot.py --pose argument --outfit spain-home --output preview.png
+```
 
 ## Quick Start
 
@@ -74,6 +111,11 @@ channel-assets/
     references/
     poses/
     poses.json
+    outfits.json
+    pose-masks.json
+    variants.json
+    pose-masks/
+    clubs/ national-teams/ formal/
     mascot_master_prompt.md
   players/ coaches/ clubs/ trophies/ stadiums/
   memes/ sounds/ music/ fonts/ templates/

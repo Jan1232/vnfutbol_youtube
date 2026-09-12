@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "outfits": [
+    {
+      "id": "default-home",
+      "type": "default",
+      "team": "ВСЕ НА ФУТБОЛ",
+      "slug": "default",
+      "variant": "home",
+      "season": null,
+      "description": "Базовая форма маскота: широкие вертикальные полосы тёмного граната и глубокого navy.",
+      "generationDescription": "Keep the existing canonical mascot jersey: wide vertical stripes in muted dark garnet approximately #81162D and deep dark navy approximately #172146. Dark navy shorts. No logo, no sponsor, no manufacturer mark, no crest, no number, no text.",
+      "sponsorPolicy": "omit",
+      "manufacturerPolicy": "omit",
+      "crestPolicy": "omit",
+      "active": true
+    },
+    {
+      "id": "barcelona-home",
+      "type": "club",
+      "team": "FC Barcelona",
+      "slug": "barcelona",
+      "variant": "home",
+      "season": null,
+      "description": "Узнаваемая домашняя форма Barcelona: вертикальные тёмно-синие и гранатовые полосы.",
+      "generationDescription": "Change only the clothing to a recognizable FC Barcelona home football kit: wide vertical dark navy and muted garnet/burgundy stripes, dark navy shorts. Do not add sponsor text, manufacturer logo, crest, number or any lettering. Keep the look abstract and timeless, not a specific season kit.",
+      "sponsorPolicy": "omit",
+      "manufacturerPolicy": "omit",
+      "crestPolicy": "omit",
+      "active": true
+    },
+    {
+      "id": "spain-home",
+      "type": "national-team",
+      "team": "Spain",
+      "slug": "spain",
+      "variant": "home",
+      "season": null,
+      "description": "Домашняя форма сборной Испании: красная футболка, жёлтые акценты, тёмные шорты.",
+      "generationDescription": "Change only the clothing to a Spain national-team home football kit: red jersey, yellow accents, dark or navy shorts. No sponsor text, no manufacturer logo, no mandatory exact crest, no number, no text. Keep it timeless, not a specific tournament kit.",
+      "sponsorPolicy": "omit",
+      "manufacturerPolicy": "omit",
+      "crestPolicy": "omit",
+      "active": true
+    },
+    {
+      "id": "suit-navy",
+      "type": "formal",
+      "team": null,
+      "slug": "suit-navy",
+      "variant": "formal",
+      "season": null,
+      "description": "Тёмно-синий аккуратный официальный костюм для церемоний и наград.",
+      "generationDescription": "Change only the clothing to a clean tailored navy formal suit: dark navy jacket, matching trousers if visible, simple formal shirt. No logos, no text, no medals unless already present as a separate requested prop. Keep the look elegant and unbranded.",
+      "sponsorPolicy": "omit",
+      "manufacturerPolicy": "omit",
+      "crestPolicy": "omit",
+      "active": true
+    }
+  ]
+}

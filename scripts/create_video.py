@@ -57,6 +57,17 @@ def create_video(slug: str, force: bool) -> int:
             "createdAt": created,
         },
     )
+    entities_path = dest / "context" / "entities.json"
+    if not entities_path.exists():
+        write_json(entities_path, {"version": 1, "entities": []})
+    queue_path = dest / "assets" / "mascot-generation.json"
+    if not queue_path.exists():
+        write_json(queue_path, {"version": 1, "jobs": []})
+    generated = dest / "assets" / "mascot" / "generated"
+    generated.mkdir(parents=True, exist_ok=True)
+    keep = generated / ".gitkeep"
+    if not keep.exists():
+        keep.write_text("", encoding="utf-8")
     print(f"OK    created {dest.as_posix()}")
     return 0
 

@@ -18,6 +18,8 @@ videos/*/renders/*
 videos/*/audio/generated/
 videos/*/audio/tmp/
 
+videos/*/assets/mascot/generated/*_full.png
+
 .cache/
 tmp/
 temp/
