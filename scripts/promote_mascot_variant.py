@@ -69,7 +69,7 @@ def main() -> int:
     if mask.get("basePoseSha256") != pose.get("sha256"):
         return fail("clothing mask is stale relative to the base pose")
     for key in ("basePoseSha256", "maskSha256", "outfitSpecSha256"):
-        if key in job and job[key] != current[key]:
+        if job.get(key) != current[key]:
             return fail(f"{key} changed since the job was created; extract the layer again")
 
     source = video_dir / job["targetLayer"]

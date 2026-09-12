@@ -17,18 +17,24 @@ from mascot_common import (
     mask_path,
     outfit_by_id,
     pose_by_id,
+    sha256_file,
     variant_by_pair,
     variant_is_stale,
     write_json,
 )
 
 
-def mask_is_approved(mask: dict | None) -> bool:
-    return (
-        mask is not None
-        and mask.get("status") == "approved"
-        and mask_path(mask).exists()
-    )
+def mask_is_approved(mask: dict | None, pose: dict) -> bool:
+    if mask is None or mask.get("status") != "approved":
+        return False
+    path = mask_path(mask)
+    if not path.exists():
+        return False
+    if sha256_file(path) != mask.get("sha256"):
+        return False
+    if mask.get("basePoseSha256") != pose.get("sha256"):
+        return False
+    return True
 
 
 def classify(asset: dict) -> tuple[str, dict]:
@@ -46,7 +52,7 @@ def classify(asset: dict) -> tuple[str, dict]:
         return "REUSED", {"note": "default-home uses the base pose"}
 
     mask = mask_by_pose(pose_id)
-    if not mask_is_approved(mask):
+    if not mask_is_approved(mask, pose):
         return "BLOCKED_MASK", {}
 
     variant = variant_by_pair(pose_id, outfit_id)

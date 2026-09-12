@@ -344,14 +344,20 @@ def validate_video(video_dir: Path) -> Report:
         or queue_payload is None
     ):
         return report
-    if not isinstance(entities_payload, dict) or entities_payload.get("version") != 1:
-        report.error("entities.json: version must be 1")
-    if not isinstance(entities_payload.get("entities"), list):
-        report.error("entities.json: entities must be a list")
-    if not isinstance(queue_payload, dict) or queue_payload.get("version") != 1:
-        report.error("mascot-generation.json: version must be 1")
-    if not isinstance(queue_payload.get("jobs"), list):
-        report.error("mascot-generation.json: jobs must be a list")
+    if not isinstance(entities_payload, dict):
+        report.error("entities.json: root must be an object")
+    else:
+        if entities_payload.get("version") != 1:
+            report.error("entities.json: version must be 1")
+        if not isinstance(entities_payload.get("entities"), list):
+            report.error("entities.json: entities must be a list")
+    if not isinstance(queue_payload, dict):
+        report.error("mascot-generation.json: root must be an object")
+    else:
+        if queue_payload.get("version") != 1:
+            report.error("mascot-generation.json: version must be 1")
+        if not isinstance(queue_payload.get("jobs"), list):
+            report.error("mascot-generation.json: jobs must be a list")
 
     folder_name = video_dir.name
     validate_metadata(metadata_payload, folder_name, report)
