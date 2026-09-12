@@ -10,6 +10,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mascot_common import (
     DEFAULT_OUTFIT,
+    hashes_current,
     load_json,
     load_poses,
     mask_by_pose,
@@ -22,10 +23,19 @@ from mascot_common import (
 )
 
 
+def mask_is_approved(mask: dict | None) -> bool:
+    return (
+        mask is not None
+        and mask.get("status") == "approved"
+        and mask_path(mask).exists()
+    )
+
+
 def classify(asset: dict) -> tuple[str, dict]:
     mascot = asset.get("mascot") or {}
     pose_id = mascot.get("basePose")
     outfit_id = mascot.get("resolvedOutfit")
+    policy = mascot.get("variantPolicy") or "reuse-else-generate"
     if not pose_id or not outfit_id:
         return "UNRESOLVED", {}
     pose = pose_by_id(pose_id)
@@ -36,16 +46,25 @@ def classify(asset: dict) -> tuple[str, dict]:
         return "REUSED", {"note": "default-home uses the base pose"}
 
     mask = mask_by_pose(pose_id)
-    if mask is None or mask.get("status") == "rejected" or not mask_path(mask).exists():
+    if not mask_is_approved(mask):
         return "BLOCKED_MASK", {}
 
     variant = variant_by_pair(pose_id, outfit_id)
-    if variant is None:
-        return "MISSING", {"pose": pose, "outfit": outfit, "mask": mask}
-    if variant_is_stale(variant, pose, mask, outfit) or variant.get("status") == "stale":
-        return "STALE", {"pose": pose, "outfit": outfit, "mask": mask, "variant": variant}
-    if variant.get("status") == "approved":
+    reusable = (
+        variant is not None
+        and variant.get("status") == "approved"
+        and not variant_is_stale(variant, pose, mask, outfit)
+    )
+    if reusable:
         return "REUSED", {"variant": variant}
+
+    if policy == "reuse-only":
+        return "BLOCKED_POLICY", {}
+
+    if variant is not None and (
+        variant_is_stale(variant, pose, mask, outfit) or variant.get("status") == "stale"
+    ):
+        return "STALE", {"pose": pose, "outfit": outfit, "mask": mask, "variant": variant}
     return "MISSING", {"pose": pose, "outfit": outfit, "mask": mask}
 
 
@@ -63,6 +82,7 @@ def make_job(asset: dict, pose: dict, outfit: dict, mask: dict, index: int) -> d
         "targetFullEdit": f"assets/mascot/generated/{stem}_full.png",
         "targetLayer": f"assets/mascot/generated/{stem}_layer.png",
         "status": "pending",
+        **hashes_current(pose, mask, outfit),
     }
 
 
@@ -76,14 +96,23 @@ def main() -> int:
 
     assets = load_json(video_dir / "assets" / "assets.json").get("assets", [])
     jobs = []
-    counts = {"REUSED": 0, "MISSING": 0, "STALE": 0, "BLOCKED_MASK": 0, "UNRESOLVED": 0}
+    counts = {
+        "REUSED": 0,
+        "MISSING": 0,
+        "STALE": 0,
+        "BLOCKED_MASK": 0,
+        "BLOCKED_POLICY": 0,
+        "UNRESOLVED": 0,
+    }
     for asset in assets:
         if asset.get("type") != "MASCOT":
             continue
         label, extra = classify(asset)
         counts[label] += 1
-        print(f"{label:13} {asset.get('id')} {asset.get('mascot', {}).get('basePose')} "
-              f"{asset.get('mascot', {}).get('resolvedOutfit')}")
+        print(
+            f"{label:15} {asset.get('id')} {asset.get('mascot', {}).get('basePose')} "
+            f"{asset.get('mascot', {}).get('resolvedOutfit')}"
+        )
         if label in {"MISSING", "STALE"}:
             jobs.append(
                 make_job(asset, extra["pose"], extra["outfit"], extra["mask"], len(jobs) + 1)
@@ -93,7 +122,8 @@ def main() -> int:
     write_json(queue_path, {"version": 1, "jobs": jobs})
     print(
         f"OK    jobs={len(jobs)} reused={counts['REUSED']} missing={counts['MISSING']} "
-        f"stale={counts['STALE']} blocked={counts['BLOCKED_MASK']} unresolved={counts['UNRESOLVED']}"
+        f"stale={counts['STALE']} blocked_mask={counts['BLOCKED_MASK']} "
+        f"blocked_policy={counts['BLOCKED_POLICY']} unresolved={counts['UNRESOLVED']}"
     )
     return 0
 

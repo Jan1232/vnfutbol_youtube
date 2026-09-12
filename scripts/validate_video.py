@@ -31,6 +31,7 @@ REQUIRED_DIRS = (
     "audio",
     "scenes",
     "renders",
+    "context",
 )
 REQUIRED_FILES = (
     "metadata.json",
@@ -40,6 +41,8 @@ REQUIRED_FILES = (
     "assets/assets.json",
     "audio/voice.json",
     "scenes/timeline.json",
+    "context/entities.json",
+    "assets/mascot-generation.json",
 )
 METADATA_STATUSES = {
     "idea",
@@ -330,13 +333,25 @@ def validate_video(video_dir: Path) -> Report:
     assets_payload = load_json(video_dir / "assets" / "assets.json", report)
     voice_payload = load_json(video_dir / "audio" / "voice.json", report)
     timeline_payload = load_json(video_dir / "scenes" / "timeline.json", report)
+    entities_payload = load_json(video_dir / "context" / "entities.json", report)
+    queue_payload = load_json(video_dir / "assets" / "mascot-generation.json", report)
     if (
         metadata_payload is None
         or assets_payload is None
         or voice_payload is None
         or timeline_payload is None
+        or entities_payload is None
+        or queue_payload is None
     ):
         return report
+    if not isinstance(entities_payload, dict) or entities_payload.get("version") != 1:
+        report.error("entities.json: version must be 1")
+    if not isinstance(entities_payload.get("entities"), list):
+        report.error("entities.json: entities must be a list")
+    if not isinstance(queue_payload, dict) or queue_payload.get("version") != 1:
+        report.error("mascot-generation.json: version must be 1")
+    if not isinstance(queue_payload.get("jobs"), list):
+        report.error("mascot-generation.json: jobs must be a list")
 
     folder_name = video_dir.name
     validate_metadata(metadata_payload, folder_name, report)

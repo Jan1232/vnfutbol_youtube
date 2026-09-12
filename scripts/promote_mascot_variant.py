@@ -17,8 +17,10 @@ from mascot_common import (
     load_json,
     load_variants,
     mask_by_pose,
+    mask_path,
     outfit_by_id,
     pose_by_id,
+    pose_path,
     sha256_file,
     variant_id,
     VARIANTS_PATH,
@@ -54,6 +56,21 @@ def main() -> int:
     mask = mask_by_pose(job["basePose"])
     if pose is None or outfit is None or mask is None:
         return fail("pose, outfit or mask is missing")
+    if mask.get("status") != "approved":
+        return fail(f"clothing mask for `{job['basePose']}` is not approved")
+    if not mask_path(mask).exists():
+        return fail(f"clothing mask file is missing: {mask.get('file')}")
+
+    current = hashes_current(pose, mask, outfit)
+    if sha256_file(pose_path(pose)) != pose.get("sha256"):
+        return fail("base pose file no longer matches poses.json sha256")
+    if sha256_file(mask_path(mask)) != mask.get("sha256"):
+        return fail("clothing mask file no longer matches pose-masks.json sha256")
+    if mask.get("basePoseSha256") != pose.get("sha256"):
+        return fail("clothing mask is stale relative to the base pose")
+    for key in ("basePoseSha256", "maskSha256", "outfitSpecSha256"):
+        if key in job and job[key] != current[key]:
+            return fail(f"{key} changed since the job was created; extract the layer again")
 
     source = video_dir / job["targetLayer"]
     if not source.exists():

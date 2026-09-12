@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "entities": [
+    {
+      "id": "player-lamine-yamal",
+      "type": "PLAYER",
+      "name": "Lamine Yamal",
+      "currentClub": {
+        "name": "FC Barcelona",
+        "outfit": "barcelona-home"
+      },
+      "nationalTeam": {
+        "name": "Spain",
+        "outfit": "spain-home"
+      },
+      "asOf": "2026-09-12"
+    }
+  ]
+}

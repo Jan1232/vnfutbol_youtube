@@ -15,6 +15,7 @@ from mascot_common import (
     VARIANT_STATUSES,
     load_variants,
     mask_by_pose,
+    mask_path,
     outfit_by_id,
     outfit_spec_sha256,
     pose_by_id,
@@ -60,6 +61,15 @@ def main() -> int:
         if outfit is None:
             errors.append(f"{variant_id}: outfit does not exist")
             continue
+        if mask is None:
+            errors.append(f"{variant_id}: clothing mask is missing")
+            continue
+        if not mask_path(mask).exists():
+            errors.append(f"{variant_id}: clothing mask file is missing")
+        if mask.get("status") != "approved":
+            errors.append(
+                f"{variant_id}: clothing mask must be approved (status={mask.get('status')})"
+            )
         path = variant_path(variant)
         if not path.exists():
             errors.append(f"{variant_id}: missing layer {variant.get('file')}")

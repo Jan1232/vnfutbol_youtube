@@ -23,7 +23,7 @@ def main() -> int:
     parser.add_argument("--pose", required=True)
     parser.add_argument("--edited", required=True)
     parser.add_argument("--output", required=True)
-    parser.add_argument("--feather", type=int, default=2, help="1-3px controlled feather")
+    parser.add_argument("--feather", type=int, default=2, help="0-3px inward-only feather")
     args = parser.parse_args()
     if args.feather < 0 or args.feather > 3:
         return fail("feather must be 0-3")
@@ -43,18 +43,26 @@ def main() -> int:
     if edited.size != base.size or clothing.size != base.size:
         return fail("edited image and mask must match the base pose size")
 
-    if args.feather:
-        clothing = clothing.filter(ImageFilter.GaussianBlur(radius=args.feather))
+    hard_mask = clothing
+    soft_mask = (
+        hard_mask.filter(ImageFilter.GaussianBlur(radius=args.feather))
+        if args.feather
+        else hard_mask
+    )
 
     layer = Image.new("RGBA", base.size, (0, 0, 0, 0))
     epx = edited.load()
-    mpx = clothing.load()
+    hpx = hard_mask.load()
+    spx = soft_mask.load()
     lpx = layer.load()
     width, height = base.size
     kept = 0
     for y in range(height):
         for x in range(width):
-            coverage = mpx[x, y]
+            hard = hpx[x, y]
+            if hard <= 0:
+                continue
+            coverage = min(hard, spx[x, y])
             if coverage <= 0:
                 continue
             r, g, b, a = epx[x, y]
