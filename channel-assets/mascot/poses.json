@@ -1,11 +1,15 @@
 {
   "version": 1,
-  "canonicalReference": "references/mascot_reference_main.png",
+  "canonicalReference": {
+    "file": "references/mascot_reference_main.png",
+    "sha256": "2fe1b326d306be40239d207b87218ba7946780251b91ac20a7153e1904530a53"
+  },
   "auxiliaryReferences": [
     {
       "file": "references/mascot_reference_hips.png",
       "role": "stance-and-hands",
-      "description": "Тот же канон, руки в боки. Вспомогательный эталон кистей, таза и шорт."
+      "description": "Тот же канон, руки в боки. Вспомогательный эталон кистей, таза и шорт.",
+      "sha256": "e6f211df9a461abe2aad32f49683c05084b266a11d0538c264714af90661efb1"
     }
   ],
   "palette": {
@@ -28,7 +32,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "2fe1b326d306be40239d207b87218ba7946780251b91ac20a7153e1904530a53"
     },
     {
       "id": "neutral-two",
@@ -44,7 +52,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "552831200f0530368c6ab0b5f9166a8bae98c6e3bb715b0c11b3ec61a1ac4ad0"
     },
     {
       "id": "neutral-three",
@@ -60,7 +72,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "e6f211df9a461abe2aad32f49683c05084b266a11d0538c264714af90661efb1"
     },
     {
       "id": "ready",
@@ -76,7 +92,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "25129f42202f5b0fe6f740984269f0e35ccaa5b0dce8e7edca5e4045f85c078c"
     },
     {
       "id": "explain-one",
@@ -92,7 +112,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "07b5076b750b3471aeba61278332cc84e9eb0938ddbc9a7f85707c9fc77b4575"
     },
     {
       "id": "explain-two",
@@ -108,7 +132,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "3d7252d08e0b98ce7ac046cff4e96c5e03c2af2a61f652709275535b765add37"
     },
     {
       "id": "explain-three",
@@ -124,7 +152,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "f158170ebef4c38a317596bf66aa6df33814385a9b7d33bc60d1499009e4c09f"
     },
     {
       "id": "explain-four",
@@ -140,7 +172,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "e89f9331b4def66f6b3faa0284c6febdde0c59009531996f0eb0b53ca1290a7e"
     },
     {
       "id": "explain-five",
@@ -156,7 +192,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "be06c183c51db0a9e83ab8fd89ca03d36c929cefd81f425c43e21f7041cf696f"
     },
     {
       "id": "explain-six",
@@ -172,7 +212,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "b3e12f039c665decead75e4f4d5777ebf686565b25841862726e9c5278c66399"
     },
     {
       "id": "think-one",
@@ -188,7 +232,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "da89496ac37e56c7f7c810d5d4c7dccab2154696a6a033227f619e9fc5969ea7"
     },
     {
       "id": "think-two",
@@ -204,7 +252,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "5a13a0b645ffafa96e31271fd438514f466c4ea934ed8d33c03fafe424316740"
     },
     {
       "id": "think-three",
@@ -219,7 +271,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "0ed44baa65506ee775b55997e436f2b84f2b367859f12957c5834bc088e9cf1a"
     },
     {
       "id": "count-1",
@@ -235,7 +291,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "313440836941c8cbd45058e562a579bfe09133ecf68b9e139a6d9f1ca718fff1"
     },
     {
       "id": "count-2",
@@ -250,7 +310,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "26082bb46bbef9a8021620419203284e46846c3c573a9aaa0503a925685c95a1"
     },
     {
       "id": "count-3",
@@ -265,7 +329,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "d0e4cfeb6d41641cd2fbedae10df447bc65ba9d42d408b5087911d2e40ac1ab8"
     },
     {
       "id": "point-left-one",
@@ -281,7 +349,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "left",
+      "prop": null,
+      "sha256": "863fcfce1f5a2f1570f063959663ab9eecfe9e925cf3ea8274e4a39143a1c305"
     },
     {
       "id": "point-left-two",
@@ -296,7 +368,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "left",
+      "prop": null,
+      "sha256": "00904594a7705d3c001e62514c50ae9a9a3617d883c84f606fa673c1d310a37a"
     },
     {
       "id": "point-left-three",
@@ -311,7 +387,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "left",
+      "prop": null,
+      "sha256": "64a287a225297a27029595f6b537163f701ef917d427c1e42abea0c3ba5038ab"
     },
     {
       "id": "point-right-one",
@@ -327,7 +407,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "right",
+      "prop": null,
+      "sha256": "f1c6cdcc752e4069f175a2fac440fb60406d6a3df4ba03a4f40bc960b220c341"
     },
     {
       "id": "point-right-two",
@@ -342,7 +426,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "right",
+      "prop": null,
+      "sha256": "81c43bcc6b1a1e9a02d4508e7fe37f605c525c667586a0676b75caad6274f324"
     },
     {
       "id": "point-up",
@@ -357,7 +445,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "d35212059710693a210a63304f75fa04ada26b2bad83c72b21a0a2c8376c5fe6"
     },
     {
       "id": "point-down",
@@ -372,7 +464,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "4f212315d8273d4f0da1adb18ed469ef1fdfe9555b39e2e29b5e1f79bd9cdd41"
     },
     {
       "id": "you",
@@ -388,7 +484,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "chest-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "4e124755baed94534882056c2d09f18718176d3b1663bc55f450f27d4055a1f1"
     },
     {
       "id": "look-there",
@@ -404,7 +504,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "right",
+      "prop": null,
+      "sha256": "fab2bb0d205adb094425c7d8ec3e08073848e673b4575b319a196e821face3e6"
     },
     {
       "id": "listen",
@@ -420,7 +524,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "59f7d0a16fc4b6de3870442d6a8409f0c86a1a10e0fd6f64cedcd7b6b198c30f"
     },
     {
       "id": "confused-one",
@@ -436,7 +544,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "6669906c10bb14f80e6e98eb5e260e104c0d8c15b472e4c9f54d51cc382bf337"
     },
     {
       "id": "confused-two",
@@ -450,7 +562,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "40c9b9f68a70bab42bc41dad513429fe91756cd4930d943f27544243199a72a8"
     },
     {
       "id": "confused-three",
@@ -464,7 +580,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "3a57dc53702bf2ce590f9a0eddaf6824b4ec7a5e0ba2338534a79e519a279427"
     },
     {
       "id": "laugh-one",
@@ -479,7 +599,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "87bd7a0eeec5117db10cd8aa4069f9d716a13f53aa414259e29b4029e7f3458f"
     },
     {
       "id": "laugh-two",
@@ -494,7 +618,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "d583e4d7c5bf8e0decdf9b3ca1b1c2fd361b0acf74b2d583274d243b95841f5e"
     },
     {
       "id": "laugh-three",
@@ -509,7 +637,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "7cbd85443a8f7b62661016c83a61ba62f0c90acee2a06bb3abadb0ad8d8b21cf"
     },
     {
       "id": "celebrate",
@@ -524,7 +656,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "6bc8d93d151b585217bde6ecd0e981a8372ade0490dfd47fbd4e02fe5ef1fc2f"
     },
     {
       "id": "victory",
@@ -539,7 +675,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "adce0a3e174d3bbc7adf9275c7f0add1f2e86fc9482748d688507ebc830793e0"
     },
     {
       "id": "clap",
@@ -554,7 +694,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "86394b99a90abd81267f1a99d796b8ed8fff7038a0cbe912ee97b3fdf404da42"
     },
     {
       "id": "like",
@@ -570,7 +714,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "7598408e7e137c9a9ad26923432781fbf7a9a04381640a27557fe745182c8e7e"
     },
     {
       "id": "thumbs-up",
@@ -586,7 +734,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "5cfdd3e14b6bdc7e24a3dc66a2ab611cbc1ce6cd74dea9bea5ad18a13c09a8fc"
     },
     {
       "id": "thumbs-down",
@@ -601,7 +753,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "5a6ef31214f6e61b39151c6be14f09dfe8de1d9f7eff88b9e1495884f9be819f"
     },
     {
       "id": "argument",
@@ -617,7 +773,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "d93b5533906797f9115c2dc18980d41b4854a544674b856ea7e30e0018b707ed"
     },
     {
       "id": "aggressive-one",
@@ -633,7 +793,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "555f825d326059bf106547320097207ad20efd6bc2757985bd5926c65c322639"
     },
     {
       "id": "aggressive-two",
@@ -649,7 +813,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "fd52e556a0c0e0d9ba6698e004cb15bcd55bcff218ff403d94b1c790d5e53a9d"
     },
     {
       "id": "annoyed-one",
@@ -664,7 +832,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "57ca4b6f7a9cea7badab93c0cf5930e0cc5f0cd4e4c6389665c5433134abe24c"
     },
     {
       "id": "annoyed-two",
@@ -678,7 +850,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "8fa49fa61356f9abf5d92dbcccb45a276645c2d434fa922fd4784845f889c0bf"
     },
     {
       "id": "stop",
@@ -693,7 +869,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "chest-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "e49f28ce12411d1c22a74635e3bedda9901c51bc3ce22f02b6327b45fd68bd6b"
     },
     {
       "id": "what-the-hell",
@@ -708,7 +888,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "1c093dbc0868742bd8de7aabe30ea4801eac767617e71be8f276a967eb6c566a"
     },
     {
       "id": "calm-down",
@@ -723,7 +907,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "e9f47680a5225a6103748e42c42b66a2d544bb2ef2d5abfe4d25125fa10b5791"
     },
     {
       "id": "shock-one",
@@ -739,7 +927,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "9fc471c592209dfcc78333d8e7a1f4fcd22f87617690c067f651caf6e59cd4fa"
     },
     {
       "id": "shock-two",
@@ -753,7 +945,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "90647d112b8aad14fd91c71d0c549f448fcc734e05aec33ffa65f4087c69b227"
     },
     {
       "id": "shock-three",
@@ -767,7 +963,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "62cd4d983280eb2306d58eaaa22a664fff2481963bc8f7c276630c694dd3a28c"
     },
     {
       "id": "facepalm-one",
@@ -782,7 +982,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "chest-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "b39ddb54a733c56c4a7587f12e95e4b4ad39179f47d306f62ef1363e4439e344"
     },
     {
       "id": "facepalm-two",
@@ -797,7 +1001,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "chest-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "32df35da037d6dc80ffed730e48b1f9809a3390e48974caf5206001c0c344b8e"
     },
     {
       "id": "disappointed",
@@ -812,7 +1020,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "b7c2773078606f074d6c70eabcead3bd5b1d4ab504ecad3770688301534decbc"
     },
     {
       "id": "sad",
@@ -827,7 +1039,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "upper-thigh",
+      "direction": "front",
+      "prop": null,
+      "sha256": "8d615f709ca526168c43ce58a1bd567869ab8ec13e9ceb19ad26421ed98b28a1"
     },
     {
       "id": "suspicious",
@@ -842,7 +1058,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "21abba43bfc9a132edf1ce97fc30d2bb4891218c982983649e52f6371c9f195a"
     },
     {
       "id": "hold-ball",
@@ -857,7 +1077,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": "ball",
+      "sha256": "5506992766281d40967fa0f679d5834aece54d2207617501803df16ac70f2ad7"
     },
     {
       "id": "yellow-card",
@@ -873,7 +1097,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": "yellow-card",
+      "sha256": "b83353daf308f15c063eabcddc698338c5186e0ac25b702a1ff0182be1f3b52f"
     },
     {
       "id": "red-card",
@@ -889,7 +1117,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": "red-card",
+      "sha256": "b8a6b4fc1ede1bf46f7fd137a41aa7b7fa350aae14a20b590981db9aaebf25e1"
     },
     {
       "id": "phone",
@@ -906,7 +1138,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": "phone",
+      "sha256": "96d0d966603d73fd702e72271d77e7c1913b4147485edef82c009d2aa2ccd614"
     },
     {
       "id": "read",
@@ -922,7 +1158,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": "newspaper",
+      "sha256": "33df579645adbc180cea7c0681617f1e681c3adba39b28727b640654c8cfe0d2"
     },
     {
       "id": "write",
@@ -938,7 +1178,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": "clipboard",
+      "sha256": "bbba51507d2a6a2fbf638487ae42cba49438c4fce1e994fcf247df867068da53"
     },
     {
       "id": "whisper",
@@ -953,7 +1197,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "666501cd65529a43139936bbc5ce3fc1c303665d021f690e34f6a53d33898672"
     },
     {
       "id": "pray",
@@ -968,7 +1216,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "a02f682fe2edbc785e06c9d50f8c3f9204a67affab1a12eb13f79667f0f0b29a"
     },
     {
       "id": "protect",
@@ -983,7 +1235,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "d28d6f407e32b79b0146012024b2c3d02f0755bb8c3eabbfbcbfc431f2a32ebc"
     },
     {
       "id": "respect",
@@ -997,7 +1253,11 @@
       ],
       "approved": true,
       "transparent": true,
-      "handsVerified": true
+      "handsVerified": true,
+      "framing": "waist-up",
+      "direction": "front",
+      "prop": null,
+      "sha256": "0e259f8d1b27bc461bbd0527c855d8b190aa30fba40c473a0890c03aa11a127e"
     }
   ]
 }
