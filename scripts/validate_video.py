@@ -23,6 +23,7 @@ REQUIRED_DIRS = (
     "renders",
 )
 REQUIRED_FILES = (
+    "metadata.json",
     "research/research.md",
     "script/script.md",
     "factcheck/factcheck.md",
@@ -30,6 +31,18 @@ REQUIRED_FILES = (
     "audio/voice.json",
     "scenes/timeline.json",
 )
+METADATA_STATUSES = {
+    "idea",
+    "research",
+    "script",
+    "factcheck",
+    "visual-plan",
+    "assets",
+    "voice",
+    "timeline",
+    "draft",
+    "published",
+}
 ASSET_TYPES = {
     "MASCOT",
     "PLAYER_PHOTO",
@@ -94,19 +107,47 @@ def mascot_ids() -> set[str]:
     return {pose["id"] for pose in data.get("poses", []) if "id" in pose}
 
 
-def validate_assets(payload, report: Report) -> set[str]:
-    ids: set[str] = set()
+def unique_ids(ids: list[str], kind: str, report: Report) -> set[str]:
+    for value, count in Counter(ids).items():
+        if count > 1:
+            report.error(f"duplicate {kind} id: {value}")
+    return set(ids)
+
+
+def validate_metadata(payload, folder_name: str, report: Report) -> None:
+    if not isinstance(payload, dict):
+        report.error("metadata.json: root must be an object")
+        return
+    if payload.get("slug") != folder_name:
+        report.error(
+            f"metadata.json: slug `{payload.get('slug')}` does not match folder `{folder_name}`"
+        )
+    if not isinstance(payload.get("title"), str):
+        report.error("metadata.json: title must be a string")
+    created_at = payload.get("createdAt")
+    if not isinstance(created_at, str) or not created_at.strip():
+        report.error("metadata.json: createdAt must be a non-empty string")
+    if payload.get("status") not in METADATA_STATUSES:
+        report.error(f"metadata.json: invalid status `{payload.get('status')}`")
+
+
+def validate_assets(payload, folder_name: str, report: Report) -> set[str]:
+    ids: list[str] = []
     if not isinstance(payload, dict):
         report.error("assets.json: root must be an object")
-        return ids
+        return set()
     if payload.get("version") != 1:
         report.error("assets.json: version must be 1")
-    if "video" not in payload or not isinstance(payload["video"], str):
+    if not isinstance(payload.get("video"), str):
         report.error("assets.json: video must be a string")
+    elif payload.get("video") != folder_name:
+        report.error(
+            f"assets.json: video `{payload.get('video')}` does not match folder `{folder_name}`"
+        )
     assets = payload.get("assets")
     if not isinstance(assets, list):
         report.error("assets.json: assets must be a list")
-        return ids
+        return set()
 
     for index, asset in enumerate(assets):
         prefix = f"assets.json[{index}]"
@@ -117,7 +158,7 @@ def validate_assets(payload, report: Report) -> set[str]:
         if not asset_id:
             report.error(f"{prefix}: missing id")
             continue
-        ids.add(asset_id)
+        ids.append(asset_id)
         if asset.get("type") not in ASSET_TYPES:
             report.error(f"{asset_id}: invalid type")
         if asset.get("source") not in ASSET_SOURCES:
@@ -132,21 +173,18 @@ def validate_assets(payload, report: Report) -> set[str]:
             value = asset.get(field, None)
             if value is not None and not isinstance(value, str):
                 report.error(f"{asset_id}: {field} must be string or null")
-    for value, count in Counter(ids).items():
-        if count > 1:
-            report.error(f"duplicate asset id: {value}")
-    return ids
+    return unique_ids(ids, "asset", report)
 
 
 def validate_voice(payload, script_ids: set[str], report: Report) -> set[str]:
-    ids: set[str] = set()
+    ids: list[str] = []
     if not isinstance(payload, dict):
         report.error("voice.json: root must be an object")
-        return ids
+        return set()
     items = payload.get("items")
     if not isinstance(items, list):
         report.error("voice.json: items must be a list")
-        return ids
+        return set()
     for index, item in enumerate(items):
         prefix = f"voice.json[{index}]"
         if not isinstance(item, dict):
@@ -156,16 +194,13 @@ def validate_voice(payload, script_ids: set[str], report: Report) -> set[str]:
         if not voice_id:
             report.error(f"{prefix}: missing id")
             continue
-        ids.add(voice_id)
+        ids.append(voice_id)
         script_id = item.get("script")
         if script_id and script_id not in script_ids:
             report.error(f"{voice_id}: script `{script_id}` is missing from script.md")
         if "pauseAfter" in item and not isinstance(item["pauseAfter"], int):
             report.error(f"{voice_id}: pauseAfter must be an integer (ms)")
-    for value, count in Counter(ids).items():
-        if count > 1:
-            report.error(f"duplicate voice id: {value}")
-    return ids
+    return unique_ids(ids, "voice", report)
 
 
 def validate_timeline(
@@ -176,10 +211,10 @@ def validate_timeline(
     pose_ids: set[str],
     report: Report,
 ) -> set[str]:
-    ids: set[str] = set()
+    ids: list[str] = []
     if not isinstance(payload, dict):
         report.error("timeline.json: root must be an object")
-        return ids
+        return set()
     if payload.get("version") != 1:
         report.error("timeline.json: version must be 1")
     for field in ("fps", "width", "height"):
@@ -188,7 +223,7 @@ def validate_timeline(
     scenes = payload.get("scenes")
     if not isinstance(scenes, list):
         report.error("timeline.json: scenes must be a list")
-        return ids
+        return set()
 
     for index, scene in enumerate(scenes):
         prefix = f"timeline.json[{index}]"
@@ -199,7 +234,7 @@ def validate_timeline(
         if not scene_id:
             report.error(f"{prefix}: missing id")
             continue
-        ids.add(scene_id)
+        ids.append(scene_id)
         voice = scene.get("voice")
         if voice and voice not in voice_ids:
             report.error(f"{scene_id}: voice `{voice}` is missing from voice.json")
@@ -215,10 +250,7 @@ def validate_timeline(
             report.error(
                 f"{scene_id}: visual.asset `{visual_asset}` is not in assets.json or poses.json"
             )
-    for value, count in Counter(ids).items():
-        if count > 1:
-            report.error(f"duplicate scene id: {value}")
-    return ids
+    return unique_ids(ids, "scene", report)
 
 
 def validate_video(video_dir: Path) -> Report:
@@ -247,13 +279,21 @@ def validate_video(video_dir: Path) -> Report:
             if fact_id not in fact_ids:
                 report.error(f"script.md references missing {fact_id}")
 
+    metadata_payload = load_json(video_dir / "metadata.json", report)
     assets_payload = load_json(video_dir / "assets" / "assets.json", report)
     voice_payload = load_json(video_dir / "audio" / "voice.json", report)
     timeline_payload = load_json(video_dir / "scenes" / "timeline.json", report)
-    if assets_payload is None or voice_payload is None or timeline_payload is None:
+    if (
+        metadata_payload is None
+        or assets_payload is None
+        or voice_payload is None
+        or timeline_payload is None
+    ):
         return report
 
-    asset_ids = validate_assets(assets_payload, report)
+    folder_name = video_dir.name
+    validate_metadata(metadata_payload, folder_name, report)
+    asset_ids = validate_assets(assets_payload, folder_name, report)
     voice_ids = validate_voice(voice_payload, script_ids, report)
     scene_ids = validate_timeline(
         timeline_payload,

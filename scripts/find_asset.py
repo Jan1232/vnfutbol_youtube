@@ -18,6 +18,8 @@ def load_poses() -> list[dict]:
 
 
 def matches(pose: dict, args: argparse.Namespace) -> bool:
+    if not args.include_unapproved and pose.get("approved") is not True:
+        return False
     tags = {str(tag).lower() for tag in pose.get("tags", [])}
     if args.tag and not all(tag.lower() in tags for tag in args.tag):
         return False
@@ -61,6 +63,11 @@ def main() -> int:
         choices=["ball", "phone", "yellow-card", "red-card", "newspaper", "clipboard"],
     )
     parser.add_argument("--json", action="store_true", help="Print a JSON array")
+    parser.add_argument(
+        "--include-unapproved",
+        action="store_true",
+        help="Include poses that are not approved",
+    )
     args = parser.parse_args()
 
     found = [pose for pose in load_poses() if matches(pose, args)]
