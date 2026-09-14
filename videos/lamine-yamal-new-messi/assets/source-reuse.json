@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "video": "lamine-yamal-new-messi",
+  "purpose": "Reduce manual source acquisition by deriving multiple prepared assets from one locally supplied source where editorially acceptable.",
+  "groups": [
+    {
+      "id": "wc2026-final",
+      "primaryAsset": "video-wc2026-final-atmosphere",
+      "sourceHint": "Official FIFA Spain vs Argentina 2026 final highlights/source file supplied locally by editor.",
+      "outputs": [
+        {"assetId": "video-wc2026-final-atmosphere", "derive": "video-excerpt", "selection": "opening/stadium/teams/trophy atmosphere"},
+        {"assetId": "video-wc2026-final-win", "derive": "video-excerpt", "selection": "winning moment / celebrations / trophy lift"},
+        {"assetId": "player-messi-wc2026-final", "derive": "video-frame-fallback", "selection": "clean close/medium frame of Messi in Argentina kit"},
+        {"assetId": "player-yamal-spain-wc2026", "derive": "video-frame-fallback", "selection": "clean close/medium frame of Yamal in Spain kit"}
+      ],
+      "note": "Prefer official high-resolution article photos for the two player stills when discovery finds suitable candidates; video frames are fallback only."
+    },
+    {
+      "id": "euro2024-yamal",
+      "primaryAsset": "video-yamal-euro2024-france-champion",
+      "sourceHint": "Official UEFA EURO 2024 Yamal/Spain footage supplied locally by editor.",
+      "outputs": [
+        {"assetId": "video-yamal-euro2024-france-champion", "derive": "video-excerpt", "selection": "Yamal equaliser vs France and/or Spain celebration"},
+        {"assetId": "video-yamal-euro2024-intro", "derive": "video-excerpt-fallback", "selection": "generic Yamal/Spain EURO 2024 tournament establishing clip"}
+      ],
+      "note": "If a separate official intro source is already available and stronger, keep it; do not force reuse when composition suffers."
+    },
+    {
+      "id": "yamal-barcelona-no10",
+      "primaryAsset": "player-yamal-barcelona-no10",
+      "sourceHint": "Official FC Barcelona No.10 image supplied/discovered locally.",
+      "outputs": [
+        {"assetId": "player-yamal-barcelona-no10", "derive": "image-crop", "selection": "No.10 clearly readable"},
+        {"assetId": "player-yamal-hero-portrait", "derive": "image-crop-fallback", "selection": "calm contemporary crop with negative space"}
+      ],
+      "note": "Hero portrait may use a separate official portrait if the No.10 source cannot produce a clean final-frame composition."
+    }
+  ],
+  "renderInsteadOfExternalPreferred": [
+    {
+      "assetId": "trophy-kopa",
+      "reason": "For draft/final graphic, prefer an original stylized Kopa-labelled trophy graphic over a third-party ceremony photo when no cleared still is available."
+    },
+    {
+      "assetId": "trophy-ballon-dor",
+      "reason": "Prefer an original golden-ball award graphic plus explicit #2 label; never imply Yamal won the 2025 Ballon d'Or."
+    }
+  ]
+}
