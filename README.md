@@ -59,7 +59,7 @@ MINIMAX_API_KEY=<secret>
 Никогда не коммитьте ключ, `.env` или `*.secret`.
 
 Конфиг канала: `channel-assets/voice/minimax.json`  
-Speed `1.26`, pitch `0`, volume `1`, format `wav`. Настройки не менять автоматически.
+Speed `1.16`, pitch `0`, volume `1`, format `wav`. Настройки не менять автоматически.
 
 `text` в `voice.json` — текст сценария. MiniMax получает только `ttsText`  
 (после `normalize_russian_tts` + `audio/voice-overrides.json`).

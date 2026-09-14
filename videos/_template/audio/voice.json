@@ -4,7 +4,7 @@
   "profile": "Russian_Professional_Broadcaster_v2",
   "settings": {
     "model": "speech-2.8-hd",
-    "speed": 1.26,
+    "speed": 1.16,
     "pitch": 0,
     "volume": 1,
     "sampleRate": 32000,
