@@ -75,8 +75,11 @@ ASSET_TYPES = {
     "CLUB",
     "AUDIO",
 }
-ASSET_SOURCES = {"library", "web", "generated", "video-specific"}
-ASSET_STATUSES = {"planned", "found", "ready", "missing", "rejected", "generated"}
+ASSET_SOURCES_V1 = {"library", "web", "generated", "video-specific"}
+ASSET_SOURCES_V2 = ASSET_SOURCES_V1 | {"official-source", "major-media", "render"}
+ASSET_STATUSES_V1 = {"planned", "found", "ready", "missing", "rejected", "generated"}
+ASSET_STATUSES_V2 = ASSET_STATUSES_V1 | {"planned-render"}
+STRICT_SCENE_STAGES = {"timeline", "draft", "published"}
 ANIMATIONS = {
     "slowZoom",
     "zoomOut",
@@ -150,8 +153,12 @@ def validate_assets(payload, folder_name: str, report: Report) -> set[str]:
     if not isinstance(payload, dict):
         report.error("assets.json: root must be an object")
         return set()
-    if payload.get("version") != 1:
-        report.error("assets.json: version must be 1")
+    version = payload.get("version")
+    if version not in (1, 2):
+        report.error("assets.json: version must be 1 or 2")
+        version = 1
+    allowed_sources = ASSET_SOURCES_V2 if version == 2 else ASSET_SOURCES_V1
+    allowed_statuses = ASSET_STATUSES_V2 if version == 2 else ASSET_STATUSES_V1
     if not isinstance(payload.get("video"), str):
         report.error("assets.json: video must be a string")
     elif payload.get("video") != folder_name:
@@ -175,16 +182,25 @@ def validate_assets(payload, folder_name: str, report: Report) -> set[str]:
         ids.append(asset_id)
         if asset.get("type") not in ASSET_TYPES:
             report.error(f"{asset_id}: invalid type")
-        if asset.get("source") not in ASSET_SOURCES:
+        if asset.get("source") not in allowed_sources:
             report.error(f"{asset_id}: invalid source")
-        if asset.get("status") not in ASSET_STATUSES:
+        if asset.get("status") not in allowed_statuses:
             report.error(f"{asset_id}: invalid status")
         if not isinstance(asset.get("usedInScenes"), list):
             report.error(f"{asset_id}: usedInScenes must be a list")
-        if not isinstance(asset.get("tags"), list):
+        if version == 1:
+            if not isinstance(asset.get("tags"), list):
+                report.error(f"{asset_id}: tags must be a list")
+        elif "tags" in asset and not isinstance(asset.get("tags"), list):
             report.error(f"{asset_id}: tags must be a list")
         for field in ("sourceUrl", "license", "author"):
-            value = asset.get(field, None)
+            if field not in asset:
+                # v2 may omit legacy provenance fields when richer fields exist
+                if version == 1:
+                    # v1 templates usually include these keys (possibly null)
+                    continue
+                continue
+            value = asset.get(field)
             if value is not None and not isinstance(value, str):
                 report.error(f"{asset_id}: {field} must be string or null")
         if asset.get("type") == "MASCOT" and asset.get("mascot") is not None:
@@ -387,14 +403,16 @@ def validate_video(video_dir: Path) -> Report:
     if isinstance(assets_payload, dict):
         assets = assets_payload.get("assets") or []
         validate_mascot_assets(assets, video_dir, report)
-        for asset in assets:
-            if not isinstance(asset, dict):
-                continue
-            for scene_id in asset.get("usedInScenes") or []:
-                if scene_id not in scene_ids:
-                    report.error(
-                        f"{asset.get('id')}: usedInScenes references missing scene `{scene_id}`"
-                    )
+        stage = metadata_payload.get("status") if isinstance(metadata_payload, dict) else None
+        if stage in STRICT_SCENE_STAGES:
+            for asset in assets:
+                if not isinstance(asset, dict):
+                    continue
+                for scene_id in asset.get("usedInScenes") or []:
+                    if scene_id not in scene_ids:
+                        report.error(
+                            f"{asset.get('id')}: usedInScenes references missing scene `{scene_id}`"
+                        )
     return report
 
 

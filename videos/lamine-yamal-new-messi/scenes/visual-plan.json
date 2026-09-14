@@ -21,481 +21,1031 @@
   "scenes": [
     {
       "id": "scene-01",
-      "scriptRefs": ["SCRIPT-001"],
+      "scriptRefs": [
+        "SCRIPT-001"
+      ],
       "primaryType": "VIDEO",
       "layout": "full",
       "mascot": null,
       "outfitIntent": null,
-      "supportingVisual": {"type":"VIDEO","subject":"2026 World Cup final atmosphere: Spain vs Argentina, stadium / teams / trophy","assetId":"video-wc2026-final-atmosphere"},
-      "overlay": {"text":"ФИНАЛ ЧМ 2026","style":"big-title"},
+      "supportingVisual": {
+        "type": "VIDEO",
+        "subject": "2026 World Cup final atmosphere: Spain vs Argentina, stadium / teams / trophy",
+        "assetId": "video-wc2026-final-atmosphere"
+      },
+      "overlay": {
+        "text": "ФИНАЛ ЧМ 2026",
+        "style": "big-title"
+      },
       "animation": "slowZoom",
       "notes": "No mascot. Cold open; let the real match atmosphere establish scale.",
-      "assetRequests": ["video-wc2026-final-atmosphere"]
+      "assetRequests": [
+        "video-wc2026-final-atmosphere"
+      ]
     },
     {
       "id": "scene-02",
-      "scriptRefs": ["SCRIPT-002"],
+      "scriptRefs": [
+        "SCRIPT-002"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-left-media-right",
-      "mascot": {"poseIntent":"explain","position":"left","scale":"medium"},
+      "mascot": {
+        "poseIntent": "explain",
+        "position": "left",
+        "scale": "medium",
+        "basePose": "explain-six",
+        "assetId": "mascot-explain-six__default-home"
+      },
       "outfitIntent": "default",
-      "supportingVisual": {"type":"PLAYER_PHOTO","subject":"Lionel Messi, Argentina, World Cup 2026 final era","assetId":"player-messi-wc2026-final"},
-      "overlay": {"text":"39 ЛЕТ","style":"age-card"},
+      "supportingVisual": {
+        "type": "PLAYER_PHOTO",
+        "subject": "Lionel Messi, Argentina, World Cup 2026 final era",
+        "assetId": "player-messi-wc2026-final"
+      },
+      "overlay": {
+        "text": "39 ЛЕТ",
+        "style": "age-card"
+      },
       "animation": "panRight",
       "notes": null,
-      "assetRequests": ["player-messi-wc2026-final"]
+      "assetRequests": [
+        "player-messi-wc2026-final"
+      ]
     },
     {
       "id": "scene-03",
-      "scriptRefs": ["SCRIPT-003"],
+      "scriptRefs": [
+        "SCRIPT-003"
+      ],
       "primaryType": "MASCOT",
       "layout": "media-left-mascot-right",
-      "mascot": {"poseIntent":"point-left","position":"right","scale":"medium"},
+      "mascot": {
+        "poseIntent": "point-left",
+        "position": "right",
+        "scale": "medium",
+        "basePose": "point-left-two",
+        "assetId": "mascot-point-left-two__spain-home"
+      },
       "outfitIntent": "national-team",
-      "supportingVisual": {"type":"PLAYER_PHOTO","subject":"Lamine Yamal, Spain, World Cup 2026","assetId":"player-yamal-spain-wc2026"},
-      "overlay": {"text":"19 ЛЕТ","style":"age-card"},
+      "supportingVisual": {
+        "type": "PLAYER_PHOTO",
+        "subject": "Lamine Yamal, Spain, World Cup 2026",
+        "assetId": "player-yamal-spain-wc2026"
+      },
+      "overlay": {
+        "text": "19 ЛЕТ",
+        "style": "age-card"
+      },
       "animation": "panLeft",
       "notes": null,
-      "assetRequests": ["player-yamal-spain-wc2026"]
+      "assetRequests": [
+        "player-yamal-spain-wc2026"
+      ]
     },
     {
       "id": "scene-04",
-      "scriptRefs": ["SCRIPT-004"],
+      "scriptRefs": [
+        "SCRIPT-004"
+      ],
       "primaryType": "MASCOT",
       "layout": "split-players-mascot-center",
-      "mascot": {"poseIntent":"explain","position":"center","scale":"small"},
+      "mascot": {
+        "poseIntent": "explain",
+        "position": "center",
+        "scale": "small",
+        "basePose": "explain-one",
+        "assetId": "mascot-explain-one__default-home"
+      },
       "outfitIntent": "default",
-      "supportingVisual": {"type":"PLAYER_PHOTO","subject":"Messi and Yamal opposing sides, final comparison composition","assetIds":["player-messi-wc2026-final","player-yamal-spain-wc2026"]},
-      "overlay": {"text":"ЛЕГЕНДА ↔ ПРЕТЕНДЕНТ","style":"versus"},
+      "supportingVisual": {
+        "type": "PLAYER_PHOTO",
+        "subject": "Messi and Yamal opposing sides, final comparison composition",
+        "assetIds": [
+          "player-messi-wc2026-final",
+          "player-yamal-spain-wc2026"
+        ]
+      },
+      "overlay": {
+        "text": "ЛЕГЕНДА ↔ ПРЕТЕНДЕНТ",
+        "style": "versus"
+      },
       "animation": "slideUp",
       "notes": null,
-      "assetRequests": ["player-messi-wc2026-final","player-yamal-spain-wc2026"]
+      "assetRequests": [
+        "player-messi-wc2026-final",
+        "player-yamal-spain-wc2026"
+      ]
     },
     {
       "id": "scene-05",
-      "scriptRefs": ["SCRIPT-005"],
+      "scriptRefs": [
+        "SCRIPT-005"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-center",
-      "mascot": {"poseIntent":"think","position":"center","scale":"large"},
+      "mascot": {
+        "poseIntent": "think",
+        "position": "center",
+        "scale": "large",
+        "basePose": "think-three",
+        "assetId": "mascot-think-three__default-home"
+      },
       "outfitIntent": "default",
-      "supportingVisual": {"type":"TEXT","subject":"Main question typography"},
-      "overlay": {"text":"СЛЕДУЮЩИЙ ВЕЛИКИЙ\nИЛИ СЛИШКОМ РАНО?","style":"question"},
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Main question typography"
+      },
+      "overlay": {
+        "text": "СЛЕДУЮЩИЙ ВЕЛИКИЙ\nИЛИ СЛИШКОМ РАНО?",
+        "style": "question"
+      },
       "animation": "fade",
       "notes": "Brand-host beat. No external media needed.",
       "assetRequests": []
     },
     {
       "id": "scene-06",
-      "scriptRefs": ["SCRIPT-006"],
+      "scriptRefs": [
+        "SCRIPT-006"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-left-stat-right",
-      "mascot": {"poseIntent":"count-3","position":"left","scale":"medium"},
+      "mascot": {
+        "poseIntent": "count-3",
+        "position": "left",
+        "scale": "medium",
+        "basePose": "count-3",
+        "assetId": "mascot-count-3__barcelona-home"
+      },
       "outfitIntent": "current-club",
-      "supportingVisual": {"type":"STAT","subject":"Achievement wall: EURO champion, World Cup champion, LaLiga Player of the Season","assetIds":["trophy-euro","trophy-world-cup"]},
-      "overlay": {"text":"19 ЛЕТ","style":"hero-number"},
+      "supportingVisual": {
+        "type": "STAT",
+        "subject": "Achievement wall: EURO champion, World Cup champion, LaLiga Player of the Season",
+        "assetIds": [
+          "trophy-euro",
+          "trophy-world-cup"
+        ]
+      },
+      "overlay": {
+        "text": "19 ЛЕТ",
+        "style": "hero-number"
+      },
       "animation": "counter",
       "notes": null,
-      "assetRequests": ["trophy-euro","trophy-world-cup"]
+      "assetRequests": [
+        "trophy-euro",
+        "trophy-world-cup"
+      ]
     },
     {
       "id": "scene-07",
-      "scriptRefs": ["SCRIPT-006"],
+      "scriptRefs": [
+        "SCRIPT-006"
+      ],
       "primaryType": "STAT",
       "layout": "full",
       "mascot": null,
       "outfitIntent": null,
-      "supportingVisual": {"type":"STAT","subject":"Fast achievement montage: Kopa x2, Ballon d'Or #2, Barcelona #10"},
-      "overlay": {"text":"KOPA ×2 • BALLON D'OR #2 • №10","style":"achievement-strip"},
+      "supportingVisual": {
+        "type": "STAT",
+        "subject": "Fast achievement montage: Kopa x2, Ballon d'Or #2, Barcelona #10"
+      },
+      "overlay": {
+        "text": "KOPA ×2 • BALLON D'OR #2 • №10",
+        "style": "achievement-strip"
+      },
       "animation": "slideLeft",
       "notes": "No mascot. Quick visual breath after dense host framing.",
-      "assetRequests": ["trophy-kopa","trophy-ballon-dor","player-yamal-barcelona-no10"]
+      "assetRequests": [
+        "trophy-kopa",
+        "trophy-ballon-dor",
+        "player-yamal-barcelona-no10"
+      ]
     },
     {
       "id": "scene-08",
-      "scriptRefs": ["SCRIPT-007"],
+      "scriptRefs": [
+        "SCRIPT-007"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-center",
-      "mascot": {"poseIntent":"shock","position":"center","scale":"large"},
+      "mascot": {
+        "poseIntent": "shock",
+        "position": "center",
+        "scale": "large",
+        "basePose": "shock-one",
+        "assetId": "mascot-shock-one__barcelona-home"
+      },
       "outfitIntent": "current-club",
-      "supportingVisual": {"type":"TEXT","subject":"Career-scale irony"},
-      "overlay": {"text":"ДЛЯ ДРУГИХ — КАРЬЕРА.\nДЛЯ НЕГО — НАЧАЛО.","style":"statement"},
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Career-scale irony"
+      },
+      "overlay": {
+        "text": "ДЛЯ ДРУГИХ — КАРЬЕРА.\nДЛЯ НЕГО — НАЧАЛО.",
+        "style": "statement"
+      },
       "animation": "zoomOut",
       "notes": null,
       "assetRequests": []
     },
     {
       "id": "scene-09",
-      "scriptRefs": ["SCRIPT-008"],
+      "scriptRefs": [
+        "SCRIPT-008"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-right-text-left",
-      "mascot": {"poseIntent":"point-left","position":"right","scale":"medium"},
+      "mascot": {
+        "poseIntent": "point-left",
+        "position": "right",
+        "scale": "medium",
+        "basePose": "point-left-three",
+        "assetId": "mascot-point-left-three__barcelona-home"
+      },
       "outfitIntent": "current-club",
-      "supportingVisual": {"type":"TEXT","subject":"304 postcode reveal"},
-      "overlay": {"text":"304","style":"giant-number"},
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "304 postcode reveal"
+      },
+      "overlay": {
+        "text": "304",
+        "style": "giant-number"
+      },
       "animation": "counter",
       "notes": "304 should dominate frame; mascot points at it.",
       "assetRequests": []
     },
     {
       "id": "scene-10",
-      "scriptRefs": ["SCRIPT-009"],
+      "scriptRefs": [
+        "SCRIPT-009"
+      ],
       "primaryType": "PLAYER_PHOTO",
       "layout": "full",
       "mascot": null,
       "outfitIntent": null,
-      "supportingVisual": {"type":"PLAYER_PHOTO","subject":"Yamal 304 finger celebration / Rocafonda reference","assetId":"player-yamal-304-celebration"},
-      "overlay": {"text":"ROCAFONDA","style":"location-small"},
+      "supportingVisual": {
+        "type": "PLAYER_PHOTO",
+        "subject": "Yamal 304 finger celebration / Rocafonda reference",
+        "assetId": "player-yamal-304-celebration"
+      },
+      "overlay": {
+        "text": "ROCAFONDA",
+        "style": "location-small"
+      },
       "animation": "slowZoom",
       "notes": "No mascot. Let the iconic gesture read clearly.",
-      "assetRequests": ["player-yamal-304-celebration"]
+      "assetRequests": [
+        "player-yamal-304-celebration"
+      ]
     },
     {
       "id": "scene-11",
-      "scriptRefs": ["SCRIPT-009"],
+      "scriptRefs": [
+        "SCRIPT-009"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-left-media-right",
-      "mascot": {"poseIntent":"explain","position":"left","scale":"medium"},
+      "mascot": {
+        "poseIntent": "explain",
+        "position": "left",
+        "scale": "medium",
+        "basePose": "explain-four",
+        "assetId": "mascot-explain-four__barcelona-home"
+      },
       "outfitIntent": "current-club",
-      "supportingVisual": {"type":"MAP","subject":"Mataró → Rocafonda neighborhood locator","assetId":"map-mataro-rocafonda"},
-      "overlay": {"text":"ОТКУДА ОН ПРИШЁЛ","style":"caption"},
+      "supportingVisual": {
+        "type": "MAP",
+        "subject": "Mataró → Rocafonda neighborhood locator",
+        "assetId": "map-mataro-rocafonda"
+      },
+      "overlay": {
+        "text": "ОТКУДА ОН ПРИШЁЛ",
+        "style": "caption"
+      },
       "animation": "zoomOut",
       "notes": null,
-      "assetRequests": ["map-mataro-rocafonda"]
+      "assetRequests": [
+        "map-mataro-rocafonda"
+      ]
     },
     {
       "id": "scene-12",
-      "scriptRefs": ["SCRIPT-010"],
+      "scriptRefs": [
+        "SCRIPT-010"
+      ],
       "primaryType": "MASCOT",
       "layout": "media-left-mascot-right",
-      "mascot": {"poseIntent":"explain","position":"right","scale":"medium"},
+      "mascot": {
+        "poseIntent": "explain",
+        "position": "right",
+        "scale": "medium",
+        "basePose": "explain-two",
+        "assetId": "mascot-explain-two__barcelona-home"
+      },
       "outfitIntent": "current-club",
-      "supportingVisual": {"type":"HISTORICAL_PHOTO","subject":"Young Lamine Yamal / La Torreta / La Masia youth period","assetId":"player-yamal-youth-lamasia"},
-      "overlay": {"text":"LA TORRETA → LA MASIA","style":"timeline-short"},
+      "supportingVisual": {
+        "type": "HISTORICAL_PHOTO",
+        "subject": "Young Lamine Yamal / La Torreta / La Masia youth period",
+        "assetId": "player-yamal-youth-lamasia"
+      },
+      "overlay": {
+        "text": "LA TORRETA → LA MASIA",
+        "style": "timeline-short"
+      },
       "animation": "panLeft",
       "notes": null,
-      "assetRequests": ["player-yamal-youth-lamasia"]
+      "assetRequests": [
+        "player-yamal-youth-lamasia"
+      ]
     },
     {
       "id": "scene-13",
-      "scriptRefs": ["SCRIPT-011"],
+      "scriptRefs": [
+        "SCRIPT-011"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-overlay-left-video-full",
-      "mascot": {"poseIntent":"shock","position":"left","scale":"small"},
+      "mascot": {
+        "poseIntent": "shock",
+        "position": "left",
+        "scale": "small",
+        "basePose": "shock-three",
+        "assetId": "mascot-shock-three__barcelona-home"
+      },
       "outfitIntent": "current-club",
-      "supportingVisual": {"type":"VIDEO","subject":"Barcelona vs Real Betis, Yamal debut 29 Apr 2023","assetId":"video-yamal-betis-debut"},
-      "overlay": {"text":"15 ЛЕТ • 9 МЕСЯЦЕВ • 16 ДНЕЙ","style":"record-lower-third"},
+      "supportingVisual": {
+        "type": "VIDEO",
+        "subject": "Barcelona vs Real Betis, Yamal debut 29 Apr 2023",
+        "assetId": "video-yamal-betis-debut"
+      },
+      "overlay": {
+        "text": "15 ЛЕТ • 9 МЕСЯЦЕВ • 16 ДНЕЙ",
+        "style": "record-lower-third"
+      },
       "animation": "hardCut",
       "notes": null,
-      "assetRequests": ["video-yamal-betis-debut"]
+      "assetRequests": [
+        "video-yamal-betis-debut"
+      ]
     },
     {
       "id": "scene-14",
-      "scriptRefs": ["SCRIPT-012"],
+      "scriptRefs": [
+        "SCRIPT-012"
+      ],
       "primaryType": "MASCOT",
       "layout": "media-left-mascot-right",
-      "mascot": {"poseIntent":"count-2","position":"right","scale":"medium"},
+      "mascot": {
+        "poseIntent": "count-2",
+        "position": "right",
+        "scale": "medium",
+        "basePose": "count-2",
+        "assetId": "mascot-count-2__spain-home"
+      },
       "outfitIntent": "national-team",
-      "supportingVisual": {"type":"PLAYER_PHOTO","subject":"Yamal Spain senior debut / first international goal 2023","assetId":"player-yamal-spain-debut-2023"},
-      "overlay": {"text":"16 ЛЕТ • 57 ДНЕЙ","style":"record-card"},
+      "supportingVisual": {
+        "type": "PLAYER_PHOTO",
+        "subject": "Yamal Spain senior debut / first international goal 2023",
+        "assetId": "player-yamal-spain-debut-2023"
+      },
+      "overlay": {
+        "text": "16 ЛЕТ • 57 ДНЕЙ",
+        "style": "record-card"
+      },
       "animation": "slideLeft",
       "notes": null,
-      "assetRequests": ["player-yamal-spain-debut-2023"]
+      "assetRequests": [
+        "player-yamal-spain-debut-2023"
+      ]
     },
     {
       "id": "scene-15",
-      "scriptRefs": ["SCRIPT-013"],
+      "scriptRefs": [
+        "SCRIPT-013"
+      ],
       "primaryType": "VIDEO",
       "layout": "full",
       "mascot": null,
       "outfitIntent": null,
-      "supportingVisual": {"type":"VIDEO","subject":"EURO 2024 Spain / Yamal tournament intro montage","assetId":"video-yamal-euro2024-intro"},
-      "overlay": {"text":"EURO 2024","style":"chapter"},
+      "supportingVisual": {
+        "type": "VIDEO",
+        "subject": "EURO 2024 Spain / Yamal tournament intro montage",
+        "assetId": "video-yamal-euro2024-intro"
+      },
+      "overlay": {
+        "text": "EURO 2024",
+        "style": "chapter"
+      },
       "animation": "hardCut",
       "notes": "No mascot. Chapter transition.",
-      "assetRequests": ["video-yamal-euro2024-intro"]
+      "assetRequests": [
+        "video-yamal-euro2024-intro"
+      ]
     },
     {
       "id": "scene-16",
-      "scriptRefs": ["SCRIPT-014"],
+      "scriptRefs": [
+        "SCRIPT-014"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-left-stat-right",
-      "mascot": {"poseIntent":"count-3","position":"left","scale":"medium"},
+      "mascot": {
+        "poseIntent": "count-3",
+        "position": "left",
+        "scale": "medium",
+        "basePose": "count-3",
+        "assetId": "mascot-count-3__spain-home"
+      },
       "outfitIntent": "national-team",
-      "supportingVisual": {"type":"STAT","subject":"EURO 2024 records and output"},
-      "overlay": {"text":"16 ЛЕТ • 7 МАТЧЕЙ • 1+4","style":"stat-stack"},
+      "supportingVisual": {
+        "type": "STAT",
+        "subject": "EURO 2024 records and output"
+      },
+      "overlay": {
+        "text": "16 ЛЕТ • 7 МАТЧЕЙ • 1+4",
+        "style": "stat-stack"
+      },
       "animation": "counter",
       "notes": null,
       "assetRequests": []
     },
     {
       "id": "scene-17",
-      "scriptRefs": ["SCRIPT-014"],
+      "scriptRefs": [
+        "SCRIPT-014"
+      ],
       "primaryType": "VIDEO",
       "layout": "full",
       "mascot": null,
       "outfitIntent": null,
-      "supportingVisual": {"type":"VIDEO","subject":"Yamal goal vs France and Spain EURO 2024 celebration","assetId":"video-yamal-euro2024-france-champion"},
-      "overlay": {"text":"ЧЕМПИОН ЕВРОПЫ","style":"celebration-title"},
+      "supportingVisual": {
+        "type": "VIDEO",
+        "subject": "Yamal goal vs France and Spain EURO 2024 celebration",
+        "assetId": "video-yamal-euro2024-france-champion"
+      },
+      "overlay": {
+        "text": "ЧЕМПИОН ЕВРОПЫ",
+        "style": "celebration-title"
+      },
       "animation": "slowZoom",
       "notes": "No mascot. Emotional payoff.",
-      "assetRequests": ["video-yamal-euro2024-france-champion"]
+      "assetRequests": [
+        "video-yamal-euro2024-france-champion"
+      ]
     },
     {
       "id": "scene-18",
-      "scriptRefs": ["SCRIPT-015"],
+      "scriptRefs": [
+        "SCRIPT-015"
+      ],
       "primaryType": "MASCOT",
       "layout": "stat-left-mascot-right",
-      "mascot": {"poseIntent":"celebrate","position":"right","scale":"medium"},
+      "mascot": {
+        "poseIntent": "celebrate",
+        "position": "right",
+        "scale": "medium",
+        "basePose": "celebrate",
+        "assetId": "mascot-celebrate__barcelona-home"
+      },
       "outfitIntent": "current-club",
-      "supportingVisual": {"type":"STAT","subject":"Barcelona 2024/25: 18 goals, 21 assists, domestic treble"},
-      "overlay": {"text":"18 ГОЛОВ\n21 АССИСТ","style":"big-stat"},
+      "supportingVisual": {
+        "type": "STAT",
+        "subject": "Barcelona 2024/25: 18 goals, 21 assists, domestic treble"
+      },
+      "overlay": {
+        "text": "18 ГОЛОВ\n21 АССИСТ",
+        "style": "big-stat"
+      },
       "animation": "counter",
       "notes": null,
-      "assetRequests": ["trophy-laliga","trophy-copa-del-rey","trophy-spanish-supercup"]
+      "assetRequests": [
+        "trophy-laliga",
+        "trophy-copa-del-rey",
+        "trophy-spanish-supercup"
+      ]
     },
     {
       "id": "scene-19",
-      "scriptRefs": ["SCRIPT-016"],
+      "scriptRefs": [
+        "SCRIPT-016"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-left-media-right",
-      "mascot": {"poseIntent":"present-object","position":"left","scale":"medium"},
+      "mascot": {
+        "poseIntent": "present-object",
+        "position": "left",
+        "scale": "medium",
+        "basePose": "explain-five",
+        "assetId": "mascot-explain-five__suit-navy"
+      },
       "outfitIntent": "formal",
-      "supportingVisual": {"type":"TROPHY","subject":"Kopa Trophy x2 and Ballon d'Or 2025 second place","assetIds":["trophy-kopa","trophy-ballon-dor"]},
-      "overlay": {"text":"KOPA ×2 • BALLON D'OR #2","style":"award-card"},
+      "supportingVisual": {
+        "type": "TROPHY",
+        "subject": "Kopa Trophy x2 and Ballon d'Or 2025 second place",
+        "assetIds": [
+          "trophy-kopa",
+          "trophy-ballon-dor"
+        ]
+      },
+      "overlay": {
+        "text": "KOPA ×2 • BALLON D'OR #2",
+        "style": "award-card"
+      },
       "animation": "slideUp",
       "notes": null,
-      "assetRequests": ["trophy-kopa","trophy-ballon-dor"]
+      "assetRequests": [
+        "trophy-kopa",
+        "trophy-ballon-dor"
+      ]
     },
     {
       "id": "scene-20",
-      "scriptRefs": ["SCRIPT-017"],
+      "scriptRefs": [
+        "SCRIPT-017"
+      ],
       "primaryType": "MASCOT",
       "layout": "media-left-mascot-right",
-      "mascot": {"poseIntent":"explain","position":"right","scale":"medium"},
+      "mascot": {
+        "poseIntent": "explain",
+        "position": "right",
+        "scale": "medium",
+        "basePose": "explain-six",
+        "assetId": "mascot-explain-six__barcelona-home"
+      },
       "outfitIntent": "current-club",
-      "supportingVisual": {"type":"PLAYER_PHOTO","subject":"Yamal Barcelona number 10, 2025/26","assetId":"player-yamal-barcelona-no10"},
-      "overlay": {"text":"16 ГОЛОВ • 12 АССИСТОВ\nИГРОК СЕЗОНА","style":"season-card"},
+      "supportingVisual": {
+        "type": "PLAYER_PHOTO",
+        "subject": "Yamal Barcelona number 10, 2025/26",
+        "assetId": "player-yamal-barcelona-no10"
+      },
+      "overlay": {
+        "text": "16 ГОЛОВ • 12 АССИСТОВ\nИГРОК СЕЗОНА",
+        "style": "season-card"
+      },
       "animation": "panLeft",
       "notes": null,
-      "assetRequests": ["player-yamal-barcelona-no10"]
+      "assetRequests": [
+        "player-yamal-barcelona-no10"
+      ]
     },
     {
       "id": "scene-21",
-      "scriptRefs": ["SCRIPT-018"],
+      "scriptRefs": [
+        "SCRIPT-018"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-overlay-right-video-full",
-      "mascot": {"poseIntent":"celebrate","position":"right","scale":"small"},
+      "mascot": {
+        "poseIntent": "celebrate",
+        "position": "right",
+        "scale": "small",
+        "basePose": "celebrate",
+        "assetId": "mascot-celebrate__spain-home"
+      },
       "outfitIntent": "national-team",
-      "supportingVisual": {"type":"VIDEO","subject":"Yamal World Cup 2026 first goal vs Saudi Arabia","assetId":"video-yamal-wc2026-saudi-goal"},
-      "overlay": {"text":"ПЕРВЫЙ ГОЛ НА ЧМ","style":"lower-third"},
+      "supportingVisual": {
+        "type": "VIDEO",
+        "subject": "Yamal World Cup 2026 first goal vs Saudi Arabia",
+        "assetId": "video-yamal-wc2026-saudi-goal"
+      },
+      "overlay": {
+        "text": "ПЕРВЫЙ ГОЛ НА ЧМ",
+        "style": "lower-third"
+      },
       "animation": "hardCut",
       "notes": null,
-      "assetRequests": ["video-yamal-wc2026-saudi-goal"]
+      "assetRequests": [
+        "video-yamal-wc2026-saudi-goal"
+      ]
     },
     {
       "id": "scene-22",
-      "scriptRefs": ["SCRIPT-018"],
+      "scriptRefs": [
+        "SCRIPT-018"
+      ],
       "primaryType": "VIDEO",
       "layout": "full",
       "mascot": null,
       "outfitIntent": null,
-      "supportingVisual": {"type":"VIDEO","subject":"Spain vs Argentina 2026 final, winning moment / trophy lift","assetId":"video-wc2026-final-win"},
-      "overlay": {"text":"1:0 • ЧЕМПИОН МИРА","style":"final-score"},
+      "supportingVisual": {
+        "type": "VIDEO",
+        "subject": "Spain vs Argentina 2026 final, winning moment / trophy lift",
+        "assetId": "video-wc2026-final-win"
+      },
+      "overlay": {
+        "text": "1:0 • ЧЕМПИОН МИРА",
+        "style": "final-score"
+      },
       "animation": "slowZoom",
       "notes": "No mascot. Major climax.",
-      "assetRequests": ["video-wc2026-final-win"]
+      "assetRequests": [
+        "video-wc2026-final-win"
+      ]
     },
     {
       "id": "scene-23",
-      "scriptRefs": ["SCRIPT-019"],
+      "scriptRefs": [
+        "SCRIPT-019"
+      ],
       "primaryType": "STAT",
       "layout": "full",
       "mascot": null,
       "outfitIntent": null,
-      "supportingVisual": {"type":"STAT","subject":"Career-at-19 card with trophies, awards and milestones"},
-      "overlay": {"text":"И ЭТО ВСЁ — К 19","style":"hero-statement"},
+      "supportingVisual": {
+        "type": "STAT",
+        "subject": "Career-at-19 card with trophies, awards and milestones"
+      },
+      "overlay": {
+        "text": "И ЭТО ВСЁ — К 19",
+        "style": "hero-statement"
+      },
       "animation": "counter",
       "notes": "No mascot. Dense proof wall, short duration.",
       "assetRequests": []
     },
     {
       "id": "scene-24",
-      "scriptRefs": ["SCRIPT-CTA-MIDDLE"],
+      "scriptRefs": [
+        "SCRIPT-CTA-MIDDLE"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-center",
-      "mascot": {"poseIntent":"explain","position":"center","scale":"large"},
+      "mascot": {
+        "poseIntent": "explain",
+        "position": "center",
+        "scale": "large",
+        "basePose": "explain-five",
+        "assetId": "mascot-explain-five__barcelona-home"
+      },
       "outfitIntent": "current-club",
-      "supportingVisual": {"type":"TEXT","subject":"Comment prompt"},
-      "overlay": {"text":"ПЕРЕОЦЕНЁН\nИЛИ БУДУЩАЯ ЛЕГЕНДА?","style":"cta-question"},
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Comment prompt"
+      },
+      "overlay": {
+        "text": "ПЕРЕОЦЕНЁН\nИЛИ БУДУЩАЯ ЛЕГЕНДА?",
+        "style": "cta-question"
+      },
       "animation": "fade",
       "notes": "Keep clean and direct; comment icon can animate in.",
       "assetRequests": []
     },
     {
       "id": "scene-25",
-      "scriptRefs": ["SCRIPT-020"],
+      "scriptRefs": [
+        "SCRIPT-020"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-center",
-      "mascot": {"poseIntent":"think","position":"center","scale":"large"},
+      "mascot": {
+        "poseIntent": "think",
+        "position": "center",
+        "scale": "large",
+        "basePose": "think-three",
+        "assetId": "mascot-think-three__default-home"
+      },
       "outfitIntent": "default",
-      "supportingVisual": {"type":"TEXT","subject":"Transition from hype to comparison"},
-      "overlay": {"text":"ОКЕЙ. А ТЕПЕРЬ — ЧЕСТНАЯ МЕТРИКА.","style":"chapter"},
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Transition from hype to comparison"
+      },
+      "overlay": {
+        "text": "ОКЕЙ. А ТЕПЕРЬ — ЧЕСТНАЯ МЕТРИКА.",
+        "style": "chapter"
+      },
       "animation": "slideUp",
       "notes": null,
       "assetRequests": []
     },
     {
       "id": "scene-26",
-      "scriptRefs": ["SCRIPT-021"],
+      "scriptRefs": [
+        "SCRIPT-021"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-left-media-right",
-      "mascot": {"poseIntent":"explain","position":"left","scale":"medium"},
+      "mascot": {
+        "poseIntent": "explain",
+        "position": "left",
+        "scale": "medium",
+        "basePose": "explain-three",
+        "assetId": "mascot-explain-three__default-home"
+      },
       "outfitIntent": "default",
-      "supportingVisual": {"type":"DIAGRAM","subject":"Shared traits: La Masia, left-footed, starts right and moves inside","assetId":"diagram-yamal-messi-style"},
-      "overlay": {"text":"ПОХОЖИ — НО НЕ ОДИНАКОВЫ","style":"analysis"},
+      "supportingVisual": {
+        "type": "DIAGRAM",
+        "subject": "Shared traits: La Masia, left-footed, starts right and moves inside",
+        "assetId": "diagram-yamal-messi-style"
+      },
+      "overlay": {
+        "text": "ПОХОЖИ — НО НЕ ОДИНАКОВЫ",
+        "style": "analysis"
+      },
       "animation": "slideRight",
       "notes": null,
-      "assetRequests": ["diagram-yamal-messi-style"]
+      "assetRequests": [
+        "diagram-yamal-messi-style"
+      ]
     },
     {
       "id": "scene-27",
-      "scriptRefs": ["SCRIPT-022"],
+      "scriptRefs": [
+        "SCRIPT-022"
+      ],
       "primaryType": "MASCOT",
       "layout": "stat-left-mascot-right",
-      "mascot": {"poseIntent":"point-left","position":"right","scale":"medium"},
+      "mascot": {
+        "poseIntent": "point-left",
+        "position": "right",
+        "scale": "medium",
+        "basePose": "point-left-three",
+        "assetId": "mascot-point-left-three__default-home"
+      },
       "outfitIntent": "default",
-      "supportingVisual": {"type":"STAT","subject":"First 100 LaLiga matches: Yamal 29 goals vs Messi 48"},
-      "overlay": {"text":"100 МАТЧЕЙ ЛА ЛИГИ\nЯМАЛЬ 29 — 48 МЕССИ","style":"comparison-big"},
+      "supportingVisual": {
+        "type": "STAT",
+        "subject": "First 100 LaLiga matches: Yamal 29 goals vs Messi 48"
+      },
+      "overlay": {
+        "text": "100 МАТЧЕЙ ЛА ЛИГИ\nЯМАЛЬ 29 — 48 МЕССИ",
+        "style": "comparison-big"
+      },
       "animation": "counter",
       "notes": null,
-      "assetRequests": ["player-messi-early-barcelona","player-yamal-barcelona-no10"]
+      "assetRequests": [
+        "player-messi-early-barcelona",
+        "player-yamal-barcelona-no10"
+      ]
     },
     {
       "id": "scene-28",
-      "scriptRefs": ["SCRIPT-023"],
+      "scriptRefs": [
+        "SCRIPT-023"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-center",
-      "mascot": {"poseIntent":"stop","position":"center","scale":"large"},
+      "mascot": {
+        "poseIntent": "stop",
+        "position": "center",
+        "scale": "large",
+        "basePose": "stop",
+        "assetId": "mascot-stop__default-home"
+      },
       "outfitIntent": "default",
-      "supportingVisual": {"type":"TEXT","subject":"Metric caveat"},
-      "overlay": {"text":"РАНЬШЕ ≠ ЛУЧШЕ","style":"warning"},
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Metric caveat"
+      },
+      "overlay": {
+        "text": "РАНЬШЕ ≠ ЛУЧШЕ",
+        "style": "warning"
+      },
       "animation": "shake",
       "notes": null,
       "assetRequests": []
     },
     {
       "id": "scene-29",
-      "scriptRefs": ["SCRIPT-024"],
+      "scriptRefs": [
+        "SCRIPT-024"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-right-text-left",
-      "mascot": {"poseIntent":"think","position":"right","scale":"medium"},
+      "mascot": {
+        "poseIntent": "think",
+        "position": "right",
+        "scale": "medium",
+        "basePose": "think-one",
+        "assetId": "mascot-think-one__default-home"
+      },
       "outfitIntent": "default",
-      "supportingVisual": {"type":"TEXT","subject":"Career expectation question"},
-      "overlay": {"text":"МОЖНО ЛИ В 19\nТРЕБОВАТЬ КАРЬЕРУ МЕССИ?","style":"question"},
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Career expectation question"
+      },
+      "overlay": {
+        "text": "МОЖНО ЛИ В 19\nТРЕБОВАТЬ КАРЬЕРУ МЕССИ?",
+        "style": "question"
+      },
       "animation": "fade",
       "notes": null,
       "assetRequests": []
     },
     {
       "id": "scene-30",
-      "scriptRefs": ["SCRIPT-025"],
+      "scriptRefs": [
+        "SCRIPT-025"
+      ],
       "primaryType": "NEWSPAPER",
       "layout": "full",
       "mascot": null,
       "outfitIntent": null,
-      "supportingVisual": {"type":"NEWSPAPER","subject":"Generic historical media collage of 'new Messi' comparisons; use real sourced headlines only if licensed/quotable"},
-      "overlay": {"text":"«НОВЫЙ МЕССИ» — СТАРЫЙ ЯРЛЫК","style":"newspaper-headline"},
+      "supportingVisual": {
+        "type": "NEWSPAPER",
+        "subject": "Generic historical media collage of 'new Messi' comparisons; use real sourced headlines only if licensed/quotable"
+      },
+      "overlay": {
+        "text": "«НОВЫЙ МЕССИ» — СТАРЫЙ ЯРЛЫК",
+        "style": "newspaper-headline"
+      },
       "animation": "slideLeft",
       "notes": "No mascot. Do not invent quotations; screenshots/headlines must be sourced.",
-      "assetRequests": ["newspaper-new-messi-comparisons"]
+      "assetRequests": [
+        "newspaper-new-messi-comparisons"
+      ]
     },
     {
       "id": "scene-31",
-      "scriptRefs": ["SCRIPT-026"],
+      "scriptRefs": [
+        "SCRIPT-026"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-left-media-right",
-      "mascot": {"poseIntent":"annoyed","position":"left","scale":"medium"},
+      "mascot": {
+        "poseIntent": "annoyed",
+        "position": "left",
+        "scale": "medium",
+        "basePose": "annoyed-two",
+        "assetId": "mascot-annoyed-two__barcelona-home"
+      },
       "outfitIntent": "current-club",
-      "supportingVisual": {"type":"COACH_PHOTO","subject":"Hansi Flick, Barcelona, 2025/26","assetId":"coach-hansi-flick"},
-      "overlay": {"text":"РИСК №1 — НАГРУЗКА","style":"risk"},
+      "supportingVisual": {
+        "type": "COACH_PHOTO",
+        "subject": "Hansi Flick, Barcelona, 2025/26",
+        "assetId": "coach-hansi-flick"
+      },
+      "overlay": {
+        "text": "РИСК №1 — НАГРУЗКА",
+        "style": "risk"
+      },
       "animation": "panRight",
       "notes": null,
-      "assetRequests": ["coach-hansi-flick"]
+      "assetRequests": [
+        "coach-hansi-flick"
+      ]
     },
     {
       "id": "scene-32",
-      "scriptRefs": ["SCRIPT-026"],
+      "scriptRefs": [
+        "SCRIPT-026"
+      ],
       "primaryType": "PLAYER_PHOTO",
       "layout": "full",
       "mascot": null,
       "outfitIntent": null,
-      "supportingVisual": {"type":"PLAYER_PHOTO","subject":"Yamal injury / leaving field / recovery spring 2026","assetId":"player-yamal-injury-2026"},
-      "overlay": {"text":"APR 2026 • HAMSTRING","style":"injury-card"},
+      "supportingVisual": {
+        "type": "PLAYER_PHOTO",
+        "subject": "Yamal injury / leaving field / recovery spring 2026",
+        "assetId": "player-yamal-injury-2026"
+      },
+      "overlay": {
+        "text": "APR 2026 • HAMSTRING",
+        "style": "injury-card"
+      },
       "animation": "slowZoom",
       "notes": "No mascot. Use non-exploitative factual injury image.",
-      "assetRequests": ["player-yamal-injury-2026"]
+      "assetRequests": [
+        "player-yamal-injury-2026"
+      ]
     },
     {
       "id": "scene-33",
-      "scriptRefs": ["SCRIPT-027"],
+      "scriptRefs": [
+        "SCRIPT-027"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-left-stat-right",
-      "mascot": {"poseIntent":"explain","position":"left","scale":"medium"},
+      "mascot": {
+        "poseIntent": "explain",
+        "position": "left",
+        "scale": "medium",
+        "basePose": "explain-six",
+        "assetId": "mascot-explain-six__default-home"
+      },
       "outfitIntent": "default",
-      "supportingVisual": {"type":"TEXT","subject":"Longevity timeline"},
-      "overlay": {"text":"2–3 СЕЗОНА ≠ ДЕСЯТИЛЕТИЕ СТАБИЛЬНОСТИ","style":"timeline-statement"},
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Longevity timeline"
+      },
+      "overlay": {
+        "text": "2–3 СЕЗОНА ≠ ДЕСЯТИЛЕТИЕ СТАБИЛЬНОСТИ",
+        "style": "timeline-statement"
+      },
       "animation": "slideRight",
       "notes": null,
       "assetRequests": []
     },
     {
       "id": "scene-34",
-      "scriptRefs": ["SCRIPT-028"],
+      "scriptRefs": [
+        "SCRIPT-028"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-center",
-      "mascot": {"poseIntent":"explain","position":"center","scale":"large"},
+      "mascot": {
+        "poseIntent": "explain",
+        "position": "center",
+        "scale": "large",
+        "basePose": "explain-four",
+        "assetId": "mascot-explain-four__default-home"
+      },
       "outfitIntent": "default",
-      "supportingVisual": {"type":"TEXT","subject":"Final thesis, two-part verdict"},
-      "overlay": {"text":"ПЕРЕОЦЕНЁН КАК ИГРОК? НЕТ.\nМЫ ТОРОПИМСЯ С ВЕРДИКТОМ? ДА.","style":"verdict"},
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Final thesis, two-part verdict"
+      },
+      "overlay": {
+        "text": "ПЕРЕОЦЕНЁН КАК ИГРОК? НЕТ.\nМЫ ТОРОПИМСЯ С ВЕРДИКТОМ? ДА.",
+        "style": "verdict"
+      },
       "animation": "fade",
       "notes": null,
       "assetRequests": []
     },
     {
       "id": "scene-35",
-      "scriptRefs": ["SCRIPT-029"],
+      "scriptRefs": [
+        "SCRIPT-029"
+      ],
       "primaryType": "MASCOT",
       "layout": "split-players-mascot-bottom",
-      "mascot": {"poseIntent":"explain","position":"bottom-center","scale":"small"},
+      "mascot": {
+        "poseIntent": "explain",
+        "position": "bottom-center",
+        "scale": "small",
+        "basePose": "explain-four",
+        "assetId": "mascot-explain-four__default-home"
+      },
       "outfitIntent": "default",
-      "supportingVisual": {"type":"PLAYER_PHOTO","subject":"Messi and Yamal as separate career paths, not direct versus","assetIds":["player-messi-wc2026-final","player-yamal-spain-wc2026"]},
-      "overlay": {"text":"ВНИМАНИЕ МИРА — УЖЕ.\nМЕСТО В ИСТОРИИ — ЕЩЁ НЕТ.","style":"conclusion"},
+      "supportingVisual": {
+        "type": "PLAYER_PHOTO",
+        "subject": "Messi and Yamal as separate career paths, not direct versus",
+        "assetIds": [
+          "player-messi-wc2026-final",
+          "player-yamal-spain-wc2026"
+        ]
+      },
+      "overlay": {
+        "text": "ВНИМАНИЕ МИРА — УЖЕ.\nМЕСТО В ИСТОРИИ — ЕЩЁ НЕТ.",
+        "style": "conclusion"
+      },
       "animation": "zoomOut",
       "notes": null,
-      "assetRequests": ["player-messi-wc2026-final","player-yamal-spain-wc2026"]
+      "assetRequests": [
+        "player-messi-wc2026-final",
+        "player-yamal-spain-wc2026"
+      ]
     },
     {
       "id": "scene-36",
-      "scriptRefs": ["SCRIPT-030"],
+      "scriptRefs": [
+        "SCRIPT-030"
+      ],
       "primaryType": "PLAYER_PHOTO",
       "layout": "full",
       "mascot": null,
       "outfitIntent": null,
-      "supportingVisual": {"type":"PLAYER_PHOTO","subject":"Strong calm portrait of Lamine Yamal alone, contemporary","assetId":"player-yamal-hero-portrait"},
-      "overlay": {"text":"НЕ «НОВЫЙ МЕССИ».\nЛАМИН ЯМАЛЬ.","style":"final-thesis"},
+      "supportingVisual": {
+        "type": "PLAYER_PHOTO",
+        "subject": "Strong calm portrait of Lamine Yamal alone, contemporary",
+        "assetId": "player-yamal-hero-portrait"
+      },
+      "overlay": {
+        "text": "НЕ «НОВЫЙ МЕССИ».\nЛАМИН ЯМАЛЬ.",
+        "style": "final-thesis"
+      },
       "animation": "slowZoom",
       "notes": "No mascot. Give the thesis space before CTA.",
-      "assetRequests": ["player-yamal-hero-portrait"]
+      "assetRequests": [
+        "player-yamal-hero-portrait"
+      ]
     },
     {
       "id": "scene-37",
-      "scriptRefs": ["SCRIPT-CTA-END"],
+      "scriptRefs": [
+        "SCRIPT-CTA-END"
+      ],
       "primaryType": "MASCOT",
       "layout": "mascot-center",
-      "mascot": {"poseIntent":"point-right","position":"center","scale":"large"},
+      "mascot": {
+        "poseIntent": "point-right",
+        "position": "center",
+        "scale": "large",
+        "basePose": "point-right-two",
+        "assetId": "mascot-point-right-two__barcelona-home"
+      },
       "outfitIntent": "current-club",
-      "supportingVisual": {"type":"TEXT","subject":"Subscribe + comment lower-third"},
-      "overlay": {"text":"ПОДПИШИСЬ • А КЕМ СТАНЕТ ЯМАЛЬ?","style":"cta-end"},
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Subscribe + comment lower-third"
+      },
+      "overlay": {
+        "text": "ПОДПИШИСЬ • А КЕМ СТАНЕТ ЯМАЛЬ?",
+        "style": "cta-end"
+      },
       "animation": "slideUp",
       "notes": "Use reusable subscribe animation when available.",
       "assetRequests": []

@@ -79,7 +79,10 @@
     "poseSelection": "resolve poseIntent only to existing approved poses; never create a new pose",
     "outfitResolution": "scripts/resolve_mascot_outfit.py --all",
     "variantResolution": "scripts/ensure_mascot_variants.py",
-    "dedupeBy": ["basePose", "resolvedOutfit"],
+    "dedupeBy": [
+      "basePose",
+      "resolvedOutfit"
+    ],
     "defaultOutfitNeedsLayer": false
   },
   "completion": {

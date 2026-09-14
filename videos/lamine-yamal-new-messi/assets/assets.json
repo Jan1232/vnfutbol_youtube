@@ -3,7 +3,13 @@
   "video": "lamine-yamal-new-messi",
   "stage": "assets-sourced",
   "policy": {
-    "reuseOrder": ["channel-library", "official-source", "major-media", "render", "generate"],
+    "reuseOrder": [
+      "channel-library",
+      "official-source",
+      "major-media",
+      "render",
+      "generate"
+    ],
     "publicRepoRule": "Do not commit third-party photos or match footage unless reuse rights are cleared. Store source URLs and local/private staging paths instead.",
     "defaultRightsStatus": "editorial-source; reuse rights not verified"
   },
@@ -16,7 +22,10 @@
       "provider": "minimax",
       "file": "audio/final/narration.wav",
       "usedInScenes": [],
-      "tags": ["voice", "narration"],
+      "tags": [
+        "voice",
+        "narration"
+      ],
       "sourceUrl": null,
       "rightsStatus": "owned/generated",
       "author": null
@@ -27,7 +36,9 @@
       "source": "official-source",
       "status": "found",
       "provider": "FIFA",
-      "usedInScenes": ["scene-01"],
+      "usedInScenes": [
+        "scene-01"
+      ],
       "sourceUrl": "https://www.youtube.com/watch?v=6HaHNYjnghE",
       "referencePage": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain-argentina-final-report-highlights",
       "selection": "opening atmosphere / teams / stadium / trophy; use only a very short excerpt",
@@ -40,7 +51,9 @@
       "source": "official-source",
       "status": "found",
       "provider": "FIFA",
-      "usedInScenes": ["scene-22"],
+      "usedInScenes": [
+        "scene-22"
+      ],
       "sourceUrl": "https://www.youtube.com/watch?v=6HaHNYjnghE",
       "referencePage": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain-argentina-final-report-highlights",
       "selection": "winning moment / celebrations / trophy lift; short transformative excerpt",
@@ -53,7 +66,11 @@
       "source": "official-source",
       "status": "found",
       "provider": "FIFA",
-      "usedInScenes": ["scene-02", "scene-04", "scene-35"],
+      "usedInScenes": [
+        "scene-02",
+        "scene-04",
+        "scene-35"
+      ],
       "sourceUrl": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain-argentina-final-report-highlights",
       "selection": "close or medium shot of Messi in Argentina kit from the 2026 final",
       "rightsStatus": "editorial-source; page imagery may be FIFA/Getty; reuse rights not verified",
@@ -65,7 +82,11 @@
       "source": "official-source",
       "status": "found",
       "provider": "FIFA",
-      "usedInScenes": ["scene-03", "scene-04", "scene-35"],
+      "usedInScenes": [
+        "scene-03",
+        "scene-04",
+        "scene-35"
+      ],
       "sourceUrl": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain-argentina-final-report-highlights",
       "selection": "clean Yamal portrait/action shot in Spain kit from World Cup 2026",
       "rightsStatus": "editorial-source; page imagery may be FIFA/Getty; reuse rights not verified",
@@ -77,7 +98,11 @@
       "source": "official-source",
       "status": "found",
       "provider": "FC Barcelona",
-      "usedInScenes": ["scene-07", "scene-20", "scene-27"],
+      "usedInScenes": [
+        "scene-07",
+        "scene-20",
+        "scene-27"
+      ],
       "sourceUrl": "https://www.fcbarcelona.com/en/news/4314453/lamine-yamal-is-the-fc-barcelona-no10",
       "selection": "Yamal holding/wearing the No.10 shirt; strong readable 10",
       "rightsStatus": "editorial-source; reuse rights not verified",
@@ -89,7 +114,9 @@
       "source": "major-media",
       "status": "found",
       "provider": "Diario AS / RFEF credit",
-      "usedInScenes": ["scene-10"],
+      "usedInScenes": [
+        "scene-10"
+      ],
       "sourceUrl": "https://as.com/futbol/seleccion/el-motivo-por-el-que-lamine-yamal-festeja-los-goles-haciendo-un-304-que-significa-esta-celebracion-n/",
       "selection": "clear 304 hand gesture; crop wide enough to keep both hands",
       "rightsStatus": "editorial-source; credited Pablo Garcia/RFEF; reuse rights not verified",
@@ -102,7 +129,9 @@
       "source": "render",
       "status": "planned-render",
       "provider": "Remotion",
-      "usedInScenes": ["scene-11"],
+      "usedInScenes": [
+        "scene-11"
+      ],
       "sourceUrl": null,
       "renderSpec": "simple vector locator: Spain > Catalonia > Mataro > Rocafonda; no external screenshot",
       "rightsStatus": "generated/rendered"
@@ -113,7 +142,9 @@
       "source": "official-source",
       "status": "found",
       "provider": "FC Barcelona",
-      "usedInScenes": ["scene-12"],
+      "usedInScenes": [
+        "scene-12"
+      ],
       "sourceUrl": "https://www.fcbarcelona.com/en/football/first-team/news/4462525/class-of-2007-dazzling-in-the-first-team",
       "selection": "youth-academy period image; prefer image where Yamal is clearly identifiable",
       "rightsStatus": "editorial-source; reuse rights not verified",
@@ -126,7 +157,9 @@
       "source": "official-source",
       "status": "found",
       "provider": "FC Barcelona",
-      "usedInScenes": ["scene-13"],
+      "usedInScenes": [
+        "scene-13"
+      ],
       "sourceUrl": "https://www.youtube.com/watch?v=3EPZJti5cBw",
       "referencePage": "https://www.fcbarcelona.com/en/news/3246834/lamine-yamal-record-breaking-debut/amp",
       "selection": "very short debut sequence against Real Betis, 29 Apr 2023",
@@ -139,7 +172,9 @@
       "source": "official-source",
       "status": "found",
       "provider": "FC Barcelona",
-      "usedInScenes": ["scene-14"],
+      "usedInScenes": [
+        "scene-14"
+      ],
       "sourceUrl": "https://www.fcbarcelona.com/en/news/3677888/lamine-yamal-youngest-player-and-youngest-scorer-for-spanish-national-side/amp",
       "selection": "Spain debut/goal vs Georgia, 8 Sep 2023",
       "rightsStatus": "editorial-source; reuse rights not verified",
@@ -151,7 +186,9 @@
       "source": "official-source",
       "status": "found",
       "provider": "UEFA",
-      "usedInScenes": ["scene-15"],
+      "usedInScenes": [
+        "scene-15"
+      ],
       "sourceUrl": "https://www.uefa.com/uefaeuro/history/news/028f-1b593529fcc2-02d376d78144-1000--lamine-yamal-s-record-breaking-euro-spain-prodigy-wins-f/",
       "selection": "short EURO 2024 Yamal/Spain montage or article-embedded footage",
       "rightsStatus": "editorial-source; reuse rights not verified",
@@ -163,7 +200,9 @@
       "source": "official-source",
       "status": "found",
       "provider": "UEFA",
-      "usedInScenes": ["scene-17"],
+      "usedInScenes": [
+        "scene-17"
+      ],
       "sourceUrl": "https://www.uefa.com/uefaeuro/history/news/028f-1b544afc4a71-e17794a15449-1000--spain-2-1-france-la-roja-fight-back-to-reach-final/",
       "referencePage": "https://www.uefa.com/uefaeuro/history/news/028f-1b61b696019f-f9f4c91eea25-1000--uefa-euro-2024-goal-of-the-tournament-lamine-yamal-tops-tec/",
       "selection": "Yamal equaliser vs France plus brief Spain celebration; do not overuse match footage",
@@ -176,7 +215,10 @@
       "source": "official-source",
       "status": "found",
       "provider": "FC Barcelona / UEFA",
-      "usedInScenes": ["scene-07", "scene-19"],
+      "usedInScenes": [
+        "scene-07",
+        "scene-19"
+      ],
       "sourceUrl": "https://www.fcbarcelona.com/en/news/4367534/lamine-yamal-retains-kopa-trophy",
       "referencePage": "https://www.uefa.com/uefachampionsleague/news/029d-1ec96c30aa3f-f6868c869cbd-1000--ousmane-dembele-wins-2025-men-s-ballon-d-or/",
       "selection": "Yamal with Kopa Trophy 2025; can be cropped around trophy/player",
@@ -189,7 +231,10 @@
       "source": "official-source",
       "status": "found",
       "provider": "UEFA / Ballon d'Or",
-      "usedInScenes": ["scene-07", "scene-19"],
+      "usedInScenes": [
+        "scene-07",
+        "scene-19"
+      ],
       "sourceUrl": "https://www.uefa.com/uefachampionsleague/news/029d-1ec96c30aa3f-f6868c869cbd-1000--ousmane-dembele-wins-2025-men-s-ballon-d-or/",
       "selection": "Ballon d'Or ceremony/trophy visual; Yamal is runner-up, never imply he won the Ballon d'Or",
       "rightsStatus": "editorial-source; reuse rights not verified",
@@ -201,7 +246,9 @@
       "source": "render",
       "status": "planned-render",
       "provider": "Remotion",
-      "usedInScenes": ["scene-06"],
+      "usedInScenes": [
+        "scene-06"
+      ],
       "sourceUrl": "https://www.uefa.com/uefaeuro/history/news/028f-1b61cc9835db-185592165f27-1000--uefa-euro-2024-at-a-glance/",
       "renderSpec": "stylized silver cup silhouette / label EURO 2024; avoid copying official artwork",
       "rightsStatus": "generated/rendered"
@@ -212,7 +259,9 @@
       "source": "render",
       "status": "planned-render",
       "provider": "Remotion",
-      "usedInScenes": ["scene-06"],
+      "usedInScenes": [
+        "scene-06"
+      ],
       "sourceUrl": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain-argentina-final-report-highlights",
       "renderSpec": "stylized gold world-champion trophy icon / label WORLD CUP 2026; avoid copying official artwork",
       "rightsStatus": "generated/rendered"
@@ -223,7 +272,9 @@
       "source": "render",
       "status": "planned-render",
       "provider": "Remotion",
-      "usedInScenes": ["scene-18"],
+      "usedInScenes": [
+        "scene-18"
+      ],
       "sourceUrl": null,
       "renderSpec": "generic league cup icon with label LALIGA",
       "rightsStatus": "generated/rendered"
@@ -234,7 +285,9 @@
       "source": "render",
       "status": "planned-render",
       "provider": "Remotion",
-      "usedInScenes": ["scene-18"],
+      "usedInScenes": [
+        "scene-18"
+      ],
       "sourceUrl": null,
       "renderSpec": "generic cup icon with label COPA DEL REY",
       "rightsStatus": "generated/rendered"
@@ -245,7 +298,9 @@
       "source": "render",
       "status": "planned-render",
       "provider": "Remotion",
-      "usedInScenes": ["scene-18"],
+      "usedInScenes": [
+        "scene-18"
+      ],
       "sourceUrl": null,
       "renderSpec": "generic cup icon with label SUPERCOPA",
       "rightsStatus": "generated/rendered"
@@ -256,7 +311,9 @@
       "source": "official-source",
       "status": "found",
       "provider": "FIFA",
-      "usedInScenes": ["scene-21"],
+      "usedInScenes": [
+        "scene-21"
+      ],
       "sourceUrl": "https://www.fifa.com/en/articles/matchday-11-round-up-review-highlights",
       "referencePage": "https://www.fifa.com/pt/articles/jogadores-mais-jovens-gol-copa-mundo",
       "selection": "first World Cup goal vs Saudi Arabia and celebration",
@@ -269,7 +326,9 @@
       "source": "render",
       "status": "planned-render",
       "provider": "Remotion",
-      "usedInScenes": ["scene-26"],
+      "usedInScenes": [
+        "scene-26"
+      ],
       "sourceUrl": null,
       "renderSpec": "football pitch diagram: both start from right half-space/wing and move inside; label as stylistic similarity, not tactical identity",
       "rightsStatus": "generated/rendered"
@@ -280,7 +339,9 @@
       "source": "official-source",
       "status": "found",
       "provider": "FC Barcelona",
-      "usedInScenes": ["scene-27"],
+      "usedInScenes": [
+        "scene-27"
+      ],
       "sourceUrl": "https://www.fcbarcelona.com/en/football/first-team/news/4256638/20-years-since-leo-messis-first-official-goal",
       "selection": "young Messi in early Barcelona era, preferably No.30 / 2004-05",
       "rightsStatus": "editorial-source; reuse rights not verified",
@@ -292,7 +353,9 @@
       "source": "render",
       "status": "planned-render",
       "provider": "Remotion",
-      "usedInScenes": ["scene-30"],
+      "usedInScenes": [
+        "scene-30"
+      ],
       "sourceUrl": null,
       "renderSpec": "original newspaper-style collage using the generic phrase 'НОВЫЙ МЕССИ?' repeatedly; do not fabricate outlet quotes/logos or copy article screenshots",
       "rightsStatus": "generated/rendered"
@@ -303,7 +366,9 @@
       "source": "official-source",
       "status": "found",
       "provider": "FC Barcelona",
-      "usedInScenes": ["scene-31"],
+      "usedInScenes": [
+        "scene-31"
+      ],
       "sourceUrl": "https://www.fcbarcelona.com/en/futbol/primer-equip/staff/4030694/hansi-flick",
       "referencePage": "https://www.fcbarcelona.com/en/football/first-team/news/4274760/hansi-flick-completes-one-year-as-fc-barcelona-coach",
       "selection": "clean Hansi Flick portrait in Barcelona clothing",
@@ -316,7 +381,9 @@
       "source": "official-source",
       "status": "found",
       "provider": "FC Barcelona",
-      "usedInScenes": ["scene-32"],
+      "usedInScenes": [
+        "scene-32"
+      ],
       "sourceUrl": "https://www.fcbarcelona.com/en/news/4491939/lamine-yamal-injury-update",
       "selection": "neutral injury/update image; avoid sensational or misleading pain imagery",
       "rightsStatus": "editorial-source; reuse rights not verified",
@@ -328,11 +395,664 @@
       "source": "official-source",
       "status": "found",
       "provider": "FC Barcelona",
-      "usedInScenes": ["scene-36"],
+      "usedInScenes": [
+        "scene-36"
+      ],
       "sourceUrl": "https://www.fcbarcelona.com/en/football/first-team/players/129404",
       "selection": "calm contemporary hero portrait; enough negative space for final thesis",
       "rightsStatus": "editorial-source; reuse rights not verified",
       "downloadToPublicRepo": false
+    },
+    {
+      "id": "mascot-explain-six__default-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-02",
+        "scene-33"
+      ],
+      "tags": [
+        "mascot",
+        "explain-six",
+        "default-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "explain-six",
+        "outfitIntent": "default",
+        "resolvedOutfit": "default-home",
+        "subject": null,
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-point-left-two__spain-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-03"
+      ],
+      "tags": [
+        "mascot",
+        "point-left-two",
+        "spain-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "point-left-two",
+        "outfitIntent": "national-team",
+        "resolvedOutfit": "spain-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-explain-one__default-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-04"
+      ],
+      "tags": [
+        "mascot",
+        "explain-one",
+        "default-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "explain-one",
+        "outfitIntent": "default",
+        "resolvedOutfit": "default-home",
+        "subject": null,
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-think-three__default-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-05",
+        "scene-25"
+      ],
+      "tags": [
+        "mascot",
+        "think-three",
+        "default-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "think-three",
+        "outfitIntent": "default",
+        "resolvedOutfit": "default-home",
+        "subject": null,
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-count-3__barcelona-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-06"
+      ],
+      "tags": [
+        "mascot",
+        "count-3",
+        "barcelona-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "count-3",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "barcelona-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-shock-one__barcelona-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-08"
+      ],
+      "tags": [
+        "mascot",
+        "shock-one",
+        "barcelona-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "shock-one",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "barcelona-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-point-left-three__barcelona-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-09"
+      ],
+      "tags": [
+        "mascot",
+        "point-left-three",
+        "barcelona-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "point-left-three",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "barcelona-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-explain-four__barcelona-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-11"
+      ],
+      "tags": [
+        "mascot",
+        "explain-four",
+        "barcelona-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "explain-four",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "barcelona-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-explain-two__barcelona-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-12"
+      ],
+      "tags": [
+        "mascot",
+        "explain-two",
+        "barcelona-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "explain-two",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "barcelona-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-shock-three__barcelona-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-13"
+      ],
+      "tags": [
+        "mascot",
+        "shock-three",
+        "barcelona-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "shock-three",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "barcelona-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-count-2__spain-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-14"
+      ],
+      "tags": [
+        "mascot",
+        "count-2",
+        "spain-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "count-2",
+        "outfitIntent": "national-team",
+        "resolvedOutfit": "spain-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-count-3__spain-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-16"
+      ],
+      "tags": [
+        "mascot",
+        "count-3",
+        "spain-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "count-3",
+        "outfitIntent": "national-team",
+        "resolvedOutfit": "spain-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-celebrate__barcelona-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-18"
+      ],
+      "tags": [
+        "mascot",
+        "celebrate",
+        "barcelona-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "celebrate",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "barcelona-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-explain-five__suit-navy",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-19"
+      ],
+      "tags": [
+        "mascot",
+        "explain-five",
+        "suit-navy"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "explain-five",
+        "outfitIntent": "formal",
+        "resolvedOutfit": "suit-navy",
+        "subject": null,
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-explain-six__barcelona-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-20"
+      ],
+      "tags": [
+        "mascot",
+        "explain-six",
+        "barcelona-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "explain-six",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "barcelona-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-celebrate__spain-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-21"
+      ],
+      "tags": [
+        "mascot",
+        "celebrate",
+        "spain-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "celebrate",
+        "outfitIntent": "national-team",
+        "resolvedOutfit": "spain-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-explain-five__barcelona-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-24"
+      ],
+      "tags": [
+        "mascot",
+        "explain-five",
+        "barcelona-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "explain-five",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "barcelona-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-explain-three__default-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-26"
+      ],
+      "tags": [
+        "mascot",
+        "explain-three",
+        "default-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "explain-three",
+        "outfitIntent": "default",
+        "resolvedOutfit": "default-home",
+        "subject": null,
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-point-left-three__default-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-27"
+      ],
+      "tags": [
+        "mascot",
+        "point-left-three",
+        "default-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "point-left-three",
+        "outfitIntent": "default",
+        "resolvedOutfit": "default-home",
+        "subject": null,
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-stop__default-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-28"
+      ],
+      "tags": [
+        "mascot",
+        "stop",
+        "default-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "stop",
+        "outfitIntent": "default",
+        "resolvedOutfit": "default-home",
+        "subject": null,
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-think-one__default-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-29"
+      ],
+      "tags": [
+        "mascot",
+        "think-one",
+        "default-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "think-one",
+        "outfitIntent": "default",
+        "resolvedOutfit": "default-home",
+        "subject": null,
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-annoyed-two__barcelona-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-31"
+      ],
+      "tags": [
+        "mascot",
+        "annoyed-two",
+        "barcelona-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "annoyed-two",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "barcelona-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-explain-four__default-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-34",
+        "scene-35"
+      ],
+      "tags": [
+        "mascot",
+        "explain-four",
+        "default-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "explain-four",
+        "outfitIntent": "default",
+        "resolvedOutfit": "default-home",
+        "subject": null,
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-point-right-two__barcelona-home",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-37"
+      ],
+      "tags": [
+        "mascot",
+        "point-right-two",
+        "barcelona-home"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "point-right-two",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "barcelona-home",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
     }
   ]
 }

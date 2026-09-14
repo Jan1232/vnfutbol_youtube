@@ -1,7 +1,1157 @@
 {
   "version": 1,
   "video": "lamine-yamal-new-messi",
-  "generatedAt": null,
+  "generatedAt": "2026-09-14T20:27:59+00:00",
   "localRoot": ".local-assets/lamine-yamal-new-messi",
-  "assets": []
+  "assets": [
+    {
+      "id": "narration",
+      "type": "AUDIO",
+      "status": "READY",
+      "sourcePath": "audio/final/narration.wav",
+      "preparedPath": "audio/final/narration.wav",
+      "sourceSha256": "95ef46634123d96a0e45055355f25bf9156641d7d1d9643a1f5d3ca0a5e29c72",
+      "sha256": "95ef46634123d96a0e45055355f25bf9156641d7d1d9643a1f5d3ca0a5e29c72",
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [],
+      "notes": "channel-owned narration"
+    },
+    {
+      "id": "video-wc2026-final-atmosphere",
+      "type": "VIDEO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.youtube.com/watch?v=6HaHNYjnghE",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-01"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "player-messi-wc2026-final",
+      "type": "PLAYER_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain-argentina-final-report-highlights",
+      "rightsStatus": "editorial-source; page imagery may be FIFA/Getty; reuse rights not verified",
+      "usedInScenes": [
+        "scene-02",
+        "scene-04",
+        "scene-35"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-explain-six__default-home",
+      "type": "MASCOT",
+      "status": "READY_MASCOT",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-02",
+        "scene-33"
+      ],
+      "notes": "default-home uses approved base pose",
+      "mascot": {
+        "basePose": "explain-six",
+        "outfit": "default-home",
+        "mode": "base-pose"
+      }
+    },
+    {
+      "id": "player-yamal-spain-wc2026",
+      "type": "PLAYER_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain-argentina-final-report-highlights",
+      "rightsStatus": "editorial-source; page imagery may be FIFA/Getty; reuse rights not verified",
+      "usedInScenes": [
+        "scene-03",
+        "scene-04",
+        "scene-35"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-point-left-two__spain-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-03"
+      ],
+      "notes": "mascot variant pending/missing for point-left-two + spain-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "point-left-two",
+        "outfit": "spain-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "mascot-explain-one__default-home",
+      "type": "MASCOT",
+      "status": "READY_MASCOT",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-04"
+      ],
+      "notes": "default-home uses approved base pose",
+      "mascot": {
+        "basePose": "explain-one",
+        "outfit": "default-home",
+        "mode": "base-pose"
+      }
+    },
+    {
+      "id": "mascot-think-three__default-home",
+      "type": "MASCOT",
+      "status": "READY_MASCOT",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-05",
+        "scene-25"
+      ],
+      "notes": "default-home uses approved base pose",
+      "mascot": {
+        "basePose": "think-three",
+        "outfit": "default-home",
+        "mode": "base-pose"
+      }
+    },
+    {
+      "id": "trophy-euro",
+      "type": "TROPHY",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.uefa.com/uefaeuro/history/news/028f-1b61cc9835db-185592165f27-1000--uefa-euro-2024-at-a-glance/",
+      "rightsStatus": "generated/rendered",
+      "usedInScenes": [
+        "scene-06"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "trophy-world-cup",
+      "type": "TROPHY",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/spain-argentina-final-report-highlights",
+      "rightsStatus": "generated/rendered",
+      "usedInScenes": [
+        "scene-06"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "mascot-count-3__barcelona-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-06"
+      ],
+      "notes": "mascot variant pending/missing for count-3 + barcelona-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "count-3",
+        "outfit": "barcelona-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "trophy-kopa",
+      "type": "TROPHY",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fcbarcelona.com/en/news/4367534/lamine-yamal-retains-kopa-trophy",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-07",
+        "scene-19"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "trophy-ballon-dor",
+      "type": "TROPHY",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.uefa.com/uefachampionsleague/news/029d-1ec96c30aa3f-f6868c869cbd-1000--ousmane-dembele-wins-2025-men-s-ballon-d-or/",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-07",
+        "scene-19"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "player-yamal-barcelona-no10",
+      "type": "PLAYER_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fcbarcelona.com/en/news/4314453/lamine-yamal-is-the-fc-barcelona-no10",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-07",
+        "scene-20",
+        "scene-27"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-shock-one__barcelona-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-08"
+      ],
+      "notes": "mascot variant pending/missing for shock-one + barcelona-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "shock-one",
+        "outfit": "barcelona-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "mascot-point-left-three__barcelona-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-09"
+      ],
+      "notes": "mascot variant pending/missing for point-left-three + barcelona-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "point-left-three",
+        "outfit": "barcelona-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "player-yamal-304-celebration",
+      "type": "PLAYER_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://as.com/futbol/seleccion/el-motivo-por-el-que-lamine-yamal-festeja-los-goles-haciendo-un-304-que-significa-esta-celebracion-n/",
+      "rightsStatus": "editorial-source; credited Pablo Garcia/RFEF; reuse rights not verified",
+      "usedInScenes": [
+        "scene-10"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "map-mataro-rocafonda",
+      "type": "MAP",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "generated/rendered",
+      "usedInScenes": [
+        "scene-11"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "mascot-explain-four__barcelona-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-11"
+      ],
+      "notes": "mascot variant pending/missing for explain-four + barcelona-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "explain-four",
+        "outfit": "barcelona-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "player-yamal-youth-lamasia",
+      "type": "HISTORICAL_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fcbarcelona.com/en/football/first-team/news/4462525/class-of-2007-dazzling-in-the-first-team",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-12"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-explain-two__barcelona-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-12"
+      ],
+      "notes": "mascot variant pending/missing for explain-two + barcelona-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "explain-two",
+        "outfit": "barcelona-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "video-yamal-betis-debut",
+      "type": "VIDEO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.youtube.com/watch?v=3EPZJti5cBw",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-13"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-shock-three__barcelona-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-13"
+      ],
+      "notes": "mascot variant pending/missing for shock-three + barcelona-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "shock-three",
+        "outfit": "barcelona-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "player-yamal-spain-debut-2023",
+      "type": "PLAYER_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fcbarcelona.com/en/news/3677888/lamine-yamal-youngest-player-and-youngest-scorer-for-spanish-national-side/amp",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-14"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-count-2__spain-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-14"
+      ],
+      "notes": "mascot variant pending/missing for count-2 + spain-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "count-2",
+        "outfit": "spain-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "video-yamal-euro2024-intro",
+      "type": "VIDEO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.uefa.com/uefaeuro/history/news/028f-1b593529fcc2-02d376d78144-1000--lamine-yamal-s-record-breaking-euro-spain-prodigy-wins-f/",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-15"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-count-3__spain-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-16"
+      ],
+      "notes": "mascot variant pending/missing for count-3 + spain-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "count-3",
+        "outfit": "spain-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "video-yamal-euro2024-france-champion",
+      "type": "VIDEO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.uefa.com/uefaeuro/history/news/028f-1b544afc4a71-e17794a15449-1000--spain-2-1-france-la-roja-fight-back-to-reach-final/",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-17"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "trophy-laliga",
+      "type": "TROPHY",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "generated/rendered",
+      "usedInScenes": [
+        "scene-18"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "trophy-copa-del-rey",
+      "type": "TROPHY",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "generated/rendered",
+      "usedInScenes": [
+        "scene-18"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "trophy-spanish-supercup",
+      "type": "TROPHY",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "generated/rendered",
+      "usedInScenes": [
+        "scene-18"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "mascot-celebrate__barcelona-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-18"
+      ],
+      "notes": "mascot variant pending/missing for celebrate + barcelona-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "celebrate",
+        "outfit": "barcelona-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "mascot-explain-five__suit-navy",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-19"
+      ],
+      "notes": "mascot variant pending/missing for explain-five + suit-navy; do not invent approved variants",
+      "mascot": {
+        "basePose": "explain-five",
+        "outfit": "suit-navy",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "mascot-explain-six__barcelona-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-20"
+      ],
+      "notes": "mascot variant pending/missing for explain-six + barcelona-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "explain-six",
+        "outfit": "barcelona-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "video-yamal-wc2026-saudi-goal",
+      "type": "VIDEO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fifa.com/en/articles/matchday-11-round-up-review-highlights",
+      "rightsStatus": "editorial-source; footage/photo may be FIFA/Getty; reuse rights not verified",
+      "usedInScenes": [
+        "scene-21"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-celebrate__spain-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-21"
+      ],
+      "notes": "mascot variant pending/missing for celebrate + spain-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "celebrate",
+        "outfit": "spain-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "video-wc2026-final-win",
+      "type": "VIDEO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.youtube.com/watch?v=6HaHNYjnghE",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-22"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-explain-five__barcelona-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-24"
+      ],
+      "notes": "mascot variant pending/missing for explain-five + barcelona-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "explain-five",
+        "outfit": "barcelona-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "diagram-yamal-messi-style",
+      "type": "DIAGRAM",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "generated/rendered",
+      "usedInScenes": [
+        "scene-26"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "mascot-explain-three__default-home",
+      "type": "MASCOT",
+      "status": "READY_MASCOT",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-26"
+      ],
+      "notes": "default-home uses approved base pose",
+      "mascot": {
+        "basePose": "explain-three",
+        "outfit": "default-home",
+        "mode": "base-pose"
+      }
+    },
+    {
+      "id": "player-messi-early-barcelona",
+      "type": "PLAYER_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fcbarcelona.com/en/football/first-team/news/4256638/20-years-since-leo-messis-first-official-goal",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-27"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-point-left-three__default-home",
+      "type": "MASCOT",
+      "status": "READY_MASCOT",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-27"
+      ],
+      "notes": "default-home uses approved base pose",
+      "mascot": {
+        "basePose": "point-left-three",
+        "outfit": "default-home",
+        "mode": "base-pose"
+      }
+    },
+    {
+      "id": "mascot-stop__default-home",
+      "type": "MASCOT",
+      "status": "READY_MASCOT",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-28"
+      ],
+      "notes": "default-home uses approved base pose",
+      "mascot": {
+        "basePose": "stop",
+        "outfit": "default-home",
+        "mode": "base-pose"
+      }
+    },
+    {
+      "id": "mascot-think-one__default-home",
+      "type": "MASCOT",
+      "status": "READY_MASCOT",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-29"
+      ],
+      "notes": "default-home uses approved base pose",
+      "mascot": {
+        "basePose": "think-one",
+        "outfit": "default-home",
+        "mode": "base-pose"
+      }
+    },
+    {
+      "id": "newspaper-new-messi-comparisons",
+      "type": "NEWSPAPER",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "generated/rendered",
+      "usedInScenes": [
+        "scene-30"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "coach-hansi-flick",
+      "type": "COACH_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fcbarcelona.com/en/futbol/primer-equip/staff/4030694/hansi-flick",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-31"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-annoyed-two__barcelona-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-31"
+      ],
+      "notes": "mascot variant pending/missing for annoyed-two + barcelona-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "annoyed-two",
+        "outfit": "barcelona-home",
+        "mode": "pending"
+      }
+    },
+    {
+      "id": "player-yamal-injury-2026",
+      "type": "PLAYER_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fcbarcelona.com/en/news/4491939/lamine-yamal-injury-update",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-32"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-explain-four__default-home",
+      "type": "MASCOT",
+      "status": "READY_MASCOT",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-34",
+        "scene-35"
+      ],
+      "notes": "default-home uses approved base pose",
+      "mascot": {
+        "basePose": "explain-four",
+        "outfit": "default-home",
+        "mode": "base-pose"
+      }
+    },
+    {
+      "id": "player-yamal-hero-portrait",
+      "type": "PLAYER_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.fcbarcelona.com/en/football/first-team/players/129404",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-36"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external"
+    },
+    {
+      "id": "mascot-point-right-two__barcelona-home",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-37"
+      ],
+      "notes": "mascot variant pending/missing for point-right-two + barcelona-home; do not invent approved variants",
+      "mascot": {
+        "basePose": "point-right-two",
+        "outfit": "barcelona-home",
+        "mode": "pending"
+      }
+    }
+  ]
 }
