@@ -1,5 +1,22 @@
 {
   "version": 1,
   "video": "lamine-yamal-new-messi",
-  "assets": []
+  "assets": [
+    {
+      "id": "narration",
+      "type": "AUDIO",
+      "source": "generated",
+      "status": "generated",
+      "provider": "minimax",
+      "file": "audio/final/narration.wav",
+      "usedInScenes": [],
+      "tags": [
+        "voice",
+        "narration"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null
+    }
+  ]
 }
