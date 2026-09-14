@@ -12,21 +12,25 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from asset_prep_common import sha256_file, write_json
+from asset_prep_common import ROOT, sha256_file, write_json
 from build_timeline import assign_voice, collect_gate_blockers, partition_segments
 from prepare_assets import (
     apply_source_reuse,
+    candidate_entries,
     cmd_ingest,
     cmd_plan,
     distinct_source_files_needed,
     load_prepared,
     merge_preserve,
+    review_board_assets,
+    select_candidate,
 )
 from sync_mascot_assets import resolve_base_pose, resolve_subject, sync
 from validate_video import validate_assets, Report
 from mascot_common import load_poses, pose_by_id
 import review_mascot_masks as review_masks
 import mascot_common as mc
+from PIL import Image as PILImage
 
 
 def assert_true(cond: bool, message: str) -> None:
@@ -638,6 +642,117 @@ def test_mask_review_rules(tmp: Path) -> None:
         mc.MASKS_PATH.write_text(json.dumps(original, indent=2) + "\n", encoding="utf-8")
 
 
+def test_mask_contact_sheet_height() -> None:
+    for rows in (1, 5, 13):
+        metrics = review_masks.mask_contact_sheet_metrics(rows)
+        content_end = metrics["top_margin"] + rows * metrics["row_step"]
+        assert_true(
+            content_end + metrics["bottom_margin"] == metrics["height"],
+            f"height formula mismatch for rows={rows}: {metrics}",
+        )
+        assert_true(
+            metrics["height"] - content_end >= metrics["bottom_margin"],
+            "bottom margin must remain after final row",
+        )
+        # Old buggy formula clipped the last row for larger boards.
+        old_height = rows * (metrics["panel_h"] + metrics["label_h"]) + 40
+        assert_true(
+            metrics["height"] > old_height or rows == 1,
+            f"fixed height should exceed old buggy height for rows={rows}",
+        )
+
+
+def test_candidate_labels_and_selection(tmp: Path) -> None:
+    video = make_video_fixture(tmp / "cand-review")
+    prep = json.loads((video / "assets" / "asset-prep.json").read_text(encoding="utf-8"))
+    local_root = Path(prep["paths"]["localRoot"])
+    cand_dir = local_root / "candidates" / "photo-demo"
+    cand_dir.mkdir(parents=True, exist_ok=True)
+    # Create deterministic candidate files with unsorted names
+    paths = []
+    for idx, name in enumerate(("candidate-02.png", "candidate-00.png", "candidate-01.png")):
+        path = cand_dir / name
+        img = PILImage.new("RGB", (64, 48), (40 + idx * 40, 80, 120))
+        img.save(path)
+        paths.append(str(path))
+
+    payload = {
+        "version": 1,
+        "video": "test-video",
+        "assets": [
+            {
+                "id": "photo-demo",
+                "type": "PLAYER_PHOTO",
+                "status": "NEEDS_SELECTION",
+                "sourceUrl": "https://example.com/photo",
+                "selectionNotes": "readable number",
+                "candidates": paths,
+            },
+            {
+                "id": "ignored-ready",
+                "type": "PLAYER_PHOTO",
+                "status": "READY",
+                "candidates": paths,
+            },
+            {
+                "id": "ignored-no-cands",
+                "type": "PLAYER_PHOTO",
+                "status": "NEEDS_SELECTION",
+                "candidates": [],
+            },
+        ],
+    }
+    write_json(video / "assets" / "prepared-assets.json", payload)
+
+    board_assets = review_board_assets(payload)
+    assert_true([a["id"] for a in board_assets] == ["photo-demo"], board_assets)
+
+    labels1 = [e["label"] for e in candidate_entries(payload["assets"][0])]
+    labels2 = [e["label"] for e in candidate_entries(payload["assets"][0])]
+    assert_true(labels1 == labels2 == ["C1", "C2", "C3"], labels1)
+    ordered_paths = [e["path"] for e in candidate_entries(payload["assets"][0])]
+    assert_true(ordered_paths == sorted(paths), ordered_paths)
+
+    # unknown label rejected
+    rc = select_candidate(video, "photo-demo=C9")
+    assert_true(rc == 1, "unknown label must fail")
+
+    rc = select_candidate(video, "photo-demo=C2")
+    assert_true(rc == 0, "select C2")
+    after = load_prepared(video)
+    rec = next(a for a in after["assets"] if a["id"] == "photo-demo")
+    assert_true(rec.get("selectedCandidate") == "C2", rec)
+    assert_true(rec.get("status") == "READY", rec)
+    source = Path(rec["sourcePath"]) if Path(rec["sourcePath"]).is_absolute() else ROOT / rec["sourcePath"]
+    # When path is outside ROOT, prepare uses absolute via ROOT / which may break;
+    # for tmp absolute localRoot, sourcePath is absolute-ish via rel_to_repo fallback.
+    source_path = Path(rec["sourcePath"])
+    if not source_path.is_absolute():
+        source_path = ROOT / source_path
+    assert_true(source_path.exists(), source_path)
+    assert_true(str(local_root.resolve()) in str(source_path.resolve()), source_path)
+
+    # idempotent reselect same candidate
+    rc = select_candidate(video, "photo-demo=C2")
+    # status is READY now, so NEEDS_SELECTION check fails — re-set status for idempotent source copy test
+    after = load_prepared(video)
+    for item in after["assets"]:
+        if item["id"] == "photo-demo":
+            item["status"] = "NEEDS_SELECTION"
+    write_json(video / "assets" / "prepared-assets.json", after)
+    rc = select_candidate(video, "photo-demo=C2")
+    assert_true(rc == 0, "same candidate twice must be idempotent")
+
+    # different candidate must refuse overwrite
+    after = load_prepared(video)
+    for item in after["assets"]:
+        if item["id"] == "photo-demo":
+            item["status"] = "NEEDS_SELECTION"
+    write_json(video / "assets" / "prepared-assets.json", after)
+    rc = select_candidate(video, "photo-demo=C1")
+    assert_true(rc == 1, "different candidate must not overwrite silently")
+
+
 def main() -> int:
     failed = 0
 
@@ -666,6 +781,8 @@ def main() -> int:
         run("placeholder_outfit_gate", test_placeholder_outfit_gate)
         run("source_reuse_annotation", test_source_reuse_annotation)
         run("mask_review_rules", lambda: test_mask_review_rules(tmp))
+        run("mask_contact_sheet_height", test_mask_contact_sheet_height)
+        run("candidate_labels_and_selection", lambda: test_candidate_labels_and_selection(tmp))
 
     if failed:
         print(f"FAIL  {failed} test(s)")

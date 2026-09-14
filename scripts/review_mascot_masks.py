@@ -92,6 +92,31 @@ def cmd_status(video_dir: Path) -> int:
     return 0
 
 
+def mask_contact_sheet_metrics(row_count: int) -> dict[str, int]:
+    """Layout metrics for the mask review contact sheet."""
+    panel_w, panel_h = 320, 360
+    label_h = 56
+    top_margin = 20
+    bottom_margin = 20
+    row_gap = 8
+    cols = 3
+    row_step = label_h + panel_h + row_gap
+    width = cols * panel_w + 40
+    height = top_margin + row_count * row_step + bottom_margin
+    return {
+        "panel_w": panel_w,
+        "panel_h": panel_h,
+        "label_h": label_h,
+        "top_margin": top_margin,
+        "bottom_margin": bottom_margin,
+        "row_gap": row_gap,
+        "row_step": row_step,
+        "cols": cols,
+        "width": width,
+        "height": height,
+    }
+
+
 def _fit(img: Image.Image, size: tuple[int, int]) -> Image.Image:
     canvas = Image.new("RGBA", size, (24, 24, 28, 255))
     copy = img.convert("RGBA")
@@ -110,29 +135,26 @@ def build_contact_sheet(video_dir: Path) -> Path:
         raise RuntimeError("no blocked poses to review")
     prep = load_asset_prep(video_dir)
     dirs = ensure_local_dirs(video_dir, prep)
-    panel = (320, 360)
-    label_h = 56
-    cols = 3
     rows = len(mapping)
-    width = cols * panel[0] + 40
-    height = rows * (panel[1] + label_h) + 40
-    sheet = Image.new("RGB", (width, height), (18, 18, 22))
+    metrics = mask_contact_sheet_metrics(rows)
+    panel = (metrics["panel_w"], metrics["panel_h"])
+    label_h = metrics["label_h"]
+    sheet = Image.new("RGB", (metrics["width"], metrics["height"]), (18, 18, 22))
     draw = ImageDraw.Draw(sheet)
     try:
         font = ImageFont.load_default()
     except Exception:  # noqa: BLE001
         font = None
 
-    y = 20
+    y = metrics["top_margin"]
     for pose_id, outfits in mapping.items():
         pose = pose_by_id(pose_id)
         mask = mask_by_pose(pose_id)
         state, detail = mask_integrity(pose_id)
         label = f"{pose_id}  outfits: {', '.join(outfits)}  [{state}]"
         draw.text((20, y), label, fill=(240, 240, 240), font=font)
-        y += 18
-        draw.text((20, y), detail[:90], fill=(180, 180, 180), font=font)
-        y += label_h - 18
+        draw.text((20, y + 18), detail[:90], fill=(180, 180, 180), font=font)
+        panel_y = y + label_h
 
         panels: list[Image.Image] = []
         if pose and pose_path(pose).exists():
@@ -144,10 +166,12 @@ def build_contact_sheet(video_dir: Path) -> Path:
         if mask and mask_path(mask).exists():
             mask_img = Image.open(mask_path(mask))
             panels.append(_fit(mask_img, panel))
-            # overlay: base + semi-transparent red where mask is opaque
-            base_rgba = Image.open(pose_path(pose)).convert("RGBA") if pose else Image.new("RGBA", panel)
+            base_rgba = (
+                Image.open(pose_path(pose)).convert("RGBA")
+                if pose
+                else Image.new("RGBA", panel)
+            )
             mask_rgba = mask_img.convert("L")
-            overlay = Image.new("RGBA", base_rgba.size, (220, 40, 40, 0))
             alpha = mask_rgba.point(lambda p: 140 if p > 16 else 0)
             red = Image.new("RGBA", base_rgba.size, (220, 40, 40, 255))
             red.putalpha(alpha)
@@ -159,8 +183,15 @@ def build_contact_sheet(video_dir: Path) -> Path:
 
         for index, panel_img in enumerate(panels):
             x = 20 + index * panel[0]
-            sheet.paste(panel_img.convert("RGB"), (x, y))
-        y += panel[1] + 8
+            sheet.paste(panel_img.convert("RGB"), (x, panel_y))
+        y = panel_y + panel[1] + metrics["row_gap"]
+
+    # Final content bottom must leave bottom margin intact (no clipping).
+    if y > metrics["height"] - metrics["bottom_margin"]:
+        raise RuntimeError(
+            f"contact sheet height too small: content_end={y} "
+            f"height={metrics['height']} bottom_margin={metrics['bottom_margin']}"
+        )
 
     out = dirs["previews"] / "mascot-mask-review.png"
     sheet.save(out, format="PNG")

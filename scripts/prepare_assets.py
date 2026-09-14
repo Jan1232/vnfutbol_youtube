@@ -31,9 +31,10 @@ from asset_prep_common import (
 from mascot_common import DEFAULT_OUTFIT, variant_by_pair
 
 try:
-    from PIL import Image, ImageOps
+    from PIL import Image, ImageDraw, ImageOps
 except ImportError:  # pragma: no cover
     Image = None  # type: ignore
+    ImageDraw = None  # type: ignore
     ImageOps = None  # type: ignore
 
 
@@ -916,6 +917,279 @@ def cmd_fetch_external(video_dir: Path) -> int:
     return 0
 
 
+def candidate_entries(record: dict) -> list[dict[str, Any]]:
+    """Stable C1..Cn labels sorted by stored candidate path/url."""
+    raw = [str(c) for c in (record.get("candidates") or []) if c]
+    ordered = sorted(raw)
+    entries: list[dict[str, Any]] = []
+    for index, item in enumerate(ordered, start=1):
+        path = ROOT / item if not Path(item).is_absolute() else Path(item)
+        hint = Path(item).name
+        if item.startswith("http://") or item.startswith("https://"):
+            hint = urlparse(item).netloc or hint
+        width = height = None
+        if path.exists() and path.is_file() and Image is not None:
+            try:
+                with Image.open(path) as img:
+                    width, height = img.size
+            except OSError:
+                pass
+        entries.append(
+            {
+                "label": f"C{index}",
+                "path": item,
+                "resolved": path if path.exists() else None,
+                "hint": hint,
+                "width": width,
+                "height": height,
+            }
+        )
+    return entries
+
+
+def review_board_assets(payload: dict) -> list[dict]:
+    assets: list[dict] = []
+    for record in payload.get("assets") or []:
+        if record.get("status") != "NEEDS_SELECTION":
+            continue
+        entries = candidate_entries(record)
+        if entries or record.get("discovery"):
+            assets.append(record)
+    return assets
+
+
+def _thumb_preserve(path: Path, max_size: tuple[int, int]) -> Image.Image | None:
+    if Image is None:
+        return None
+    try:
+        with Image.open(path) as img:
+            im = img.convert("RGBA")
+            im.thumbnail(max_size, Image.Resampling.LANCZOS)
+            return im
+    except OSError:
+        return None
+
+
+def build_candidate_review_boards(video_dir: Path) -> list[Path]:
+    if Image is None:
+        raise RuntimeError("Pillow is required for --candidate-review")
+    prep = load_asset_prep(video_dir)
+    dirs = ensure_local_dirs(video_dir, prep)
+    payload = load_prepared(video_dir)
+    assets = review_board_assets(payload)
+    if not assets:
+        raise RuntimeError("no NEEDS_SELECTION assets with candidates/metadata to review")
+
+    page_w = 1400
+    max_page_h = 9000
+    margin = 24
+    thumb_max = (280, 200)
+    section_gap = 28
+    try:
+        font = ImageFont.load_default()
+    except Exception:  # noqa: BLE001
+        font = None
+
+    pages: list[Image.Image] = []
+    canvas = Image.new("RGB", (page_w, max_page_h), (16, 18, 22))
+    draw = ImageDraw.Draw(canvas)
+    y = margin
+
+    def flush_page() -> None:
+        nonlocal canvas, draw, y
+        cropped = canvas.crop((0, 0, page_w, max(y + margin, margin + 100)))
+        pages.append(cropped)
+        canvas = Image.new("RGB", (page_w, max_page_h), (16, 18, 22))
+        draw = ImageDraw.Draw(canvas)
+        y = margin
+
+    for record in assets:
+        entries = candidate_entries(record)
+        selection = record.get("selectionNotes") or record.get("selection") or ""
+        header_lines = [record["id"]]
+        if selection:
+            header_lines.append(f"selection: {selection}")
+        header_h = 22 * len(header_lines) + 8
+        cols = 4
+        cell_w = (page_w - 2 * margin) // cols
+        cell_h = thumb_max[1] + 48
+        rows_needed = max(1, (len(entries) + cols - 1) // cols) if entries else 1
+        section_h = header_h + rows_needed * cell_h + section_gap
+        if y + section_h > max_page_h - margin and y > margin:
+            flush_page()
+
+        for line in header_lines:
+            draw.text((margin, y), line[:110], fill=(245, 245, 245), font=font)
+            y += 22
+        y += 8
+
+        if not entries:
+            meta = record.get("discovery") or {}
+            card = Image.new("RGB", (page_w - 2 * margin, 90), (36, 40, 48))
+            card_draw = ImageDraw.Draw(card)
+            card_draw.text(
+                (12, 12),
+                f"metadata only: {meta.get('type') or 'unknown'}",
+                fill=(220, 220, 220),
+                font=font,
+            )
+            raw = str(meta.get("raw") or record.get("notes") or "")[:120]
+            card_draw.text((12, 40), raw, fill=(180, 180, 180), font=font)
+            canvas.paste(card, (margin, y))
+            y += 90 + section_gap
+            continue
+
+        for index, entry in enumerate(entries):
+            col = index % cols
+            row = index // cols
+            x = margin + col * cell_w
+            cy = y + row * cell_h
+            label = entry["label"]
+            draw.rectangle(
+                [x, cy, x + cell_w - 8, cy + cell_h - 8],
+                outline=(70, 74, 84),
+                width=1,
+            )
+            draw.text((x + 8, cy + 6), label, fill=(255, 210, 80), font=font)
+            thumb = None
+            if entry["resolved"] is not None:
+                thumb = _thumb_preserve(entry["resolved"], thumb_max)
+            if thumb is not None:
+                tx = x + 8 + (cell_w - 16 - thumb.width) // 2
+                ty = cy + 24
+                canvas.paste(thumb.convert("RGB"), (tx, ty), thumb if thumb.mode == "RGBA" else None)
+            else:
+                draw.text((x + 8, cy + 40), "no image thumb", fill=(160, 160, 160), font=font)
+            dims = ""
+            if entry["width"] and entry["height"]:
+                dims = f"{entry['width']}x{entry['height']}"
+            footer = f"{dims}  {entry['hint']}".strip()
+            draw.text((x + 8, cy + cell_h - 28), footer[:40], fill=(170, 170, 170), font=font)
+        y += rows_needed * cell_h + section_gap
+
+    flush_page()
+
+    out_paths: list[Path] = []
+    if len(pages) == 1:
+        out = dirs["previews"] / "asset-candidate-review.png"
+        pages[0].save(out, format="PNG")
+        out_paths.append(out)
+    else:
+        for index, page in enumerate(pages, start=1):
+            out = dirs["previews"] / f"asset-candidate-review-{index:02d}.png"
+            page.save(out, format="PNG")
+            out_paths.append(out)
+    return out_paths
+
+
+def cmd_candidate_review(video_dir: Path) -> int:
+    try:
+        paths = build_candidate_review_boards(video_dir)
+    except Exception as exc:  # noqa: BLE001
+        print(f"ERROR {exc}")
+        return 1
+    for path in paths:
+        print(f"OK    candidate-review {path}")
+    return 0
+
+
+def parse_select_candidate(spec: str) -> tuple[str, str]:
+    if "=" not in spec:
+        raise ValueError("expected --select-candidate assetId=C#")
+    asset_id, label = spec.split("=", 1)
+    asset_id = asset_id.strip()
+    label = label.strip().upper()
+    if not asset_id or not label.startswith("C"):
+        raise ValueError("expected --select-candidate assetId=C#")
+    return asset_id, label
+
+
+def select_candidate(video_dir: Path, spec: str) -> int:
+    asset_id, label = parse_select_candidate(spec)
+    prep = load_asset_prep(video_dir)
+    dirs = ensure_local_dirs(video_dir, prep)
+    payload = load_prepared(video_dir)
+    by_id = prepared_by_id(payload)
+    record = by_id.get(asset_id)
+    if record is None:
+        print(f"ERROR unknown asset `{asset_id}`")
+        return 1
+    if record.get("status") != "NEEDS_SELECTION":
+        print(f"ERROR {asset_id}: status is {record.get('status')}, expected NEEDS_SELECTION")
+        return 1
+    entries = {e["label"]: e for e in candidate_entries(record)}
+    entry = entries.get(label)
+    if entry is None:
+        print(
+            f"ERROR {asset_id}: unknown candidate `{label}`; "
+            f"valid={','.join(sorted(entries))}"
+        )
+        return 1
+    src_path = entry["resolved"]
+    if src_path is None or not src_path.exists():
+        print(f"ERROR {asset_id}: candidate file missing for {label}: {entry['path']}")
+        return 1
+
+    # Enforce local-assets boundary
+    local = dirs["root"].resolve()
+    try:
+        src_path.resolve().relative_to(local)
+    except ValueError:
+        print(f"ERROR {asset_id}: candidate is outside .local-assets/: {src_path}")
+        return 1
+
+    digest = sha256_file(src_path)
+    ext = src_path.suffix.lower() or ".bin"
+    dest = dirs["source"] / f"{asset_id}{ext}"
+    if dest.exists():
+        existing = sha256_file(dest)
+        if existing != digest:
+            print(
+                f"ERROR {asset_id}: selected candidate differs from existing source "
+                f"({existing[:12]}… vs {digest[:12]}…); refusing silent overwrite"
+            )
+            return 1
+    else:
+        shutil.copy2(src_path, dest)
+
+    record["sourcePath"] = rel_to_repo(dest)
+    record["sourceSha256"] = digest
+    record["selectedCandidate"] = label
+    record["selectedCandidatePath"] = entry["path"]
+    record["candidateProvenance"] = {
+        "label": label,
+        "path": entry["path"],
+        "sourceUrl": record.get("sourceUrl"),
+    }
+    meta = probe_media(dest)
+    record["width"] = meta.get("width")
+    record["height"] = meta.get("height")
+    record["durationMs"] = meta.get("durationMs")
+
+    is_video = record.get("type") == "VIDEO" or ext in {".mp4", ".mov", ".mkv", ".webm"}
+    if is_video:
+        if record.get("clipStartMs") is None or record.get("clipEndMs") is None:
+            record["status"] = "NEEDS_SELECTION"
+            record["notes"] = (
+                f"candidate {label} selected as source; "
+                "clipStartMs/clipEndMs still required (do not invent timestamps)"
+            )
+        else:
+            prepare_video(record, dirs, prep)
+    else:
+        prepare_image(record, dirs, prep)
+
+    # Rewrite assets list preserving order
+    for index, item in enumerate(payload.get("assets") or []):
+        if item.get("id") == asset_id:
+            payload["assets"][index] = record
+            break
+    payload["generatedAt"] = utc_now()
+    write_json(video_paths(video_dir)["prepared"], payload)
+    print(f"OK    selected {asset_id}={label} status={record.get('status')}")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("video", help="Path to a video folder")
@@ -925,6 +1199,13 @@ def main() -> int:
     parser.add_argument("--ingest", action="store_true")
     parser.add_argument("--prepare", action="store_true")
     parser.add_argument("--fetch-external", action="store_true")
+    parser.add_argument("--candidate-review", action="store_true")
+    parser.add_argument(
+        "--select-candidate",
+        type=str,
+        default=None,
+        help="Explicit selection like assetId=C3 (not auto-run)",
+    )
     args = parser.parse_args()
     video_dir = Path(args.video)
     if not video_dir.is_absolute():
@@ -937,10 +1218,13 @@ def main() -> int:
         args.ingest,
         args.prepare,
         args.fetch_external,
+        args.candidate_review,
+        bool(args.select_candidate),
     ]
     if sum(bool(x) for x in flags) != 1:
         parser.error(
-            "specify exactly one of --plan --status --discover --ingest --prepare --fetch-external"
+            "specify exactly one of --plan --status --discover --ingest --prepare "
+            "--fetch-external --candidate-review --select-candidate"
         )
 
     if args.plan:
@@ -953,6 +1237,10 @@ def main() -> int:
         return cmd_ingest(video_dir)
     if args.prepare:
         return cmd_prepare(video_dir)
+    if args.candidate_review:
+        return cmd_candidate_review(video_dir)
+    if args.select_candidate:
+        return select_candidate(video_dir, args.select_candidate)
     return cmd_fetch_external(video_dir)
 
 
