@@ -1,0 +1,23 @@
+{
+  "provider": "minimax",
+  "model": "speech-2.8-hd",
+  "voiceId": "Russian_Articulate_Tutor_v1",
+  "languageBoost": "Russian",
+  "voiceSetting": {
+    "speed": 1.26,
+    "vol": 1,
+    "pitch": 0
+  },
+  "audioSetting": {
+    "sampleRate": 32000,
+    "bitrate": 128000,
+    "format": "wav",
+    "channel": 1
+  },
+  "outputFormat": "hex",
+  "subtitleEnable": false,
+  "pronunciation": {
+    "tone": []
+  },
+  "enabled": true
+}

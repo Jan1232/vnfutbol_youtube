@@ -42,9 +42,46 @@ REUSE  →  SEARCH  →  GENERATE
 - **FACTCHECK** — `CHECK-00N` против сценария
 - **VISUAL PLAN** — какие кадры нужны
 - **ASSETS** — `assets.json`, маскот только из библиотеки
-- **VOICE** — `voice.json`, TTS позже
+- **VOICE** — `voice.json` + MiniMax TTS (`scripts/generate_voice.py`)
 - **TIMELINE** — `timeline.json`
 - **DRAFT** — локальный render, не в git
+
+## Voice Generation
+
+Production TTS — официальный MiniMax HTTP T2A (`speech-2.8-hd`).
+
+Ключ только из environment:
+
+```bash
+MINIMAX_API_KEY=<secret>
+```
+
+Никогда не коммитьте ключ, `.env` или `*.secret`.
+
+Конфиг канала: `channel-assets/voice/minimax.json`  
+Speed `1.26`, pitch `0`, volume `1`, format `wav`. Настройки не менять автоматически.
+
+```bash
+# Offline contract tests (без API)
+python scripts/test_minimax_tts.py
+
+# Короткий live-тест
+python scripts/test_minimax_tts.py --live
+
+# План генерации без запросов
+python scripts/generate_voice.py videos/lamine-yamal-new-messi --dry-run
+
+# Синтез только missing/stale + assemble narration.wav
+python scripts/generate_voice.py videos/lamine-yamal-new-messi
+
+# Только сборка финального файла
+python scripts/assemble_voice.py videos/lamine-yamal-new-messi
+
+# Валидация
+python scripts/validate_voice.py videos/lamine-yamal-new-messi
+```
+
+Идемпотентность: повторный запуск не перегенерирует сегмент, если совпадают `textSha256`, `settingsSha256` и WAV уже есть.
 
 ## Mascot Outfit System
 
@@ -135,4 +172,10 @@ scripts/
   find_asset.py
   create_video.py
   validate_video.py
+  minimax_tts.py
+  generate_voice.py
+  assemble_voice.py
+  validate_voice.py
+  test_minimax_tts.py
+channel-assets/voice/minimax.json
 ```

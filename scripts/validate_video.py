@@ -73,9 +73,10 @@ ASSET_TYPES = {
     "COACH_PHOTO",
     "STADIUM",
     "CLUB",
+    "AUDIO",
 }
 ASSET_SOURCES = {"library", "web", "generated", "video-specific"}
-ASSET_STATUSES = {"planned", "found", "ready", "missing", "rejected"}
+ASSET_STATUSES = {"planned", "found", "ready", "missing", "rejected", "generated"}
 ANIMATIONS = {
     "slowZoom",
     "zoomOut",
@@ -89,7 +90,7 @@ ANIMATIONS = {
     "panLeft",
     "panRight",
 }
-SCRIPT_RE = re.compile(r"SCRIPT-\d+")
+SCRIPT_RE = re.compile(r"SCRIPT-[A-Z0-9-]+")
 FACT_RE = re.compile(r"FACT-\d+")
 
 
@@ -231,10 +232,18 @@ def validate_voice(payload, script_ids: set[str], report: Report) -> set[str]:
     if not isinstance(payload, dict):
         report.error("voice.json: root must be an object")
         return set()
-    items = payload.get("items")
-    if not isinstance(items, list):
-        report.error("voice.json: items must be a list")
-        return set()
+    if "segments" in payload:
+        items = payload.get("segments")
+        if not isinstance(items, list):
+            report.error("voice.json: segments must be a list")
+            return set()
+        if payload.get("version") not in (None, 1):
+            report.error("voice.json: version must be 1")
+    else:
+        items = payload.get("items")
+        if not isinstance(items, list):
+            report.error("voice.json: items must be a list")
+            return set()
     for index, item in enumerate(items):
         prefix = f"voice.json[{index}]"
         if not isinstance(item, dict):
@@ -250,6 +259,9 @@ def validate_voice(payload, script_ids: set[str], report: Report) -> set[str]:
             report.error(f"{voice_id}: script `{script_id}` is missing from script.md")
         if "pauseAfter" in item and not isinstance(item["pauseAfter"], int):
             report.error(f"{voice_id}: pauseAfter must be an integer (ms)")
+        text = item.get("text")
+        if text is not None and (not isinstance(text, str) or not text.strip()):
+            report.error(f"{voice_id}: text must be a non-empty string when set")
     return unique_ids(ids, "voice", report)
 
 

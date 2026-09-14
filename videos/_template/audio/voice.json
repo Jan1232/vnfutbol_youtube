@@ -1,4 +1,16 @@
 {
   "version": 1,
-  "items": []
+  "provider": "minimax",
+  "profile": "Russian_Articulate_Tutor_v1",
+  "settings": {
+    "model": "speech-2.8-hd",
+    "speed": 1.26,
+    "pitch": 0,
+    "volume": 1,
+    "sampleRate": 32000,
+    "bitrate": 128000,
+    "format": "wav",
+    "channel": 1
+  },
+  "segments": []
 }

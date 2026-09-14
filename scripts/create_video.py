@@ -68,6 +68,12 @@ def create_video(slug: str, force: bool) -> int:
     keep = generated / ".gitkeep"
     if not keep.exists():
         keep.write_text("", encoding="utf-8")
+    for rel in ("audio/segments", "audio/previews", "audio/final", "audio/test"):
+        folder = dest / rel
+        folder.mkdir(parents=True, exist_ok=True)
+        marker = folder / ".gitkeep"
+        if not marker.exists():
+            marker.write_text("", encoding="utf-8")
     print(f"OK    created {dest.as_posix()}")
     return 0
 

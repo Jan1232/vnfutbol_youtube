@@ -1,4 +1,659 @@
 {
   "version": 1,
-  "items": []
+  "provider": "minimax",
+  "profile": "Russian_Articulate_Tutor_v1",
+  "settings": {
+    "model": "speech-2.8-hd",
+    "speed": 1.26,
+    "pitch": 0,
+    "volume": 1,
+    "sampleRate": 32000,
+    "bitrate": 128000,
+    "format": "wav",
+    "channel": 1
+  },
+  "segments": [
+    {
+      "id": "voice-001",
+      "script": "SCRIPT-001",
+      "type": "narration",
+      "text": "Финал чемпионата мира 2026 года.",
+      "pauseAfter": 220,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 32,
+      "sha256": null,
+      "textSha256": "4f8ffe77c6a76b6eddd43511dacd2be61502e804fd11b12d4a1a649362f798e7",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-002",
+      "script": "SCRIPT-002",
+      "type": "narration",
+      "text": "С одной стороны — 39-летний Лионель Месси.",
+      "pauseAfter": 260,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 42,
+      "sha256": null,
+      "textSha256": "cbca9d33c99b411211a58022eecd796dab57a69c09eb80496c8f50ce8cc749c1",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-003",
+      "script": "SCRIPT-003",
+      "type": "narration",
+      "text": "С другой — 19-летний Ламин Ямаль.",
+      "pauseAfter": 220,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 33,
+      "sha256": null,
+      "textSha256": "cd3da9932aec78b60507e49cbfe106a84509844850cab410ae850a44118cf0ba",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-004",
+      "script": "SCRIPT-004",
+      "type": "narration",
+      "text": "То есть футбол буквально поставил нового претендента на место рядом с настоящей легендой.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 89,
+      "sha256": null,
+      "textSha256": "1c16f113f4b6c01b5aac51bef3e5a409fd736e10a2698cc765e83d49cf6ca387",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-005",
+      "script": "SCRIPT-005",
+      "type": "narration",
+      "text": "И сразу же появился главный вопрос: Ямаль — это следующий великий игрок? Или мы снова слишком рано раздаём исторические ярлыки?",
+      "pauseAfter": 320,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 127,
+      "sha256": null,
+      "textSha256": "1f2801adc0bcad4eededb74aa66d52471de46197f62d4700971b3fd41ce25aa6",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-006",
+      "script": "SCRIPT-006",
+      "type": "narration",
+      "text": "Ему девятнадцать. Уже есть EURO. Уже есть чемпионат мира. Уже есть звание игрока сезона Ла Лиги. Два Kopa Trophy. Второе место Ballon d'Or. И десятый номер Barcelona.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 166,
+      "sha256": null,
+      "textSha256": "c04e883874f376e71f9704e22203742d96c1aa790910a552558dcb2b4c6a45e2",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-007",
+      "script": "SCRIPT-007",
+      "type": "narration",
+      "text": "Для обычного таланта такого набора хватило бы на целую карьеру. У Ямаля это всё ещё только начало биографии.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 108,
+      "sha256": null,
+      "textSha256": "2481669922aeac49c72fedd250355a245c260df02db4086cc2dccc1366993305",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-008",
+      "script": "SCRIPT-008",
+      "type": "narration",
+      "text": "До того как весь мир узнал номер десять, для Ямаля важнее были другие три цифры — триста четыре.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 96,
+      "sha256": null,
+      "textSha256": "1ff09a2399a344ea59e4476f56fdc54e32fbcdc402ce45e0998d27da83835b8d",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-009",
+      "script": "SCRIPT-009",
+      "type": "narration",
+      "text": "Он вырос в районе Rocafonda города Матаро. После голов показывает пальцами почтовый индекс своего района. Это не жест для камеры. Это память о том, откуда он пришёл.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 165,
+      "sha256": null,
+      "textSha256": "cae2d2c93b7fba410ec04747b7a119d59730d97420e16e40f8eefd7fb1afee21",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-010",
+      "script": "SCRIPT-010",
+      "type": "narration",
+      "text": "Из CF La Torreta Ямаль очень рано попал в La Masia. И дальше всё ускорилось так, что даже Barcelona не успевала привыкнуть к его возрасту.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 138,
+      "sha256": null,
+      "textSha256": "47ce7da4c5ae8503e29add7ddcb4ea4591a10685d650f10e44591e3302e38153",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-011",
+      "script": "SCRIPT-011",
+      "type": "narration",
+      "text": "Двадцать девятого апреля 2023 года он дебютировал против Real Betis в пятнадцать лет, девять месяцев и шестнадцать дней. Самый молодой футболист первой команды Barça.",
+      "pauseAfter": 260,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 166,
+      "sha256": null,
+      "textSha256": "ddd0e269139d7569aa289b361b0bbdcb23c4fcd6d6a03fa5fd36671189c73c00",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-012",
+      "script": "SCRIPT-012",
+      "type": "narration",
+      "text": "Потом был первый гол в Ла Лиге. Потом дебют и гол за взрослую сборную Испании в шестнадцать лет и пятьдесят семь дней.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 118,
+      "sha256": null,
+      "textSha256": "44cc9be6a28bf9b84259921b0506ea0f3efa82d9b2df015ad7597dd435f660b0",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-013",
+      "script": "SCRIPT-013",
+      "type": "narration",
+      "text": "А дальше начался EURO 2024 — турнир, после которого сравнение с легендами перестало быть шуткой комментаторов.",
+      "pauseAfter": 260,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 110,
+      "sha256": null,
+      "textSha256": "8f08d597b6225439a0d972fffe71e1ff05803cc19e97d49549f9666e89644b05",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-014",
+      "script": "SCRIPT-014",
+      "type": "narration",
+      "text": "Самый молодой игрок финальной стадии EURO. Самый молодой автор гола в истории турнира. Семь матчей, один гол, четыре ассиста. Испания — чемпион Европы. Ямалю в финале было семнадцать лет и один день.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 199,
+      "sha256": null,
+      "textSha256": "bcad86c381eeb307415183416537b3d37eae4fffce6a4ac9e3e99bed4893e332",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-015",
+      "script": "SCRIPT-015",
+      "type": "narration",
+      "text": "Сезон 2024/25 закрепил статус: восемнадцать голов и двадцать один ассист во всех турнирах. Barcelona выиграла Ла Лигу, Кубок Испании и Суперкубок.",
+      "pauseAfter": 260,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 146,
+      "sha256": null,
+      "textSha256": "7733e4b4102af9039bd34e59c5f7d848c4d1dbdca9f563657a60cb2721486aeb",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-016",
+      "script": "SCRIPT-016",
+      "type": "narration",
+      "text": "В 2025-м — второе место Ballon d'Or. И второй Kopa Trophy подряд: Ямаль стал первым, кто сумел защитить этот трофей.",
+      "pauseAfter": 260,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 116,
+      "sha256": null,
+      "textSha256": "acadc208c222c4420f714c851934f4b5ed1d193950a3fa84b48d9428848e69e7",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-017",
+      "script": "SCRIPT-017",
+      "type": "narration",
+      "text": "Сезон 2025/26: шестнадцать голов и одиннадцать ассистов только в чемпионате Испании. Игрок сезона Ла Лиги. Признание коллег. И уже номер десять на спине.",
+      "pauseAfter": 260,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 153,
+      "sha256": null,
+      "textSha256": "4615568bfc5d9c850420807f8ccf2e73bd53bbbd66c15f3935174dd635a029d2",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-018",
+      "script": "SCRIPT-018",
+      "type": "narration",
+      "text": "Потом чемпионат мира 2026. Гол Саудовской Аравии. Финал против Аргентины. Испания побеждает один-ноль в дополнительное время. Чемпион мира в девятнадцать.",
+      "pauseAfter": 260,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 154,
+      "sha256": null,
+      "textSha256": "8c855f26547c7feb0b9f2ddf74f9ad06bdf039debc24b9bc439618aabb6f2984",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-019",
+      "script": "SCRIPT-019",
+      "type": "narration",
+      "text": "И вот здесь хайп уже не держится на одном красивом клипе. Он опирается на трофеи и цифры, которые для этого возраста выглядят почти нереально.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 142,
+      "sha256": null,
+      "textSha256": "67b409e8bda9a6ac1f874e5cf741c51c996b689111a25e5dc59ff2115e2f1a22",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-020",
+      "script": "SCRIPT-CTA-MIDDLE",
+      "type": "CTA",
+      "text": "Кстати, а вот здесь мне интересно ваше мнение. Как вы вообще оцениваете потолок Ямаля? Он реально может стать одним из лучших в истории — или мы опять слишком рано начинаем раздавать звания легенд? Напишите в комментариях.",
+      "pauseAfter": 420,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 222,
+      "sha256": null,
+      "textSha256": "f7a4ad0567b742fade2691155a9d114ad7375ef2f35f2ea8f384f42ff7a09bd1",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {},
+      "position": "middle"
+    },
+    {
+      "id": "voice-021",
+      "script": "SCRIPT-020",
+      "type": "narration",
+      "text": "Но сравнение с Месси нельзя оставлять на уровне эмоций. Нужна честная метрика.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 78,
+      "sha256": null,
+      "textSha256": "706113555df2b07bdf17cda2b1863e659accca078945604df961894e93bcceb2",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-022",
+      "script": "SCRIPT-021",
+      "type": "narration",
+      "text": "Оба — воспитанники La Masia. Оба левоногие. Оба умеют начинать справа и уходить в центр. Оба очень рано стали центральными фигурами Barcelona.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 142,
+      "sha256": null,
+      "textSha256": "5184dd16f6b006a09009c068445bdd41b1892953c5ac89e06741da9fa63d61a6",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-023",
+      "script": "SCRIPT-022",
+      "type": "narration",
+      "text": "Только сходство стиля не означает одинаковую траекторию. В первых ста матчах Ла Лиги у Ямаля двадцать девять голов. У Месси — сорок восемь.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 139,
+      "sha256": null,
+      "textSha256": "140a34a3589e68e181eefd3608dce0e2902d74f42c44286a2e39387e9ddfc37c",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-024",
+      "script": "SCRIPT-023",
+      "type": "narration",
+      "text": "То есть Ямаль получил огромный объём взрослого футбола гораздо раньше. Но фраза «он уже лучше Месси в этом возрасте» без конкретной метрики просто некорректна.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 159,
+      "sha256": null,
+      "textSha256": "72dffdb0bc1033b051ff45d0b675b3bb5d978f1e659094cf7fcc318519e5bfbe",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-025",
+      "script": "SCRIPT-024",
+      "type": "narration",
+      "text": "И вот в чём настоящая ловушка. Вопрос уже не в том, достаточно ли Ямаль хорош. Вопрос в другом: можно ли от девятнадцатилетнего игрока уже требовать карьеру уровня Месси?",
+      "pauseAfter": 320,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 170,
+      "sha256": null,
+      "textSha256": "1de6673b49b9d9217c22c679bcb5428e6f6274d0c6834b6cc47b42a66c5f0c58",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-026",
+      "script": "SCRIPT-025",
+      "type": "narration",
+      "text": "Потому что рекорд «самый молодой» говорит о раннем старте. Он не гарантирует будущую величину. Barcelona уже видела сверхранних талантов, которых сравнения не превратили в следующую легенду.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 190,
+      "sha256": null,
+      "textSha256": "7173a2384d90f8fdc7ee6b1c2a371ccb659f133690ce2a5859cfe2f906f09ab0",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-027",
+      "script": "SCRIPT-026",
+      "type": "narration",
+      "text": "Есть и другой риск — нагрузка. В сентябре 2025 Hansi Flick публично критиковал использование Ямаля сборной, когда у игрока была боль в паховой области. Весной 2026 — травма задней поверхности бедра и пропуск остатка клубного сезона.",
+      "pauseAfter": 260,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 232,
+      "sha256": null,
+      "textSha256": "b11c786aee6b3bc151df50a31f94a687f5a32da0aa60079751d7d324ba115dcb",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-028",
+      "script": "SCRIPT-027",
+      "type": "narration",
+      "text": "Это не приговор. Но это аргумент: исторический статус требует не двух-трёх ярких сезонов, а десятилетия стабильности.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 117,
+      "sha256": null,
+      "textSha256": "de519ccc9cb43483770742e9c3204a2f235aa686e3839315ea22159903134a83",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-029",
+      "script": "SCRIPT-028",
+      "type": "narration",
+      "text": "Поэтому честный ответ звучит так. Ямаль не выглядит переоценённым как футболист. Переоценено наше умение уже сейчас предсказывать его место в истории.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 150,
+      "sha256": null,
+      "textSha256": "c765296da3e8b3f25967409ad646720e4250666c1d22f90d09f63f7cbeeee670",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-030",
+      "script": "SCRIPT-029",
+      "type": "narration",
+      "text": "Он уже игрок масштаба Месси по вниманию мира. Но место рядом с настоящей легендой ещё нужно заслужить годами, а не одним финалом.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 129,
+      "sha256": null,
+      "textSha256": "25cd5f92dcae74a16c3ae10d7bb754c54b339c0955eeddcfe84071ca045dc82d",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-031",
+      "script": "SCRIPT-030",
+      "type": "narration",
+      "text": "Так что ярлык «новый Месси» оставим как вопрос, а не как вердикт. Пока Ямаль выигрывает настоящее. Историю он ещё только начинает писать.",
+      "pauseAfter": 180,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 137,
+      "sha256": null,
+      "textSha256": "923b6cf9e702cd33fd463214d527aa0349d58e07465b574ab8391e0f4ea7a137",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {}
+    },
+    {
+      "id": "voice-032",
+      "script": "SCRIPT-CTA-END",
+      "type": "CTA",
+      "text": "Ну а если хотите ещё больше таких разборов футбольной истории и игроков — подписывайтесь. И обязательно напишите в комментариях: кем, по-вашему, в итоге станет Ямаль?",
+      "pauseAfter": 0,
+      "scene": null,
+      "status": "pending",
+      "audio": null,
+      "durationMs": null,
+      "characters": 166,
+      "sha256": null,
+      "textSha256": "a3d43774ac3a1562a645803dfaa6a0d90f1348d60d83bc0da91a31f368637203",
+      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
+      "provider": {
+        "model": "speech-2.8-hd",
+        "voiceId": "Russian_Articulate_Tutor_v1"
+      },
+      "delivery": {},
+      "position": "end"
+    }
+  ]
 }
