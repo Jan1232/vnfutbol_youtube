@@ -134,8 +134,30 @@ def video_audio_paths(video_dir: Path) -> dict[str, Path]:
     }
 
 
-def segment_wav_path(video_dir: Path, segment_id: str) -> Path:
-    return video_audio_paths(video_dir)["segments"] / f"{segment_id}.wav"
+def sanitize_source_key_filename(source_key: str) -> str:
+    """SCRIPT-006:001 → script-006_001.wav stem (a-z 0-9 - _)."""
+    raw = source_key.strip().lower().replace(":", "_")
+    cleaned = re.sub(r"[^a-z0-9_-]+", "", raw)
+    if not cleaned:
+        raise ValueError(f"invalid sourceKey for filename: {source_key!r}")
+    return cleaned
+
+
+def segment_audio_relpath(source_key: str) -> str:
+    return f"audio/segments/{sanitize_source_key_filename(source_key)}.wav"
+
+
+def segment_wav_path(video_dir: Path, segment_or_source_key: dict | str) -> Path:
+    """WAV storage identity is sourceKey, not voice-NNN."""
+    if isinstance(segment_or_source_key, dict):
+        key = segment_or_source_key.get("sourceKey")
+        if not key:
+            raise ValueError(
+                f"{segment_or_source_key.get('id')}: sourceKey is required for audio path"
+            )
+    else:
+        key = segment_or_source_key
+    return video_dir / segment_audio_relpath(key)
 
 
 def wav_duration_ms(path: Path) -> int:
@@ -408,7 +430,13 @@ def build_segment(
 
 def classify_segment(segment: dict, video_dir: Path, config: dict) -> str:
     audio_rel = segment.get("audio")
-    path = video_dir / audio_rel if audio_rel else segment_wav_path(video_dir, segment["id"])
+    if audio_rel:
+        path = video_dir / audio_rel
+    else:
+        try:
+            path = segment_wav_path(video_dir, segment)
+        except ValueError:
+            return "MISSING"
     expected_text = sha256_text(segment.get("text") or "")
     expected_settings = settings_sha256(config)
     status = segment.get("status")

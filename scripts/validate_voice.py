@@ -14,6 +14,7 @@ from voice_common import (
     VALID_MODELS,
     load_json,
     load_voice_config,
+    segment_audio_relpath,
     settings_sha256,
     sha256_file,
     sha256_text,
@@ -108,6 +109,13 @@ def main() -> int:
                 declared_sha = segment.get("sha256")
                 if not audio_rel:
                     errors.append(f"{seg_id}: ready segment missing audio path")
+                else:
+                    expected_rel = segment_audio_relpath(source) if source else None
+                    if expected_rel and audio_rel != expected_rel:
+                        errors.append(
+                            f"{seg_id}: audio `{audio_rel}` does not match "
+                            f"sourceKey `{source}` (expected `{expected_rel}`)"
+                        )
                 if not declared_sha:
                     errors.append(f"{seg_id}: audio sha256 is required for {status}")
                 elif audio_rel:

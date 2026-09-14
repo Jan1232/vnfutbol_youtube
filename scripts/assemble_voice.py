@@ -43,7 +43,7 @@ def assemble(video_dir: Path) -> int:
         wav = (
             video_dir / segment["audio"]
             if segment.get("audio")
-            else segment_wav_path(video_dir, segment["id"])
+            else segment_wav_path(video_dir, segment)
         )
         if not wav.exists():
             raise FileNotFoundError(f"missing audio for {segment.get('id')}: {wav}")

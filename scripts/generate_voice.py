@@ -230,7 +230,7 @@ def run_synthesis(
 
     for segment in to_generate:
         seg_id = segment["id"]
-        out = segment_wav_path(video_dir, seg_id)
+        out = segment_wav_path(video_dir, segment)
         rel = out.relative_to(video_dir).as_posix()
         by_id[seg_id]["status"] = "generating"
         write_json(paths["voice_json"], payload)
@@ -267,8 +267,10 @@ def run_synthesis(
     for segment in segments:
         if classify_segment(segment, video_dir, config) != "REUSE":
             continue
-        path = video_dir / segment["audio"] if segment.get("audio") else segment_wav_path(
-            video_dir, segment["id"]
+        path = (
+            video_dir / segment["audio"]
+            if segment.get("audio")
+            else segment_wav_path(video_dir, segment)
         )
         if not segment.get("audio"):
             segment["audio"] = path.relative_to(video_dir).as_posix()

@@ -19,6 +19,9 @@ from voice_common import (
     load_voice_config,
     pack_utterances,
     parse_script_blocks,
+    sanitize_source_key_filename,
+    segment_audio_relpath,
+    segment_wav_path,
     settings_fingerprint,
     settings_sha256,
     sha256_text,
@@ -85,6 +88,51 @@ def run_offline() -> int:
     assert [seg["sourceKey"] for seg in segments] == [seg["sourceKey"] for seg in again]
     print("OK    text segmentation")
 
+    # Storage identity must follow sourceKey, not voice-NNN order.
+    early_one = (
+        "Первая реплика про Ямаля, путь из района Rocafonda и ранний выход "
+        "во взрослый футбол Barcelona уже в пятнадцать лет."
+    )
+    early_two = (
+        "Дополнительная ранняя реплика нужна только чтобы увеличить число "
+        "utterances в SCRIPT-001 и тем самым сдвинуть последующие voice id."
+    )
+    late_one = (
+        "Вторая реплика номер один про финал чемпионата мира и встречу "
+        "молодого таланта с настоящей легендой на большом поле."
+    )
+    late_two = (
+        "Вторая реплика номер два про сравнение карьерных траекторий "
+        "и почему одного ярлыка недостаточно для исторического вердикта."
+    )
+    before = (
+        f"### SCRIPT-001\n\nТекст:\n\n{early_one}\n\n"
+        f"### SCRIPT-002\n\nТекст:\n\n{late_one} {late_two}\n"
+    )
+    after = (
+        f"### SCRIPT-001\n\nТекст:\n\n{early_one} {early_two}\n\n"
+        f"### SCRIPT-002\n\nТекст:\n\n{late_one} {late_two}\n"
+    )
+    segs_before = build_segments_from_blocks(parse_script_blocks(before), config)
+    segs_after = build_segments_from_blocks(parse_script_blocks(after), config)
+    before_s2 = [s for s in segs_before if s["script"] == "SCRIPT-002"]
+    after_s2 = [s for s in segs_after if s["script"] == "SCRIPT-002"]
+    assert len([s for s in segs_after if s["script"] == "SCRIPT-001"]) > len(
+        [s for s in segs_before if s["script"] == "SCRIPT-001"]
+    )
+    assert [s["sourceKey"] for s in before_s2] == [s["sourceKey"] for s in after_s2]
+    assert [s["sourceKey"] for s in before_s2] == ["SCRIPT-002:000", "SCRIPT-002:001"]
+    assert sanitize_source_key_filename("SCRIPT-006:001") == "script-006_001"
+    assert segment_audio_relpath("SCRIPT-006:001") == "audio/segments/script-006_001.wav"
+    before_paths = [segment_audio_relpath(s["sourceKey"]) for s in before_s2]
+    after_paths = [segment_audio_relpath(s["sourceKey"]) for s in after_s2]
+    assert before_paths == after_paths == [
+        "audio/segments/script-002_000.wav",
+        "audio/segments/script-002_001.wav",
+    ]
+    assert before_s2[0]["id"] != after_s2[0]["id"]
+    assert segment_wav_path(Path("/tmp/video"), after_s2[0]).name == "script-002_000.wav"
+    print("OK    sourceKey storage identity")
     fp = settings_fingerprint(config)
     assert settings_sha256(config) == sha256_text(canonical_json(fp))
     assert apply_interjection("Текст.", {"interjection": "sighs"}) == "(sighs) Текст."
