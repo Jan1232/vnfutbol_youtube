@@ -91,6 +91,104 @@ def character_bbox(image: Image.Image) -> tuple[int, int, int, int] | None:
     return bbox
 
 
+def character_area(alpha: Image.Image) -> int:
+    data = alpha.tobytes()
+    return sum(1 for value in data if value > 16)
+
+
+def max_hole_area_for(char_area: int) -> int:
+    """Conservative enclosed-hole size relative to character area."""
+    raw = max(16, int(char_area * 0.0008))
+    return min(raw, 180)
+
+
+def fill_small_enclosed_holes(mask: Image.Image, max_hole_area: int) -> Image.Image:
+    """Fill tiny black components fully enclosed by white mask pixels.
+
+    Components that touch the image border are exterior and never filled.
+    Large enclosed regions and exterior-connected arm/hand cutouts are preserved.
+    """
+    width, height = mask.size
+    src = mask.load()
+    # 0 = unchecked black, 1 = white/ignore, 2 = visited exterior/keep-black, 3 = fill
+    labels = [[0] * width for _ in range(height)]
+    for y in range(height):
+        for x in range(width):
+            if src[x, y] >= 128:
+                labels[y][x] = 1
+
+    def neighbors(x: int, y: int):
+        if x > 0:
+            yield x - 1, y
+        if x + 1 < width:
+            yield x + 1, y
+        if y > 0:
+            yield x, y - 1
+        if y + 1 < height:
+            yield x, y + 1
+
+    def flood(seed_x: int, seed_y: int) -> tuple[list[tuple[int, int]], bool]:
+        stack = [(seed_x, seed_y)]
+        labels[seed_y][seed_x] = 2
+        cells: list[tuple[int, int]] = []
+        touches_border = False
+        while stack:
+            x, y = stack.pop()
+            cells.append((x, y))
+            if x == 0 or y == 0 or x == width - 1 or y == height - 1:
+                touches_border = True
+            for nx, ny in neighbors(x, y):
+                if labels[ny][nx] == 0:
+                    labels[ny][nx] = 2
+                    stack.append((nx, ny))
+        return cells, touches_border
+
+    # First mark all border-connected black as exterior.
+    for x in range(width):
+        if labels[0][x] == 0:
+            flood(x, 0)
+        if labels[height - 1][x] == 0:
+            flood(x, height - 1)
+    for y in range(height):
+        if labels[y][0] == 0:
+            flood(0, y)
+        if labels[y][width - 1] == 0:
+            flood(width - 1, y)
+
+    # Remaining black components are enclosed; fill only small ones.
+    for y in range(height):
+        for x in range(width):
+            if labels[y][x] != 0:
+                continue
+            cells, touches_border = flood(x, y)
+            if touches_border:
+                continue
+            if len(cells) <= max_hole_area:
+                for cx, cy in cells:
+                    labels[cy][cx] = 3
+
+    out = Image.new("L", (width, height), 0)
+    dst = out.load()
+    for y in range(height):
+        for x in range(width):
+            if labels[y][x] in {1, 3}:
+                dst[x, y] = 255
+    return out
+
+
+def clip_to_alpha(mask: Image.Image, alpha: Image.Image) -> Image.Image:
+    width, height = mask.size
+    cleaned = Image.new("L", (width, height), 0)
+    src = mask.load()
+    dst = cleaned.load()
+    alp = alpha.load()
+    for y in range(height):
+        for x in range(width):
+            if src[x, y] >= 128 and alp[x, y] > 16:
+                dst[x, y] = 255
+    return cleaned
+
+
 def build_mask(image: Image.Image) -> Image.Image:
     """Mask every garment pixel inside the opaque character bbox (full height)."""
     rgba = image.convert("RGBA")
@@ -116,17 +214,25 @@ def build_mask(image: Image.Image) -> Image.Image:
     mask = mask.filter(ImageFilter.MinFilter(3))
     mask = mask.filter(ImageFilter.MaxFilter(3))
 
-    # Keep garment pixels inside the opaque character only.
     alpha = rgba.getchannel("A")
-    cleaned = Image.new("L", (width, height), 0)
-    src = mask.load()
-    dst = cleaned.load()
-    alp = alpha.load()
-    for y in range(height):
-        for x in range(width):
-            if src[x, y] >= 128 and alp[x, y] > 16:
-                dst[x, y] = 255
-    return cleaned
+    mask = clip_to_alpha(mask, alpha)
+
+    char_area = character_area(alpha)
+    hole_limit = max_hole_area_for(char_area)
+    mask = fill_small_enclosed_holes(mask, hole_limit)
+
+    # Optional 1 px-equivalent closing for short unenclosed cracks.
+    # Closing can seal exterior-connected cracks into new enclosed holes,
+    # so fill again afterward.
+    mask = mask.filter(ImageFilter.MaxFilter(3))
+    mask = mask.filter(ImageFilter.MinFilter(3))
+    mask = clip_to_alpha(mask, alpha)
+    mask = fill_small_enclosed_holes(mask, hole_limit)
+    mask = clip_to_alpha(mask, alpha)
+    # Store last threshold for callers/tests/diagnostics.
+    build_mask.last_hole_limit = hole_limit  # type: ignore[attr-defined]
+    build_mask.last_character_area = char_area  # type: ignore[attr-defined]
+    return mask
 
 
 def generate_one(pose: dict) -> dict:
@@ -137,6 +243,12 @@ def generate_one(pose: dict) -> dict:
     dest = MASCOT / rel
     dest.parent.mkdir(parents=True, exist_ok=True)
     mask.save(dest, format="PNG")
+    hole_limit = getattr(build_mask, "last_hole_limit", None)
+    char_area = getattr(build_mask, "last_character_area", None)
+    print(
+        f"INFO  {pose['id']} character_area={char_area} "
+        f"max_hole_area={hole_limit}"
+    )
     return {
         "basePose": pose["id"],
         "file": rel,

@@ -120,6 +120,62 @@ def test_generated_status_not_approved(tmp: Path) -> None:
             pose_path.unlink()
 
 
+def white_square_with_holes() -> Image.Image:
+    mask = Image.new("L", (80, 80), 0)
+    px = mask.load()
+    for y in range(10, 70):
+        for x in range(10, 70):
+            px[x, y] = 255
+    # tiny enclosed hole
+    px[40, 40] = 0
+    px[41, 40] = 0
+    px[40, 41] = 0
+    # another pinhole
+    px[50, 50] = 0
+    # large enclosed black region (>180)
+    for y in range(20, 40):
+        for x in range(20, 40):
+            px[x, y] = 0
+    return mask
+
+
+def test_fill_small_enclosed_holes() -> None:
+    mask = white_square_with_holes()
+    filled = gcm.fill_small_enclosed_holes(mask, max_hole_area=16)
+    f = filled.load()
+    assert_true(f[40, 40] >= 128, "tiny hole must be filled")
+    assert_true(f[50, 50] >= 128, "pinhole must be filled")
+    assert_true(f[25, 25] < 128, "large enclosed region must remain black")
+
+    # Exterior-connected black corridor from border must remain
+    mask2 = Image.new("L", (60, 60), 0)
+    p = mask2.load()
+    for y in range(15, 45):
+        for x in range(15, 45):
+            p[x, y] = 255
+    # channel from left border into center (arm cutout style)
+    for x in range(0, 30):
+        p[x, 30] = 0
+        p[x, 31] = 0
+    out2 = gcm.fill_small_enclosed_holes(mask2, max_hole_area=180)
+    o2 = out2.load()
+    assert_true(o2[5, 30] < 128, "exterior-connected channel must stay black")
+    assert_true(o2[20, 30] < 128, "narrow hand/arm channel must stay black")
+
+
+def test_cleanup_never_outside_alpha() -> None:
+    img = Image.new("RGBA", (100, 100), (0, 0, 0, 0))
+    px = img.load()
+    for y in range(20, 80):
+        for x in range(20, 80):
+            px[x, y] = (0x81, 0x16, 0x2D, 255)
+    # transparent outside — mask must stay 0 there even after closing
+    mask = gcm.build_mask(img)
+    m = mask.load()
+    assert_true(m[5, 5] < 128, "outside alpha must stay empty")
+    assert_true(m[50, 50] >= 128, "garment inside alpha must be masked")
+
+
 def main() -> int:
     failed = 0
 
@@ -134,6 +190,8 @@ def main() -> int:
 
     run("no_head_ratio_constant", test_no_head_ratio_constant)
     run("fixture_regions", test_fixture_regions)
+    run("fill_small_enclosed_holes", test_fill_small_enclosed_holes)
+    run("cleanup_never_outside_alpha", test_cleanup_never_outside_alpha)
     with tempfile.TemporaryDirectory() as tmp:
         run("generated_status_not_approved", lambda: test_generated_status_not_approved(Path(tmp)))
 
