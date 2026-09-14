@@ -1,7 +1,7 @@
 {
   "version": 1,
   "provider": "minimax",
-  "profile": "Russian_Articulate_Tutor_v1",
+  "profile": "Russian_Professional_Broadcaster_v2",
   "settings": {
     "model": "speech-2.8-hd",
     "speed": 1.26,

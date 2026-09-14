@@ -41,7 +41,7 @@ def run_offline() -> int:
     config = load_voice_config()
     assert config.get("provider") == "minimax"
     assert config.get("model") == "speech-2.8-hd"
-    assert config.get("voiceId") == "Russian_Articulate_Tutor_v1"
+    assert config.get("voiceId") == "Russian_Professional_Broadcaster_v2"
     assert config.get("voiceSetting", {}).get("speed") == 1.26
     assert config.get("audioSetting", {}).get("format") == "wav"
     print("OK    config")
@@ -55,7 +55,7 @@ def run_offline() -> int:
     assert payload["stream"] is False
     assert payload["language_boost"] == "Russian"
     assert payload["output_format"] == "hex"
-    assert payload["voice_setting"]["voice_id"] == "Russian_Articulate_Tutor_v1"
+    assert payload["voice_setting"]["voice_id"] == "Russian_Professional_Broadcaster_v2"
     assert payload["voice_setting"]["speed"] == 1.26
     assert payload["voice_setting"]["pitch"] == 0
     assert payload["voice_setting"]["vol"] == 1

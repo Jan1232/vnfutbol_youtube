@@ -1,7 +1,7 @@
 {
   "version": 1,
   "provider": "minimax",
-  "profile": "Russian_Articulate_Tutor_v1",
+  "profile": "Russian_Professional_Broadcaster_v2",
   "settings": {
     "model": "speech-2.8-hd",
     "speed": 1.26,
@@ -22,20 +22,22 @@
       "ttsText": "Финал чемпионата мира две тысячи двадцать шестого года.",
       "pauseAfter": 350,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 32,
       "sha256": null,
       "textSha256": "4f8ffe77c6a76b6eddd43511dacd2be61502e804fd11b12d4a1a649362f798e7",
       "ttsTextSha256": "6cbedcaa6708e1d992c792d1e198e2641869c3401d64d465a8dcf57fbf0dac5d",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "c0d5e8d1cd00769536a2a70211099b9936f0c0cfda4fbd7261f3e93175fc72f8",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "7b45ce2d3f6158f1f7e3d19746e7e749022db75f64b95019475f38c74976e7a4",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-002",
@@ -46,20 +48,22 @@
       "ttsText": "С одной стороны — тридцатидевятилетний Лионель Месси.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 42,
       "sha256": null,
       "textSha256": "cbca9d33c99b411211a58022eecd796dab57a69c09eb80496c8f50ce8cc749c1",
       "ttsTextSha256": "5f1972cab912725980578eb88456cee17c3c343fdcf81b83e9a5428a71227a9e",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "b33f86cb0e2d8b7b0e039faaea32f8859186e973214dffc56dec4c03ddb90e80",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "c4a1e47959ccfbdc184482f5934d0d71c9283e88bc18b49e0beaf3d1195030a5",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-003",
@@ -70,20 +74,22 @@
       "ttsText": "С другой — девятнадцатилетний Ламин Ямаль.",
       "pauseAfter": 350,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 33,
       "sha256": null,
       "textSha256": "cd3da9932aec78b60507e49cbfe106a84509844850cab410ae850a44118cf0ba",
       "ttsTextSha256": "3859321b60fc3adcc8e9c92eb4851896ba7de7a62090e8647561f81543c49619",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "f24152a1fe2953d485ebff0235f3d13645bd686a4e6c36b8aae30e4a79e4ef9c",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "02ed28ceaf9c467c496cada4d73703e9809e7b58583e417fbc1d7d4f81a46ca5",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-004",
@@ -94,20 +100,22 @@
       "ttsText": "То есть футбол буквально поставил нового претендента на место рядом с настоящей легендой.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 89,
       "sha256": null,
       "textSha256": "1c16f113f4b6c01b5aac51bef3e5a409fd736e10a2698cc765e83d49cf6ca387",
       "ttsTextSha256": "1c16f113f4b6c01b5aac51bef3e5a409fd736e10a2698cc765e83d49cf6ca387",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "d1c258f467672f65225d245d8feb110f963f5a47ebf6669daf1c6c1d1b310211",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "f38053194402099def4c21d6679c71ff5366f42801a523ea4fc89e5c2cddb4c2",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-005",
@@ -118,20 +126,22 @@
       "ttsText": "И сразу же появился главный вопрос: Ямаль — это следующий великий игрок? Или мы снова слишком рано раздаём исторические ярлыки?",
       "pauseAfter": 300,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 127,
       "sha256": null,
       "textSha256": "1f2801adc0bcad4eededb74aa66d52471de46197f62d4700971b3fd41ce25aa6",
       "ttsTextSha256": "1f2801adc0bcad4eededb74aa66d52471de46197f62d4700971b3fd41ce25aa6",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "4e1898d823954d341b52657406afd69d87f9b6acc37174210cd51315a9da7376",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "5deb79c712696b202a2355abe59f8ad63055c310fa51db75cc468e87ee1bddbb",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-006",
@@ -142,20 +152,22 @@
       "ttsText": "Ему девятнадцать. Уже есть EURO. Уже есть чемпионат мира.",
       "pauseAfter": 150,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 57,
       "sha256": null,
       "textSha256": "152f229b52db0a1de9c1f0d331291f4bde86d364aae63aad2600a5df2c098d8e",
       "ttsTextSha256": "152f229b52db0a1de9c1f0d331291f4bde86d364aae63aad2600a5df2c098d8e",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "cced5fccae96e87d13c1a33729be1961294a36c778f69440f1561fa44cd5486a",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "938c61e780bc1dedd2eb06ac4764a064c08b79852264c35f95e91390b8c8dc10",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-007",
@@ -166,20 +178,22 @@
       "ttsText": "Уже есть звание игрока сезона Ла Лиги. Два Kopa Trophy. Второе место Ballon d'Or.",
       "pauseAfter": 150,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 81,
       "sha256": null,
       "textSha256": "49ca9dc8bb1c239499b531f2f838d58ceed09b06e48c3e5abae8f1afff1f23e7",
       "ttsTextSha256": "49ca9dc8bb1c239499b531f2f838d58ceed09b06e48c3e5abae8f1afff1f23e7",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "ba65461c19468dc9488deae0780b6456c6c6387345017ac86c3f4ea2f254dcde",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "36487ae3a48eee3575a2c253cd916ba973ac7c9dc2f9d4e2075ffe29e3a25eea",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-008",
@@ -190,20 +204,22 @@
       "ttsText": "И десятый номер Barcelona.",
       "pauseAfter": 350,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 26,
       "sha256": null,
       "textSha256": "69841dd28f7ac44a65a2a6df4adc45206efbb9996eaebfe238bb2f11a4b2f3df",
       "ttsTextSha256": "69841dd28f7ac44a65a2a6df4adc45206efbb9996eaebfe238bb2f11a4b2f3df",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "0725c4d9878e2efbf7cc3759a684e56786dbabe844ab522ab87627865d331403",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "d4b7c8540156a314506a2ced4d64dcf6bd5f51f7233a3303f2675a7c2a96667c",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-009",
@@ -214,20 +230,22 @@
       "ttsText": "Для обычного таланта такого набора хватило бы на целую карьеру. У Ямаля это всё ещё только начало биографии.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 108,
       "sha256": null,
       "textSha256": "2481669922aeac49c72fedd250355a245c260df02db4086cc2dccc1366993305",
       "ttsTextSha256": "2481669922aeac49c72fedd250355a245c260df02db4086cc2dccc1366993305",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "3c98fb668c82ea0dcb5126b2143a714867519bb51a6585ecba8d6131d2aff288",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "1bb6e9331ba4d2eb60ca79d81429ad8e17d8e3620d0b582a4e93ff654692b307",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-010",
@@ -238,20 +256,22 @@
       "ttsText": "До того как весь мир узнал номер десять, для Ямаля важнее были другие три цифры — триста четыре.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 96,
       "sha256": null,
       "textSha256": "1ff09a2399a344ea59e4476f56fdc54e32fbcdc402ce45e0998d27da83835b8d",
       "ttsTextSha256": "1ff09a2399a344ea59e4476f56fdc54e32fbcdc402ce45e0998d27da83835b8d",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "e5d71a1006a85bbc784f33444a6bedd2cca6008d38fb55a7eaab09df6c0c6003",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "d432512bca48106059258a966135e7c16708f188c8db4f3e540dba5051cba42c",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-011",
@@ -262,20 +282,22 @@
       "ttsText": "Он вырос в районе Rocafonda города Матаро. После голов показывает пальцами почтовый индекс своего района. Это не жест для камеры.",
       "pauseAfter": 150,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 129,
       "sha256": null,
       "textSha256": "1453d1933a223706a77501c2ff394076a28b000339621e8afeca3c3b70d1a01e",
       "ttsTextSha256": "1453d1933a223706a77501c2ff394076a28b000339621e8afeca3c3b70d1a01e",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "ec293fecc2e897c9f590965bb57b3fd08bce8f1937b014cc31d7695df2ffe7b2",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "ebf18204ca346800321415b704e97af363b7a64adf292a42bfbf637c729ea55b",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-012",
@@ -286,20 +308,22 @@
       "ttsText": "Это память о том, откуда он пришёл.",
       "pauseAfter": 350,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 35,
       "sha256": null,
       "textSha256": "2c66eae0c5d9f312d08f48433071115493d85c0895408444c1e7ecf36d897863",
       "ttsTextSha256": "2c66eae0c5d9f312d08f48433071115493d85c0895408444c1e7ecf36d897863",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "b5ab4b99efc09f53ebc27ec211b8456de4d8d29adffd8f168b63e854a0af3237",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "6145af0939eec39611615202a574ebf3faedafff379d30d22190fe1ba0b196dd",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-013",
@@ -310,20 +334,22 @@
       "ttsText": "Из CF La Torreta Ямаль очень рано попал в La Masia. И дальше всё ускорилось так, что даже Barcelona не успевала привыкнуть к его возрасту.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 138,
       "sha256": null,
       "textSha256": "47ce7da4c5ae8503e29add7ddcb4ea4591a10685d650f10e44591e3302e38153",
       "ttsTextSha256": "47ce7da4c5ae8503e29add7ddcb4ea4591a10685d650f10e44591e3302e38153",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "2ef685bc41e46cb9284ff1e6127513d75d7a78c0d1642adfc276276455c1a153",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "b7a5d7e49a0ad68792d343b566fb9483c35971f1c85a99eb25e7cc0767a59025",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-014",
@@ -334,20 +360,22 @@
       "ttsText": "Двадцать девятого апреля две тысячи двадцать третьего года он дебютировал против Real Betis в пятнадцать лет, девять месяцев и шестнадцать дней. Самый молодой футболист первой команды Barça.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 166,
       "sha256": null,
       "textSha256": "ddd0e269139d7569aa289b361b0bbdcb23c4fcd6d6a03fa5fd36671189c73c00",
       "ttsTextSha256": "d620b0e76370fc42b10eb32c094f596ad53ddc6eca96ad25fdc38fca3ddbca46",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "0b36e3825fe1e4c91e25b4565e4a8375d0a495b39b86e30c0738e730db4c9a77",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "9d2a108a0a6ee4d7a314a64570e3b6f9f6245db3a691342e492267c52d5c7871",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-015",
@@ -358,20 +386,22 @@
       "ttsText": "Потом был первый гол в Ла Лиге. Потом дебют и гол за взрослую сборную Испании в шестнадцать лет и пятьдесят семь дней.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 118,
       "sha256": null,
       "textSha256": "44cc9be6a28bf9b84259921b0506ea0f3efa82d9b2df015ad7597dd435f660b0",
       "ttsTextSha256": "44cc9be6a28bf9b84259921b0506ea0f3efa82d9b2df015ad7597dd435f660b0",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "1bc3e0ef0f5a67294d3196b48a070bb33666a0b56e1c02d4b3048109dc411d8e",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "7f855609cb31ea8d80fd6c7b046ed2dbd3b474f3f45558a2c2eed1fbf2055889",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-016",
@@ -382,20 +412,22 @@
       "ttsText": "А дальше начался EURO две тысячи двадцать четыре — турнир, после которого сравнение с легендами перестало быть шуткой комментаторов.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 110,
       "sha256": null,
       "textSha256": "8f08d597b6225439a0d972fffe71e1ff05803cc19e97d49549f9666e89644b05",
       "ttsTextSha256": "ec9823325c0d8d2926c5e8b1bcd4f9aba9d515799be236aeb720daa1d2047fff",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "f12e3e8f519bb54dff5fe1c49689e1c157f45dcb7ef16654287b3283cfc1cc22",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "72aee043fbebbd7b1afcfc023b2e433d503c98ff79b9c252b38879db000e9f8a",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-017",
@@ -406,20 +438,22 @@
       "ttsText": "Самый молодой игрок финальной стадии EURO. Самый молодой автор гола в истории турнира. Семь матчей, один гол, четыре ассиста.",
       "pauseAfter": 150,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 125,
       "sha256": null,
       "textSha256": "e3f8a6f7944440f20829c88ef88f105a6b4029f823a24a616136bbd3d678fd62",
       "ttsTextSha256": "e3f8a6f7944440f20829c88ef88f105a6b4029f823a24a616136bbd3d678fd62",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "4e0c4c568bf78910e93701b137f760c4690fd91d53d76680541282e55bb11595",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "993d17695071d6500993377ba94df51d6520e28ee3fc9dd7d25e885ff34df307",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-018",
@@ -430,20 +464,22 @@
       "ttsText": "Испания — чемпион Европы. Ямалю в финале было семнадцать лет и один день.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 73,
       "sha256": null,
       "textSha256": "a54fd302373f741ffa94e382cb0f720b616a3094313518d300bdfe0e41a240b7",
       "ttsTextSha256": "a54fd302373f741ffa94e382cb0f720b616a3094313518d300bdfe0e41a240b7",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "64279556480f17ec97260538b5c95c4b30852bddd9ae0aeea17ee6bbd1b589e7",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "a2f81b23f92ccae171bf656399b67b2017856bede2e3b09b34904acb2ead2aa9",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-019",
@@ -454,20 +490,22 @@
       "ttsText": "Сезон двадцать четыре — двадцать пять закрепил статус: восемнадцать голов и двадцать один ассист во всех турнирах. Barcelona выиграла Ла Лигу, Кубок Испании и Суперкубок.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 146,
       "sha256": null,
       "textSha256": "7733e4b4102af9039bd34e59c5f7d848c4d1dbdca9f563657a60cb2721486aeb",
       "ttsTextSha256": "ddb4633e1d395ea8320e1bfa79cfd2f1699d1abeaea57df9171b5b14ff358eba",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "f6ad2c7df02785d4877e6c8e4b4f0ac39b0bece400fd8f0a62e2f4b1cc7764ba",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "d85689c70b9ba9000ef05d1868fb5fd1a4978b959089661d2a991ec97a41c5d7",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-020",
@@ -478,20 +516,22 @@
       "ttsText": "В две тысячи двадцать пятом — второе место Ballon d'Or. И второй Kopa Trophy подряд: Ямаль стал первым, кто сумел защитить этот трофей.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 116,
       "sha256": null,
       "textSha256": "acadc208c222c4420f714c851934f4b5ed1d193950a3fa84b48d9428848e69e7",
       "ttsTextSha256": "208d0bb3d792b8cc5cc3e46d6ee09462761af79c123ac46f7bb49fbc2647a33a",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "42f43f5a0d765042abe41d289fe3c55677b843d5c3ad6d3bdece73b427990c63",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "86881865eab04c35feea7d326171ad27a88b5e4727d0b682d39974583beb3cee",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-021",
@@ -502,20 +542,22 @@
       "ttsText": "Сезон двадцать пять — двадцать шесть: шестнадцать голов и одиннадцать ассистов только в чемпионате Испании. Игрок сезона Ла Лиги. Признание коллег.",
       "pauseAfter": 150,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 124,
       "sha256": null,
       "textSha256": "e9083e3791b3dc70b5985a1156b92594b745ea2bfd36c51d6ed433e9b94d27dd",
       "ttsTextSha256": "65322ce6fdd78b92552f5714732d99690df8804eef1cb4e6d1fb3d45ec740b61",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "527c7a4d128779d1b81ea1f2da621e79a75223efd64183beacfa50e7cb041080",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "fafd10b3406418987664f8deafaf61e9d6b4eec2aaae7a94976b3175dd50af3c",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-022",
@@ -526,20 +568,22 @@
       "ttsText": "И уже номер десять на спине.",
       "pauseAfter": 350,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 28,
       "sha256": null,
       "textSha256": "5a4fd4e8f28a23907265ee24f5858febf2ef711943eed1fa387c357bd1ade0b9",
       "ttsTextSha256": "5a4fd4e8f28a23907265ee24f5858febf2ef711943eed1fa387c357bd1ade0b9",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "121c662a0de6c0d354a6275fb102bcb05fc3068c40f73d598d144ff388272679",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "b06a51fd790ed65a9466e6f119443b83b1682ff0b25f98beae6ca5b3d4bf22aa",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-023",
@@ -550,20 +594,22 @@
       "ttsText": "Потом чемпионат мира две тысячи двадцать шесть. Гол Саудовской Аравии. Финал против Аргентины.",
       "pauseAfter": 150,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 73,
       "sha256": null,
       "textSha256": "37d84688a0d2ff35ed04c57ce876c63069593cbb20fe253ee43de71c679ed337",
       "ttsTextSha256": "8e23eaef96e46cff9723e41e18103b7155dc1e478b8c6b020cf3c2328c860ab2",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "a9936fa7d90fbbaf3dbc0991f62a70f405f7e328ea2274c23668f2845ef4d25d",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "b8be2539d922fdacbc9aa16b30549f94a02f8217a6a52ad4a252671701d326b6",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-024",
@@ -574,20 +620,22 @@
       "ttsText": "Испания побеждает один-ноль в дополнительное время. Чемпион мира в девятнадцать.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 80,
       "sha256": null,
       "textSha256": "b4bbdaeaa2d1458b58bd5555f92849e8cd75f2437bd09fc3d15445c1dd451f60",
       "ttsTextSha256": "b4bbdaeaa2d1458b58bd5555f92849e8cd75f2437bd09fc3d15445c1dd451f60",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "858f908735ee25777665cd637f032818a0beb5eeb0a2ccc5711b70d418151ca4",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "3061501bb6c534f697db6c9c584d0b0aaec4304f389993ba3e0e256e5fe452f5",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-025",
@@ -598,20 +646,22 @@
       "ttsText": "И вот здесь хайп уже не держится на одном красивом клипе. Он опирается на трофеи и цифры, которые для этого возраста выглядят почти нереально.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 142,
       "sha256": null,
       "textSha256": "67b409e8bda9a6ac1f874e5cf741c51c996b689111a25e5dc59ff2115e2f1a22",
       "ttsTextSha256": "67b409e8bda9a6ac1f874e5cf741c51c996b689111a25e5dc59ff2115e2f1a22",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "cff77d93f6a76e1bd651bf1a606970e39ec5d58b5020ef8755537e7ca9a48c3a",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "23e2f31520df3f1bb270f353389d66fb881afad00691bc0b9827a79d2808d586",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-026",
@@ -622,21 +672,23 @@
       "ttsText": "Кстати, а вот здесь мне интересно ваше мнение. Как вы вообще оцениваете потолок Ямаля? Он реально может стать одним из лучших в истории — или мы опять слишком рано начинаем раздавать звания легенд?",
       "pauseAfter": 320,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 197,
       "sha256": null,
       "textSha256": "389f13a7fabc71a859dc1ba6156912f7e2ee7d3fd5192c7490fc63444d117b49",
       "ttsTextSha256": "389f13a7fabc71a859dc1ba6156912f7e2ee7d3fd5192c7490fc63444d117b49",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "afb2cdbf2a1c458ed076d0c1896f9b27e69aec007fd00287d1e4f97ae354ae79",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "6151011fb895fc6bc5c46363dbfa93517f1de031b7522ada1ff71ac8229574fd",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
       "delivery": {},
-      "position": "middle"
+      "position": "middle",
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-027",
@@ -647,21 +699,23 @@
       "ttsText": "Напишите в комментариях.",
       "pauseAfter": 320,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 24,
       "sha256": null,
       "textSha256": "02054917cce3caa1bc04dce09c0f44d88d54ae574c80d2be63dfe4b4d89690fb",
       "ttsTextSha256": "02054917cce3caa1bc04dce09c0f44d88d54ae574c80d2be63dfe4b4d89690fb",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "c39c03ed7e502036ad0a1b2af38e5ec780d234ac9af94bdcaa3cd0837b7539ec",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "331d5306203335f40ab18e4ee0f46216a5598179873912810120f07d2c5227b9",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
       "delivery": {},
-      "position": "middle"
+      "position": "middle",
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-028",
@@ -672,20 +726,22 @@
       "ttsText": "Но сравнение с Месси нельзя оставлять на уровне эмоций. Нужна честная метрика.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 78,
       "sha256": null,
       "textSha256": "706113555df2b07bdf17cda2b1863e659accca078945604df961894e93bcceb2",
       "ttsTextSha256": "706113555df2b07bdf17cda2b1863e659accca078945604df961894e93bcceb2",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "05871179399c82864b39e4ef762e07692f5682b7a01d2b1b5709ab35bd1bea39",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "8c70c7d7aa4354db6ca284f2ff5f2414489cc770ae9045c50d32a345181d02be",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-029",
@@ -696,20 +752,22 @@
       "ttsText": "Оба — воспитанники La Masia. Оба левоногие. Оба умеют начинать справа и уходить в центр.",
       "pauseAfter": 150,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 88,
       "sha256": null,
       "textSha256": "a88feb65adb5c0c2913790318fe002e3d6430bfcad303873e99a1d3fe9d82c08",
       "ttsTextSha256": "a88feb65adb5c0c2913790318fe002e3d6430bfcad303873e99a1d3fe9d82c08",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "d4a619b440cfa9f804b2d4624831680ab872e6456d4a68baa1a50e040df15440",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "0246db3c28e4a438bc124477bd3414a6e2c1e40164abc08c99c8e0a2b98a2f52",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-030",
@@ -720,20 +778,22 @@
       "ttsText": "Оба очень рано стали центральными фигурами Barcelona.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 53,
       "sha256": null,
       "textSha256": "8bee684940e8c284d8bea6fb85278772c80d061ecb884a7426c3f0cacab59f73",
       "ttsTextSha256": "8bee684940e8c284d8bea6fb85278772c80d061ecb884a7426c3f0cacab59f73",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "13669288453c812264f84bece4b1ef70ea4a100c0c36e69c2258e5786e389fad",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "595a5ced7b592579259399ad7cd02588c7252eb5238aaaf9713aa9f0b44ed27e",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-031",
@@ -744,20 +804,22 @@
       "ttsText": "Только сходство стиля не означает одинаковую траекторию. В первых ста матчах Ла Лиги у Ямаля двадцать девять голов. У Месси — сорок восемь.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 139,
       "sha256": null,
       "textSha256": "140a34a3589e68e181eefd3608dce0e2902d74f42c44286a2e39387e9ddfc37c",
       "ttsTextSha256": "140a34a3589e68e181eefd3608dce0e2902d74f42c44286a2e39387e9ddfc37c",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "10dba4c8fcfb03b1832c2330bda6cbbf623582d82aecc4204ef753f149c2d6f7",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "f5ce696a53fddebaecc6b601ddbdd1d6eca7d740426741f7a1a8a574112c33f4",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-032",
@@ -768,20 +830,22 @@
       "ttsText": "То есть Ямаль получил огромный объём взрослого футбола гораздо раньше. Но фраза «он уже лучше Месси в этом возрасте» без конкретной метрики просто некорректна.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 159,
       "sha256": null,
       "textSha256": "72dffdb0bc1033b051ff45d0b675b3bb5d978f1e659094cf7fcc318519e5bfbe",
       "ttsTextSha256": "72dffdb0bc1033b051ff45d0b675b3bb5d978f1e659094cf7fcc318519e5bfbe",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "22ac444a7817f3b71a1de5f1dea8a3d7a6cd9cefaf2abf285967a384f49d2c94",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "c21049be96754ec14a22f9c89ac43d9b8a21bc87e521706862f73183d17aaad1",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-033",
@@ -792,20 +856,22 @@
       "ttsText": "И вот в чём настоящая ловушка. Вопрос уже не в том, достаточно ли Ямаль хорош. Вопрос в другом: можно ли от девятнадцатилетнего игрока уже требовать карьеру уровня Месси?",
       "pauseAfter": 300,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 170,
       "sha256": null,
       "textSha256": "1de6673b49b9d9217c22c679bcb5428e6f6274d0c6834b6cc47b42a66c5f0c58",
       "ttsTextSha256": "1de6673b49b9d9217c22c679bcb5428e6f6274d0c6834b6cc47b42a66c5f0c58",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "0db8c50abce41bca8c224e055c1107a12497b0a84265390cc15ee6aed4cb416c",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "865b91f11199d853cad160abc5b69fd848edbd04c283b09b74a63287e4501648",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-034",
@@ -816,20 +882,22 @@
       "ttsText": "Потому что рекорд «самый молодой» говорит о раннем старте. Он не гарантирует будущую величину. Barcelona уже видела сверхранних талантов, которых сравнения не превратили в следующую легенду.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 190,
       "sha256": null,
       "textSha256": "7173a2384d90f8fdc7ee6b1c2a371ccb659f133690ce2a5859cfe2f906f09ab0",
       "ttsTextSha256": "7173a2384d90f8fdc7ee6b1c2a371ccb659f133690ce2a5859cfe2f906f09ab0",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "e5dc1e4ce6bff29e1f6889cead2005bf56a3a873208756e43aa2ba65b4b2d4c2",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "92ebbffe474a17a134b07549e7fdbf8115d4aef4d3d615edd85f2703eae34beb",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-035",
@@ -840,20 +908,22 @@
       "ttsText": "Есть и другой риск — нагрузка. В сентябре две тысячи двадцать пять Hansi Flick публично критиковал использование Ямаля сборной, когда у игрока была боль в паховой области.",
       "pauseAfter": 150,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 151,
       "sha256": null,
       "textSha256": "ee38a5069b0ac7d934547765eef33bcfed36c1ed4c30b04d57641a3b005613d6",
       "ttsTextSha256": "9473e251038e1b1340fa6182afd481546b1be82d7a4b61d2f3cff688ef9475c1",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "5872e05e021c44f17bccc700d02e9ee16286bbebc2cf2232b455a56475ad6891",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "b29efd5b26c8e105a181424447bf0b6665f4f8e773d776d8e502bc173ed37cdb",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-036",
@@ -864,20 +934,22 @@
       "ttsText": "Весной две тысячи двадцать шесть — травма задней поверхности бедра и пропуск остатка клубного сезона.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 80,
       "sha256": null,
       "textSha256": "026e7340696cefea7b7351a93a02216de07f9acc56c662bf053fb739ba909f70",
       "ttsTextSha256": "f0f2db47de61b1733ccec80eb041c8cbde68bb00367778f8c87c28956a69e118",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "f26499fbbf419582a38af7e6ffafc254cd73e6d32778e529c760e031fefc3db7",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "e656eb3c0919ac05fba597df34ccaaa1a2fb5c1fafa7568b8765bce402089257",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-037",
@@ -888,20 +960,22 @@
       "ttsText": "Это не приговор. Но это аргумент: исторический статус требует не двух-трёх ярких сезонов, а десятилетия стабильности.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 117,
       "sha256": null,
       "textSha256": "de519ccc9cb43483770742e9c3204a2f235aa686e3839315ea22159903134a83",
       "ttsTextSha256": "de519ccc9cb43483770742e9c3204a2f235aa686e3839315ea22159903134a83",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "e0dc839566060225d01a664f630a2b80b27b00d6691a6d314d860665df1c105a",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "c0d47e2bdde6bb2678a5c6d6192232d96af34f09eb85b8544b6c1f3b7ef21f9d",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-038",
@@ -912,20 +986,22 @@
       "ttsText": "Поэтому честный ответ звучит так. Ямаль не выглядит переоценённым как футболист. Переоценено наше умение уже сейчас предсказывать его место в истории.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 150,
       "sha256": null,
       "textSha256": "c765296da3e8b3f25967409ad646720e4250666c1d22f90d09f63f7cbeeee670",
       "ttsTextSha256": "c765296da3e8b3f25967409ad646720e4250666c1d22f90d09f63f7cbeeee670",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "e8f8359a358439558ea0674efc3918f50b395dc3f89644948459b1b657a172cc",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "028afaae502ad8d55ab1db4e829f4e844095c6888c77ae2ddaaabb8030beeb60",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-039",
@@ -936,20 +1012,22 @@
       "ttsText": "Он уже игрок масштаба Месси по вниманию мира. Но место рядом с настоящей легендой ещё нужно заслужить годами, а не одним финалом.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 129,
       "sha256": null,
       "textSha256": "25cd5f92dcae74a16c3ae10d7bb754c54b339c0955eeddcfe84071ca045dc82d",
       "ttsTextSha256": "25cd5f92dcae74a16c3ae10d7bb754c54b339c0955eeddcfe84071ca045dc82d",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "a8b72d5bfa29f8c3827c6c23486e8e7d1581ecf1620298ae97ef33b2a94d83ab",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "1a3db102a750df7cc14debf965f7bd9311f8932041538d1536e38e69d2e79a84",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-040",
@@ -960,20 +1038,22 @@
       "ttsText": "Так что ярлык «новый Месси» оставим как вопрос, а не как вердикт. Пока Ямаль выигрывает настоящее. Историю он ещё только начинает писать.",
       "pauseAfter": 400,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 137,
       "sha256": null,
       "textSha256": "923b6cf9e702cd33fd463214d527aa0349d58e07465b574ab8391e0f4ea7a137",
       "ttsTextSha256": "923b6cf9e702cd33fd463214d527aa0349d58e07465b574ab8391e0f4ea7a137",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "1db9c436ff0691f82f6c287d58a24aaf728ed738bd04165073f11adde531eca3",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "9f59d35497d624cc057b8b397efb04a7a6b2c7bf82f0f3775d636d5f2d9f6045",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
-      "delivery": {}
+      "delivery": {},
+      "startMs": null,
+      "endMs": null
     },
     {
       "id": "voice-041",
@@ -984,21 +1064,23 @@
       "ttsText": "Ну а если хотите ещё больше таких разборов футбольной истории и игроков — подписывайтесь. И обязательно напишите в комментариях: кем, по-вашему, в итоге станет Ямаль?",
       "pauseAfter": 0,
       "scene": null,
-      "status": "pending",
+      "status": "stale",
       "audio": null,
       "durationMs": null,
       "characters": 166,
       "sha256": null,
       "textSha256": "a3d43774ac3a1562a645803dfaa6a0d90f1348d60d83bc0da91a31f368637203",
       "ttsTextSha256": "a3d43774ac3a1562a645803dfaa6a0d90f1348d60d83bc0da91a31f368637203",
-      "settingsSha256": "31b37eb41084bb4596c6e40b86cabcc7d48ee02f5a9790c19c0b580510f57eee",
-      "renderSha256": "f0b78b68e444196c3c076a540358a47acda11ffac236cc4f3b2368a936436f30",
+      "settingsSha256": "b1088e77755e1bd49f674ec60a6220f2009b452b3aad48bafe7ab9f6543262ee",
+      "renderSha256": "fd1e5a667d111723a4cf73ec0add5755d56d9a363cbcc8e07a04da8680df215c",
       "provider": {
         "model": "speech-2.8-hd",
-        "voiceId": "Russian_Articulate_Tutor_v1"
+        "voiceId": "Russian_Professional_Broadcaster_v2"
       },
       "delivery": {},
-      "position": "end"
+      "position": "end",
+      "startMs": null,
+      "endMs": null
     }
   ]
 }

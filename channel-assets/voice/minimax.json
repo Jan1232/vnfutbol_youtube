@@ -1,7 +1,7 @@
 {
   "provider": "minimax",
   "model": "speech-2.8-hd",
-  "voiceId": "Russian_Articulate_Tutor_v1",
+  "voiceId": "Russian_Professional_Broadcaster_v2",
   "languageBoost": "Russian",
   "voiceSetting": {
     "speed": 1.26,
