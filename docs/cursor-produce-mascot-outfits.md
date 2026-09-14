@@ -2,7 +2,7 @@
 
 Continue from latest `main` after commit `759b194`.
 
-The 13 clothing masks are approved and `ensure_mascot_variants.py` currently queues 16 non-default pairs. Do not call an external AI provider from Cursor in this task. The goal is to reduce unnecessary generation, prepare the remaining generation jobs cleanly, and create a safe import/review/promote workflow for AI full edits.
+The 13 clothing masks are approved and `ensure_mascot_variants.py` currently queues 16 non-default pairs. Do not call an external AI provider from Cursor in this task. The goal is to prepare all 16 generation jobs cleanly and create a safe import/review/promote workflow for AI full edits.
 
 Read first:
 
@@ -17,52 +17,25 @@ Read first:
 - `scripts/compose_mascot.py`
 - `scripts/promote_mascot_variant.py`
 
-Do not change mascot identity, poses, masks, script, voice, visual-plan order, or outfit resolver semantics.
+Do not change mascot identity, poses, masks, script, voice, visual-plan order, outfit resolver semantics, or the editorial meaning of any outfit.
 
-## 1. Do not generate Barcelona variants that already exist visually
+## 1. Keep Barcelona as a distinct outfit
 
-The canonical/base `default-home` outfit and `barcelona-home` are intentionally visually equivalent in the current library:
+`barcelona-home` is a real distinct outfit and must NOT be aliased to `default-home`, reused as the base pose, or treated as visually equivalent.
 
-- both use wide vertical dark navy + muted garnet/burgundy stripes;
-- both use dark/navy shorts;
-- both omit sponsor, manufacturer, crest, number and text.
+Do not add any `renderPolicy=base-pose` shortcut.
+Do not reduce the queue by reclassifying Barcelona jobs as reuse.
+Do not rewrite `barcelona-home` to `default-home` anywhere in assets or timeline.
 
-Generating eleven separate `barcelona-home` AI edits would violate the project rule `REUSE -> SEARCH -> GENERATE` and introduce unnecessary identity drift.
+The current 16 queued pose + outfit pairs are intentional and should remain generation jobs unless an actually approved matching variant already exists in `variants.json`.
 
-Add a generic outfit render policy to `outfits.json`:
+Expected production requirement remains:
 
-```json
-"renderPolicy": "base-pose"
-```
+- all queued `barcelona-home` pairs need their own approved outfit layers;
+- all queued `spain-home` pairs need their own approved outfit layers;
+- the queued `suit-navy` pair needs its own approved outfit layer.
 
-Set it on `barcelona-home` only. Keep `default-home` behavior unchanged.
-
-Meaning:
-
-- the semantic resolved outfit remains `barcelona-home`;
-- visually, the approved immutable base pose is the final asset;
-- no outfit layer or variant record is required for this outfit while the policy is `base-pose`.
-
-Update all relevant mascot tooling so this is a first-class generic rule, not a Barcelona hardcode:
-
-- `ensure_mascot_variants.py`: classify any non-default outfit with `renderPolicy=base-pose` as `REUSED`, never queue a generation job;
-- `compose_mascot.py`: save the base pose directly for any outfit with `renderPolicy=base-pose`;
-- `find_mascot_variant.py` / validators / video prep where relevant: treat it as reusable and valid without `variants.json` entry;
-- timeline must preserve the semantic requested outfit id (`barcelona-home`), not silently rewrite it to `default-home`.
-
-Add offline tests proving this behavior is generic with a synthetic outfit id, not hardcoded to Barcelona.
-
-After this change, Yamal should require only **5 AI generation jobs**:
-
-```text
-point-left-two + spain-home
-count-2 + spain-home
-count-3 + spain-home
-celebrate + spain-home
-explain-five + suit-navy
-```
-
-The eleven `barcelona-home` pairs should be `REUSED` through the base-pose policy.
+Use the outfit descriptions from `outfits.json` as the source of truth. Do not invent season-specific details, sponsor marks, crest details, manufacturers, numbers or text unless the outfit spec is explicitly changed later by the editor.
 
 ## 2. Export provider-agnostic generation packs
 
@@ -86,6 +59,7 @@ For every pending generation job create a local-only directory:
 
 Requirements:
 
+- export ALL current pending jobs, including Barcelona jobs;
 - copy inputs only from approved/hash-verified library files;
 - `prompt.txt` must use the same provider-agnostic prompt semantics already implemented in `build_mascot_outfit_prompt.py`;
 - `job.json` includes job id, pose, outfit, all three input hashes, expected output filename and target paths;
@@ -110,7 +84,7 @@ python scripts/import_mascot_full_edit.py videos/lamine-yamal-new-messi mascot-j
 
 Validation before import:
 
-- job still exists and is pending/generated-review;
+- job still exists and is `pending` or `generated-review`/equivalent pre-review state;
 - current pose/mask/outfit hashes still equal the hashes frozen in the job;
 - input is PNG/RGBA-readable;
 - canvas dimensions exactly equal the approved base pose;
@@ -186,16 +160,15 @@ Rejection stores reason and does not destroy outputs.
 
 Add offline tests for:
 
-- generic `renderPolicy=base-pose` reuse;
-- no queue job for such outfit;
-- compose base-pose policy;
+- all pending jobs remain exportable, including `barcelona-home`;
 - generation pack hash verification;
 - import rejects wrong dimensions;
 - import rejects stale job hashes;
 - import creates layer + composed preview;
 - approval requires `needs-review`;
 - rejection preserves files;
-- promotion still refuses unapproved job.
+- promotion still refuses unapproved job;
+- no code path aliases `barcelona-home` to `default-home`.
 
 Run:
 
@@ -217,8 +190,8 @@ Report:
 - commit SHA;
 - tests PASS/FAIL;
 - counts from `ensure_mascot_variants`;
-- exact remaining pending AI jobs;
-- confirm all Barcelona pairs are REUSED by `renderPolicy=base-pose`;
-- local generation-pack paths for the 5 jobs;
+- exact pending AI jobs (expected: 16 unless an approved variant genuinely exists already);
+- local generation-pack paths for all pending jobs;
+- confirm Barcelona remains a distinct generated outfit and was not aliased to default-home;
 - whether import/review/promote workflow is ready;
-- exact next manual/external step required to obtain the five `full-edit.png` files.
+- exact next manual/external step required to obtain the `full-edit.png` files.
