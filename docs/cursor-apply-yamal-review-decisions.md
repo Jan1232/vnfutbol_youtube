@@ -1,17 +1,46 @@
-# Cursor task — apply approved Yamal review decisions
+# Cursor task — fix clipped mascot masks and apply approved media selections
 
 Continue from latest `main` after commit `596c141`.
 
-This task applies explicit editorial decisions made after visual review of:
+IMPORTANT CORRECTION: the previous version of this task incorrectly said to approve the 13 mascot clothing masks. Do NOT approve them. Visual review found a systematic defect: the masks are clipped at the top and do not reliably include the full collar/neckline and shoulder area of the jersey.
 
-- `.local-assets/lamine-yamal-new-messi/previews/mascot-mask-review.png`
-- `.local-assets/lamine-yamal-new-messi/previews/asset-candidate-review.png`
+The likely root cause is `scripts/generate_clothing_mask.py`: it ignores all pixels above a fixed `HEAD_RATIO` cut. On waist-up mascot poses that cut can run through the upper garment. The clothing mask must represent the complete editable garment region, not just the torso below an arbitrary Y coordinate.
 
-Do not reinterpret these decisions. Do not select additional candidates automatically. Do not run `--fetch-external`. Do not run external AI outfit generation.
+Do not run external AI outfit generation. Do not run `--fetch-external`. Do not change script/factcheck/voice.
 
-## 1. Approve the reviewed mascot clothing masks
+## 1. Fix clothing-mask generation
 
-The following 13 unique clothing masks were visually reviewed and approved:
+Update `scripts/generate_clothing_mask.py` so mask generation does NOT use a fixed vertical/head cutoff that can remove garment pixels.
+
+Requirements:
+
+- remove or replace the `HEAD_RATIO` / `head_cut` exclusion;
+- detect garment pixels across the entire opaque character bbox;
+- preserve the existing dark-skin/head exclusion through garment-color classification rather than a global Y cut;
+- the resulting mask must include all visible clothing that may need replacement:
+  - collar / neckline fabric;
+  - both shoulder caps;
+  - sleeves;
+  - torso;
+  - visible shorts when present;
+- do not include head, neck skin, bare arms, hands or fingers;
+- antialiased garment edges should not leave obvious uneditable gaps;
+- keep the mask on the same full-size canvas as the base pose;
+- regenerated masks remain `status: generated`; never auto-approve them.
+
+Do not solve this by blindly dilating the whole silhouette into hands/neck. The seed should still come from garment colors. Small morphology for edge cleanup is fine.
+
+Add offline regression tests using synthetic RGBA fixtures proving:
+
+1. garment pixels in the collar/shoulder region above the old 30% cutoff are included;
+2. a dark head/neck above the shirt is excluded;
+3. dark arms/hands adjacent to short sleeves are excluded;
+4. visible shorts remain included;
+5. generated masks stay `generated`, not `approved`.
+
+## 2. Regenerate only the 13 blocking pose masks
+
+Regenerate these masks after the algorithm fix:
 
 - `annoyed-two`
 - `celebrate`
@@ -27,25 +56,28 @@ The following 13 unique clothing masks were visually reviewed and approved:
 - `shock-one`
 - `shock-three`
 
-Use the existing explicit approval command so integrity checks remain authoritative:
+Use the existing generator one pose at a time or add a generic comma-separated `--poses` option if useful. Do not regenerate unrelated masks unnecessarily.
+
+After regeneration run:
 
 ```bash
-python scripts/review_mascot_masks.py videos/lamine-yamal-new-messi --approve annoyed-two,celebrate,count-2,count-3,explain-five,explain-four,explain-six,explain-two,point-left-three,point-left-two,point-right-two,shock-one,shock-three
+python scripts/review_mascot_masks.py videos/lamine-yamal-new-messi --contact-sheet
+python scripts/review_mascot_masks.py videos/lamine-yamal-new-messi --status
 ```
 
-Do not approve any other masks.
+Expected local review file:
 
-Then run:
-
-```bash
-python scripts/ensure_mascot_variants.py videos/lamine-yamal-new-messi
+```text
+.local-assets/lamine-yamal-new-messi/previews/mascot-mask-review.png
 ```
 
-Expected result: the previously blocked non-default mascot pairs should become generation jobs. Do not execute the jobs or call any AI provider. Report the exact unique job count and pair list.
+All 13 masks must still await editor approval. Do NOT call `--approve` or `--reject`.
 
-## 2. Apply explicit candidate selections
+Do NOT run `ensure_mascot_variants.py` expecting generation jobs yet. Outfit generation remains blocked until the regenerated masks are visually approved.
 
-Select these reviewed candidates:
+## 3. Apply the already approved MEDIA candidate selections
+
+The following media choices remain approved and are unrelated to the mask correction:
 
 ```text
 player-yamal-barcelona-no10 = C1
@@ -54,21 +86,18 @@ player-messi-early-barcelona = C1
 coach-hansi-flick = C1
 ```
 
-Use the existing `--select-candidate` workflow. After selection, run preparation as appropriate so image assets become READY if their local files and metadata satisfy the existing contract.
+Use the existing explicit `--select-candidate` workflow. Run normal image preparation so these can become READY when the current contract allows it.
 
-### Do NOT select these candidate records for their current asset
+Do NOT select:
 
-`video-yamal-euro2024-france-champion`: do not select C1 as fulfillment of this VIDEO asset. C1 is a still image, while the visual plan currently requests match footage. Keep the VIDEO asset unresolved until a real video source/excerpt is supplied.
+- `video-yamal-euro2024-france-champion = C1` — C1 is a still, while this asset is VIDEO;
+- `player-yamal-injury-2026 = C1` — it is a normal portrait and does not communicate injury/load.
 
-`player-yamal-injury-2026`: do not select C1 for the injury asset. The image is a normal Yamal portrait and does not visually support the injury/load scene. Keep the injury asset unresolved.
+## 4. Reuse injury C1 as the hero portrait
 
-## 3. Reuse the rejected injury candidate as the hero portrait
+The current `player-yamal-injury-2026` C1 is suitable as `player-yamal-hero-portrait`.
 
-Although `player-yamal-injury-2026=C1` is unsuitable for an injury scene, it is a strong contemporary Yamal portrait and should be reused for:
-
-`player-yamal-hero-portrait`
-
-Add a generic, explicit cross-asset candidate reuse operation rather than manually duplicating undocumented bytes. Preferred CLI:
+Implement/use a generic explicit command:
 
 ```bash
 python scripts/prepare_assets.py videos/lamine-yamal-new-messi --reuse-candidate player-yamal-hero-portrait=player-yamal-injury-2026:C1
@@ -76,82 +105,74 @@ python scripts/prepare_assets.py videos/lamine-yamal-new-messi --reuse-candidate
 
 Requirements:
 
-- source candidate must already exist under this video's `.local-assets/` tree;
-- target and source candidate ids/labels must be explicit;
-- preserve provenance: source asset id, candidate label, original source URL and candidate path;
-- do not download again;
-- do not overwrite an existing different target source silently;
-- image may be copied into the target's local `source/` path or referenced safely, but do not commit third-party bytes;
-- run normal image preparation for the target so `player-yamal-hero-portrait` can become READY;
-- add offline tests for success, missing candidate, unknown target, and overwrite/hash conflict.
+- candidate must already exist under this video's `.local-assets/`;
+- preserve source asset id, candidate label, original source URL/path and hash provenance;
+- no redownload;
+- no silent overwrite of different target bytes;
+- run normal image preparation for the target;
+- third-party bytes remain local only;
+- add offline tests for success, missing candidate, unknown target and hash conflict.
 
-This CLI should remain generic for future videos; do not hardcode Yamal ids.
+Do not hardcode Yamal-specific ids into the implementation.
 
-## 4. Filter obvious page-chrome candidates from review boards
+## 5. Filter page-chrome discovery candidates
 
-Current discovery/review boards include 64×64 social/service icons (Facebook, X, Instagram, Spotify, Discord). They are not editorial media candidates and should not consume C-labels.
+Current boards include social/service icons. Filter obvious page chrome before assigning C-labels:
 
-Improve candidate review filtering conservatively:
+- known hints: facebook, twitter, x-logo, instagram, spotify, discord and equivalent UI/social names;
+- tiny square UI images <=256×256 when they clearly look like page chrome;
+- do NOT reject all small images globally;
+- keep raw discovery provenance even when hidden from review;
+- assign C1..Cn after filtering;
+- add tests proving social icons are hidden while a small non-square editorial image remains eligible.
 
-- exclude known page-chrome/social icon candidates based on filename/URL hints such as `facebook`, `twitter`, `x-logo`, `instagram`, `spotify`, `discord`, and equivalent obvious UI asset names;
-- exclude tiny square UI images when both dimensions are <= 256 px and the candidate looks like page chrome;
-- do NOT globally reject all small images: historical/editorial imagery may be modest resolution;
-- assign C1..Cn only after filtering so labels shown to the editor refer to meaningful media;
-- preserve the raw discovered candidate list/provenance even if a candidate is hidden from the review board;
-- add offline tests proving social icons are hidden while a small non-square editorial image remains reviewable.
+Regenerate the candidate review board after filtering.
 
-Regenerate the candidate review board after filtering. It is okay if the previously selected content images become the only visible candidates for several assets.
+## 6. Run order
 
-## 5. Prepare and refresh manifests
-
-After applying the approved decisions, run:
+Run:
 
 ```bash
 python scripts/test_asset_prep.py
+```
+
+Regenerate the 13 masks, then:
+
+```bash
+python scripts/review_mascot_masks.py videos/lamine-yamal-new-messi --contact-sheet
+python scripts/review_mascot_masks.py videos/lamine-yamal-new-messi --status
 python scripts/sync_mascot_assets.py videos/lamine-yamal-new-messi
 python scripts/resolve_mascot_outfit.py videos/lamine-yamal-new-messi --all
-python scripts/ensure_mascot_variants.py videos/lamine-yamal-new-messi
 python scripts/prepare_assets.py videos/lamine-yamal-new-messi --plan
 ```
 
-Important: `--plan` must not erase the READY candidate selections or cross-asset reuse selection.
-
-Then run the explicit selections if they were not already applied before `--plan`:
-
-```bash
-python scripts/prepare_assets.py videos/lamine-yamal-new-messi --select-candidate player-yamal-barcelona-no10=C1
-python scripts/prepare_assets.py videos/lamine-yamal-new-messi --select-candidate player-yamal-youth-lamasia=C1
-python scripts/prepare_assets.py videos/lamine-yamal-new-messi --select-candidate player-messi-early-barcelona=C1
-python scripts/prepare_assets.py videos/lamine-yamal-new-messi --select-candidate coach-hansi-flick=C1
-python scripts/prepare_assets.py videos/lamine-yamal-new-messi --reuse-candidate player-yamal-hero-portrait=player-yamal-injury-2026:C1
-```
-
-Then:
+Apply the four explicit media selections and hero-portrait reuse, then:
 
 ```bash
 python scripts/prepare_assets.py videos/lamine-yamal-new-messi --prepare
+python scripts/prepare_assets.py videos/lamine-yamal-new-messi --candidate-review
 python scripts/prepare_assets.py videos/lamine-yamal-new-messi --status
 python scripts/build_timeline.py videos/lamine-yamal-new-messi --allow-placeholders
 python scripts/validate_video.py videos/lamine-yamal-new-messi
 ```
 
-Do not run final timeline yet if blockers remain.
+Do not approve masks. Do not run AI outfit generation. Do not run final timeline while blockers remain.
 
-## 6. Final report
+## 7. Report
 
-Push code + committed metadata only. Never commit `.local-assets/`.
+Push code + committed metadata only; never commit `.local-assets/`.
 
 Report:
 
 - commit SHA;
 - tests PASS/FAIL;
-- approved mask count;
-- mascot generation jobs count and exact pose+outfit pairs;
-- READY external/local image assets after selections;
-- confirmation that `video-yamal-euro2024-france-champion` remains unresolved as VIDEO;
-- confirmation that `player-yamal-injury-2026` remains unresolved;
-- confirmation that `player-yamal-hero-portrait` reused injury C1 with provenance;
-- updated distinct source files still needed;
-- updated `NEEDS_SOURCE_FILE`, `NEEDS_SELECTION`, READY counts;
-- draft timeline placeholder count and total duration;
-- exact blockers remaining for FINAL timeline.
+- confirmation that the fixed generator no longer applies the destructive global head cutoff;
+- local path to the regenerated `mascot-mask-review.png`;
+- status of all 13 regenerated masks (must be `generated`, not approved);
+- selected/READY media assets;
+- confirmation EURO video remains unresolved;
+- confirmation injury asset remains unresolved;
+- confirmation hero portrait reuses injury C1 with provenance;
+- updated source/status counts;
+- draft timeline placeholder count / duration;
+- exact FINAL timeline blockers.
