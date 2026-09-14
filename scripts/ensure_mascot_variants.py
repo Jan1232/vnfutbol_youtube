@@ -10,6 +10,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mascot_common import (
     DEFAULT_OUTFIT,
+    current_outfit_reference_sha,
     hashes_current,
     load_json,
     load_poses,
@@ -88,6 +89,7 @@ def make_job(asset: dict, pose: dict, outfit: dict, mask: dict, index: int) -> d
         "targetFullEdit": f"assets/mascot/generated/{stem}_full.png",
         "targetLayer": f"assets/mascot/generated/{stem}_layer.png",
         "status": "pending",
+        "outfitReferenceSha256": current_outfit_reference_sha(outfit),
         **hashes_current(pose, mask, outfit),
     }
 

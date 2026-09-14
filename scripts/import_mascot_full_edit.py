@@ -13,10 +13,12 @@ from PIL import Image, ImageFilter
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from asset_prep_common import ensure_local_dirs, load_asset_prep, load_json, write_json
 from mascot_common import (
+    current_outfit_reference_sha,
     hashes_current,
     mask_by_pose,
     mask_path,
     outfit_by_id,
+    outfit_requires_reference,
     pose_by_id,
     pose_path,
     sha256_file,
@@ -96,6 +98,21 @@ def import_full_edit(video_dir: Path, job_id: str, input_path: Path) -> int:
     for key in ("basePoseSha256", "maskSha256", "outfitSpecSha256"):
         if job.get(key) != current[key]:
             return fail(f"stale job hash `{key}`; re-run ensure_mascot_variants")
+
+    if outfit_requires_reference(outfit):
+        frozen_ref = job.get("outfitReferenceSha256")
+        current_ref = current_outfit_reference_sha(outfit)
+        if not frozen_ref:
+            return fail(
+                f"job `{job_id}` missing frozen outfitReferenceSha256; "
+                "export pack / re-run ensure after importing the outfit reference"
+            )
+        if not current_ref:
+            return fail(f"missing local outfit reference for `{outfit['id']}`")
+        if frozen_ref != current_ref:
+            return fail(
+                "frozen outfitReferenceSha256 no longer matches the local outfit reference"
+            )
 
     if not input_path.exists():
         return fail(f"missing input `{input_path}`")

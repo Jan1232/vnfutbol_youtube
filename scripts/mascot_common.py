@@ -26,6 +26,10 @@ MASK_STATUSES = {"generated", "approved", "rejected"}
 VARIANT_STATUSES = {"generated", "needs-review", "approved", "rejected", "stale"}
 DEFAULT_OUTFIT = "default-home"
 FORMAL_OUTFIT = "suit-navy"
+OUTFIT_REF_ROOT = ROOT / ".local-assets" / "shared" / "mascot-outfit-references"
+OUTFIT_REF_RIGHTS = "official visual reference; do not commit third-party image"
+POLICY_MATCH_REFERENCE = "match-reference"
+POLICY_OMIT = "omit"
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -86,6 +90,38 @@ def outfit_by_id(outfit_id: str) -> dict | None:
         if outfit.get("id") == outfit_id:
             return outfit
     return None
+
+
+def outfit_reference_dir(outfit_id: str) -> Path:
+    return OUTFIT_REF_ROOT / outfit_id
+
+
+def outfit_reference_path(outfit_id: str) -> Path:
+    return outfit_reference_dir(outfit_id) / "reference.png"
+
+
+def outfit_reference_meta_path(outfit_id: str) -> Path:
+    return outfit_reference_dir(outfit_id) / "meta.json"
+
+
+def outfit_requires_reference(outfit: dict | None) -> bool:
+    return bool(outfit and outfit.get("referenceRequired"))
+
+
+def current_outfit_reference_sha(outfit: dict | None) -> str | None:
+    if not outfit_requires_reference(outfit):
+        return None
+    path = outfit_reference_path(outfit["id"])
+    if not path.exists():
+        return None
+    return sha256_file(path)
+
+
+def load_outfit_reference_meta(outfit_id: str) -> dict | None:
+    path = outfit_reference_meta_path(outfit_id)
+    if not path.exists():
+        return None
+    return load_json(path)
 
 
 def mask_by_pose(pose_id: str) -> dict | None:

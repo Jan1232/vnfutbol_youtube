@@ -159,6 +159,7 @@ def make_mascot_asset(
     resolved_outfit: str,
     subject: str | None,
     scenes: list[str],
+    explicit_outfit: str | None = None,
 ) -> dict:
     return {
         "id": asset_id,
@@ -178,7 +179,7 @@ def make_mascot_asset(
             "resolvedOutfit": resolved_outfit,
             "subject": subject,
             "variantPolicy": "reuse-else-generate",
-            "explicitOutfit": None,
+            "explicitOutfit": explicit_outfit if outfit_intent == "explicit" else None,
         },
     }
 
@@ -212,6 +213,8 @@ def sync(video_dir: Path) -> int:
     created = 0
     reused = 0
     errors: list[str] = []
+    active_keys: set[tuple[str, str]] = set()
+    scenes_by_key: dict[tuple[str, str], list[str]] = {}
 
     for scene in plan.get("scenes") or []:
         if not scene.get("mascot"):
@@ -222,44 +225,62 @@ def sync(video_dir: Path) -> int:
             outfit_intent = scene_outfit_intent(scene)
             subject = resolve_subject(scene, outfit_intent, entities)
             entity = entities.get(subject) if subject else None
+            explicit_outfit = (scene.get("mascot") or {}).get("explicitOutfit")
+            if outfit_intent == "explicit" and not explicit_outfit:
+                raise ValueError(f"{scene_id}: outfitIntent=explicit requires mascot.explicitOutfit")
             resolved = resolve_outfit(
                 outfit_intent,
-                {"explicitOutfit": (scene.get("mascot") or {}).get("explicitOutfit")},
+                {"explicitOutfit": explicit_outfit},
                 entity,
             )
-            if not outfit_by_id(resolved):
+            outfit = outfit_by_id(resolved)
+            if not outfit:
                 raise ValueError(f"resolved outfit `{resolved}` not in outfits.json")
+            if outfit.get("active") is False:
+                raise ValueError(
+                    f"resolved outfit `{resolved}` is inactive; migrate scene to an active kit"
+                )
         except ValueError as exc:
             errors.append(str(exc))
             continue
 
         key = (base_pose, resolved)
+        active_keys.add(key)
+        scenes_by_key.setdefault(key, []).append(scene_id)
         asset = pair_to_asset.get(key)
         if asset is None:
             asset_id = next_mascot_asset_id(existing_ids, base_pose, resolved)
             asset = make_mascot_asset(
-                asset_id, base_pose, outfit_intent, resolved, subject, [scene_id]
+                asset_id,
+                base_pose,
+                outfit_intent,
+                resolved,
+                subject,
+                [scene_id],
+                explicit_outfit=explicit_outfit if outfit_intent == "explicit" else None,
             )
             assets.append(asset)
             existing_ids.add(asset_id)
             pair_to_asset[key] = asset
             created += 1
         else:
-            scenes = list(asset.get("usedInScenes") or [])
-            if scene_id not in scenes:
-                scenes.append(scene_id)
-                asset["usedInScenes"] = sorted(scenes)
             mascot = asset.setdefault("mascot", {})
             mascot["basePose"] = base_pose
             mascot["outfitIntent"] = outfit_intent
             mascot["resolvedOutfit"] = resolved
             mascot["subject"] = subject
+            mascot["explicitOutfit"] = (
+                explicit_outfit if outfit_intent == "explicit" else None
+            )
             mascot.setdefault("variantPolicy", "reuse-else-generate")
+            asset["tags"] = ["mascot", base_pose, resolved]
             reused += 1
 
         # Freeze casting onto visual-plan without changing editorial order/overlays
         scene["mascot"]["basePose"] = base_pose
         scene["mascot"]["assetId"] = asset["id"]
+        if outfit_intent == "explicit":
+            scene["mascot"]["explicitOutfit"] = explicit_outfit
         scene_updates += 1
 
     if errors:
@@ -267,18 +288,32 @@ def sync(video_dir: Path) -> int:
             print(f"ERROR {message}")
         return 1
 
+    for key, scene_ids in scenes_by_key.items():
+        asset = pair_to_asset[key]
+        asset["usedInScenes"] = sorted(set(scene_ids))
+
+    # Drop MASCOT assets no longer referenced by any scene pair (e.g. legacy spain-home).
+    assets = [
+        asset
+        for asset in assets
+        if asset.get("type") != "MASCOT"
+        or (
+            (asset.get("mascot") or {}).get("basePose"),
+            (asset.get("mascot") or {}).get("resolvedOutfit"),
+        )
+        in active_keys
+    ]
     assets_payload["assets"] = assets
     write_json(assets_path, assets_payload)
     write_json(plan_path, plan)
 
-    default_pairs = sum(
-        1 for (pose, outfit) in pair_to_asset if outfit == DEFAULT_OUTFIT
-    )
+    default_pairs = sum(1 for (_pose, outfit) in active_keys if outfit == DEFAULT_OUTFIT)
     print(
         f"OK    scenes={scene_updates} created={created} "
-        f"reused_pairs={len(pair_to_asset)} default_pairs={default_pairs}"
+        f"active_pairs={len(active_keys)} default_pairs={default_pairs}"
     )
-    for (pose, outfit), asset in sorted(pair_to_asset.items()):
+    for pose, outfit in sorted(active_keys):
+        asset = pair_to_asset[(pose, outfit)]
         print(f"PAIR  {asset['id']} {pose} + {outfit} scenes={asset.get('usedInScenes')}")
     return 0
 
