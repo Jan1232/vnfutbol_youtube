@@ -74,6 +74,9 @@ def create_video(slug: str, force: bool) -> int:
         marker = folder / ".gitkeep"
         if not marker.exists():
             marker.write_text("", encoding="utf-8")
+    overrides = dest / "audio" / "voice-overrides.json"
+    if not overrides.exists():
+        write_json(overrides, {"version": 1, "overrides": {}})
     print(f"OK    created {dest.as_posix()}")
     return 0
 

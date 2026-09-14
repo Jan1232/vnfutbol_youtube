@@ -50,7 +50,7 @@ REUSE  →  SEARCH  →  GENERATE
 
 Production TTS — официальный MiniMax HTTP T2A (`speech-2.8-hd`).
 
-Ключ только из environment:
+Ключ только из environment или локального `.env` (gitignored):
 
 ```bash
 MINIMAX_API_KEY=<secret>
@@ -61,27 +61,33 @@ MINIMAX_API_KEY=<secret>
 Конфиг канала: `channel-assets/voice/minimax.json`  
 Speed `1.26`, pitch `0`, volume `1`, format `wav`. Настройки не менять автоматически.
 
+`text` в `voice.json` — текст сценария. MiniMax получает только `ttsText`  
+(после `normalize_russian_tts` + `audio/voice-overrides.json`).
+
 ```bash
 # Offline contract tests (без API)
 python scripts/test_minimax_tts.py
-
-# Короткий live-тест
-python scripts/test_minimax_tts.py --live
+python scripts/test_voice_normalizer.py
 
 # План генерации без запросов
 python scripts/generate_voice.py videos/lamine-yamal-new-messi --dry-run
 
-# Синтез только missing/stale + assemble narration.wav
+# Inspect одного сегмента
+python scripts/generate_voice.py videos/lamine-yamal-new-messi \
+  --source-key SCRIPT-011:000 --show
+
+# Точечная перегенерация
+python scripts/generate_voice.py videos/lamine-yamal-new-messi \
+  --source-key SCRIPT-011:000 --force
+
+# Синтез missing/stale + assemble narration.wav
 python scripts/generate_voice.py videos/lamine-yamal-new-messi
 
-# Только сборка финального файла
-python scripts/assemble_voice.py videos/lamine-yamal-new-messi
-
-# Валидация
 python scripts/validate_voice.py videos/lamine-yamal-new-messi
 ```
 
-Идемпотентность: повторный запуск не перегенерирует сегмент, если совпадают `textSha256`, `settingsSha256` и WAV уже есть.
+Идемпотентность: повторный запуск не перегенерирует сегмент, если совпадают
+`textSha256`, `ttsTextSha256`, `settingsSha256`, `renderSha256` и WAV hash.
 
 ## Mascot Outfit System
 

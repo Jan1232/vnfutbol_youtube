@@ -14,6 +14,7 @@ from voice_common import (
     VALID_MODELS,
     load_json,
     load_voice_config,
+    render_sha256,
     segment_audio_relpath,
     settings_sha256,
     sha256_file,
@@ -93,18 +94,35 @@ def main() -> int:
                 errors.append(f"{seg_id}: script is missing")
 
             text = segment.get("text")
+            tts_text = segment.get("ttsText")
             if not isinstance(text, str) or not text.strip():
                 errors.append(f"{seg_id}: text must be a non-empty string")
             else:
                 if segment.get("textSha256") != sha256_text(text):
                     errors.append(f"{seg_id}: textSha256 mismatch")
-            if segment.get("settingsSha256") != settings_sha256(config):
+            if not isinstance(tts_text, str) or not tts_text.strip():
+                errors.append(f"{seg_id}: ttsText must be a non-empty string")
+            else:
+                if segment.get("ttsTextSha256") != sha256_text(tts_text):
+                    errors.append(f"{seg_id}: ttsTextSha256 mismatch")
+            settings_hash = settings_sha256(config)
+            if segment.get("settingsSha256") != settings_hash:
                 errors.append(f"{seg_id}: settingsSha256 mismatch")
+            expected_render = render_sha256(
+                tts_text or "",
+                settings_hash,
+                segment.get("delivery") or {},
+            )
+            if segment.get("renderSha256") != expected_render:
+                errors.append(f"{seg_id}: renderSha256 mismatch")
             if "pauseAfter" in segment and not isinstance(segment["pauseAfter"], int):
                 errors.append(f"{seg_id}: pauseAfter must be an integer")
 
             status = segment.get("status")
             if status in {"generated", "approved"}:
+                for required in ("textSha256", "ttsTextSha256", "settingsSha256", "renderSha256", "sha256"):
+                    if not segment.get(required):
+                        errors.append(f"{seg_id}: {required} is required for {status}")
                 audio_rel = segment.get("audio")
                 declared_sha = segment.get("sha256")
                 if not audio_rel:
@@ -116,9 +134,7 @@ def main() -> int:
                             f"{seg_id}: audio `{audio_rel}` does not match "
                             f"sourceKey `{source}` (expected `{expected_rel}`)"
                         )
-                if not declared_sha:
-                    errors.append(f"{seg_id}: audio sha256 is required for {status}")
-                elif audio_rel:
+                if declared_sha and audio_rel:
                     audio_path = video_dir / audio_rel
                     if not audio_path.exists():
                         errors.append(f"{seg_id}: audio file missing: {audio_rel}")

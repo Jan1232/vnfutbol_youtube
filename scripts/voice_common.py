@@ -121,11 +121,62 @@ def settings_sha256(config: dict) -> str:
     return sha256_text(canonical_json(settings_fingerprint(config)))
 
 
+def load_voice_overrides(video_dir: Path) -> dict:
+    path = video_audio_paths(video_dir)["overrides"]
+    if not path.exists():
+        return {"version": 1, "overrides": {}}
+    data = load_json(path)
+    if not isinstance(data, dict):
+        raise ValueError("voice-overrides.json root must be an object")
+    overrides = data.get("overrides")
+    if overrides is None:
+        data["overrides"] = {}
+    elif not isinstance(overrides, dict):
+        raise ValueError("voice-overrides.json: overrides must be an object")
+    return data
+
+
+def ensure_voice_overrides(video_dir: Path) -> Path:
+    path = video_audio_paths(video_dir)["overrides"]
+    if not path.exists():
+        write_json(path, {"version": 1, "overrides": {}})
+    return path
+
+
+def render_sha256(tts_text: str, settings_hash: str, delivery: dict | None) -> str:
+    payload = {
+        "ttsText": tts_text,
+        "settingsSha256": settings_hash,
+        "delivery": delivery or {},
+    }
+    return sha256_text(canonical_json(payload))
+
+
+def apply_tts_fields(segment: dict, config: dict, overrides: dict | None = None) -> dict:
+    """Fill ttsText and related hashes from script text + overrides."""
+    from voice_normalizer import build_tts_text
+
+    override_map = (overrides or {}).get("overrides") or {}
+    override = override_map.get(segment.get("sourceKey") or "")
+    text = segment.get("text") or ""
+    tts_text = build_tts_text(text, override if isinstance(override, dict) else None)
+    settings_hash = settings_sha256(config)
+    delivery = segment.get("delivery") or {}
+    segment["ttsText"] = tts_text
+    segment["textSha256"] = sha256_text(text)
+    segment["ttsTextSha256"] = sha256_text(tts_text)
+    segment["settingsSha256"] = settings_hash
+    segment["renderSha256"] = render_sha256(tts_text, settings_hash, delivery)
+    segment["characters"] = len(text)
+    return segment
+
+
 def video_audio_paths(video_dir: Path) -> dict[str, Path]:
     audio = video_dir / "audio"
     return {
         "audio": audio,
         "voice_json": audio / "voice.json",
+        "overrides": audio / "voice-overrides.json",
         "segments": audio / "segments",
         "previews": audio / "previews",
         "final": audio / "final",
@@ -356,7 +407,11 @@ def default_pause_after_utterance(
     return 150
 
 
-def build_segments_from_blocks(blocks: list[dict], config: dict) -> list[dict]:
+def build_segments_from_blocks(
+    blocks: list[dict],
+    config: dict,
+    overrides: dict | None = None,
+) -> list[dict]:
     """SCRIPT blocks → semantic utterances → sequential voice-NNN with stable sourceKey."""
     built: list[dict] = []
     voice_index = 1
@@ -375,18 +430,18 @@ def build_segments_from_blocks(blocks: list[dict], config: dict) -> list[dict]:
                 is_cta=block.get("type") == "CTA",
                 script_boundary=script_boundary,
             )
-            built.append(
-                build_segment(
-                    text=text,
-                    script_id=block["scriptId"],
-                    source_key=source_key(block["scriptId"], utt_index),
-                    voice_index=voice_index,
-                    config=config,
-                    pause_after=pause,
-                    seg_type=block.get("type") or "narration",
-                    position=block.get("position"),
-                )
+            segment = build_segment(
+                text=text,
+                script_id=block["scriptId"],
+                source_key=source_key(block["scriptId"], utt_index),
+                voice_index=voice_index,
+                config=config,
+                pause_after=pause,
+                seg_type=block.get("type") or "narration",
+                position=block.get("position"),
             )
+            apply_tts_fields(segment, config, overrides)
+            built.append(segment)
             voice_index += 1
     return built
 
@@ -408,6 +463,7 @@ def build_segment(
         "script": script_id,
         "type": seg_type,
         "text": text,
+        "ttsText": text,
         "pauseAfter": pause_after,
         "scene": None,
         "status": "pending",
@@ -416,7 +472,9 @@ def build_segment(
         "characters": len(text),
         "sha256": None,
         "textSha256": sha256_text(text),
+        "ttsTextSha256": None,
         "settingsSha256": settings_sha256(config),
+        "renderSha256": None,
         "provider": {
             "model": config.get("model"),
             "voiceId": config.get("voiceId"),
@@ -438,7 +496,13 @@ def classify_segment(segment: dict, video_dir: Path, config: dict) -> str:
         except ValueError:
             return "MISSING"
     expected_text = sha256_text(segment.get("text") or "")
+    expected_tts = sha256_text(segment.get("ttsText") or "")
     expected_settings = settings_sha256(config)
+    expected_render = render_sha256(
+        segment.get("ttsText") or "",
+        expected_settings,
+        segment.get("delivery") or {},
+    )
     status = segment.get("status")
 
     if status == "failed":
@@ -447,15 +511,16 @@ def classify_segment(segment: dict, video_dir: Path, config: dict) -> str:
         return "MISSING"
 
     text_ok = segment.get("textSha256") == expected_text
+    tts_ok = segment.get("ttsTextSha256") == expected_tts
     settings_ok = segment.get("settingsSha256") == expected_settings
+    render_ok = segment.get("renderSha256") == expected_render
     declared_sha = segment.get("sha256")
     file_ok = bool(declared_sha) and sha256_file(path) == declared_sha
     status_ok = status in {"generated", "approved"}
 
-    if status_ok and text_ok and settings_ok and file_ok:
+    if status_ok and text_ok and tts_ok and settings_ok and render_ok and file_ok:
         return "REUSE"
 
-    # Audio exists but hashes missing/mismatch, or status not ready → STALE
     return "STALE"
 
 
