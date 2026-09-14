@@ -133,6 +133,51 @@ def run_offline() -> int:
     assert before_s2[0]["id"] != after_s2[0]["id"]
     assert segment_wav_path(Path("/tmp/video"), after_s2[0]).name == "script-002_000.wav"
     print("OK    sourceKey storage identity")
+
+    # merge_segments must persist delivery before renderSha256 compare.
+    from generate_voice import merge_segments
+    from voice_common import apply_tts_fields
+
+    overrides = {"version": 1, "overrides": {}}
+    sample = (
+        "### SCRIPT-001\n\nТекст:\n\nФинал чемпионата мира.\n\n"
+        "Связанные факты:\n"
+    )
+    built = build_segments_from_blocks(parse_script_blocks(sample), config, overrides)
+    assert len(built) == 1
+    existing = dict(built[0])
+    existing["delivery"] = {"interjection": "sighs"}
+    apply_tts_fields(existing, config, overrides)
+    existing.update(
+        {
+            "status": "generated",
+            "audio": "audio/segments/script-001_000.wav",
+            "sha256": "0" * 64,
+            "durationMs": 1200,
+            "startMs": 0,
+            "endMs": 1200,
+        }
+    )
+    sighs_render = existing["renderSha256"]
+    fresh_built = build_segments_from_blocks(parse_script_blocks(sample), config, overrides)
+    merged = merge_segments([existing], fresh_built, config, overrides)
+    assert merged[0]["delivery"] == {"interjection": "sighs"}
+    assert merged[0]["status"] == "generated"
+    assert merged[0]["audio"] == "audio/segments/script-001_000.wav"
+    assert merged[0]["renderSha256"] == sighs_render
+    assert merged[0]["sha256"] == "0" * 64
+
+    changed = dict(merged[0])
+    changed["delivery"] = {"interjection": "laughs"}
+    # Keep previous sighs render hash on disk record; delivery edit alone.
+    changed["renderSha256"] = sighs_render
+    merged2 = merge_segments([changed], fresh_built, config, overrides)
+    assert merged2[0]["delivery"] == {"interjection": "laughs"}
+    assert merged2[0]["renderSha256"] != sighs_render
+    assert merged2[0]["status"] == "stale"
+    assert merged2[0]["audio"] is None
+    print("OK    merge delivery/renderSha256")
+
     fp = settings_fingerprint(config)
     assert settings_sha256(config) == sha256_text(canonical_json(fp))
     assert apply_interjection("Текст.", {"interjection": "sighs"}) == "(sighs) Текст."

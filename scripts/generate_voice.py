@@ -42,7 +42,12 @@ def fail(message: str) -> int:
     return 1
 
 
-def merge_segments(existing: list[dict], built: list[dict]) -> list[dict]:
+def merge_segments(
+    existing: list[dict],
+    built: list[dict],
+    config: dict,
+    overrides: dict | None = None,
+) -> list[dict]:
     by_key = {
         item.get("sourceKey"): item
         for item in existing
@@ -56,16 +61,19 @@ def merge_segments(existing: list[dict], built: list[dict]) -> list[dict]:
             continue
 
         updated = dict(segment)
+        # Persist manual fields before hashing/compare.
         updated["delivery"] = old.get("delivery") or {}
         if old.get("scene") is not None:
             updated["scene"] = old.get("scene")
         if isinstance(old.get("pauseAfter"), int) and segment.get("pauseAfter") != 0:
             updated["pauseAfter"] = old["pauseAfter"]
 
-        text_changed = (old.get("text") or "") != segment["text"]
-        tts_changed = (old.get("ttsText") or "") != segment.get("ttsText")
-        settings_changed = old.get("settingsSha256") != segment.get("settingsSha256")
-        render_changed = old.get("renderSha256") != segment.get("renderSha256")
+        apply_tts_fields(updated, config, overrides)
+
+        text_changed = (old.get("text") or "") != (updated.get("text") or "")
+        tts_changed = (old.get("ttsText") or "") != (updated.get("ttsText") or "")
+        settings_changed = old.get("settingsSha256") != updated.get("settingsSha256")
+        render_changed = old.get("renderSha256") != updated.get("renderSha256")
         if text_changed or tts_changed or settings_changed or render_changed:
             updated["status"] = "stale" if old.get("audio") else "pending"
             updated["audio"] = None
@@ -94,19 +102,6 @@ def merge_segments(existing: list[dict], built: list[dict]) -> list[dict]:
             }:
                 updated["status"] = "pending"
 
-        # Always refresh speakable fields/hashes from current script+overrides.
-        for key in (
-            "ttsText",
-            "textSha256",
-            "ttsTextSha256",
-            "settingsSha256",
-            "renderSha256",
-            "characters",
-            "provider",
-            "sourceKey",
-        ):
-            if key in segment:
-                updated[key] = segment[key]
         merged.append(updated)
     if merged:
         merged[-1]["pauseAfter"] = 0
@@ -135,10 +130,7 @@ def sync_voice_json(video_dir: Path, config: dict) -> dict:
         existing = current.get("segments")
         if not isinstance(existing, list):
             existing = current.get("items") if isinstance(current.get("items"), list) else []
-        segments = merge_segments(existing, built)
-        # Re-apply TTS fields after merge so delivery changes refresh renderSha256.
-        for segment in segments:
-            apply_tts_fields(segment, config, overrides)
+        segments = merge_segments(existing, built, config, overrides)
     else:
         segments = built
         if segments:
