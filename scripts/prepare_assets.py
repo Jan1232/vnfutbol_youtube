@@ -135,6 +135,141 @@ def merge_preserve(old: dict | None, new: dict) -> dict:
     return merged
 
 
+def load_source_reuse(video_dir: Path) -> dict | None:
+    path = video_dir / "assets" / "source-reuse.json"
+    if not path.exists():
+        return None
+    return load_json(path)
+
+
+def apply_source_reuse(records: list[dict], reuse: dict | None) -> list[str]:
+    """Annotate derived/render-preferred records. Returns asset ids moved to NEEDS_SELECTION."""
+    if not reuse:
+        return []
+    by_id = {r["id"]: r for r in records}
+    moved: list[str] = []
+
+    for pref in reuse.get("renderInsteadOfExternalPreferred") or []:
+        asset_id = pref.get("assetId")
+        rec = by_id.get(asset_id)
+        if not rec:
+            continue
+        if rec.get("status") in {"READY", "READY_RENDER_SPEC"} and rec.get("preparedPath"):
+            continue
+        if rec.get("status") == "NEEDS_SOURCE_FILE" or not rec.get("preparedPath"):
+            prev = rec.get("status")
+            rec["status"] = "READY_RENDER_SPEC"
+            rec["derive"] = "render-preferred"
+            rec["notes"] = pref.get("reason") or "prefer renderer-owned graphic"
+            if prev == "NEEDS_SOURCE_FILE":
+                # Not NEEDS_SELECTION — report separately as render preferred
+                pass
+
+    for group in reuse.get("groups") or []:
+        group_id = group.get("id")
+        primary_id = group.get("primaryAsset")
+        primary = by_id.get(primary_id)
+        for output in group.get("outputs") or []:
+            asset_id = output.get("assetId")
+            rec = by_id.get(asset_id)
+            if not rec:
+                continue
+            derive = output.get("derive") or ""
+            rec["sourceGroup"] = group_id
+            rec["derive"] = derive
+            if asset_id != primary_id:
+                rec["derivedFrom"] = primary_id
+            if output.get("selection"):
+                rec["selectionNotes"] = output["selection"]
+
+            # Prefer official still over video-frame fallback when a still was already selected.
+            if "fallback" in derive and rec.get("status") == "READY" and rec.get("preparedPath"):
+                continue
+
+            primary_ready = bool(
+                primary
+                and primary.get("sourcePath")
+                and primary.get("sourceSha256")
+                and Path(ROOT / primary["sourcePath"]).exists()
+            )
+            if asset_id == primary_id:
+                continue
+
+            if primary_ready:
+                # Share the same source bytes by path/hash — do not copy.
+                prev = rec.get("status")
+                rec["sourcePath"] = primary["sourcePath"]
+                rec["sourceSha256"] = primary["sourceSha256"]
+                rec["primarySourceUrl"] = primary.get("sourceUrl")
+                if rec.get("clipStartMs") is None and (
+                    "video" in derive or "frame" in derive or "excerpt" in derive
+                ):
+                    rec["status"] = "NEEDS_SELECTION"
+                    rec["notes"] = (
+                        f"derived from {primary_id} via {derive}; "
+                        "clip/frame timestamp not selected"
+                    )
+                    if prev == "NEEDS_SOURCE_FILE":
+                        moved.append(asset_id)
+                elif "image-crop" in derive and not rec.get("preparedPath"):
+                    rec["status"] = "NEEDS_SELECTION"
+                    rec["notes"] = (
+                        f"derived from {primary_id} via {derive}; crop not selected"
+                    )
+                    if prev == "NEEDS_SOURCE_FILE":
+                        moved.append(asset_id)
+            else:
+                if rec.get("status") == "NEEDS_SOURCE_FILE":
+                    rec["notes"] = (
+                        f"awaits primary source `{primary_id}` ({derive}); "
+                        "do not duplicate source bytes"
+                    )
+    return moved
+
+
+def distinct_source_files_needed(records: list[dict], reuse: dict | None) -> list[str]:
+    """Count unique editor source files still required after reuse grouping."""
+    by_id = {r["id"]: r for r in records}
+    covered: set[str] = set()
+    needed: list[str] = []
+
+    if reuse:
+        for pref in reuse.get("renderInsteadOfExternalPreferred") or []:
+            covered.add(pref.get("assetId"))
+        for group in reuse.get("groups") or []:
+            primary = group.get("primaryAsset")
+            outputs = [o.get("assetId") for o in group.get("outputs") or []]
+            for oid in outputs:
+                covered.add(oid)
+            prec = by_id.get(primary)
+            if prec and prec.get("status") in {
+                "NEEDS_SOURCE_FILE",
+                "NEEDS_SELECTION",
+                "MISSING",
+            }:
+                if primary not in needed:
+                    needed.append(primary)
+            elif prec and prec.get("status") not in {
+                "READY",
+                "READY_RENDER_SPEC",
+                "READY_MASCOT",
+            }:
+                if primary not in needed:
+                    needed.append(primary)
+
+    for rec in records:
+        if rec.get("type") == "MASCOT" or rec.get("id") == "narration":
+            continue
+        if rec.get("status") not in {"NEEDS_SOURCE_FILE", "NEEDS_SELECTION", "MISSING"}:
+            continue
+        if rec["id"] in covered:
+            continue
+        if rec.get("status") == "READY_RENDER_SPEC":
+            continue
+        needed.append(rec["id"])
+    return needed
+
+
 def classify_plan_record(
     asset_id: str,
     asset: dict | None,
@@ -293,17 +428,29 @@ def cmd_plan(video_dir: Path) -> int:
                 merged = fresh
         records.append(merged)
 
+    reuse = load_source_reuse(video_dir)
+    moved = apply_source_reuse(records, reuse)
+    needed = distinct_source_files_needed(records, reuse)
+
     payload = {
         "version": 1,
         "video": video_dir.name,
         "generatedAt": utc_now(),
         "localRoot": rel_to_repo(dirs["root"]),
         "assets": records,
+        "sourceReuse": {
+            "movedToNeedsSelection": moved,
+            "distinctSourceFilesNeeded": needed,
+            "distinctSourceFileCount": len(needed),
+        },
     }
     write_json(paths["prepared"], payload)
     prep["stage"] = "planned"
     write_json(paths["prep"], prep)
-    print(f"OK    prepared-assets.json records={len(records)} localRoot={dirs['root']}")
+    print(
+        f"OK    prepared-assets.json records={len(records)} localRoot={dirs['root']} "
+        f"distinct_sources_needed={len(needed)} moved_to_needs_selection={len(moved)}"
+    )
     return 0
 
 
@@ -578,52 +725,151 @@ def cmd_prepare(video_dir: Path) -> int:
     return 0
 
 
+def _extract_image_urls(html: str, page_url: str) -> list[str]:
+    import re
+    from urllib.parse import urljoin
+
+    found: list[str] = []
+    patterns = [
+        r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
+        r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']',
+        r'<img[^>]+src=["\']([^"\']+)["\']',
+    ]
+    for pattern in patterns:
+        for match in re.findall(pattern, html, flags=re.IGNORECASE):
+            url = urljoin(page_url, match.strip())
+            if url.lower().endswith((".jpg", ".jpeg", ".png", ".webp")) or "image" in url.lower():
+                if url not in found:
+                    found.append(url)
+    return found[:12]
+
+
+def _download_candidate(url: str, dest: Path) -> bool:
+    try:
+        req = Request(url, headers={"User-Agent": "vnfutbol-asset-prep/1.0"})
+        with urlopen(req, timeout=25) as resp:  # noqa: S310 - public discovery only
+            data = resp.read(8 * 1024 * 1024)
+            ctype = (resp.headers.get("Content-Type") or "").lower()
+        if "html" in ctype and not url.lower().endswith((".jpg", ".jpeg", ".png", ".webp")):
+            return False
+        if len(data) < 2048:
+            return False
+        dest.write_bytes(data)
+        return True
+    except Exception:  # noqa: BLE001
+        return False
+
+
+def _make_contact_sheet(candidate_files: list[Path], out_path: Path) -> None:
+    if Image is None or not candidate_files:
+        return
+    thumbs = []
+    for path in candidate_files[:9]:
+        try:
+            with Image.open(path) as img:
+                im = img.convert("RGB")
+                im.thumbnail((320, 180))
+                thumbs.append(im)
+        except OSError:
+            continue
+    if not thumbs:
+        return
+    cols = min(3, len(thumbs))
+    rows = (len(thumbs) + cols - 1) // cols
+    sheet = Image.new("RGB", (cols * 320, rows * 180), (20, 20, 24))
+    for index, thumb in enumerate(thumbs):
+        x = (index % cols) * 320
+        y = (index // cols) * 180
+        sheet.paste(thumb, (x, y))
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    sheet.save(out_path, format="JPEG", quality=85)
+
+
 def cmd_discover(video_dir: Path) -> int:
-    """Best-effort candidate discovery. No auth bypass. Offline-safe failure."""
+    """Best-effort candidate discovery. No auth/DRM bypass. No full video download."""
     prep = load_asset_prep(video_dir)
     dirs = ensure_local_dirs(video_dir, prep)
     payload = load_prepared(video_dir)
     assets_payload = load_json(video_paths(video_dir)["assets"])
     by_asset = assets_by_id(assets_payload)
     discovered = 0
+    moved_selection = 0
     for record in payload.get("assets") or []:
         if record.get("status") not in {"NEEDS_SOURCE_FILE", "NEEDS_SELECTION"}:
             continue
+        # Derived assets waiting on a primary do not need independent page scrapes
+        if record.get("derivedFrom") and record.get("status") == "NEEDS_SOURCE_FILE":
+            continue
         asset = by_asset.get(record["id"]) or {}
         url = asset.get("sourceUrl") or record.get("sourceUrl")
-        if not url:
+        page = asset.get("referencePage") or url
+        if not page:
             continue
-        if "youtube.com" in url or "youtu.be" in url:
+        if "youtube.com" in page or "youtu.be" in page:
             ytdlp = shutil.which("yt-dlp")
             if not ytdlp:
                 record["notes"] = "yt-dlp missing; video metadata discovery skipped"
                 continue
             try:
                 proc = subprocess.run(
-                    [ytdlp, "--skip-download", "--print", "%(title)s\t%(duration)s", url],
+                    [ytdlp, "--skip-download", "--print", "%(title)s\t%(duration)s", page],
                     capture_output=True,
                     text=True,
                     timeout=60,
                 )
                 if proc.returncode == 0:
                     record["notes"] = f"yt-dlp metadata: {proc.stdout.strip()[:200]}"
+                    record["discovery"] = {"type": "video-metadata", "raw": proc.stdout.strip()[:300]}
                     discovered += 1
                 else:
                     record["notes"] = f"yt-dlp failed: {proc.stderr.strip()[:200]}"
             except Exception as exc:  # noqa: BLE001
                 record["notes"] = f"yt-dlp error: {exc}"
             continue
-        # Image pages: do not scrape aggressively; leave NEEDS_SOURCE_FILE
-        record.setdefault("candidates", [])
+
         cand_dir = dirs["candidates"] / record["id"]
         cand_dir.mkdir(parents=True, exist_ok=True)
-        record["notes"] = (
-            "page discovery is best-effort; place chosen file in inbox/ "
-            f"or candidates/{record['id']}/"
-        )
+        saved: list[str] = []
+        try:
+            req = Request(page, headers={"User-Agent": "vnfutbol-asset-prep/1.0"})
+            with urlopen(req, timeout=30) as resp:  # noqa: S310
+                html = resp.read(2 * 1024 * 1024).decode("utf-8", errors="ignore")
+            image_urls = _extract_image_urls(html, page)
+            for index, image_url in enumerate(image_urls):
+                ext = Path(urlparse(image_url).path).suffix.lower() or ".jpg"
+                if ext not in {".jpg", ".jpeg", ".png", ".webp"}:
+                    ext = ".jpg"
+                dest = cand_dir / f"candidate-{index:02d}{ext}"
+                if dest.exists() or _download_candidate(image_url, dest):
+                    if dest.exists() and dest.stat().st_size > 2048:
+                        saved.append(rel_to_repo(dest))
+            preview = dirs["previews"] / f"{record['id']}-candidates.jpg"
+            files = [ROOT / p for p in saved]
+            _make_contact_sheet([p for p in files if p.exists()], preview)
+            record["candidates"] = saved
+            if saved:
+                prev = record.get("status")
+                record["status"] = "NEEDS_SELECTION"
+                record["previewPath"] = rel_to_repo(preview) if preview.exists() else None
+                record["notes"] = (
+                    f"discovered {len(saved)} candidate image(s); "
+                    "select one explicitly before prepare"
+                )
+                discovered += len(saved)
+                if prev == "NEEDS_SOURCE_FILE":
+                    moved_selection += 1
+            else:
+                record["notes"] = "no usable public image candidates discovered"
+        except Exception as exc:  # noqa: BLE001
+            record["notes"] = f"discovery failed: {exc}"
+            record.setdefault("candidates", [])
+
     payload["generatedAt"] = utc_now()
     write_json(video_paths(video_dir)["prepared"], payload)
-    print(f"OK    discover notes updated; network candidates={discovered}")
+    print(
+        f"OK    discover candidates_saved={discovered} "
+        f"moved_to_needs_selection={moved_selection}"
+    )
     return 0
 
 

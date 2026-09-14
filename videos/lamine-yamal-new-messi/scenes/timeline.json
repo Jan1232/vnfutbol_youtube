@@ -3,5 +3,1196 @@
   "fps": 30,
   "width": 1920,
   "height": 1080,
-  "scenes": []
+  "scenes": [
+    {
+      "id": "scene-01",
+      "start": 0.0,
+      "duration": 3.392,
+      "script": "SCRIPT-001",
+      "scriptRefs": [
+        "SCRIPT-001"
+      ],
+      "voiceIds": [
+        "voice-001"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-001:000"
+      ],
+      "layout": "full",
+      "visual": {
+        "type": "VIDEO",
+        "asset": "video-wc2026-final-atmosphere",
+        "placeholder": true,
+        "prepStatus": "NEEDS_SOURCE_FILE"
+      },
+      "overlay": {
+        "text": "ФИНАЛ ЧМ 2026",
+        "style": "big-title"
+      },
+      "animation": "slowZoom",
+      "unresolvedAssets": [
+        "video-wc2026-final-atmosphere"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-02",
+      "start": 3.392,
+      "duration": 3.523,
+      "script": "SCRIPT-002",
+      "scriptRefs": [
+        "SCRIPT-002"
+      ],
+      "voiceIds": [
+        "voice-002"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-002:000"
+      ],
+      "layout": "mascot-left-media-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-six__default-home",
+        "pose": "explain-six",
+        "outfit": "default-home",
+        "supportingAsset": "player-messi-wc2026-final"
+      },
+      "overlay": {
+        "text": "39 ЛЕТ",
+        "style": "age-card"
+      },
+      "animation": "panRight",
+      "unresolvedAssets": [
+        "player-messi-wc2026-final"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-03",
+      "start": 6.915,
+      "duration": 2.626,
+      "script": "SCRIPT-003",
+      "scriptRefs": [
+        "SCRIPT-003"
+      ],
+      "voiceIds": [
+        "voice-003"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-003:000"
+      ],
+      "layout": "media-left-mascot-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-point-left-two__spain-home",
+        "pose": "point-left-two",
+        "outfit": "spain-home",
+        "supportingAsset": "player-yamal-spain-wc2026",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "19 ЛЕТ",
+        "style": "age-card"
+      },
+      "animation": "panLeft",
+      "unresolvedAssets": [
+        "mascot-point-left-two__spain-home",
+        "player-yamal-spain-wc2026"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-04",
+      "start": 9.541,
+      "duration": 5.253,
+      "script": "SCRIPT-004",
+      "scriptRefs": [
+        "SCRIPT-004"
+      ],
+      "voiceIds": [
+        "voice-004"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-004:000"
+      ],
+      "layout": "split-players-mascot-center",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-one__default-home",
+        "pose": "explain-one",
+        "outfit": "default-home",
+        "supportingAsset": "player-messi-wc2026-final"
+      },
+      "overlay": {
+        "text": "ЛЕГЕНДА ↔ ПРЕТЕНДЕНТ",
+        "style": "versus"
+      },
+      "animation": "slideUp",
+      "unresolvedAssets": [
+        "player-messi-wc2026-final",
+        "player-yamal-spain-wc2026"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-05",
+      "start": 14.794,
+      "duration": 7.092,
+      "script": "SCRIPT-005",
+      "scriptRefs": [
+        "SCRIPT-005"
+      ],
+      "voiceIds": [
+        "voice-005"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-005:000"
+      ],
+      "layout": "mascot-center",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-think-three__default-home",
+        "pose": "think-three",
+        "outfit": "default-home",
+        "supportingAsset": null
+      },
+      "overlay": {
+        "text": "СЛЕДУЮЩИЙ ВЕЛИКИЙ\nИЛИ СЛИШКОМ РАНО?",
+        "style": "question"
+      },
+      "animation": "fade"
+    },
+    {
+      "id": "scene-06",
+      "start": 21.886,
+      "duration": 8.52,
+      "script": "SCRIPT-006",
+      "scriptRefs": [
+        "SCRIPT-006"
+      ],
+      "voiceIds": [
+        "voice-006",
+        "voice-007"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-006:000",
+        "SCRIPT-006:001"
+      ],
+      "layout": "mascot-left-stat-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-count-3__barcelona-home",
+        "pose": "count-3",
+        "outfit": "barcelona-home",
+        "supportingAsset": "trophy-euro",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "19 ЛЕТ",
+        "style": "hero-number"
+      },
+      "animation": "counter",
+      "unresolvedAssets": [
+        "mascot-count-3__barcelona-home"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-07",
+      "start": 30.406,
+      "duration": 2.068,
+      "script": "SCRIPT-006",
+      "scriptRefs": [
+        "SCRIPT-006"
+      ],
+      "voiceIds": [
+        "voice-008"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-006:002"
+      ],
+      "layout": "full",
+      "visual": {
+        "type": "STAT",
+        "asset": "trophy-kopa"
+      },
+      "overlay": {
+        "text": "KOPA ×2 • BALLON D'OR #2 • №10",
+        "style": "achievement-strip"
+      },
+      "animation": "slideLeft",
+      "unresolvedAssets": [
+        "player-yamal-barcelona-no10"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-08",
+      "start": 32.474,
+      "duration": 6.1,
+      "script": "SCRIPT-007",
+      "scriptRefs": [
+        "SCRIPT-007"
+      ],
+      "voiceIds": [
+        "voice-009"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-007:000"
+      ],
+      "layout": "mascot-center",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-shock-one__barcelona-home",
+        "pose": "shock-one",
+        "outfit": "barcelona-home",
+        "supportingAsset": null,
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "ДЛЯ ДРУГИХ — КАРЬЕРА.\nДЛЯ НЕГО — НАЧАЛО.",
+        "style": "statement"
+      },
+      "animation": "zoomOut",
+      "unresolvedAssets": [
+        "mascot-shock-one__barcelona-home"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-09",
+      "start": 38.574,
+      "duration": 6.1,
+      "script": "SCRIPT-008",
+      "scriptRefs": [
+        "SCRIPT-008"
+      ],
+      "voiceIds": [
+        "voice-010"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-008:000"
+      ],
+      "layout": "mascot-right-text-left",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-point-left-three__barcelona-home",
+        "pose": "point-left-three",
+        "outfit": "barcelona-home",
+        "supportingAsset": null,
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "304",
+        "style": "giant-number"
+      },
+      "animation": "counter",
+      "unresolvedAssets": [
+        "mascot-point-left-three__barcelona-home"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-10",
+      "start": 44.674,
+      "duration": 7.488,
+      "script": "SCRIPT-009",
+      "scriptRefs": [
+        "SCRIPT-009"
+      ],
+      "voiceIds": [
+        "voice-011"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-009:000"
+      ],
+      "layout": "full",
+      "visual": {
+        "type": "PLAYER_PHOTO",
+        "asset": "player-yamal-304-celebration",
+        "placeholder": true,
+        "prepStatus": "NEEDS_SOURCE_FILE"
+      },
+      "overlay": {
+        "text": "ROCAFONDA",
+        "style": "location-small"
+      },
+      "animation": "slowZoom",
+      "unresolvedAssets": [
+        "player-yamal-304-celebration"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-11",
+      "start": 52.162,
+      "duration": 2.475,
+      "script": "SCRIPT-009",
+      "scriptRefs": [
+        "SCRIPT-009"
+      ],
+      "voiceIds": [
+        "voice-012"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-009:001"
+      ],
+      "layout": "mascot-left-media-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-four__barcelona-home",
+        "pose": "explain-four",
+        "outfit": "barcelona-home",
+        "supportingAsset": "map-mataro-rocafonda",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "ОТКУДА ОН ПРИШЁЛ",
+        "style": "caption"
+      },
+      "animation": "zoomOut",
+      "unresolvedAssets": [
+        "mascot-explain-four__barcelona-home"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-12",
+      "start": 54.637,
+      "duration": 7.819,
+      "script": "SCRIPT-010",
+      "scriptRefs": [
+        "SCRIPT-010"
+      ],
+      "voiceIds": [
+        "voice-013"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-010:000"
+      ],
+      "layout": "media-left-mascot-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-two__barcelona-home",
+        "pose": "explain-two",
+        "outfit": "barcelona-home",
+        "supportingAsset": "player-yamal-youth-lamasia",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "LA TORRETA → LA MASIA",
+        "style": "timeline-short"
+      },
+      "animation": "panLeft",
+      "unresolvedAssets": [
+        "mascot-explain-two__barcelona-home",
+        "player-yamal-youth-lamasia"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-13",
+      "start": 62.456,
+      "duration": 10.466,
+      "script": "SCRIPT-011",
+      "scriptRefs": [
+        "SCRIPT-011"
+      ],
+      "voiceIds": [
+        "voice-014"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-011:000"
+      ],
+      "layout": "mascot-overlay-left-video-full",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-shock-three__barcelona-home",
+        "pose": "shock-three",
+        "outfit": "barcelona-home",
+        "supportingAsset": "video-yamal-betis-debut",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "15 ЛЕТ • 9 МЕСЯЦЕВ • 16 ДНЕЙ",
+        "style": "record-lower-third"
+      },
+      "animation": "hardCut",
+      "unresolvedAssets": [
+        "mascot-shock-three__barcelona-home",
+        "video-yamal-betis-debut"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-14",
+      "start": 72.922,
+      "duration": 6.716,
+      "script": "SCRIPT-012",
+      "scriptRefs": [
+        "SCRIPT-012"
+      ],
+      "voiceIds": [
+        "voice-015"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-012:000"
+      ],
+      "layout": "media-left-mascot-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-count-2__spain-home",
+        "pose": "count-2",
+        "outfit": "spain-home",
+        "supportingAsset": "player-yamal-spain-debut-2023",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "16 ЛЕТ • 57 ДНЕЙ",
+        "style": "record-card"
+      },
+      "animation": "slideLeft",
+      "unresolvedAssets": [
+        "mascot-count-2__spain-home",
+        "player-yamal-spain-debut-2023"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-15",
+      "start": 79.638,
+      "duration": 7.122,
+      "script": "SCRIPT-013",
+      "scriptRefs": [
+        "SCRIPT-013"
+      ],
+      "voiceIds": [
+        "voice-016"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-013:000"
+      ],
+      "layout": "full",
+      "visual": {
+        "type": "VIDEO",
+        "asset": "video-yamal-euro2024-intro",
+        "placeholder": true,
+        "prepStatus": "NEEDS_SOURCE_FILE"
+      },
+      "overlay": {
+        "text": "EURO 2024",
+        "style": "chapter"
+      },
+      "animation": "hardCut",
+      "unresolvedAssets": [
+        "video-yamal-euro2024-intro"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-16",
+      "start": 86.76,
+      "duration": 7.673,
+      "script": "SCRIPT-014",
+      "scriptRefs": [
+        "SCRIPT-014"
+      ],
+      "voiceIds": [
+        "voice-017"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-014:000"
+      ],
+      "layout": "mascot-left-stat-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-count-3__spain-home",
+        "pose": "count-3",
+        "outfit": "spain-home",
+        "supportingAsset": null,
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "16 ЛЕТ • 7 МАТЧЕЙ • 1+4",
+        "style": "stat-stack"
+      },
+      "animation": "counter",
+      "unresolvedAssets": [
+        "mascot-count-3__spain-home"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-17",
+      "start": 94.433,
+      "duration": 4.22,
+      "script": "SCRIPT-014",
+      "scriptRefs": [
+        "SCRIPT-014"
+      ],
+      "voiceIds": [
+        "voice-018"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-014:001"
+      ],
+      "layout": "full",
+      "visual": {
+        "type": "VIDEO",
+        "asset": "video-yamal-euro2024-france-champion",
+        "placeholder": true,
+        "prepStatus": "NEEDS_SELECTION"
+      },
+      "overlay": {
+        "text": "ЧЕМПИОН ЕВРОПЫ",
+        "style": "celebration-title"
+      },
+      "animation": "slowZoom",
+      "unresolvedAssets": [
+        "video-yamal-euro2024-france-champion"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-18",
+      "start": 98.653,
+      "duration": 9.177,
+      "script": "SCRIPT-015",
+      "scriptRefs": [
+        "SCRIPT-015"
+      ],
+      "voiceIds": [
+        "voice-019"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-015:000"
+      ],
+      "layout": "stat-left-mascot-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-celebrate__barcelona-home",
+        "pose": "celebrate",
+        "outfit": "barcelona-home",
+        "supportingAsset": null,
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "18 ГОЛОВ\n21 АССИСТ",
+        "style": "big-stat"
+      },
+      "animation": "counter",
+      "unresolvedAssets": [
+        "mascot-celebrate__barcelona-home"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-19",
+      "start": 107.83,
+      "duration": 7.888,
+      "script": "SCRIPT-016",
+      "scriptRefs": [
+        "SCRIPT-016"
+      ],
+      "voiceIds": [
+        "voice-020"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-016:000"
+      ],
+      "layout": "mascot-left-media-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-five__suit-navy",
+        "pose": "explain-five",
+        "outfit": "suit-navy",
+        "supportingAsset": "trophy-kopa",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "KOPA ×2 • BALLON D'OR #2",
+        "style": "award-card"
+      },
+      "animation": "slideUp",
+      "unresolvedAssets": [
+        "mascot-explain-five__suit-navy"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-20",
+      "start": 115.718,
+      "duration": 10.601,
+      "script": "SCRIPT-017",
+      "scriptRefs": [
+        "SCRIPT-017"
+      ],
+      "voiceIds": [
+        "voice-021",
+        "voice-022"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-017:000",
+        "SCRIPT-017:001"
+      ],
+      "layout": "media-left-mascot-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-six__barcelona-home",
+        "pose": "explain-six",
+        "outfit": "barcelona-home",
+        "supportingAsset": "player-yamal-barcelona-no10",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "16 ГОЛОВ • 12 АССИСТОВ\nИГРОК СЕЗОНА",
+        "style": "season-card"
+      },
+      "animation": "panLeft",
+      "unresolvedAssets": [
+        "mascot-explain-six__barcelona-home",
+        "player-yamal-barcelona-no10"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-21",
+      "start": 126.319,
+      "duration": 5.189,
+      "script": "SCRIPT-018",
+      "scriptRefs": [
+        "SCRIPT-018"
+      ],
+      "voiceIds": [
+        "voice-023"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-018:000"
+      ],
+      "layout": "mascot-overlay-right-video-full",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-celebrate__spain-home",
+        "pose": "celebrate",
+        "outfit": "spain-home",
+        "supportingAsset": "video-yamal-wc2026-saudi-goal",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "ПЕРВЫЙ ГОЛ НА ЧМ",
+        "style": "lower-third"
+      },
+      "animation": "hardCut",
+      "unresolvedAssets": [
+        "mascot-celebrate__spain-home",
+        "video-yamal-wc2026-saudi-goal"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-22",
+      "start": 131.508,
+      "duration": 5.172,
+      "script": "SCRIPT-018",
+      "scriptRefs": [
+        "SCRIPT-018"
+      ],
+      "voiceIds": [
+        "voice-024"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-018:001"
+      ],
+      "layout": "full",
+      "visual": {
+        "type": "VIDEO",
+        "asset": "video-wc2026-final-win",
+        "placeholder": true,
+        "prepStatus": "NEEDS_SOURCE_FILE"
+      },
+      "overlay": {
+        "text": "1:0 • ЧЕМПИОН МИРА",
+        "style": "final-score"
+      },
+      "animation": "slowZoom",
+      "unresolvedAssets": [
+        "video-wc2026-final-win"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-23",
+      "start": 136.68,
+      "duration": 7.9,
+      "script": "SCRIPT-019",
+      "scriptRefs": [
+        "SCRIPT-019"
+      ],
+      "voiceIds": [
+        "voice-025"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-019:000"
+      ],
+      "layout": "full",
+      "visual": {
+        "type": "STAT",
+        "asset": null,
+        "placeholder": true,
+        "prepStatus": null
+      },
+      "overlay": {
+        "text": "И ЭТО ВСЁ — К 19",
+        "style": "hero-statement"
+      },
+      "animation": "counter",
+      "unresolvedAssets": [
+        null
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-24",
+      "start": 144.58,
+      "duration": 11.89,
+      "script": "SCRIPT-CTA-MIDDLE",
+      "scriptRefs": [
+        "SCRIPT-CTA-MIDDLE"
+      ],
+      "voiceIds": [
+        "voice-026",
+        "voice-027"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-CTA-MIDDLE:000",
+        "SCRIPT-CTA-MIDDLE:001"
+      ],
+      "layout": "mascot-center",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-five__barcelona-home",
+        "pose": "explain-five",
+        "outfit": "barcelona-home",
+        "supportingAsset": null,
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "ПЕРЕОЦЕНЁН\nИЛИ БУДУЩАЯ ЛЕГЕНДА?",
+        "style": "cta-question"
+      },
+      "animation": "fade",
+      "unresolvedAssets": [
+        "mascot-explain-five__barcelona-home"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-25",
+      "start": 156.47,
+      "duration": 4.696,
+      "script": "SCRIPT-020",
+      "scriptRefs": [
+        "SCRIPT-020"
+      ],
+      "voiceIds": [
+        "voice-028"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-020:000"
+      ],
+      "layout": "mascot-center",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-think-three__default-home",
+        "pose": "think-three",
+        "outfit": "default-home",
+        "supportingAsset": null
+      },
+      "overlay": {
+        "text": "ОКЕЙ. А ТЕПЕРЬ — ЧЕСТНАЯ МЕТРИКА.",
+        "style": "chapter"
+      },
+      "animation": "slideUp"
+    },
+    {
+      "id": "scene-26",
+      "start": 161.166,
+      "duration": 8.375,
+      "script": "SCRIPT-021",
+      "scriptRefs": [
+        "SCRIPT-021"
+      ],
+      "voiceIds": [
+        "voice-029",
+        "voice-030"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-021:000",
+        "SCRIPT-021:001"
+      ],
+      "layout": "mascot-left-media-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-three__default-home",
+        "pose": "explain-three",
+        "outfit": "default-home",
+        "supportingAsset": "diagram-yamal-messi-style"
+      },
+      "overlay": {
+        "text": "ПОХОЖИ — НО НЕ ОДИНАКОВЫ",
+        "style": "analysis"
+      },
+      "animation": "slideRight"
+    },
+    {
+      "id": "scene-27",
+      "start": 169.541,
+      "duration": 7.563,
+      "script": "SCRIPT-022",
+      "scriptRefs": [
+        "SCRIPT-022"
+      ],
+      "voiceIds": [
+        "voice-031"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-022:000"
+      ],
+      "layout": "stat-left-mascot-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-point-left-three__default-home",
+        "pose": "point-left-three",
+        "outfit": "default-home",
+        "supportingAsset": null
+      },
+      "overlay": {
+        "text": "100 МАТЧЕЙ ЛА ЛИГИ\nЯМАЛЬ 29 — 48 МЕССИ",
+        "style": "comparison-big"
+      },
+      "animation": "counter",
+      "unresolvedAssets": [
+        "player-messi-early-barcelona",
+        "player-yamal-barcelona-no10"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-28",
+      "start": 177.104,
+      "duration": 8.597,
+      "script": "SCRIPT-023",
+      "scriptRefs": [
+        "SCRIPT-023"
+      ],
+      "voiceIds": [
+        "voice-032"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-023:000"
+      ],
+      "layout": "mascot-center",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-stop__default-home",
+        "pose": "stop",
+        "outfit": "default-home",
+        "supportingAsset": null
+      },
+      "overlay": {
+        "text": "РАНЬШЕ ≠ ЛУЧШЕ",
+        "style": "warning"
+      },
+      "animation": "shake"
+    },
+    {
+      "id": "scene-29",
+      "start": 185.701,
+      "duration": 9.785,
+      "script": "SCRIPT-024",
+      "scriptRefs": [
+        "SCRIPT-024"
+      ],
+      "voiceIds": [
+        "voice-033"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-024:000"
+      ],
+      "layout": "mascot-right-text-left",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-think-one__default-home",
+        "pose": "think-one",
+        "outfit": "default-home",
+        "supportingAsset": null
+      },
+      "overlay": {
+        "text": "МОЖНО ЛИ В 19\nТРЕБОВАТЬ КАРЬЕРУ МЕССИ?",
+        "style": "question"
+      },
+      "animation": "fade"
+    },
+    {
+      "id": "scene-30",
+      "start": 195.486,
+      "duration": 10.536,
+      "script": "SCRIPT-025",
+      "scriptRefs": [
+        "SCRIPT-025"
+      ],
+      "voiceIds": [
+        "voice-034"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-025:000"
+      ],
+      "layout": "full",
+      "visual": {
+        "type": "NEWSPAPER",
+        "asset": "newspaper-new-messi-comparisons"
+      },
+      "overlay": {
+        "text": "«НОВЫЙ МЕССИ» — СТАРЫЙ ЯРЛЫК",
+        "style": "newspaper-headline"
+      },
+      "animation": "slideLeft"
+    },
+    {
+      "id": "scene-31",
+      "start": 206.022,
+      "duration": 10.169,
+      "script": "SCRIPT-026",
+      "scriptRefs": [
+        "SCRIPT-026"
+      ],
+      "voiceIds": [
+        "voice-035"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-026:000"
+      ],
+      "layout": "mascot-left-media-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-annoyed-two__barcelona-home",
+        "pose": "annoyed-two",
+        "outfit": "barcelona-home",
+        "supportingAsset": "coach-hansi-flick",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "РИСК №1 — НАГРУЗКА",
+        "style": "risk"
+      },
+      "animation": "panRight",
+      "unresolvedAssets": [
+        "coach-hansi-flick",
+        "mascot-annoyed-two__barcelona-home"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-32",
+      "start": 216.191,
+      "duration": 5.508,
+      "script": "SCRIPT-026",
+      "scriptRefs": [
+        "SCRIPT-026"
+      ],
+      "voiceIds": [
+        "voice-036"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-026:001"
+      ],
+      "layout": "full",
+      "visual": {
+        "type": "PLAYER_PHOTO",
+        "asset": "player-yamal-injury-2026",
+        "placeholder": true,
+        "prepStatus": "NEEDS_SELECTION"
+      },
+      "overlay": {
+        "text": "APR 2026 • HAMSTRING",
+        "style": "injury-card"
+      },
+      "animation": "slowZoom",
+      "unresolvedAssets": [
+        "player-yamal-injury-2026"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-33",
+      "start": 221.699,
+      "duration": 7.227,
+      "script": "SCRIPT-027",
+      "scriptRefs": [
+        "SCRIPT-027"
+      ],
+      "voiceIds": [
+        "voice-037"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-027:000"
+      ],
+      "layout": "mascot-left-stat-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-six__default-home",
+        "pose": "explain-six",
+        "outfit": "default-home",
+        "supportingAsset": null
+      },
+      "overlay": {
+        "text": "2–3 СЕЗОНА ≠ ДЕСЯТИЛЕТИЕ СТАБИЛЬНОСТИ",
+        "style": "timeline-statement"
+      },
+      "animation": "slideRight"
+    },
+    {
+      "id": "scene-34",
+      "start": 228.926,
+      "duration": 8.632,
+      "script": "SCRIPT-028",
+      "scriptRefs": [
+        "SCRIPT-028"
+      ],
+      "voiceIds": [
+        "voice-038"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-028:000"
+      ],
+      "layout": "mascot-center",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-four__default-home",
+        "pose": "explain-four",
+        "outfit": "default-home",
+        "supportingAsset": null
+      },
+      "overlay": {
+        "text": "ПЕРЕОЦЕНЁН КАК ИГРОК? НЕТ.\nМЫ ТОРОПИМСЯ С ВЕРДИКТОМ? ДА.",
+        "style": "verdict"
+      },
+      "animation": "fade"
+    },
+    {
+      "id": "scene-35",
+      "start": 237.558,
+      "duration": 7.157,
+      "script": "SCRIPT-029",
+      "scriptRefs": [
+        "SCRIPT-029"
+      ],
+      "voiceIds": [
+        "voice-039"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-029:000"
+      ],
+      "layout": "split-players-mascot-bottom",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-four__default-home",
+        "pose": "explain-four",
+        "outfit": "default-home",
+        "supportingAsset": "player-messi-wc2026-final"
+      },
+      "overlay": {
+        "text": "ВНИМАНИЕ МИРА — УЖЕ.\nМЕСТО В ИСТОРИИ — ЕЩЁ НЕТ.",
+        "style": "conclusion"
+      },
+      "animation": "zoomOut",
+      "unresolvedAssets": [
+        "player-messi-wc2026-final",
+        "player-yamal-spain-wc2026"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-36",
+      "start": 244.715,
+      "duration": 9.038,
+      "script": "SCRIPT-030",
+      "scriptRefs": [
+        "SCRIPT-030"
+      ],
+      "voiceIds": [
+        "voice-040"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-030:000"
+      ],
+      "layout": "full",
+      "visual": {
+        "type": "PLAYER_PHOTO",
+        "asset": "player-yamal-hero-portrait",
+        "placeholder": true,
+        "prepStatus": "NEEDS_SOURCE_FILE"
+      },
+      "overlay": {
+        "text": "НЕ «НОВЫЙ МЕССИ».\nЛАМИН ЯМАЛЬ.",
+        "style": "final-thesis"
+      },
+      "animation": "slowZoom",
+      "unresolvedAssets": [
+        "player-yamal-hero-portrait"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-37",
+      "start": 253.753,
+      "duration": 8.882,
+      "script": "SCRIPT-CTA-END",
+      "scriptRefs": [
+        "SCRIPT-CTA-END"
+      ],
+      "voiceIds": [
+        "voice-041"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-CTA-END:000"
+      ],
+      "layout": "mascot-center",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-point-right-two__barcelona-home",
+        "pose": "point-right-two",
+        "outfit": "barcelona-home",
+        "supportingAsset": null,
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "ПОДПИШИСЬ • А КЕМ СТАНЕТ ЯМАЛЬ?",
+        "style": "cta-end"
+      },
+      "animation": "slideUp",
+      "unresolvedAssets": [
+        "mascot-point-right-two__barcelona-home"
+      ],
+      "draftPlaceholders": true
+    }
+  ],
+  "draft": true,
+  "totalDuration": 262.635
 }

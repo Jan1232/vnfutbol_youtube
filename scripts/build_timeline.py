@@ -58,24 +58,44 @@ def partition_segments(segments: list[dict], scene_count: int) -> list[list[dict
 def assign_voice(
     scenes: list[dict], segments: list[dict]
 ) -> dict[str, list[dict]]:
-    """Return scene_id -> ordered voice segments."""
+    """Return scene_id -> ordered voice segments.
+
+    Explicit scene.voiceSourceKeys is authoritative when present.
+    """
     by_script: dict[str, list[dict]] = defaultdict(list)
+    by_key: dict[str, dict] = {}
     for seg in segments:
         script = seg.get("script")
         if script:
             by_script[script].append(seg)
+        key = seg.get("sourceKey")
+        if key:
+            by_key[key] = seg
 
-    # Preserve segment order already present in voice.json
     assignment: dict[str, list[dict]] = {}
     scenes_by_script: dict[str, list[dict]] = defaultdict(list)
+    explicit_keys_used: set[str] = set()
+
     for scene in scenes:
         refs = scene.get("scriptRefs") or []
         if not refs:
             raise ValueError(f"{scene.get('id')}: missing scriptRefs")
+        explicit = scene.get("voiceSourceKeys")
+        if explicit:
+            chosen: list[dict] = []
+            for key in explicit:
+                seg = by_key.get(key)
+                if seg is None:
+                    raise ValueError(
+                        f"{scene['id']}: voiceSourceKey `{key}` not found in voice.json"
+                    )
+                chosen.append(seg)
+                explicit_keys_used.add(key)
+            assignment[scene["id"]] = chosen
+            continue
         if len(refs) == 1:
             scenes_by_script[refs[0]].append(scene)
         else:
-            # Concatenate segments for each ref in order for this single scene
             combined: list[dict] = []
             for ref in refs:
                 combined.extend(by_script.get(ref) or [])
@@ -84,9 +104,19 @@ def assign_voice(
             assignment[scene["id"]] = combined
 
     for script_id, script_scenes in scenes_by_script.items():
-        segs = by_script.get(script_id) or []
-        if not segs:
-            raise ValueError(f"no voice segments for {script_id}")
+        segs = [
+            seg
+            for seg in (by_script.get(script_id) or [])
+            if seg.get("sourceKey") not in explicit_keys_used
+        ]
+        # If some segments of this script were claimed by explicit keys, remaining
+        # auto scenes only see unclaimed segments.
+        if not segs and script_scenes:
+            raise ValueError(
+                f"AMBIGUOUS_SCENE_SPLIT: script {script_id} has no unclaimed voice "
+                f"segments for scenes {[s['id'] for s in script_scenes]}; "
+                "set explicit voiceSourceKeys on those scenes"
+            )
         if len(script_scenes) == 1:
             assignment[script_scenes[0]["id"]] = segs
             continue
@@ -97,13 +127,15 @@ def assign_voice(
                 raise ValueError(
                     f"AMBIGUOUS_SCENE_SPLIT: script {script_id} has "
                     f"{len(segs)} voice segment(s) for {len(script_scenes)} scenes "
-                    f"{[s['id'] for s in script_scenes]}"
+                    f"{[s['id'] for s in script_scenes]}; "
+                    "set explicit voiceSourceKeys on those scenes"
                 ) from exc
             raise
         for scene, part in zip(script_scenes, parts):
             if not part:
                 raise ValueError(
-                    f"AMBIGUOUS_SCENE_SPLIT: empty partition for {scene['id']} / {script_id}"
+                    f"AMBIGUOUS_SCENE_SPLIT: empty partition for {scene['id']} / {script_id}; "
+                    "set explicit voiceSourceKeys"
                 )
             assignment[scene["id"]] = part
     return assignment
@@ -128,10 +160,16 @@ def collect_gate_blockers(
                 if not rec:
                     blockers.append(f"{sid}: prepared record missing for {mascot['assetId']}")
                 elif rec.get("status") != "READY_MASCOT":
-                    blockers.append(
-                        f"{sid}: mascot {mascot['assetId']} status={rec.get('status')} "
-                        f"({rec.get('notes')})"
-                    )
+                    if allow_placeholders and rec.get("status") == "BLOCKED" and mascot.get(
+                        "basePose"
+                    ):
+                        # Draft may use approved base pose as outfit placeholder.
+                        pass
+                    else:
+                        blockers.append(
+                            f"{sid}: mascot {mascot['assetId']} status={rec.get('status')} "
+                            f"({rec.get('notes')})"
+                        )
 
         for asset_id in scene.get("assetRequests") or []:
             if mascot and asset_id == mascot.get("assetId"):
@@ -191,9 +229,6 @@ def build_scene_entry(
         asset_id = mascot.get("assetId")
         rec = prepared.get(asset_id or "") or {}
         outfit = (rec.get("mascot") or {}).get("outfit")
-        if outfit is None:
-            # fall back from assets via notes — timeline stores resolved ids from plan freeze
-            outfit = None
         visual = {
             "type": "MASCOT",
             "asset": asset_id,
@@ -201,6 +236,10 @@ def build_scene_entry(
             "outfit": outfit,
             "supportingAsset": supporting_asset(scene),
         }
+        if allow_placeholders and rec.get("status") == "BLOCKED":
+            visual["placeholderOutfit"] = True
+            visual["prepStatus"] = "BLOCKED"
+            placeholders.append(asset_id)
     else:
         asset_id = supporting_asset(scene)
         if not asset_id and scene.get("assetRequests"):
@@ -255,7 +294,8 @@ def enrich_mascot_outfits(video_dir: Path, scenes_out: list[dict]) -> None:
         if not asset:
             continue
         mascot = asset.get("mascot") or {}
-        visual["outfit"] = mascot.get("resolvedOutfit") or DEFAULT_OUTFIT
+        # Always preserve the requested/resolved outfit id, even as a placeholder.
+        visual["outfit"] = mascot.get("resolvedOutfit") or visual.get("outfit") or DEFAULT_OUTFIT
         visual["pose"] = mascot.get("basePose") or visual.get("pose")
 
 
@@ -288,7 +328,7 @@ def build(video_dir: Path, allow_placeholders: bool) -> int:
     if blockers and not allow_placeholders:
         return fail(blockers)
     if blockers and allow_placeholders:
-        # Placeholder mode allows unresolved external media only.
+        # Draft tolerates unresolved externals and blocked outfit variants (base pose only).
         hard = [
             b
             for b in blockers
@@ -323,6 +363,11 @@ def build(video_dir: Path, allow_placeholders: bool) -> int:
 
     enrich_mascot_outfits(video_dir, timeline_scenes)
 
+    total_duration = 0.0
+    if timeline_scenes:
+        last = timeline_scenes[-1]
+        total_duration = float(last["start"]) + float(last["duration"])
+
     existing = load_json(paths["timeline"]) if paths["timeline"].exists() else {}
     payload = {
         "version": 1,
@@ -331,10 +376,14 @@ def build(video_dir: Path, allow_placeholders: bool) -> int:
         "height": int(existing.get("height") or 1080),
         "scenes": timeline_scenes,
         "draft": bool(allow_placeholders),
+        "totalDuration": round(total_duration, 3),
     }
     write_json(paths["timeline"], payload)
     mode = "draft-placeholders" if allow_placeholders else "final"
-    print(f"OK    timeline scenes={len(timeline_scenes)} mode={mode}")
+    print(
+        f"OK    timeline scenes={len(timeline_scenes)} mode={mode} "
+        f"duration={total_duration:.3f}s"
+    )
     return 0
 
 

@@ -13,11 +13,20 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from asset_prep_common import sha256_file, write_json
-from build_timeline import assign_voice, partition_segments
-from prepare_assets import cmd_ingest, cmd_plan, load_prepared, merge_preserve
-from sync_mascot_assets import match_pose_candidates, resolve_base_pose, sync
+from build_timeline import assign_voice, collect_gate_blockers, partition_segments
+from prepare_assets import (
+    apply_source_reuse,
+    cmd_ingest,
+    cmd_plan,
+    distinct_source_files_needed,
+    load_prepared,
+    merge_preserve,
+)
+from sync_mascot_assets import resolve_base_pose, resolve_subject, sync
 from validate_video import validate_assets, Report
-from mascot_common import load_poses
+from mascot_common import load_poses, pose_by_id
+import review_mascot_masks as review_masks
+import mascot_common as mc
 
 
 def assert_true(cond: bool, message: str) -> None:
@@ -388,7 +397,6 @@ def test_validator_v1_v2() -> None:
 
 def test_no_fetch_without_flag() -> None:
     # ensure argparse rejects running multiple; and plan does not call network
-    from prepare_assets import main as prep_main
     import prepare_assets as mod
 
     called = {"fetch": False}
@@ -409,9 +417,229 @@ def test_no_fetch_without_flag() -> None:
         mod.cmd_fetch_external = original  # type: ignore
 
 
+def test_generic_subject_not_yamal(tmp: Path) -> None:
+    video = make_video_fixture(tmp / "generic-subject")
+    write_json(
+        video / "context" / "entities.json",
+        {
+            "version": 1,
+            "entities": [
+                {
+                    "id": "player-demo-non-yamal",
+                    "type": "PLAYER",
+                    "name": "Demo Player",
+                    "currentClub": {"name": "FC Barcelona", "outfit": "barcelona-home"},
+                    "nationalTeam": {"name": "Spain", "outfit": "spain-home"},
+                }
+            ],
+        },
+    )
+    plan = json.loads((video / "scenes" / "visual-plan.json").read_text(encoding="utf-8"))
+    for scene in plan["scenes"]:
+        if scene.get("mascot"):
+            scene["mascot"].pop("subject", None)
+            scene["mascot"].pop("basePose", None)
+            scene["mascot"].pop("assetId", None)
+    # wipe previous assets mascots
+    assets = json.loads((video / "assets" / "assets.json").read_text(encoding="utf-8"))
+    assets["assets"] = [a for a in assets["assets"] if a.get("type") != "MASCOT"]
+    write_json(video / "assets" / "assets.json", assets)
+    write_json(video / "scenes" / "visual-plan.json", plan)
+    assert_true(sync(video) == 0, "sync with non-yamal player")
+    plan2 = json.loads((video / "scenes" / "visual-plan.json").read_text(encoding="utf-8"))
+    club_scene = next(s for s in plan2["scenes"] if s.get("outfitIntent") == "current-club")
+    assert_true(
+        club_scene["mascot"].get("subject") == "player-demo-non-yamal",
+        club_scene["mascot"],
+    )
+    # multiple players must fail without explicit subject
+    write_json(
+        video / "context" / "entities.json",
+        {
+            "version": 1,
+            "entities": [
+                {
+                    "id": "player-a",
+                    "type": "PLAYER",
+                    "name": "A",
+                    "currentClub": {"outfit": "barcelona-home"},
+                    "nationalTeam": {"outfit": "spain-home"},
+                },
+                {
+                    "id": "player-b",
+                    "type": "PLAYER",
+                    "name": "B",
+                    "currentClub": {"outfit": "barcelona-home"},
+                    "nationalTeam": {"outfit": "spain-home"},
+                },
+            ],
+        },
+    )
+    for scene in plan2["scenes"]:
+        if scene.get("mascot"):
+            scene["mascot"].pop("subject", None)
+            scene["mascot"].pop("basePose", None)
+            scene["mascot"].pop("assetId", None)
+    write_json(video / "scenes" / "visual-plan.json", plan2)
+    assets = json.loads((video / "assets" / "assets.json").read_text(encoding="utf-8"))
+    assets["assets"] = [a for a in assets["assets"] if a.get("type") != "MASCOT"]
+    write_json(video / "assets" / "assets.json", assets)
+    assert_true(sync(video) == 1, "multiple players must require explicit subject")
+
+
+def test_voice_source_keys_authoritative() -> None:
+    scenes = [
+        {
+            "id": "scene-01",
+            "scriptRefs": ["SCRIPT-001"],
+            "voiceSourceKeys": ["SCRIPT-001:001"],
+        },
+        {"id": "scene-02", "scriptRefs": ["SCRIPT-001"]},
+    ]
+    segs = [
+        {"id": "v1", "script": "SCRIPT-001", "sourceKey": "SCRIPT-001:000", "startMs": 0, "endMs": 10},
+        {"id": "v2", "script": "SCRIPT-001", "sourceKey": "SCRIPT-001:001", "startMs": 10, "endMs": 20},
+    ]
+    assignment = assign_voice(scenes, segs)
+    assert_true(assignment["scene-01"][0]["id"] == "v2", assignment)
+    assert_true(assignment["scene-02"][0]["id"] == "v1", assignment)
+
+
+def test_placeholder_outfit_gate() -> None:
+    scenes = [
+        {
+            "id": "scene-01",
+            "mascot": {"basePose": "explain-one", "assetId": "mascot-x"},
+            "assetRequests": ["photo-demo"],
+        }
+    ]
+    prepared = {
+        "mascot-x": {
+            "status": "BLOCKED",
+            "notes": "pending",
+            "mascot": {"basePose": "explain-one", "outfit": "spain-home"},
+        },
+        "photo-demo": {"status": "NEEDS_SOURCE_FILE"},
+    }
+    final_blockers = collect_gate_blockers(scenes, prepared, allow_placeholders=False)
+    assert_true(any("mascot-x" in b for b in final_blockers), final_blockers)
+    draft_blockers = collect_gate_blockers(scenes, prepared, allow_placeholders=True)
+    assert_true(not any("mascot-x" in b for b in draft_blockers), draft_blockers)
+
+
+def test_source_reuse_annotation() -> None:
+    records = [
+        {"id": "video-a", "status": "NEEDS_SOURCE_FILE", "sourceUrl": "http://x"},
+        {"id": "frame-b", "status": "NEEDS_SOURCE_FILE", "sourceUrl": "http://x"},
+        {"id": "trophy-z", "status": "NEEDS_SOURCE_FILE"},
+    ]
+    reuse = {
+        "groups": [
+            {
+                "id": "g1",
+                "primaryAsset": "video-a",
+                "outputs": [
+                    {"assetId": "video-a", "derive": "video-excerpt"},
+                    {"assetId": "frame-b", "derive": "video-frame-fallback"},
+                ],
+            }
+        ],
+        "renderInsteadOfExternalPreferred": [
+            {"assetId": "trophy-z", "reason": "render graphic"}
+        ],
+    }
+    moved = apply_source_reuse(records, reuse)
+    by_id = {r["id"]: r for r in records}
+    assert_true(by_id["trophy-z"]["status"] == "READY_RENDER_SPEC", by_id["trophy-z"])
+    assert_true(by_id["frame-b"].get("derivedFrom") == "video-a", by_id["frame-b"])
+    assert_true(by_id["frame-b"].get("sourceGroup") == "g1", by_id["frame-b"])
+    needed = distinct_source_files_needed(records, reuse)
+    assert_true(needed == ["video-a"], needed)
+    assert_true(moved == [], moved)
+
+
+def test_mask_review_rules(tmp: Path) -> None:
+    video = tmp / "mask-video"
+    (video / "assets").mkdir(parents=True)
+    write_json(
+        video / "assets" / "prepared-assets.json",
+        {
+            "version": 1,
+            "assets": [
+                {
+                    "id": "m1",
+                    "status": "BLOCKED",
+                    "mascot": {"basePose": "celebrate", "outfit": "barcelona-home"},
+                },
+                {
+                    "id": "m2",
+                    "status": "BLOCKED",
+                    "mascot": {"basePose": "celebrate", "outfit": "spain-home"},
+                },
+                {
+                    "id": "m3",
+                    "status": "BLOCKED",
+                    "mascot": {"basePose": "stop", "outfit": "barcelona-home"},
+                },
+            ],
+        },
+    )
+    mapping = review_masks.blocked_pose_outfits(video)
+    assert_true(list(mapping.keys()) == ["celebrate", "stop"], mapping)
+    assert_true(mapping["celebrate"] == ["barcelona-home", "spain-home"], mapping)
+
+    pose = pose_by_id("celebrate")
+    assert_true(pose is not None, "celebrate pose required")
+    mask = next(m for m in mc.load_masks()["masks"] if m["basePose"] == "celebrate")
+    original = json.loads(mc.MASKS_PATH.read_text(encoding="utf-8"))
+    try:
+        # hash mismatch cannot approve
+        bad = json.loads(json.dumps(original))
+        for item in bad["masks"]:
+            if item["basePose"] == "celebrate":
+                item["sha256"] = "0" * 64
+                item["status"] = "generated"
+        mc.MASKS_PATH.write_text(json.dumps(bad, indent=2) + "\n", encoding="utf-8")
+        rc = review_masks.update_mask_status(["celebrate"], "approved", None)
+        assert_true(rc == 1, "hash mismatch must fail approve")
+
+        # stale base pose cannot approve
+        bad = json.loads(json.dumps(original))
+        for item in bad["masks"]:
+            if item["basePose"] == "celebrate":
+                item["basePoseSha256"] = "1" * 64
+                item["status"] = "generated"
+        mc.MASKS_PATH.write_text(json.dumps(bad, indent=2) + "\n", encoding="utf-8")
+        rc = review_masks.update_mask_status(["celebrate"], "approved", None)
+        assert_true(rc == 1, "stale pose must fail approve")
+
+        # explicit reject
+        mc.MASKS_PATH.write_text(json.dumps(original, indent=2) + "\n", encoding="utf-8")
+        rc = review_masks.update_mask_status(["celebrate"], "rejected", "mask overlaps hand")
+        assert_true(rc == 0, "reject should succeed")
+        after = json.loads(mc.MASKS_PATH.read_text(encoding="utf-8"))
+        celeb = next(m for m in after["masks"] if m["basePose"] == "celebrate")
+        assert_true(celeb["status"] == "rejected", celeb)
+        assert_true(celeb.get("rejectedReason") == "mask overlaps hand", celeb)
+
+        # restore generated then approve with valid hashes
+        for item in after["masks"]:
+            if item["basePose"] == "celebrate":
+                item["status"] = "generated"
+                item.pop("rejectedReason", None)
+        mc.MASKS_PATH.write_text(json.dumps(after, indent=2) + "\n", encoding="utf-8")
+        rc = review_masks.update_mask_status(["celebrate"], "approved", None)
+        assert_true(rc == 0, "valid approve should succeed")
+        approved = json.loads(mc.MASKS_PATH.read_text(encoding="utf-8"))
+        celeb = next(m for m in approved["masks"] if m["basePose"] == "celebrate")
+        assert_true(celeb["status"] == "approved", celeb)
+    finally:
+        # Never leave editorial mask state changed by tests.
+        mc.MASKS_PATH.write_text(json.dumps(original, indent=2) + "\n", encoding="utf-8")
+
+
 def main() -> int:
     failed = 0
-    tests = []
 
     def run(name, fn):
         nonlocal failed
@@ -425,7 +653,6 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as tmp_raw:
         tmp = Path(tmp_raw)
         video = make_video_fixture(tmp)
-        # Redirect localRoot under tmp already
         run("pose_deterministic", test_pose_deterministic)
         run("no_invented_pose", test_no_invented_pose)
         run("mascot_dedupe", lambda: test_mascot_dedupe(video))
@@ -434,6 +661,11 @@ def main() -> int:
         run("timeline_partition", test_timeline_partition)
         run("validator_v1_v2", test_validator_v1_v2)
         run("no_fetch_without_flag", test_no_fetch_without_flag)
+        run("generic_subject_not_yamal", lambda: test_generic_subject_not_yamal(tmp))
+        run("voice_source_keys_authoritative", test_voice_source_keys_authoritative)
+        run("placeholder_outfit_gate", test_placeholder_outfit_gate)
+        run("source_reuse_annotation", test_source_reuse_annotation)
+        run("mask_review_rules", lambda: test_mask_review_rules(tmp))
 
     if failed:
         print(f"FAIL  {failed} test(s)")

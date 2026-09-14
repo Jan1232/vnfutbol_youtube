@@ -18,12 +18,51 @@ from mascot_common import (
     resolve_outfit,
 )
 
-YAMAL_SUBJECT = "player-lamine-yamal"
-
-
 def fail(message: str) -> int:
     print(f"ERROR {message}")
     return 1
+
+
+def player_entities(entities: dict[str, dict]) -> list[dict]:
+    return [
+        entity
+        for entity in entities.values()
+        if isinstance(entity, dict) and entity.get("type") == "PLAYER" and entity.get("id")
+    ]
+
+
+def resolve_subject(
+    scene: dict,
+    outfit_intent: str,
+    entities: dict[str, dict],
+) -> str | None:
+    """Resolve mascot subject without hardcoding any player id."""
+    mascot = scene.get("mascot") or {}
+    explicit = mascot.get("subject")
+    if explicit:
+        if explicit not in entities:
+            raise ValueError(
+                f"{scene.get('id')}: mascot.subject `{explicit}` is missing from entities.json"
+            )
+        return explicit
+    if outfit_intent not in {"current-club", "national-team"}:
+        return None
+    players = player_entities(entities)
+    if len(players) == 1:
+        subject = players[0]["id"]
+        mascot["subject"] = subject
+        scene["mascot"] = mascot
+        return subject
+    if not players:
+        raise ValueError(
+            f"{scene.get('id')}: outfitIntent={outfit_intent} requires mascot.subject, "
+            "but context/entities.json has no PLAYER entities"
+        )
+    ids = ", ".join(sorted(p["id"] for p in players))
+    raise ValueError(
+        f"{scene.get('id')}: outfitIntent={outfit_intent} requires explicit mascot.subject "
+        f"because multiple PLAYER entities exist ({ids})"
+    )
 
 
 def approved_poses() -> list[dict]:
@@ -85,12 +124,6 @@ def scene_outfit_intent(scene: dict) -> str:
     if mascot.get("outfitIntent"):
         return mascot["outfitIntent"]
     raise ValueError(f"{scene.get('id')}: missing outfitIntent")
-
-
-def subject_for_intent(intent: str) -> str | None:
-    if intent in {"current-club", "national-team"}:
-        return YAMAL_SUBJECT
-    return None
 
 
 def next_mascot_asset_id(existing_ids: set[str], base_pose: str, outfit: str) -> str:
@@ -187,10 +220,8 @@ def sync(video_dir: Path) -> int:
         try:
             base_pose = resolve_base_pose(scene, poses)
             outfit_intent = scene_outfit_intent(scene)
-            subject = subject_for_intent(outfit_intent)
+            subject = resolve_subject(scene, outfit_intent, entities)
             entity = entities.get(subject) if subject else None
-            if subject and entity is None:
-                raise ValueError(f"subject `{subject}` missing from entities.json")
             resolved = resolve_outfit(
                 outfit_intent,
                 {"explicitOutfit": (scene.get("mascot") or {}).get("explicitOutfit")},

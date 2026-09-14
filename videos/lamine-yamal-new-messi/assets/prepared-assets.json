@@ -1,7 +1,7 @@
 {
   "version": 1,
   "video": "lamine-yamal-new-messi",
-  "generatedAt": "2026-09-14T20:27:59+00:00",
+  "generatedAt": "2026-09-14T21:09:56+00:00",
   "localRoot": ".local-assets/lamine-yamal-new-messi",
   "assets": [
     {
@@ -40,7 +40,11 @@
       "usedInScenes": [
         "scene-01"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "no usable public image candidates discovered",
+      "sourceGroup": "wc2026-final",
+      "derive": "video-excerpt",
+      "selectionNotes": "opening/stadium/teams/trophy atmosphere",
+      "candidates": []
     },
     {
       "id": "player-messi-wc2026-final",
@@ -62,7 +66,11 @@
         "scene-04",
         "scene-35"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "awaits primary source `video-wc2026-final-atmosphere` (video-frame-fallback); do not duplicate source bytes",
+      "sourceGroup": "wc2026-final",
+      "derive": "video-frame-fallback",
+      "derivedFrom": "video-wc2026-final-atmosphere",
+      "selectionNotes": "clean close/medium frame of Messi in Argentina kit"
     },
     {
       "id": "mascot-explain-six__default-home",
@@ -110,7 +118,11 @@
         "scene-04",
         "scene-35"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "awaits primary source `video-wc2026-final-atmosphere` (video-frame-fallback); do not duplicate source bytes",
+      "sourceGroup": "wc2026-final",
+      "derive": "video-frame-fallback",
+      "derivedFrom": "video-wc2026-final-atmosphere",
+      "selectionNotes": "clean close/medium frame of Yamal in Spain kit"
     },
     {
       "id": "mascot-point-left-two__spain-home",
@@ -256,7 +268,7 @@
     {
       "id": "trophy-kopa",
       "type": "TROPHY",
-      "status": "NEEDS_SOURCE_FILE",
+      "status": "READY_RENDER_SPEC",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -272,12 +284,13 @@
         "scene-07",
         "scene-19"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "For draft/final graphic, prefer an original stylized Kopa-labelled trophy graphic over a third-party ceremony photo when no cleared still is available.",
+      "derive": "render-preferred"
     },
     {
       "id": "trophy-ballon-dor",
       "type": "TROPHY",
-      "status": "NEEDS_SOURCE_FILE",
+      "status": "READY_RENDER_SPEC",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -293,12 +306,13 @@
         "scene-07",
         "scene-19"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "Prefer an original golden-ball award graphic plus explicit #2 label; never imply Yamal won the 2025 Ballon d'Or.",
+      "derive": "render-preferred"
     },
     {
       "id": "player-yamal-barcelona-no10",
       "type": "PLAYER_PHOTO",
-      "status": "NEEDS_SOURCE_FILE",
+      "status": "NEEDS_SELECTION",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -315,7 +329,19 @@
         "scene-20",
         "scene-27"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "discovered 6 candidate image(s); select one explicitly before prepare",
+      "sourceGroup": "yamal-barcelona-no10",
+      "derive": "image-crop",
+      "selectionNotes": "No.10 clearly readable",
+      "candidates": [
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-barcelona-no10/candidate-00.jpg",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-barcelona-no10/candidate-01.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-barcelona-no10/candidate-02.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-barcelona-no10/candidate-04.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-barcelona-no10/candidate-05.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-barcelona-no10/candidate-06.png"
+      ],
+      "previewPath": ".local-assets/lamine-yamal-new-messi/previews/player-yamal-barcelona-no10-candidates.jpg"
     },
     {
       "id": "mascot-shock-one__barcelona-home",
@@ -385,7 +411,8 @@
       "usedInScenes": [
         "scene-10"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "no usable public image candidates discovered",
+      "candidates": []
     },
     {
       "id": "map-mataro-rocafonda",
@@ -435,7 +462,7 @@
     {
       "id": "player-yamal-youth-lamasia",
       "type": "HISTORICAL_PHOTO",
-      "status": "NEEDS_SOURCE_FILE",
+      "status": "NEEDS_SELECTION",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -450,7 +477,18 @@
       "usedInScenes": [
         "scene-12"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "discovered 8 candidate image(s); select one explicitly before prepare",
+      "candidates": [
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-youth-lamasia/candidate-00.jpg",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-youth-lamasia/candidate-01.jpeg",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-youth-lamasia/candidate-02.jpeg",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-youth-lamasia/candidate-03.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-youth-lamasia/candidate-04.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-youth-lamasia/candidate-06.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-youth-lamasia/candidate-07.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-youth-lamasia/candidate-08.png"
+      ],
+      "previewPath": ".local-assets/lamine-yamal-new-messi/previews/player-yamal-youth-lamasia-candidates.jpg"
     },
     {
       "id": "mascot-explain-two__barcelona-home",
@@ -495,7 +533,8 @@
       "usedInScenes": [
         "scene-13"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "no usable public image candidates discovered",
+      "candidates": []
     },
     {
       "id": "mascot-shock-three__barcelona-home",
@@ -540,7 +579,8 @@
       "usedInScenes": [
         "scene-14"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "no usable public image candidates discovered",
+      "candidates": []
     },
     {
       "id": "mascot-count-2__spain-home",
@@ -585,7 +625,11 @@
       "usedInScenes": [
         "scene-15"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "awaits primary source `video-yamal-euro2024-france-champion` (video-excerpt-fallback); do not duplicate source bytes",
+      "sourceGroup": "euro2024-yamal",
+      "derive": "video-excerpt-fallback",
+      "derivedFrom": "video-yamal-euro2024-france-champion",
+      "selectionNotes": "generic Yamal/Spain EURO 2024 tournament establishing clip"
     },
     {
       "id": "mascot-count-3__spain-home",
@@ -615,7 +659,7 @@
     {
       "id": "video-yamal-euro2024-france-champion",
       "type": "VIDEO",
-      "status": "NEEDS_SOURCE_FILE",
+      "status": "NEEDS_SELECTION",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -630,7 +674,14 @@
       "usedInScenes": [
         "scene-17"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "discovered 1 candidate image(s); select one explicitly before prepare",
+      "sourceGroup": "euro2024-yamal",
+      "derive": "video-excerpt",
+      "selectionNotes": "Yamal equaliser vs France and/or Spain celebration",
+      "candidates": [
+        ".local-assets/lamine-yamal-new-messi/candidates/video-yamal-euro2024-france-champion/candidate-00.jpeg"
+      ],
+      "previewPath": ".local-assets/lamine-yamal-new-messi/previews/video-yamal-euro2024-france-champion-candidates.jpg"
     },
     {
       "id": "trophy-laliga",
@@ -785,7 +836,8 @@
       "usedInScenes": [
         "scene-21"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "no usable public image candidates discovered",
+      "candidates": []
     },
     {
       "id": "mascot-celebrate__spain-home",
@@ -830,7 +882,11 @@
       "usedInScenes": [
         "scene-22"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "awaits primary source `video-wc2026-final-atmosphere` (video-excerpt); do not duplicate source bytes",
+      "sourceGroup": "wc2026-final",
+      "derive": "video-excerpt",
+      "derivedFrom": "video-wc2026-final-atmosphere",
+      "selectionNotes": "winning moment / celebrations / trophy lift"
     },
     {
       "id": "mascot-explain-five__barcelona-home",
@@ -905,7 +961,7 @@
     {
       "id": "player-messi-early-barcelona",
       "type": "PLAYER_PHOTO",
-      "status": "NEEDS_SOURCE_FILE",
+      "status": "NEEDS_SELECTION",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -920,7 +976,16 @@
       "usedInScenes": [
         "scene-27"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "discovered 6 candidate image(s); select one explicitly before prepare",
+      "candidates": [
+        ".local-assets/lamine-yamal-new-messi/candidates/player-messi-early-barcelona/candidate-00.jpg",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-messi-early-barcelona/candidate-01.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-messi-early-barcelona/candidate-02.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-messi-early-barcelona/candidate-04.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-messi-early-barcelona/candidate-05.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-messi-early-barcelona/candidate-06.png"
+      ],
+      "previewPath": ".local-assets/lamine-yamal-new-messi/previews/player-messi-early-barcelona-candidates.jpg"
     },
     {
       "id": "mascot-point-left-three__default-home",
@@ -1020,7 +1085,7 @@
     {
       "id": "coach-hansi-flick",
       "type": "COACH_PHOTO",
-      "status": "NEEDS_SOURCE_FILE",
+      "status": "NEEDS_SELECTION",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -1035,7 +1100,16 @@
       "usedInScenes": [
         "scene-31"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "discovered 6 candidate image(s); select one explicitly before prepare",
+      "candidates": [
+        ".local-assets/lamine-yamal-new-messi/candidates/coach-hansi-flick/candidate-00.jpg",
+        ".local-assets/lamine-yamal-new-messi/candidates/coach-hansi-flick/candidate-01.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/coach-hansi-flick/candidate-02.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/coach-hansi-flick/candidate-04.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/coach-hansi-flick/candidate-05.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/coach-hansi-flick/candidate-06.png"
+      ],
+      "previewPath": ".local-assets/lamine-yamal-new-messi/previews/coach-hansi-flick-candidates.jpg"
     },
     {
       "id": "mascot-annoyed-two__barcelona-home",
@@ -1065,7 +1139,7 @@
     {
       "id": "player-yamal-injury-2026",
       "type": "PLAYER_PHOTO",
-      "status": "NEEDS_SOURCE_FILE",
+      "status": "NEEDS_SELECTION",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -1080,7 +1154,16 @@
       "usedInScenes": [
         "scene-32"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "discovered 6 candidate image(s); select one explicitly before prepare",
+      "candidates": [
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-injury-2026/candidate-00.jpg",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-injury-2026/candidate-01.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-injury-2026/candidate-02.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-injury-2026/candidate-04.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-injury-2026/candidate-05.png",
+        ".local-assets/lamine-yamal-new-messi/candidates/player-yamal-injury-2026/candidate-06.png"
+      ],
+      "previewPath": ".local-assets/lamine-yamal-new-messi/previews/player-yamal-injury-2026-candidates.jpg"
     },
     {
       "id": "mascot-explain-four__default-home",
@@ -1126,7 +1209,11 @@
       "usedInScenes": [
         "scene-36"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external"
+      "notes": "awaits primary source `player-yamal-barcelona-no10` (image-crop-fallback); do not duplicate source bytes",
+      "sourceGroup": "yamal-barcelona-no10",
+      "derive": "image-crop-fallback",
+      "derivedFrom": "player-yamal-barcelona-no10",
+      "selectionNotes": "calm contemporary crop with negative space"
     },
     {
       "id": "mascot-point-right-two__barcelona-home",
@@ -1153,5 +1240,22 @@
         "mode": "pending"
       }
     }
-  ]
+  ],
+  "sourceReuse": {
+    "movedToNeedsSelection": [],
+    "distinctSourceFilesNeeded": [
+      "video-wc2026-final-atmosphere",
+      "video-yamal-euro2024-france-champion",
+      "player-yamal-barcelona-no10",
+      "player-yamal-304-celebration",
+      "player-yamal-youth-lamasia",
+      "video-yamal-betis-debut",
+      "player-yamal-spain-debut-2023",
+      "video-yamal-wc2026-saudi-goal",
+      "player-messi-early-barcelona",
+      "coach-hansi-flick",
+      "player-yamal-injury-2026"
+    ],
+    "distinctSourceFileCount": 11
+  }
 }

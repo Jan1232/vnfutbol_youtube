@@ -85,7 +85,8 @@
         "position": "right",
         "scale": "medium",
         "basePose": "point-left-two",
-        "assetId": "mascot-point-left-two__spain-home"
+        "assetId": "mascot-point-left-two__spain-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "national-team",
       "supportingVisual": {
@@ -176,7 +177,8 @@
         "position": "left",
         "scale": "medium",
         "basePose": "count-3",
-        "assetId": "mascot-count-3__barcelona-home"
+        "assetId": "mascot-count-3__barcelona-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
@@ -235,7 +237,8 @@
         "position": "center",
         "scale": "large",
         "basePose": "shock-one",
-        "assetId": "mascot-shock-one__barcelona-home"
+        "assetId": "mascot-shock-one__barcelona-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
@@ -262,7 +265,8 @@
         "position": "right",
         "scale": "medium",
         "basePose": "point-left-three",
-        "assetId": "mascot-point-left-three__barcelona-home"
+        "assetId": "mascot-point-left-three__barcelona-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
@@ -313,7 +317,8 @@
         "position": "left",
         "scale": "medium",
         "basePose": "explain-four",
-        "assetId": "mascot-explain-four__barcelona-home"
+        "assetId": "mascot-explain-four__barcelona-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
@@ -343,7 +348,8 @@
         "position": "right",
         "scale": "medium",
         "basePose": "explain-two",
-        "assetId": "mascot-explain-two__barcelona-home"
+        "assetId": "mascot-explain-two__barcelona-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
@@ -373,7 +379,8 @@
         "position": "left",
         "scale": "small",
         "basePose": "shock-three",
-        "assetId": "mascot-shock-three__barcelona-home"
+        "assetId": "mascot-shock-three__barcelona-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
@@ -403,7 +410,8 @@
         "position": "right",
         "scale": "medium",
         "basePose": "count-2",
-        "assetId": "mascot-count-2__spain-home"
+        "assetId": "mascot-count-2__spain-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "national-team",
       "supportingVisual": {
@@ -457,7 +465,8 @@
         "position": "left",
         "scale": "medium",
         "basePose": "count-3",
-        "assetId": "mascot-count-3__spain-home"
+        "assetId": "mascot-count-3__spain-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "national-team",
       "supportingVisual": {
@@ -508,7 +517,8 @@
         "position": "right",
         "scale": "medium",
         "basePose": "celebrate",
-        "assetId": "mascot-celebrate__barcelona-home"
+        "assetId": "mascot-celebrate__barcelona-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
@@ -573,7 +583,8 @@
         "position": "right",
         "scale": "medium",
         "basePose": "explain-six",
-        "assetId": "mascot-explain-six__barcelona-home"
+        "assetId": "mascot-explain-six__barcelona-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
@@ -603,7 +614,8 @@
         "position": "right",
         "scale": "small",
         "basePose": "celebrate",
-        "assetId": "mascot-celebrate__spain-home"
+        "assetId": "mascot-celebrate__spain-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "national-team",
       "supportingVisual": {
@@ -678,7 +690,8 @@
         "position": "center",
         "scale": "large",
         "basePose": "explain-five",
-        "assetId": "mascot-explain-five__barcelona-home"
+        "assetId": "mascot-explain-five__barcelona-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
@@ -869,7 +882,8 @@
         "position": "left",
         "scale": "medium",
         "basePose": "annoyed-two",
-        "assetId": "mascot-annoyed-two__barcelona-home"
+        "assetId": "mascot-annoyed-two__barcelona-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
@@ -1035,7 +1049,8 @@
         "position": "center",
         "scale": "large",
         "basePose": "point-right-two",
-        "assetId": "mascot-point-right-two__barcelona-home"
+        "assetId": "mascot-point-right-two__barcelona-home",
+        "subject": "player-lamine-yamal"
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
