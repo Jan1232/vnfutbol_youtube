@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "video": "lamine-yamal-new-messi",
+  "stage": "planned",
+  "inputs": {
+    "visualPlan": "scenes/visual-plan.json",
+    "assetManifest": "assets/assets.json",
+    "voice": "audio/voice.json",
+    "entities": "context/entities.json"
+  },
+  "paths": {
+    "localRoot": ".local-assets/lamine-yamal-new-messi",
+    "inbox": ".local-assets/lamine-yamal-new-messi/inbox",
+    "source": ".local-assets/lamine-yamal-new-messi/source",
+    "candidates": ".local-assets/lamine-yamal-new-messi/candidates",
+    "prepared": ".local-assets/lamine-yamal-new-messi/prepared",
+    "previews": ".local-assets/lamine-yamal-new-messi/previews",
+    "outputManifest": "videos/lamine-yamal-new-messi/assets/prepared-assets.json"
+  },
+  "policy": {
+    "externalMediaNeverCommit": true,
+    "generatedChannelOwnedMayCommit": true,
+    "reuseBeforeFetch": true,
+    "fetchRequiresExplicitFlag": true,
+    "doNotInventSourceTimestamps": true,
+    "doNotTreatSourcePageAsReusableLicense": true
+  },
+  "imagePrep": {
+    "preferredMinWidth": 1600,
+    "preferredMinHeight": 900,
+    "outputFormat": "png",
+    "preserveOriginal": true,
+    "cropMode": "non-destructive-metadata",
+    "contactSheet": true
+  },
+  "videoPrep": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "stripAudioByDefault": true,
+    "maxPreparedExcerptSeconds": 8,
+    "contactSheetIntervalSeconds": 5,
+    "preserveOriginal": true
+  },
+  "renderOnlyAssetIds": [
+    "map-mataro-rocafonda",
+    "trophy-euro",
+    "trophy-world-cup",
+    "trophy-laliga",
+    "trophy-copa-del-rey",
+    "trophy-spanish-supercup",
+    "diagram-yamal-messi-style",
+    "newspaper-new-messi-comparisons"
+  ],
+  "externalAssetIds": [
+    "video-wc2026-final-atmosphere",
+    "video-wc2026-final-win",
+    "player-messi-wc2026-final",
+    "player-yamal-spain-wc2026",
+    "player-yamal-barcelona-no10",
+    "player-yamal-304-celebration",
+    "player-yamal-youth-lamasia",
+    "video-yamal-betis-debut",
+    "player-yamal-spain-debut-2023",
+    "video-yamal-euro2024-intro",
+    "video-yamal-euro2024-france-champion",
+    "trophy-kopa",
+    "trophy-ballon-dor",
+    "video-yamal-wc2026-saudi-goal",
+    "player-messi-early-barcelona",
+    "coach-hansi-flick",
+    "player-yamal-injury-2026",
+    "player-yamal-hero-portrait"
+  ],
+  "mascot": {
+    "source": "visual-plan",
+    "poseSelection": "resolve poseIntent only to existing approved poses; never create a new pose",
+    "outfitResolution": "scripts/resolve_mascot_outfit.py --all",
+    "variantResolution": "scripts/ensure_mascot_variants.py",
+    "dedupeBy": ["basePose", "resolvedOutfit"],
+    "defaultOutfitNeedsLayer": false
+  },
+  "completion": {
+    "external": "Every external asset is either READY with a local prepared path or explicitly NEEDS_SELECTION/MISSING.",
+    "renderOnly": "Every render-only asset has a renderSpec and is READY_RENDER_SPEC.",
+    "mascot": "Every mascot scene resolves to an approved base pose and outfit; every non-default pair is REUSED or has a queued generation job.",
+    "timelineGate": "Do not build final timeline until prepared-assets.json exists and voice segments have generated startMs/endMs."
+  }
+}
