@@ -224,11 +224,8 @@ def parse_script_blocks(script_text: str) -> list[dict]:
         position = None
         type_match = re.search(r"^type:\s*(\w+)\s*$", body, re.MULTILINE | re.IGNORECASE)
         if type_match:
-            ctype = type_match.group(1).strip().upper()
-            if ctype == "CTA":
-                ctype = "CTA"
-            else:
-                ctype = type_match.group(1).strip().lower()
+            raw_type = type_match.group(1).strip()
+            ctype = "CTA" if raw_type.upper() == "CTA" else raw_type.lower()
         pos_match = re.search(r"^position:\s*(\w+)\s*$", body, re.MULTILINE | re.IGNORECASE)
         if pos_match:
             position = pos_match.group(1).strip().lower()
@@ -253,54 +250,159 @@ def parse_script_blocks(script_text: str) -> list[dict]:
     return blocks
 
 
-def default_pause_after(block: dict, is_last: bool) -> int:
+SENTENCE_RE = re.compile(r"(?<=[.!?…])\s+")
+
+
+def split_sentences(text: str) -> list[str]:
+    """Deterministic sentence split. Never cuts inside a sentence."""
+    cleaned = " ".join(text.split()).strip()
+    if not cleaned:
+        return []
+    parts = SENTENCE_RE.split(cleaned)
+    return [part.strip() for part in parts if part.strip()]
+
+
+def pack_utterances(
+    sentences: list[str],
+    *,
+    prefer_min: int = 40,
+    prefer_max: int = 220,
+    hard_max: int = 320,
+) -> list[str]:
+    """Pack 1–3 sentences into utterances. Prefer 40–220 chars, never >320 unless one sentence is longer."""
+    if not sentences:
+        return []
+    utterances: list[str] = []
+    buf: list[str] = []
+
+    def buf_text() -> str:
+        return " ".join(buf)
+
+    def flush() -> None:
+        if buf:
+            utterances.append(buf_text())
+            buf.clear()
+
+    for sentence in sentences:
+        if not buf:
+            buf.append(sentence)
+            continue
+        candidate = f"{buf_text()} {sentence}"
+        if len(buf) >= 3 or len(candidate) > hard_max:
+            flush()
+            buf.append(sentence)
+            continue
+        current_len = len(buf_text())
+        if len(candidate) <= prefer_max:
+            buf.append(sentence)
+            continue
+        if current_len < prefer_min and len(candidate) <= hard_max:
+            buf.append(sentence)
+            continue
+        flush()
+        buf.append(sentence)
+    flush()
+    return utterances
+
+
+def utterances_from_block(block: dict) -> list[str]:
+    return pack_utterances(split_sentences(block.get("text") or ""))
+
+
+def source_key(script_id: str, utterance_index: int) -> str:
+    return f"{script_id}:{utterance_index:03d}"
+
+
+def default_pause_after_utterance(
+    text: str,
+    *,
+    is_last: bool,
+    is_cta: bool,
+    script_boundary: bool,
+) -> int:
+    """Pause between voice segments (not SCRIPT blocks)."""
     if is_last:
         return 0
-    text = block["text"]
-    if block.get("type") == "CTA":
-        return 420
-    if text.endswith("?"):
+    if is_cta:
         return 320
+    if text.endswith("?"):
+        return 300
     if len(text) < 40:
-        return 220
-    if any(ch.isdigit() for ch in text):
-        return 260
-    return 180
+        return 350
+    if script_boundary:
+        return 400
+    return 150
 
 
-def build_segment_from_block(
-    block: dict,
-    index: int,
-    config: dict,
+def build_segments_from_blocks(blocks: list[dict], config: dict) -> list[dict]:
+    """SCRIPT blocks → semantic utterances → sequential voice-NNN with stable sourceKey."""
+    built: list[dict] = []
+    voice_index = 1
+    for block_index, block in enumerate(blocks):
+        utterances = utterances_from_block(block)
+        if not utterances:
+            continue
+        for utt_index, text in enumerate(utterances):
+            is_last = (
+                block_index == len(blocks) - 1 and utt_index == len(utterances) - 1
+            )
+            script_boundary = utt_index == len(utterances) - 1 and block_index < len(blocks) - 1
+            pause = default_pause_after_utterance(
+                text,
+                is_last=is_last,
+                is_cta=block.get("type") == "CTA",
+                script_boundary=script_boundary,
+            )
+            built.append(
+                build_segment(
+                    text=text,
+                    script_id=block["scriptId"],
+                    source_key=source_key(block["scriptId"], utt_index),
+                    voice_index=voice_index,
+                    config=config,
+                    pause_after=pause,
+                    seg_type=block.get("type") or "narration",
+                    position=block.get("position"),
+                )
+            )
+            voice_index += 1
+    return built
+
+
+def build_segment(
     *,
+    text: str,
+    script_id: str,
+    source_key: str,
+    voice_index: int,
+    config: dict,
     pause_after: int,
+    seg_type: str = "narration",
+    position: str | None = None,
 ) -> dict:
-    voice_setting = config.get("voiceSetting") or {}
-    audio_setting = config.get("audioSetting") or {}
-    segment_id = f"voice-{index:03d}"
-    provider = {
-        "model": config.get("model"),
-        "voiceId": config.get("voiceId"),
-    }
     segment: dict[str, Any] = {
-        "id": segment_id,
-        "script": block["scriptId"],
-        "type": block.get("type") or "narration",
-        "text": block["text"],
+        "id": f"voice-{voice_index:03d}",
+        "sourceKey": source_key,
+        "script": script_id,
+        "type": seg_type,
+        "text": text,
         "pauseAfter": pause_after,
         "scene": None,
         "status": "pending",
         "audio": None,
         "durationMs": None,
-        "characters": len(block["text"]),
+        "characters": len(text),
         "sha256": None,
-        "textSha256": sha256_text(block["text"]),
+        "textSha256": sha256_text(text),
         "settingsSha256": settings_sha256(config),
-        "provider": provider,
+        "provider": {
+            "model": config.get("model"),
+            "voiceId": config.get("voiceId"),
+        },
         "delivery": {},
     }
-    if block.get("type") == "CTA" and block.get("position"):
-        segment["position"] = block["position"]
+    if seg_type == "CTA" and position:
+        segment["position"] = position
     return segment
 
 
@@ -309,26 +411,24 @@ def classify_segment(segment: dict, video_dir: Path, config: dict) -> str:
     path = video_dir / audio_rel if audio_rel else segment_wav_path(video_dir, segment["id"])
     expected_text = sha256_text(segment.get("text") or "")
     expected_settings = settings_sha256(config)
-    if segment.get("status") == "failed":
-        return "STALE"
-    if segment.get("textSha256") and segment["textSha256"] != expected_text:
-        return "STALE"
-    if segment.get("settingsSha256") and segment["settingsSha256"] != expected_settings:
-        return "STALE"
-    if segment.get("status") == "stale":
+    status = segment.get("status")
+
+    if status == "failed":
         return "STALE"
     if not path.exists():
         return "MISSING"
-    if (
-        segment.get("textSha256") == expected_text
-        and segment.get("settingsSha256") == expected_settings
-        and path.exists()
-        and segment.get("status") in {"generated", "approved"}
-    ):
+
+    text_ok = segment.get("textSha256") == expected_text
+    settings_ok = segment.get("settingsSha256") == expected_settings
+    declared_sha = segment.get("sha256")
+    file_ok = bool(declared_sha) and sha256_file(path) == declared_sha
+    status_ok = status in {"generated", "approved"}
+
+    if status_ok and text_ok and settings_ok and file_ok:
         return "REUSE"
-    if path.exists() and segment.get("status") in {"generated", "approved"}:
-        return "REUSE"
-    return "GENERATE"
+
+    # Audio exists but hashes missing/mismatch, or status not ready → STALE
+    return "STALE"
 
 
 def apply_interjection(text: str, delivery: dict | None) -> str:

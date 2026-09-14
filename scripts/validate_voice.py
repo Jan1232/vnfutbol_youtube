@@ -70,6 +70,7 @@ def main() -> int:
             segments = []
 
         ids: list[str] = []
+        source_keys: list[str] = []
         for index, segment in enumerate(segments):
             prefix = f"segments[{index}]"
             if not isinstance(segment, dict):
@@ -80,6 +81,16 @@ def main() -> int:
                 errors.append(f"{prefix}: missing id")
                 continue
             ids.append(seg_id)
+
+            source = segment.get("sourceKey")
+            if not source:
+                errors.append(f"{seg_id}: sourceKey is missing")
+            else:
+                source_keys.append(source)
+
+            if not segment.get("script"):
+                errors.append(f"{seg_id}: script is missing")
+
             text = segment.get("text")
             if not isinstance(text, str) or not text.strip():
                 errors.append(f"{seg_id}: text must be a non-empty string")
@@ -90,17 +101,22 @@ def main() -> int:
                 errors.append(f"{seg_id}: settingsSha256 mismatch")
             if "pauseAfter" in segment and not isinstance(segment["pauseAfter"], int):
                 errors.append(f"{seg_id}: pauseAfter must be an integer")
+
             status = segment.get("status")
             if status in {"generated", "approved"}:
                 audio_rel = segment.get("audio")
+                declared_sha = segment.get("sha256")
                 if not audio_rel:
                     errors.append(f"{seg_id}: ready segment missing audio path")
-                else:
+                if not declared_sha:
+                    errors.append(f"{seg_id}: audio sha256 is required for {status}")
+                elif audio_rel:
                     audio_path = video_dir / audio_rel
                     if not audio_path.exists():
                         errors.append(f"{seg_id}: audio file missing: {audio_rel}")
                     else:
-                        if segment.get("sha256") and sha256_file(audio_path) != segment["sha256"]:
+                        actual = sha256_file(audio_path)
+                        if actual != declared_sha:
                             errors.append(f"{seg_id}: audio sha256 mismatch")
                         try:
                             measured = wav_duration_ms(audio_path)
@@ -118,6 +134,23 @@ def main() -> int:
         for value, count in Counter(ids).items():
             if count > 1:
                 errors.append(f"duplicate segment id: {value}")
+        for value, count in Counter(source_keys).items():
+            if count > 1:
+                errors.append(f"duplicate sourceKey: {value}")
+
+        if segments:
+            last = segments[-1]
+            if isinstance(last, dict) and last.get("pauseAfter") != 0:
+                # Required after assemble; also enforced by sync for pending plans.
+                if any(
+                    isinstance(seg, dict) and seg.get("startMs") is not None
+                    for seg in segments
+                ):
+                    errors.append(
+                        f"{last.get('id')}: last segment pauseAfter must be 0 after assemble"
+                    )
+                elif last.get("pauseAfter") != 0:
+                    errors.append(f"{last.get('id')}: last segment pauseAfter must be 0")
 
         ready = [
             seg
@@ -145,7 +178,7 @@ def main() -> int:
                     expected = int(ready[-1]["endMs"])
                     if abs(total - expected) > 40:
                         errors.append(
-                            f"narration.wav duration {total} ms != timeline end {expected} ms"
+                            f"narration.wav duration {total} ms != last endMs {expected} ms"
                         )
             except OSError as exc:
                 errors.append(f"narration.wav unreadable: {exc}")

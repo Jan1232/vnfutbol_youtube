@@ -13,13 +13,16 @@ from minimax_tts import MiniMaxTTS, MiniMaxTTSError
 from voice_common import (
     ROOT,
     apply_interjection,
+    build_segments_from_blocks,
     canonical_json,
     load_dotenv,
     load_voice_config,
+    pack_utterances,
     parse_script_blocks,
     settings_fingerprint,
     settings_sha256,
     sha256_text,
+    split_sentences,
     video_audio_paths,
 )
 
@@ -61,11 +64,25 @@ def run_offline() -> int:
     sample = (
         "### SCRIPT-001\n\nТекст:\n\nФинал чемпионата мира 2026 года.\n\n"
         "Связанные факты:\n- FACT-001\n\n"
-        "### SCRIPT-002\n\nТекст:\n\nС одной стороны — 39-летний Лионель Месси.\n"
+        "### SCRIPT-002\n\nТекст:\n\n"
+        "С одной стороны — 39-летний Лионель Месси. "
+        "С другой — 19-летний Ламин Ямаль. "
+        "То есть футбол буквально поставил нового претендента на место рядом с настоящей легендой.\n"
     )
     blocks = parse_script_blocks(sample)
     assert len(blocks) == 2
-    assert blocks[0]["text"] == "Финал чемпионата мира 2026 года."
+    sentences = split_sentences(blocks[1]["text"])
+    assert len(sentences) == 3
+    packed = pack_utterances(sentences)
+    assert 1 <= len(packed) <= 3
+    assert all(len(u) <= 320 or u == max(sentences, key=len) for u in packed)
+    segments = build_segments_from_blocks(blocks, config)
+    assert segments[0]["sourceKey"] == "SCRIPT-001:000"
+    assert segments[0]["id"] == "voice-001"
+    assert any(seg["script"] == "SCRIPT-002" for seg in segments)
+    assert len({seg["sourceKey"] for seg in segments}) == len(segments)
+    again = build_segments_from_blocks(blocks, config)
+    assert [seg["sourceKey"] for seg in segments] == [seg["sourceKey"] for seg in again]
     print("OK    text segmentation")
 
     fp = settings_fingerprint(config)

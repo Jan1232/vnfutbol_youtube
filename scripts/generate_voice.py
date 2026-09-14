@@ -12,9 +12,8 @@ from assemble_voice import assemble
 from minimax_tts import MiniMaxTTS, MiniMaxTTSError
 from voice_common import (
     apply_interjection,
-    build_segment_from_block,
+    build_segments_from_blocks,
     classify_segment,
-    default_pause_after,
     load_dotenv,
     load_json,
     load_voice_config,
@@ -38,10 +37,14 @@ def fail(message: str) -> int:
 
 
 def merge_segments(existing: list[dict], built: list[dict]) -> list[dict]:
-    by_script = {item.get("script"): item for item in existing if item.get("script")}
+    by_key = {
+        item.get("sourceKey"): item
+        for item in existing
+        if isinstance(item, dict) and item.get("sourceKey")
+    }
     merged: list[dict] = []
     for segment in built:
-        old = by_script.get(segment["script"])
+        old = by_key.get(segment["sourceKey"])
         if old is None:
             merged.append(segment)
             continue
@@ -50,7 +53,8 @@ def merge_segments(existing: list[dict], built: list[dict]) -> list[dict]:
         updated["delivery"] = old.get("delivery") or {}
         if old.get("scene") is not None:
             updated["scene"] = old.get("scene")
-        if isinstance(old.get("pauseAfter"), int):
+        if isinstance(old.get("pauseAfter"), int) and segment.get("pauseAfter") != 0:
+            # Keep manual pause overrides, but never override forced trailing 0.
             updated["pauseAfter"] = old["pauseAfter"]
 
         text_changed = (old.get("text") or "") != segment["text"]
@@ -85,11 +89,14 @@ def merge_segments(existing: list[dict], built: list[dict]) -> list[dict]:
             }:
                 updated["status"] = "pending"
 
+        updated["sourceKey"] = segment["sourceKey"]
         updated["textSha256"] = sha256_text(updated["text"])
         updated["settingsSha256"] = segment["settingsSha256"]
         updated["characters"] = len(updated["text"])
         updated["provider"] = segment["provider"]
         merged.append(updated)
+    if merged:
+        merged[-1]["pauseAfter"] = 0
     return merged
 
 
@@ -102,10 +109,9 @@ def sync_voice_json(video_dir: Path, config: dict) -> dict:
     if not blocks:
         raise ValueError("script.md has no SCRIPT blocks with Текст")
 
-    built = []
-    for index, block in enumerate(blocks, start=1):
-        pause = default_pause_after(block, is_last=index == len(blocks))
-        built.append(build_segment_from_block(block, index, config, pause_after=pause))
+    built = build_segments_from_blocks(blocks, config)
+    if not built:
+        raise ValueError("script.md produced zero voice segments")
 
     if paths["voice_json"].exists():
         current = load_json(paths["voice_json"])
@@ -117,6 +123,8 @@ def sync_voice_json(video_dir: Path, config: dict) -> dict:
         segments = merge_segments(existing, built)
     else:
         segments = built
+        if segments:
+            segments[-1]["pauseAfter"] = 0
 
     fingerprint = settings_fingerprint(config)
     payload = {

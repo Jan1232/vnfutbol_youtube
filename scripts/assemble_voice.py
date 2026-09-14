@@ -59,6 +59,7 @@ def assemble(video_dir: Path) -> int:
         pause = int(segment.get("pauseAfter") or 0)
         if index == len(segments) - 1:
             pause = 0
+            segment["pauseAfter"] = 0
         sources.append((wav, pause))
         cursor += pause
 
