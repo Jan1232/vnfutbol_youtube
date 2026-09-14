@@ -26,7 +26,7 @@
       "basePose": "annoyed-two",
       "file": "pose-masks/annoyed-two.png",
       "status": "generated",
-      "sha256": "bfaac2c92bc4594f6bd29156f9d9badb62a98ee22d41cd833a24aa287ca70dd4",
+      "sha256": "45475085d730bec7cf611299796b3fc3ebcb5ff7b4c52594109dc0a26ca095e8",
       "basePoseSha256": "8fa49fa61356f9abf5d92dbcccb45a276645c2d434fa922fd4784845f889c0bf"
     },
     {
@@ -47,7 +47,7 @@
       "basePose": "celebrate",
       "file": "pose-masks/celebrate.png",
       "status": "generated",
-      "sha256": "c8bc111e76a3664b8dafcc93788f4ea2f6eef89bfb6ce8524372c043e659305b",
+      "sha256": "d4c259a5fc9c9d85a3e1fd5c9c84bf26f8f9be0ae9c7f630191d925b0419a30b",
       "basePoseSha256": "6bc8d93d151b585217bde6ecd0e981a8372ade0490dfd47fbd4e02fe5ef1fc2f"
     },
     {
@@ -89,14 +89,14 @@
       "basePose": "count-2",
       "file": "pose-masks/count-2.png",
       "status": "generated",
-      "sha256": "24c42c3a098177efa7e9a9be30667ed128a750becde70e7d393ad5b7c03e3e84",
+      "sha256": "5a8889bd4e7ba8933b881ccdc957f94c970f0befc4c4c12a4c6bf901e49c4c04",
       "basePoseSha256": "26082bb46bbef9a8021620419203284e46846c3c573a9aaa0503a925685c95a1"
     },
     {
       "basePose": "count-3",
       "file": "pose-masks/count-3.png",
       "status": "generated",
-      "sha256": "19680972865a382002a95987a27f8ed4ff6738105163d73cc3fd7a431648c50e",
+      "sha256": "249ad3f20c66c127ef16fa3b47e9493b2ed3048d24aa6b9bbc2a209e56733843",
       "basePoseSha256": "d0e4cfeb6d41641cd2fbedae10df447bc65ba9d42d408b5087911d2e40ac1ab8"
     },
     {
@@ -110,14 +110,14 @@
       "basePose": "explain-five",
       "file": "pose-masks/explain-five.png",
       "status": "generated",
-      "sha256": "56dcc639285d5ea69dd4d5f4a39e9e4795729289671184672c2e92ddf4498566",
+      "sha256": "bba8de1b25a535ec9ba45997df8111b9ae67c2ee1ec2d6906f03e29b445007b1",
       "basePoseSha256": "be06c183c51db0a9e83ab8fd89ca03d36c929cefd81f425c43e21f7041cf696f"
     },
     {
       "basePose": "explain-four",
       "file": "pose-masks/explain-four.png",
       "status": "generated",
-      "sha256": "9002ef7a58415991de8dc63a60d02ac4470d74b6f0d9674eb20f3e8b95a15d11",
+      "sha256": "a8423e345631ddd6c4a81fc805c78895f8669f2bdedbdd2baad36b50b668e1c2",
       "basePoseSha256": "e89f9331b4def66f6b3faa0284c6febdde0c59009531996f0eb0b53ca1290a7e"
     },
     {
@@ -131,7 +131,7 @@
       "basePose": "explain-six",
       "file": "pose-masks/explain-six.png",
       "status": "generated",
-      "sha256": "0adf3592a0e679e627b0ac12596e45a66ce30f96d19bd61266fdbb0d1bb8198f",
+      "sha256": "e6f4077eed3f007d409306a198dc115d8f3d29fcc6bcf802df6b47400cc8acb9",
       "basePoseSha256": "b3e12f039c665decead75e4f4d5777ebf686565b25841862726e9c5278c66399"
     },
     {
@@ -145,7 +145,7 @@
       "basePose": "explain-two",
       "file": "pose-masks/explain-two.png",
       "status": "generated",
-      "sha256": "cc7805423a8d86722f134f13aba35be396c46374bf8cd2a780c47e54f8aa145b",
+      "sha256": "fed27fb4288c4641248c6c9f0b38befd8689d387c591724a0863e3b87824a329",
       "basePoseSha256": "3d7252d08e0b98ce7ac046cff4e96c5e03c2af2a61f652709275535b765add37"
     },
     {
@@ -257,14 +257,14 @@
       "basePose": "point-left-three",
       "file": "pose-masks/point-left-three.png",
       "status": "generated",
-      "sha256": "93cc94628db6733718425ce74cec67f142c239aab8d626c6640acaab87325b69",
+      "sha256": "ec32773e5977457a3dd710adccd47a1d34881d3962ac2b7c4271040929d69db8",
       "basePoseSha256": "64a287a225297a27029595f6b537163f701ef917d427c1e42abea0c3ba5038ab"
     },
     {
       "basePose": "point-left-two",
       "file": "pose-masks/point-left-two.png",
       "status": "generated",
-      "sha256": "13ffe40bf0de947476458637d4651bbf401f0a90197418ff200de0ce112f4e58",
+      "sha256": "be40bdfa4f79f4609cd8aff7d9c5b6260d5cd455786fa5469bf236c1c2278277",
       "basePoseSha256": "00904594a7705d3c001e62514c50ae9a9a3617d883c84f606fa673c1d310a37a"
     },
     {
@@ -278,7 +278,7 @@
       "basePose": "point-right-two",
       "file": "pose-masks/point-right-two.png",
       "status": "generated",
-      "sha256": "b2ac74fbafc5f82588564b2fda41b0160bed5f6f9302c5e1c72d591bb9009d2c",
+      "sha256": "2b7ede9f2450037d655a7cd8a662f381da071c8affc39a8f392b657d7d57a118",
       "basePoseSha256": "81c43bcc6b1a1e9a02d4508e7fe37f605c525c667586a0676b75caad6274f324"
     },
     {
@@ -341,14 +341,14 @@
       "basePose": "shock-one",
       "file": "pose-masks/shock-one.png",
       "status": "generated",
-      "sha256": "8fc86c7dfcabc8eecc319d09e504786e91625a6ce6ad0961c1343a4e4ae482ce",
+      "sha256": "5466f1963c152ce7c18ad01f4335a6109ebf61bfbb135c33b5c27b3177e760dd",
       "basePoseSha256": "9fc471c592209dfcc78333d8e7a1f4fcd22f87617690c067f651caf6e59cd4fa"
     },
     {
       "basePose": "shock-three",
       "file": "pose-masks/shock-three.png",
       "status": "generated",
-      "sha256": "d9c54a96d94cb8ea0c3b32f277f9d88e5a8c76d7051138d99197af7e51779a1b",
+      "sha256": "c9c4a9ee109bfe10665c9ad73301f8025a17e05cf537ecbb78eff4bdd2c39d93",
       "basePoseSha256": "62cd4d983280eb2306d58eaaa22a664fff2481963bc8f7c276630c694dd3a28c"
     },
     {

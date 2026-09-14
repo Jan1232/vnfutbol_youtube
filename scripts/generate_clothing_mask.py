@@ -23,7 +23,6 @@ from mascot_common import (
 
 GARNET = (0x81, 0x16, 0x2D)
 NAVY = (0x17, 0x21, 0x46)
-HEAD_RATIO = 0.30
 RGB_LIMIT = 82.0
 NAVY_LIMIT = 70.0
 
@@ -49,21 +48,40 @@ def hsv(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
     return h, s, mx
 
 
+def is_skin(rgb: tuple[int, int, int]) -> bool:
+    """Exclude head/neck/arms/hands via color, not a global Y cut."""
+    h, s, v = hsv(rgb)
+    # Near-neutral dark skin / lips / brows.
+    if s < 0.18 and v < 0.55:
+        return True
+    # Typical warm skin hues. Do not treat clear jersey garnet as skin.
+    if 3 <= h <= 55 and 0.12 <= s <= 0.70 and 0.10 <= v <= 0.95:
+        if rgb_dist(rgb, GARNET) > RGB_LIMIT * 0.75:
+            return True
+    return False
+
+
 def is_garment(rgb: tuple[int, int, int]) -> bool:
+    """Classify jersey fabric only. No vertical/head cutoff."""
+    if is_skin(rgb):
+        return False
     h, s, v = hsv(rgb)
     # Black mask/skin is near-neutral. Jersey navy is saturated blue.
-    if s < 0.32:
+    if s < 0.28:
         return False
     if rgb_dist(rgb, GARNET) <= RGB_LIMIT:
         return True
-    if rgb_dist(rgb, NAVY) <= NAVY_LIMIT and s >= 0.40:
+    if rgb_dist(rgb, NAVY) <= NAVY_LIMIT and s >= 0.38:
         return True
     garnet_hue = abs(h - 348) <= 28 or h <= 14
     navy_hue = 205 <= h <= 250
+    # Hue fallback only when reasonably close to jersey palette.
     if garnet_hue and s >= 0.35 and 0.14 <= v <= 0.80:
-        return True
+        if rgb_dist(rgb, GARNET) <= RGB_LIMIT * 1.25:
+            return True
     if navy_hue and s >= 0.40 and 0.08 <= v <= 0.50:
-        return True
+        if rgb_dist(rgb, NAVY) <= NAVY_LIMIT * 1.35:
+            return True
     return False
 
 
@@ -74,6 +92,7 @@ def character_bbox(image: Image.Image) -> tuple[int, int, int, int] | None:
 
 
 def build_mask(image: Image.Image) -> Image.Image:
+    """Mask every garment pixel inside the opaque character bbox (full height)."""
     rgba = image.convert("RGBA")
     width, height = rgba.size
     bbox = character_bbox(rgba)
@@ -82,12 +101,9 @@ def build_mask(image: Image.Image) -> Image.Image:
         return mask
 
     left, top, right, bottom = bbox
-    head_cut = top + int((bottom - top) * HEAD_RATIO)
     pixels = rgba.load()
     out = mask.load()
     for y in range(top, bottom):
-        if y < head_cut:
-            continue
         for x in range(left, right):
             r, g, b, a = pixels[x, y]
             if a < 16:
@@ -95,7 +111,8 @@ def build_mask(image: Image.Image) -> Image.Image:
             if is_garment((r, g, b)):
                 out[x, y] = 255
 
-    mask = mask.filter(ImageFilter.MaxFilter(5))
+    # Small morphology to close antialiased garment edge gaps — not a silhouette dilate.
+    mask = mask.filter(ImageFilter.MaxFilter(3))
     mask = mask.filter(ImageFilter.MinFilter(3))
     mask = mask.filter(ImageFilter.MaxFilter(3))
 
@@ -133,20 +150,40 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("pose", nargs="?", help="Pose id, e.g. argument")
     parser.add_argument("--all", action="store_true", help="Generate masks for every pose")
+    parser.add_argument(
+        "--poses",
+        type=str,
+        default=None,
+        help="Comma-separated pose ids to regenerate",
+    )
     args = parser.parse_args()
-    if not args.pose and not args.all:
-        parser.error("pass a pose id or --all")
+    if not args.pose and not args.all and not args.poses:
+        parser.error("pass a pose id, --poses a,b,c or --all")
 
     poses = load_poses().get("poses", [])
     by_id = {item["id"]: item for item in poses}
-    targets = list(poses) if args.all else [by_id.get(args.pose)]
-    if not args.all and targets[0] is None:
-        print(f"ERROR unknown pose `{args.pose}`")
-        return 1
+    if args.all:
+        targets = list(poses)
+    elif args.poses:
+        targets = []
+        for pose_id in [p.strip() for p in args.poses.split(",") if p.strip()]:
+            pose = by_id.get(pose_id)
+            if pose is None:
+                print(f"ERROR unknown pose `{pose_id}`")
+                return 1
+            targets.append(pose)
+    else:
+        pose = by_id.get(args.pose)
+        if pose is None:
+            print(f"ERROR unknown pose `{args.pose}`")
+            return 1
+        targets = [pose]
 
     existing = {item["basePose"]: item for item in load_masks().get("masks", [])}
     for pose in targets:
         record = generate_one(pose)
+        # Never auto-approve regenerated masks.
+        record["status"] = "generated"
         existing[record["basePose"]] = record
         print(f"OK    {record['basePose']} -> {record['file']} status=generated")
 
