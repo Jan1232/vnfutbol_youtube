@@ -11,27 +11,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mascot_common import load_json, outfit_by_id
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("video")
-    parser.add_argument("job")
-    args = parser.parse_args()
-
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8")
-
-    video_dir = Path(args.video)
-    if not video_dir.is_absolute():
-        video_dir = (Path.cwd() / video_dir).resolve()
-    jobs = load_json(video_dir / "assets" / "mascot-generation.json").get("jobs", [])
-    job = next((item for item in jobs if item.get("id") == args.job), None)
-    if job is None:
-        print(f"ERROR unknown job `{args.job}`")
-        return 1
+def build_prompt(job: dict) -> str:
     outfit = outfit_by_id(job["outfit"]) or {}
     description = job.get("outfitDescription") or outfit.get("generationDescription", "")
-
-    print(
+    return (
         f"""Image A:
 canonical mascot reference
 channel-assets/mascot/{job['canonicalReference']}
@@ -63,6 +46,26 @@ Production will extract the clothing layer through the approved clothing mask
 and composite it back onto the original immutable base pose.
 """
     )
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("video")
+    parser.add_argument("job")
+    args = parser.parse_args()
+
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+
+    video_dir = Path(args.video)
+    if not video_dir.is_absolute():
+        video_dir = (Path.cwd() / video_dir).resolve()
+    jobs = load_json(video_dir / "assets" / "mascot-generation.json").get("jobs", [])
+    job = next((item for item in jobs if item.get("id") == args.job), None)
+    if job is None:
+        print(f"ERROR unknown job `{args.job}`")
+        return 1
+    print(build_prompt(job))
     return 0
 
 
