@@ -38,6 +38,8 @@ from mascot_common import (
     OUTFIT_REF_ROOT,
     VARIANTS_PATH,
     channel_outfit_reference_path,
+    compose_masked_replacement,
+    extract_outfit_layer,
     find_official_outfit_reference,
     hashes_current,
     load_variants,
@@ -215,7 +217,7 @@ def test_variant_is_reusable_checks_files_and_hash(tmp: Path) -> None:
     comp_m = dest / "composite.png"
     layer_img = Image.new("RGBA", base.size, (0, 0, 0, 0))
     layer_img.save(layer_m)
-    Image.alpha_composite(base, layer_img).save(comp_m)
+    compose_masked_replacement(base, layer_img).save(comp_m)
     from mascot_common import recompute_composite_sha256
 
     good = {
@@ -277,7 +279,7 @@ def test_deterministic_qa_thresholds(tmp: Path) -> None:
             if mpx[x, y] > 0 and filled < 5:
                 lpx[x, y] = (255, 0, 0, 255)
                 filled += 1
-    composite = Image.alpha_composite(base, layer)
+    composite = compose_masked_replacement(base, layer)
     layer_p = tmp / "low-layer.png"
     comp_p = tmp / "low-comp.png"
     full_p = tmp / "low-full.png"
@@ -297,10 +299,9 @@ def test_deterministic_qa_thresholds(tmp: Path) -> None:
 
     # High coverage should pass coverage check (outside-mask may still pass via extract path).
     good_full = paint_kit_for_pose("explain-two")
-    from mascot_auto_generate import extract_outfit_layer
 
     good_layer = extract_outfit_layer(good_full, binary)
-    good_comp = Image.alpha_composite(base, good_layer)
+    good_comp = compose_masked_replacement(base, good_layer)
     g_layer = tmp / "good-layer.png"
     g_comp = tmp / "good-comp.png"
     g_full = tmp / "good-full.png"

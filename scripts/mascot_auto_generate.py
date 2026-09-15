@@ -19,7 +19,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
-from PIL import Image, ImageFilter
+from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mascot_common import (
@@ -29,7 +29,9 @@ from mascot_common import (
     MASCOT,
     PROMPT_VERSION,
     VARIANTS_PATH,
+    compose_masked_replacement,
     composite_destination,
+    extract_outfit_layer,
     find_same_outfit_mascot_composite,
     hashes_current,
     image_model,
@@ -146,42 +148,6 @@ def crop_api_result(
     if cropped.size != expected_orig:
         raise RuntimeError(f"crop produced {cropped.size}, expected {expected_orig}")
     return cropped
-
-
-def extract_outfit_layer(
-    full_edit: Image.Image,
-    binary_mask: Image.Image,
-    *,
-    feather: int = 2,
-) -> Image.Image:
-    hard = binary_mask.convert("L")
-    soft = hard.filter(ImageFilter.GaussianBlur(radius=feather)) if feather else hard
-    edited = full_edit.convert("RGBA")
-    if edited.size != hard.size:
-        raise ValueError(f"full-edit size {edited.size} != mask {hard.size}")
-    layer = Image.new("RGBA", hard.size, (0, 0, 0, 0))
-    epx = edited.load()
-    hpx = hard.load()
-    spx = soft.load()
-    lpx = layer.load()
-    kept = 0
-    width, height = hard.size
-    for y in range(height):
-        for x in range(width):
-            hard_v = hpx[x, y]
-            if hard_v <= 0:
-                continue
-            coverage = min(hard_v, spx[x, y])
-            if coverage <= 0:
-                continue
-            r, g, b, a = epx[x, y]
-            alpha = min(a, coverage)
-            if alpha:
-                lpx[x, y] = (r, g, b, alpha)
-                kept += 1
-    if kept == 0:
-        raise ValueError("extracted outfit layer is empty")
-    return layer
 
 
 def build_generation_prompt(
@@ -703,7 +669,7 @@ def generate_missing_variant(
         full_path = root / f"full-edit-attempt-{attempt}.png"
         full_edit.save(full_path, format="PNG")
         layer = extract_outfit_layer(full_edit, binary_mask)
-        composite = Image.alpha_composite(base, layer)
+        composite = compose_masked_replacement(base, layer)
         last_layer_img = layer
         last_comp_img = composite
 

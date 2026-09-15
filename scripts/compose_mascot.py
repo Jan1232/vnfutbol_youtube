@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Alpha-composite an approved outfit layer over an immutable base pose."""
+"""Compose an approved outfit layer over an immutable base pose via masked replacement."""
 
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mascot_common import (
     DEFAULT_OUTFIT,
+    compose_masked_replacement,
     mask_by_pose,
     outfit_by_id,
     pose_by_id,
@@ -67,7 +68,7 @@ def main() -> int:
     if layer.size != base.size:
         return fail(f"layer size {layer.size} != pose {base.size}")
     # Always rebuild from verified base pose + verified layer (do not trust stale composite bytes).
-    composed = Image.alpha_composite(base, layer)
+    composed = compose_masked_replacement(base, layer)
     composed.save(output, format="PNG")
     print(f"OK    composed {args.pose} + {args.outfit} -> {output}")
     return 0

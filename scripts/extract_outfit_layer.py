@@ -7,10 +7,10 @@ import argparse
 import sys
 from pathlib import Path
 
-from PIL import Image, ImageFilter
+from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from mascot_common import mask_by_pose, mask_path, pose_by_id, pose_path
+from mascot_common import extract_outfit_layer, mask_by_pose, mask_path, pose_by_id, pose_path
 
 
 def fail(message: str) -> int:
@@ -23,10 +23,10 @@ def main() -> int:
     parser.add_argument("--pose", required=True)
     parser.add_argument("--edited", required=True)
     parser.add_argument("--output", required=True)
-    parser.add_argument("--feather", type=int, default=2, help="0-3px inward-only feather")
+    parser.add_argument("--feather", type=int, default=2, help="0-2px boundary feather")
     args = parser.parse_args()
-    if args.feather < 0 or args.feather > 3:
-        return fail("feather must be 0-3")
+    if args.feather < 0 or args.feather > 2:
+        return fail("feather must be 0-2")
 
     pose = pose_by_id(args.pose)
     if pose is None:
@@ -43,35 +43,10 @@ def main() -> int:
     if edited.size != base.size or clothing.size != base.size:
         return fail("edited image and mask must match the base pose size")
 
-    hard_mask = clothing
-    soft_mask = (
-        hard_mask.filter(ImageFilter.GaussianBlur(radius=args.feather))
-        if args.feather
-        else hard_mask
-    )
-
-    layer = Image.new("RGBA", base.size, (0, 0, 0, 0))
-    epx = edited.load()
-    hpx = hard_mask.load()
-    spx = soft_mask.load()
-    lpx = layer.load()
-    width, height = base.size
-    kept = 0
-    for y in range(height):
-        for x in range(width):
-            hard = hpx[x, y]
-            if hard <= 0:
-                continue
-            coverage = min(hard, spx[x, y])
-            if coverage <= 0:
-                continue
-            r, g, b, a = epx[x, y]
-            alpha = min(a, coverage)
-            if alpha:
-                lpx[x, y] = (r, g, b, alpha)
-                kept += 1
-    if kept == 0:
-        return fail("extracted layer is empty")
+    try:
+        layer = extract_outfit_layer(edited, clothing, feather=args.feather)
+    except ValueError as exc:
+        return fail(str(exc))
 
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)

@@ -25,6 +25,7 @@ from mascot_common import (
     DEFAULT_OUTFIT,
     MASCOT,
     VARIANTS_PATH,
+    compose_masked_replacement,
     hashes_current,
     load_json,
     load_outfit_detail,
@@ -140,7 +141,7 @@ def test_reuse_never_calls_api(tmp: Path) -> None:
     layer_path = dest_dir / "explain-two-suit-layer.png"
     Image.new("RGBA", base.size, (0, 0, 0, 0)).save(layer_path)
     comp_path = dest_dir / "explain-two-suit.png"
-    Image.alpha_composite(base, Image.open(layer_path).convert("RGBA")).save(comp_path)
+    compose_masked_replacement(base, Image.open(layer_path).convert("RGBA")).save(comp_path)
     record = {
         "id": "explain-two__suit-navy",
         "basePose": "explain-two",

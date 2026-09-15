@@ -410,6 +410,93 @@ def composite_destination(outfit: dict, pose_id: str) -> Path:
     return VARIANTS_DIR / outfit["id"] / f"{pose_id}.png"
 
 
+def extract_outfit_layer(
+    full_edit,
+    binary_mask,
+    *,
+    feather: int = 2,
+):
+    """Reusable clothing layer: RGB from full-edit, alpha = approved mask coverage.
+
+    Feather (1-2px) only softens the mask boundary; interior RGB is never mixed
+    with the original jersey.
+    """
+    from PIL import Image, ImageFilter
+
+    hard = binary_mask.convert("L")
+    soft = hard.filter(ImageFilter.GaussianBlur(radius=feather)) if feather else hard
+    edited = full_edit.convert("RGBA")
+    if edited.size != hard.size:
+        raise ValueError(f"full-edit size {edited.size} != mask {hard.size}")
+    layer = Image.new("RGBA", hard.size, (0, 0, 0, 0))
+    epx = edited.load()
+    hpx = hard.load()
+    spx = soft.load()
+    lpx = layer.load()
+    kept = 0
+    width, height = hard.size
+    for y in range(height):
+        for x in range(width):
+            hard_v = hpx[x, y]
+            if hard_v <= 0:
+                continue
+            # Mask coverage only (do not let translucent edit alpha thin interior).
+            coverage = min(hard_v, spx[x, y])
+            if coverage <= 0:
+                continue
+            r, g, b, _a = epx[x, y]
+            lpx[x, y] = (r, g, b, coverage)
+            kept += 1
+    if kept == 0:
+        raise ValueError("extracted outfit layer is empty")
+    return layer
+
+
+def compose_masked_replacement(base, layer):
+    """Build final composite by masked pixel replacement (not alpha blending).
+
+    - layer alpha == 0: keep exact original pose pixel
+    - layer alpha == 255: copy RGB from layer (no mix with base jersey)
+    - 0 < alpha < 255: boundary antialiasing only (lerp with base)
+    """
+    from PIL import Image
+
+    base_rgba = base.convert("RGBA")
+    layer_rgba = layer.convert("RGBA")
+    if layer_rgba.size != base_rgba.size:
+        raise ValueError(f"layer size {layer_rgba.size} != pose {base_rgba.size}")
+    out = base_rgba.copy()
+    bpx = base_rgba.load()
+    lpx = layer_rgba.load()
+    opx = out.load()
+    width, height = base_rgba.size
+    for y in range(height):
+        for x in range(width):
+            lr, lg, lb, la = lpx[x, y]
+            if la <= 0:
+                continue
+            br, bg, bb, ba = bpx[x, y]
+            if la >= 255:
+                # Solid clothing interior: exact full-edit RGB, opaque over character.
+                opx[x, y] = (lr, lg, lb, 255 if ba else 255)
+            else:
+                # Boundary feather only.
+                t = la / 255.0
+                inv = 1.0 - t
+                opx[x, y] = (
+                    int(lr * t + br * inv + 0.5),
+                    int(lg * t + bg * inv + 0.5),
+                    int(lb * t + bb * inv + 0.5),
+                    int(255 * t + ba * inv + 0.5),
+                )
+    return out
+
+
+def compose_from_full_edit(base, full_edit, binary_mask, *, feather: int = 2):
+    layer = extract_outfit_layer(full_edit, binary_mask, feather=feather)
+    return layer, compose_masked_replacement(base, layer)
+
+
 def recompute_composite_sha256(pose: dict, layer_file: Path) -> str:
     from PIL import Image
     import io
@@ -418,7 +505,7 @@ def recompute_composite_sha256(pose: dict, layer_file: Path) -> str:
     layer = Image.open(layer_file).convert("RGBA")
     if layer.size != base.size:
         raise ValueError(f"layer size {layer.size} != pose {base.size}")
-    composed = Image.alpha_composite(base, layer)
+    composed = compose_masked_replacement(base, layer)
     buf = io.BytesIO()
     composed.save(buf, format="PNG")
     return sha256_bytes(buf.getvalue())

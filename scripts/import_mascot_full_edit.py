@@ -8,12 +8,14 @@ import shutil
 import sys
 from pathlib import Path
 
-from PIL import Image, ImageFilter
+from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from asset_prep_common import ensure_local_dirs, load_asset_prep, load_json, write_json
 from mascot_common import (
+    compose_masked_replacement,
     current_outfit_reference_sha,
+    extract_outfit_layer,
     hashes_current,
     mask_by_pose,
     mask_path,
@@ -45,33 +47,7 @@ def extract_layer(pose_id: str, edited: Image.Image, feather: int = 2) -> Image.
         raise ValueError(
             f"edited size {edited.size} must equal base pose size {base.size}"
         )
-    hard_mask = clothing
-    soft_mask = (
-        hard_mask.filter(ImageFilter.GaussianBlur(radius=feather)) if feather else hard_mask
-    )
-    layer = Image.new("RGBA", base.size, (0, 0, 0, 0))
-    epx = edited.load()
-    hpx = hard_mask.load()
-    spx = soft_mask.load()
-    lpx = layer.load()
-    kept = 0
-    width, height = base.size
-    for y in range(height):
-        for x in range(width):
-            hard = hpx[x, y]
-            if hard <= 0:
-                continue
-            coverage = min(hard, spx[x, y])
-            if coverage <= 0:
-                continue
-            r, g, b, a = epx[x, y]
-            alpha = min(a, coverage)
-            if alpha:
-                lpx[x, y] = (r, g, b, alpha)
-                kept += 1
-    if kept == 0:
-        raise ValueError("extracted layer is empty")
-    return layer
+    return extract_outfit_layer(edited, clothing, feather=feather)
 
 
 def layer_has_alpha(path: Path) -> bool:
@@ -149,7 +125,7 @@ def import_full_edit(video_dir: Path, job_id: str, input_path: Path) -> int:
         return fail(str(exc))
     layer.save(target_layer, format="PNG")
 
-    composed = Image.alpha_composite(base, layer)
+    composed = compose_masked_replacement(base, layer)
     prep = load_asset_prep(video_dir) if (video_dir / "assets" / "asset-prep.json").exists() else {
         "paths": {"localRoot": f".local-assets/{video_dir.name}"}
     }
