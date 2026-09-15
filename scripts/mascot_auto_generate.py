@@ -2,7 +2,8 @@
 """Automatic mascot outfit generation via OpenAI Images Edit.
 
 REUSE approved variants. Generate only when missing/stale.
-Final pixels outside the approved clothing mask always come from the original pose.
+Clothing mask guides Images Edit only. Production final is full-edit,
+optionally identity-locked when an approved identity mask exists.
 """
 
 from __future__ import annotations
@@ -772,6 +773,58 @@ def generate_missing_variant(
                     generation_reference_sha256=generation_reference_sha256,
                     consistency_reference_sha256=consistency_reference_sha256,
                 ),
+            }
+
+        # Geometry (+ vision) can pass without an identity mask: keep full-edit as
+        # the candidate final, but require human review (no clothing-mask fallback).
+        vision_ok = skip_vision or bool(vis.get("skipped")) or _vision_allows_auto_approve(
+            vis, skip_vision=skip_vision
+        )
+        if det.get("pass") and vision_ok and identity_img is None:
+            layer.save(layer_dest, format="PNG")  # debug/optional
+            composite.save(composite_dest, format="PNG")
+            full_edit.save(full_dest, format="PNG")
+            visual_label = (
+                "skipped"
+                if (skip_vision or vis.get("skipped"))
+                else ("pass" if vis.get("pass") else "fail")
+            )
+            record = register_variant(
+                pose=pose,
+                outfit=outfit,
+                mask=mask,
+                layer_file=layer_dest,
+                composite_file=composite_dest,
+                status="needs-review",
+                attempts=attempt,
+                qa={
+                    "deterministic": "pass",
+                    "visual": visual_label,
+                    "finalization": "full-edit-geometry-only",
+                    "reason": "identity mask missing/unapproved; human review required",
+                },
+                prompt=prompt,
+                full_edit_sha=sha256_file(full_path),
+                generation_reference_sha256=generation_reference_sha256,
+                consistency_reference_sha256=consistency_reference_sha256,
+            )
+            record["fullEditFile"] = full_dest.relative_to(MASCOT).as_posix()
+            record["finalization"] = "full-edit-geometry-only"
+            data = load_variants()
+            others = [
+                item
+                for item in data.get("variants", [])
+                if not (item.get("basePose") == pose["id"] and item.get("outfit") == outfit["id"])
+            ]
+            others.append(record)
+            others.sort(key=lambda item: item["id"])
+            write_json(VARIANTS_PATH, {"version": 1, "variants": others})
+            return {
+                "result": "NEEDS_REVIEW",
+                "variant": record,
+                "attempts": attempt,
+                "qa": last_qa,
+                "reason": "full-edit passed geometry/vision without identity mask",
             }
 
         if det.get("pass") and (skip_vision or vis.get("skipped")):

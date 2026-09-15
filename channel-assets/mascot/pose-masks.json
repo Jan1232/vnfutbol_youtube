@@ -4,15 +4,15 @@
     {
       "basePose": "aggressive-one",
       "file": "pose-masks/aggressive-one.png",
-      "status": "generated",
-      "sha256": "865a24ab02aced502afae735db1d06336d269d1207e972d3b6d3074cf13d254e",
+      "status": "approved",
+      "sha256": "567f5f1ca5dfede54481a24165a5267a9143816a6a9afd83d1fd519298cfa8fa",
       "basePoseSha256": "555f825d326059bf106547320097207ad20efd6bc2757985bd5926c65c322639"
     },
     {
       "basePose": "aggressive-two",
       "file": "pose-masks/aggressive-two.png",
-      "status": "generated",
-      "sha256": "61b24350eb304104ce16043b53058aeaec0ad9e957028d6d0a518f5111aafffe",
+      "status": "approved",
+      "sha256": "a7d0fb0a17bf2150371eb59ddf723d80c76733bc81df5b940430b7d92eb35827",
       "basePoseSha256": "fd52e556a0c0e0d9ba6698e004cb15bcd55bcff218ff403d94b1c790d5e53a9d"
     },
     {

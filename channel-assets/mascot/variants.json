@@ -2,6 +2,132 @@
   "version": 1,
   "variants": [
     {
+      "id": "aggressive-one__barcelona-home",
+      "basePose": "aggressive-one",
+      "outfit": "barcelona-home",
+      "type": "outfit-layer",
+      "file": "variants/barcelona-home/layers/aggressive-one.png",
+      "compositeFile": "variants/barcelona-home/aggressive-one.png",
+      "localReviewLayer": null,
+      "localReviewComposite": null,
+      "status": "needs-review",
+      "attempts": 3,
+      "generatedAt": "2026-09-15T06:06:21+00:00",
+      "qa": {
+        "deterministic": "fail",
+        "visual": "fail",
+        "details": {
+          "deterministic": {
+            "pass": false,
+            "issues": [
+              "eye centroid shifted 26.3px"
+            ],
+            "mode": "full-edit-geometry-only",
+            "geometry": {
+              "pass": false,
+              "issues": [
+                "eye centroid shifted 26.3px"
+              ],
+              "identityProbe": null
+            },
+            "identityLock": {
+              "pass": false,
+              "issues": [
+                "identity mask missing/unapproved; clothing composite disabled"
+              ]
+            }
+          },
+          "visual": {
+            "pass": true,
+            "issues": [],
+            "missingBranding": [],
+            "extraBranding": [],
+            "wrongText": [],
+            "outfitConsistency": 1.0,
+            "modelPass": true
+          },
+          "attempt": 3,
+          "geometry": {
+            "pass": false,
+            "issues": [
+              "eye centroid shifted 26.3px"
+            ],
+            "identityProbe": null
+          }
+        }
+      },
+      "promptSha256": "af84034c13783689289378bff1c6a6a09e95aadf12192ed96962f60504c20782",
+      "basePoseSha256": "555f825d326059bf106547320097207ad20efd6bc2757985bd5926c65c322639",
+      "maskSha256": "567f5f1ca5dfede54481a24165a5267a9143816a6a9afd83d1fd519298cfa8fa",
+      "outfitSpecSha256": "f574301a8781679e12cf35351f4903415754508c3422238f1b81811e5e9b9a12",
+      "outfitFingerprint": "e02e6dc9ee7ad2dba6bae6ac33de518ce6448e8eace222d24bfe3004d4ca1f8c",
+      "generationReferenceSha256": "7f0593f7540c05631f043ad27270797ab721a526eaa00996ff6c69c0f5d67399",
+      "referenceSha256": "7f0593f7540c05631f043ad27270797ab721a526eaa00996ff6c69c0f5d67399",
+      "consistencyReferenceSha256": null,
+      "fullEditFile": "variants/barcelona-home/full-edits/aggressive-one.png",
+      "finalization": "full-edit-geometry-only"
+    },
+    {
+      "id": "aggressive-two__spain-home-2026",
+      "basePose": "aggressive-two",
+      "outfit": "spain-home-2026",
+      "type": "outfit-layer",
+      "file": "variants/spain-home-2026/layers/aggressive-two.png",
+      "compositeFile": "variants/spain-home-2026/aggressive-two.png",
+      "localReviewLayer": null,
+      "localReviewComposite": null,
+      "status": "needs-review",
+      "attempts": 3,
+      "generatedAt": "2026-09-15T06:09:11+00:00",
+      "qa": {
+        "deterministic": "fail",
+        "visual": "fail",
+        "details": {
+          "deterministic": {
+            "pass": true,
+            "issues": [],
+            "mode": "full-edit-geometry-only",
+            "geometry": {
+              "pass": true,
+              "issues": [],
+              "identityProbe": null
+            },
+            "identityLock": {
+              "pass": false,
+              "issues": [
+                "identity mask missing/unapproved; clothing composite disabled"
+              ]
+            }
+          },
+          "visual": {
+            "pass": true,
+            "issues": [],
+            "missingBranding": [],
+            "extraBranding": [],
+            "wrongText": [],
+            "outfitConsistency": 0.98,
+            "modelPass": true
+          },
+          "attempt": 3,
+          "geometry": {
+            "pass": true,
+            "issues": [],
+            "identityProbe": null
+          }
+        }
+      },
+      "promptSha256": "285d750c50c4da3eb0565894bda428bef8b227ae9eeee0e4e11ae6b82c7673a6",
+      "basePoseSha256": "fd52e556a0c0e0d9ba6698e004cb15bcd55bcff218ff403d94b1c790d5e53a9d",
+      "maskSha256": "a7d0fb0a17bf2150371eb59ddf723d80c76733bc81df5b940430b7d92eb35827",
+      "outfitSpecSha256": "38494c4b0c77e1dfe2524246ae8ac198191b530600fa10b66da8a8340f3979c4",
+      "outfitFingerprint": "a21bfef1a454fdcc18e4e70586f526555db92b022ec58f4f48cfc1da7887dc41",
+      "generationReferenceSha256": "551ed7a098abd12bf7f6e3d7e0d60478fef0507a789f785b186cdd7d866d308b",
+      "referenceSha256": "551ed7a098abd12bf7f6e3d7e0d60478fef0507a789f785b186cdd7d866d308b",
+      "consistencyReferenceSha256": null,
+      "fullEditFile": "variants/spain-home-2026/full-edits/aggressive-two.png",
+      "finalization": "full-edit-geometry-only"
+    },
+    {
       "id": "count-3__spain-home-2026",
       "basePose": "count-3",
       "outfit": "spain-home-2026",
