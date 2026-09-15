@@ -412,8 +412,8 @@ def cmd_plan(video_dir: Path) -> int:
     prep = load_asset_prep(video_dir)
     dirs = ensure_local_dirs(video_dir, prep)
     paths = video_paths(video_dir)
-    # Resolve outfits + auto-generate missing variants before planning status.
-    mascot_summary = resolve_mascot_assets(video_dir, generate=True)
+    # Resolve outfits without generation; paid generation runs only in --prepare.
+    mascot_summary = resolve_mascot_assets(video_dir, generate=False)
     print(
         "MASCOT "
         f"reused={mascot_summary.get('reused', 0)} "

@@ -80,7 +80,7 @@ def test_barcelona_branding_rules() -> None:
     assert_true(branding.get("crest") is True, branding)
     assert_true(branding.get("manufacturer") == "Nike", branding)
     assert_true("Spotify" in (branding.get("forbiddenText") or []), branding)
-    prompt = build_generation_prompt("barcelona-home")
+    prompt = build_generation_prompt("barcelona-home", has_outfit_ref=True)
     assert_true("NO written Spotify word" in prompt or "circular Spotify symbol" in prompt, prompt)
 
 

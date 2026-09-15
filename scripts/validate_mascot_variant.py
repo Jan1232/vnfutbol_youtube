@@ -75,9 +75,10 @@ def validate_variant_images(
     if layer_pixels == 0:
         issues.append("outfit layer is empty")
     coverage = (layer_pixels / garment_pixels) if garment_pixels else 0.0
-    if garment_pixels and coverage < 0.15:
+    hole_ratio = (hole_like / garment_pixels) if garment_pixels else 0.0
+    if garment_pixels and coverage < 0.90:
         issues.append(f"coverage ratio too low ({coverage:.3f})")
-    if garment_pixels and hole_like / garment_pixels > 0.35:
+    if garment_pixels and hole_ratio > 0.05:
         issues.append(f"large holes in garment region ({hole_like}/{garment_pixels})")
     if outside_mismatch > 0:
         issues.append(f"outside-mask pixels differ from original pose ({outside_mismatch})")
@@ -92,6 +93,7 @@ def validate_variant_images(
         "pass": not issues,
         "issues": issues,
         "coverage": coverage,
+        "holeRatio": hole_ratio,
         "layerPixels": layer_pixels,
         "garmentPixels": garment_pixels,
         "outsideMismatch": outside_mismatch,
