@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import sys
 import tempfile
@@ -11,6 +12,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# Offline tests must never call live OpenAI generation during prepare/plan.
+os.environ["MASCOT_AUTO_GENERATE"] = "0"
 
 from asset_prep_common import ROOT, sha256_file, write_json
 from build_timeline import assign_voice, collect_gate_blockers, partition_segments

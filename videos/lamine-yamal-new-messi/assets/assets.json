@@ -974,60 +974,6 @@
       }
     },
     {
-      "id": "mascot-count-2__spain-home-2022",
-      "type": "MASCOT",
-      "source": "library",
-      "status": "planned",
-      "usedInScenes": [
-        "scene-14"
-      ],
-      "tags": [
-        "mascot",
-        "count-2",
-        "spain-home-2022"
-      ],
-      "sourceUrl": null,
-      "license": null,
-      "author": null,
-      "rightsStatus": "owned/generated",
-      "downloadToPublicRepo": true,
-      "mascot": {
-        "basePose": "count-2",
-        "outfitIntent": "explicit",
-        "resolvedOutfit": "spain-home-2022",
-        "subject": "player-lamine-yamal",
-        "variantPolicy": "reuse-else-generate",
-        "explicitOutfit": "spain-home-2022"
-      }
-    },
-    {
-      "id": "mascot-count-3__spain-home-2024",
-      "type": "MASCOT",
-      "source": "library",
-      "status": "planned",
-      "usedInScenes": [
-        "scene-16"
-      ],
-      "tags": [
-        "mascot",
-        "count-3",
-        "spain-home-2024"
-      ],
-      "sourceUrl": null,
-      "license": null,
-      "author": null,
-      "rightsStatus": "owned/generated",
-      "downloadToPublicRepo": true,
-      "mascot": {
-        "basePose": "count-3",
-        "outfitIntent": "explicit",
-        "resolvedOutfit": "spain-home-2024",
-        "subject": "player-lamine-yamal",
-        "variantPolicy": "reuse-else-generate",
-        "explicitOutfit": "spain-home-2024"
-      }
-    },
-    {
       "id": "mascot-celebrate__spain-home-2026",
       "type": "MASCOT",
       "source": "library",
@@ -1047,6 +993,60 @@
       "downloadToPublicRepo": true,
       "mascot": {
         "basePose": "celebrate",
+        "outfitIntent": "national-team",
+        "resolvedOutfit": "spain-home-2026",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-count-2__spain-home-2026",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-14"
+      ],
+      "tags": [
+        "mascot",
+        "count-2",
+        "spain-home-2026"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "count-2",
+        "outfitIntent": "national-team",
+        "resolvedOutfit": "spain-home-2026",
+        "subject": "player-lamine-yamal",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-count-3__spain-home-2026",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-16"
+      ],
+      "tags": [
+        "mascot",
+        "count-3",
+        "spain-home-2026"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "count-3",
         "outfitIntent": "national-team",
         "resolvedOutfit": "spain-home-2026",
         "subject": "player-lamine-yamal",

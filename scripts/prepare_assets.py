@@ -28,7 +28,13 @@ from asset_prep_common import (
     visual_plan_asset_ids,
     write_json,
 )
-from mascot_common import DEFAULT_OUTFIT, variant_by_pair
+from mascot_common import (
+    DEFAULT_OUTFIT,
+    REUSABLE_VARIANT_STATUSES,
+    openai_api_key,
+    variant_by_pair,
+)
+from resolve_mascot_assets import resolve_mascot_assets
 
 try:
     from PIL import Image, ImageDraw, ImageOps
@@ -345,19 +351,36 @@ def classify_plan_record(
             record["mascot"] = {"basePose": pose, "outfit": outfit, "mode": "base-pose"}
             return record
         variant = variant_by_pair(pose, outfit)
-        if variant and variant.get("status") == "approved":
+        if variant and variant.get("status") in REUSABLE_VARIANT_STATUSES:
             record["status"] = "READY_MASCOT"
-            record["notes"] = "approved outfit variant reusable"
+            record["notes"] = f"reusable outfit variant ({variant.get('status')})"
             record["mascot"] = {
                 "basePose": pose,
                 "outfit": outfit,
                 "variant": variant.get("id") or f"{pose}__{outfit}",
             }
             return record
+        if variant and variant.get("status") == "needs-review":
+            record["status"] = "BLOCKED"
+            record["prepStatus"] = "NEEDS_REVIEW"
+            record["notes"] = (
+                f"mascot variant needs review for {pose} + {outfit}; "
+                "final render blocked until approved"
+            )
+            record["mascot"] = {"basePose": pose, "outfit": outfit, "mode": "needs-review"}
+            return record
+        if not openai_api_key():
+            record["status"] = "BLOCKED"
+            record["prepStatus"] = "BLOCKED_GENERATION"
+            record["notes"] = (
+                f"mascot variant missing for {pose} + {outfit}; missing OPENAI_API_KEY"
+            )
+            record["mascot"] = {"basePose": pose, "outfit": outfit, "mode": "blocked-generation"}
+            return record
         record["status"] = "BLOCKED"
         record["notes"] = (
             f"mascot variant pending/missing for {pose} + {outfit}; "
-            "do not invent approved variants"
+            "auto-generation did not produce an approved variant"
         )
         record["mascot"] = {"basePose": pose, "outfit": outfit, "mode": "pending"}
         return record
@@ -389,6 +412,16 @@ def cmd_plan(video_dir: Path) -> int:
     prep = load_asset_prep(video_dir)
     dirs = ensure_local_dirs(video_dir, prep)
     paths = video_paths(video_dir)
+    # Resolve outfits + auto-generate missing variants before planning status.
+    mascot_summary = resolve_mascot_assets(video_dir, generate=True)
+    print(
+        "MASCOT "
+        f"reused={mascot_summary.get('reused', 0)} "
+        f"generated={mascot_summary.get('generated', 0)} "
+        f"blocked_generation={mascot_summary.get('blocked_generation', 0)} "
+        f"blocked_reference={mascot_summary.get('blocked_reference', 0)} "
+        f"needs_review={mascot_summary.get('needs_review', 0)}"
+    )
     plan = load_json(paths["visual_plan"])
     assets_payload = load_json(paths["assets"])
     by_id = assets_by_id(assets_payload)
@@ -695,6 +728,44 @@ def prepare_video(record: dict, dirs: dict[str, Path], prep: dict) -> dict:
 def cmd_prepare(video_dir: Path) -> int:
     prep = load_asset_prep(video_dir)
     dirs = ensure_local_dirs(video_dir, prep)
+    mascot_summary = resolve_mascot_assets(video_dir, generate=True)
+    print(
+        "MASCOT "
+        f"reused={mascot_summary.get('reused', 0)} "
+        f"generated={mascot_summary.get('generated', 0)} "
+        f"blocked_generation={mascot_summary.get('blocked_generation', 0)} "
+        f"blocked_reference={mascot_summary.get('blocked_reference', 0)} "
+        f"needs_review={mascot_summary.get('needs_review', 0)}"
+    )
+    # Refresh prepared MASCOT rows after auto-generation.
+    paths = video_paths(video_dir)
+    if paths["prepared"].exists() and paths["assets"].exists() and paths["visual_plan"].exists():
+        plan = load_json(paths["visual_plan"])
+        assets_payload = load_json(paths["assets"])
+        by_id = assets_by_id(assets_payload)
+        prepared_payload = load_prepared(video_dir)
+        prepared_map = prepared_by_id(prepared_payload)
+        for asset_id, asset in by_id.items():
+            if asset.get("type") != "MASCOT":
+                continue
+            record = classify_plan_record(asset_id, asset, prep, video_dir, plan)
+            old = prepared_map.get(asset_id)
+            prepared_map[asset_id] = merge_preserve(old, record)
+        # Preserve non-mascot order from previous prepared list.
+        ordered: list[dict] = []
+        seen: set[str] = set()
+        for item in prepared_payload.get("assets") or []:
+            aid = item.get("id")
+            if aid in prepared_map:
+                ordered.append(prepared_map[aid])
+                seen.add(aid)
+        for aid, item in prepared_map.items():
+            if aid not in seen:
+                ordered.append(item)
+        prepared_payload["assets"] = ordered
+        prepared_payload["generatedAt"] = utc_now()
+        write_json(paths["prepared"], prepared_payload)
+
     payload = load_prepared(video_dir)
     updated = 0
     for record in payload.get("assets") or []:

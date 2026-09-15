@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "mascotOutfits": {
+    "default": "default-home",
+    "currentClub": "barcelona-home",
+    "nationalTeam": "spain-home-2026",
+    "formal": "suit-navy"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "suit-navy",
+  "season": null,
+  "type": "formal",
+  "referenceRequired": false,
+  "description": "Clean tailored navy formal suit for ceremonies and awards",
+  "branding": {
+    "crest": false,
+    "manufacturer": null,
+    "sponsor": null
+  },
+  "generationRules": [
+    "dark navy tailored jacket",
+    "matching trousers if visible",
+    "simple formal shirt",
+    "no logos",
+    "no text",
+    "no medals unless already present as a separate prop"
+  ],
+  "forbiddenRules": [
+    "logos",
+    "sponsor marks",
+    "player name",
+    "player number"
+  ]
+}

@@ -20,6 +20,7 @@ from mascot_common import (
     pose_by_id,
     sha256_file,
     variant_by_pair,
+    variant_is_reusable,
     variant_is_stale,
     write_json,
 )
@@ -57,12 +58,7 @@ def classify(asset: dict) -> tuple[str, dict]:
         return "BLOCKED_MASK", {}
 
     variant = variant_by_pair(pose_id, outfit_id)
-    reusable = (
-        variant is not None
-        and variant.get("status") == "approved"
-        and not variant_is_stale(variant, pose, mask, outfit)
-    )
-    if reusable:
+    if variant_is_reusable(variant, pose, mask, outfit):
         return "REUSED", {"variant": variant}
 
     if policy == "reuse-only":

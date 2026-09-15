@@ -1,0 +1,26 @@
+{
+  "id": "spain-home-2022",
+  "season": "2022",
+  "type": "national-team",
+  "referenceRequired": true,
+  "description": "Spain home kit 2022 World Cup / 2023 debut window",
+  "branding": {
+    "crest": true,
+    "manufacturer": "adidas",
+    "sponsor": null
+  },
+  "generationRules": [
+    "deep intense red first kit",
+    "national-flag reference on collar",
+    "Spain crest on left chest",
+    "adidas mark on right chest",
+    "no sponsor",
+    "no player name",
+    "no player number"
+  ],
+  "forbiddenRules": [
+    "sponsor marks",
+    "player name",
+    "player number"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "spain-home-2026",
+  "season": "2026",
+  "type": "national-team",
+  "referenceRequired": true,
+  "description": "Spain official home kit 2026 / World Cup 2026",
+  "branding": {
+    "crest": true,
+    "manufacturer": "adidas",
+    "sponsor": null
+  },
+  "generationRules": [
+    "red base",
+    "fine yellow vertical pinstripes",
+    "Spain crest on left chest",
+    "star above crest",
+    "yellow adidas logo on right chest",
+    "no sponsor",
+    "no player name",
+    "no player number"
+  ],
+  "forbiddenRules": [
+    "sponsor marks",
+    "player name",
+    "player number",
+    "invented logos not visible on the reference"
+  ]
+}

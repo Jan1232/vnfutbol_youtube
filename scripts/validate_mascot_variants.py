@@ -83,7 +83,7 @@ def main() -> int:
         if variant.get("outfitSpecSha256") != outfit_spec_sha256(outfit):
             errors.append(f"{variant_id}: outfitSpecSha256 mismatch")
         if variant_is_stale(variant, pose, mask, outfit):
-            if variant.get("status") == "approved":
+            if variant.get("status") in {"approved", "approved-auto"}:
                 errors.append(f"{variant_id}: approved variant is stale")
             elif variant.get("status") != "stale":
                 errors.append(f"{variant_id}: hashes are stale but status is {variant.get('status')}")

@@ -12,6 +12,7 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mascot_common import (
     DEFAULT_OUTFIT,
+    REUSABLE_VARIANT_STATUSES,
     mask_by_pose,
     outfit_by_id,
     pose_by_id,
@@ -56,7 +57,7 @@ def main() -> int:
             f"no outfit layer for {args.pose} + {args.outfit}. "
             "Run ensure_mascot_variants.py and generate the missing layer."
         )
-    if variant.get("status") != "approved":
+    if variant.get("status") not in REUSABLE_VARIANT_STATUSES:
         return fail(f"variant `{variant['id']}` is not approved (status={variant.get('status')})")
     mask = mask_by_pose(args.pose)
     if variant_is_stale(variant, pose, mask, outfit):

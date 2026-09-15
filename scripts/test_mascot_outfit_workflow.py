@@ -130,9 +130,15 @@ def test_prompt_policy_rendering() -> None:
 
 
 def test_import_outfit_reference(tmp: Path) -> None:
-    # Redirect shared root into tmp by writing under real OUTFIT_REF_ROOT is gitignored;
-    # use a disposable outfit folder and clean up afterward.
+    # Shared OUTFIT_REF_ROOT is gitignored but may already hold a real local reference;
+    # clear it so the no-replace first-import path is exercisable and isolated.
     outfit_id = "barcelona-home"
+    dest_existing = outfit_reference_path(outfit_id)
+    if dest_existing.exists():
+        dest_existing.unlink()
+    meta_existing = dest_existing.parent / "meta.json"
+    if meta_existing.exists():
+        meta_existing.unlink()
     src = write_dummy_png(tmp / "kit-ref.png", (10, 40, 160, 255), (80, 100))
     assert_true(
         import_reference(

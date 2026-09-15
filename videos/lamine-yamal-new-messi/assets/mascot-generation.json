@@ -13,10 +13,11 @@
       "targetFullEdit": "assets/mascot/generated/count-3__barcelona-home_full.png",
       "targetLayer": "assets/mascot/generated/count-3__barcelona-home_layer.png",
       "status": "pending",
-      "outfitReferenceSha256": null,
+      "outfitReferenceSha256": "f4bacf98dd82c1c2704075a6a211f1bf4c3476d1626203e7384d5e0b931ea3e6",
       "basePoseSha256": "d0e4cfeb6d41641cd2fbedae10df447bc65ba9d42d408b5087911d2e40ac1ab8",
       "maskSha256": "35b5e35977fa6c2a54682df97757a152dfb973b702aaa52c8a2b5e725239d64b",
-      "outfitSpecSha256": "a2e5faaa6669f07e9226f6546160f3720db57a885b3b1a668dac65cee74ed6c3"
+      "outfitSpecSha256": "dc81874dbce97380005a5d703c18de10502df57388e7b7a34da39805fc627fb8",
+      "outfitFingerprint": "2c5b6d20cbbdd3e0a973ac277805b48dbd751987ca1e960b410e37c7721a9dc7"
     },
     {
       "id": "mascot-job-002",
@@ -30,10 +31,11 @@
       "targetFullEdit": "assets/mascot/generated/shock-one__barcelona-home_full.png",
       "targetLayer": "assets/mascot/generated/shock-one__barcelona-home_layer.png",
       "status": "pending",
-      "outfitReferenceSha256": null,
+      "outfitReferenceSha256": "f4bacf98dd82c1c2704075a6a211f1bf4c3476d1626203e7384d5e0b931ea3e6",
       "basePoseSha256": "9fc471c592209dfcc78333d8e7a1f4fcd22f87617690c067f651caf6e59cd4fa",
       "maskSha256": "33d786b6e46b256650bc34caab032e9f85d742f0d23d6ebf1bf4dc4830f383f9",
-      "outfitSpecSha256": "a2e5faaa6669f07e9226f6546160f3720db57a885b3b1a668dac65cee74ed6c3"
+      "outfitSpecSha256": "dc81874dbce97380005a5d703c18de10502df57388e7b7a34da39805fc627fb8",
+      "outfitFingerprint": "2c5b6d20cbbdd3e0a973ac277805b48dbd751987ca1e960b410e37c7721a9dc7"
     },
     {
       "id": "mascot-job-003",
@@ -47,10 +49,11 @@
       "targetFullEdit": "assets/mascot/generated/point-left-three__barcelona-home_full.png",
       "targetLayer": "assets/mascot/generated/point-left-three__barcelona-home_layer.png",
       "status": "pending",
-      "outfitReferenceSha256": null,
+      "outfitReferenceSha256": "f4bacf98dd82c1c2704075a6a211f1bf4c3476d1626203e7384d5e0b931ea3e6",
       "basePoseSha256": "64a287a225297a27029595f6b537163f701ef917d427c1e42abea0c3ba5038ab",
       "maskSha256": "91511f545a09a1bc3efd783e1dd1054723074a19dbe711a58cafe79895f28fff",
-      "outfitSpecSha256": "a2e5faaa6669f07e9226f6546160f3720db57a885b3b1a668dac65cee74ed6c3"
+      "outfitSpecSha256": "dc81874dbce97380005a5d703c18de10502df57388e7b7a34da39805fc627fb8",
+      "outfitFingerprint": "2c5b6d20cbbdd3e0a973ac277805b48dbd751987ca1e960b410e37c7721a9dc7"
     },
     {
       "id": "mascot-job-004",
@@ -64,10 +67,11 @@
       "targetFullEdit": "assets/mascot/generated/explain-four__barcelona-home_full.png",
       "targetLayer": "assets/mascot/generated/explain-four__barcelona-home_layer.png",
       "status": "pending",
-      "outfitReferenceSha256": null,
+      "outfitReferenceSha256": "f4bacf98dd82c1c2704075a6a211f1bf4c3476d1626203e7384d5e0b931ea3e6",
       "basePoseSha256": "e89f9331b4def66f6b3faa0284c6febdde0c59009531996f0eb0b53ca1290a7e",
       "maskSha256": "7074e5422352e075098056bb57824ee23ab5c42cefc879075661563cd748c826",
-      "outfitSpecSha256": "a2e5faaa6669f07e9226f6546160f3720db57a885b3b1a668dac65cee74ed6c3"
+      "outfitSpecSha256": "dc81874dbce97380005a5d703c18de10502df57388e7b7a34da39805fc627fb8",
+      "outfitFingerprint": "2c5b6d20cbbdd3e0a973ac277805b48dbd751987ca1e960b410e37c7721a9dc7"
     },
     {
       "id": "mascot-job-005",
@@ -81,10 +85,11 @@
       "targetFullEdit": "assets/mascot/generated/explain-two__barcelona-home_full.png",
       "targetLayer": "assets/mascot/generated/explain-two__barcelona-home_layer.png",
       "status": "pending",
-      "outfitReferenceSha256": null,
+      "outfitReferenceSha256": "f4bacf98dd82c1c2704075a6a211f1bf4c3476d1626203e7384d5e0b931ea3e6",
       "basePoseSha256": "3d7252d08e0b98ce7ac046cff4e96c5e03c2af2a61f652709275535b765add37",
       "maskSha256": "8730d92b99615c235e287628a33e6cc4cff112acabf40c0c381b49d3a65ade15",
-      "outfitSpecSha256": "a2e5faaa6669f07e9226f6546160f3720db57a885b3b1a668dac65cee74ed6c3"
+      "outfitSpecSha256": "dc81874dbce97380005a5d703c18de10502df57388e7b7a34da39805fc627fb8",
+      "outfitFingerprint": "2c5b6d20cbbdd3e0a973ac277805b48dbd751987ca1e960b410e37c7721a9dc7"
     },
     {
       "id": "mascot-job-006",
@@ -98,10 +103,11 @@
       "targetFullEdit": "assets/mascot/generated/shock-three__barcelona-home_full.png",
       "targetLayer": "assets/mascot/generated/shock-three__barcelona-home_layer.png",
       "status": "pending",
-      "outfitReferenceSha256": null,
+      "outfitReferenceSha256": "f4bacf98dd82c1c2704075a6a211f1bf4c3476d1626203e7384d5e0b931ea3e6",
       "basePoseSha256": "62cd4d983280eb2306d58eaaa22a664fff2481963bc8f7c276630c694dd3a28c",
       "maskSha256": "a181e417f6ef271db690c4f78dcfbb0ada62ec877ded8cf55e329078cdc28ea6",
-      "outfitSpecSha256": "a2e5faaa6669f07e9226f6546160f3720db57a885b3b1a668dac65cee74ed6c3"
+      "outfitSpecSha256": "dc81874dbce97380005a5d703c18de10502df57388e7b7a34da39805fc627fb8",
+      "outfitFingerprint": "2c5b6d20cbbdd3e0a973ac277805b48dbd751987ca1e960b410e37c7721a9dc7"
     },
     {
       "id": "mascot-job-007",
@@ -115,10 +121,11 @@
       "targetFullEdit": "assets/mascot/generated/celebrate__barcelona-home_full.png",
       "targetLayer": "assets/mascot/generated/celebrate__barcelona-home_layer.png",
       "status": "pending",
-      "outfitReferenceSha256": null,
+      "outfitReferenceSha256": "f4bacf98dd82c1c2704075a6a211f1bf4c3476d1626203e7384d5e0b931ea3e6",
       "basePoseSha256": "6bc8d93d151b585217bde6ecd0e981a8372ade0490dfd47fbd4e02fe5ef1fc2f",
       "maskSha256": "d2faa1876c59bd3484b494c278fd6bddb90dc2e8a768d850bea36be7bf402eab",
-      "outfitSpecSha256": "a2e5faaa6669f07e9226f6546160f3720db57a885b3b1a668dac65cee74ed6c3"
+      "outfitSpecSha256": "dc81874dbce97380005a5d703c18de10502df57388e7b7a34da39805fc627fb8",
+      "outfitFingerprint": "2c5b6d20cbbdd3e0a973ac277805b48dbd751987ca1e960b410e37c7721a9dc7"
     },
     {
       "id": "mascot-job-008",
@@ -135,7 +142,8 @@
       "outfitReferenceSha256": null,
       "basePoseSha256": "be06c183c51db0a9e83ab8fd89ca03d36c929cefd81f425c43e21f7041cf696f",
       "maskSha256": "fbe30fc0f5066b92161f86d2233dd07a6c48d97c114a399626cff509cdc9c1d1",
-      "outfitSpecSha256": "3cda60c72af34771b45e75524fde93b68df016c2d31c707bff9053b459efe5fe"
+      "outfitSpecSha256": "100c8bdc2f2f87b30782f8e2533e91994649e771f582f6680d00a9f449f8ed36",
+      "outfitFingerprint": "b8692b2cfbe1081a16de2fe868e15c6006af54e03f3d93406b146bd06050be6d"
     },
     {
       "id": "mascot-job-009",
@@ -149,10 +157,11 @@
       "targetFullEdit": "assets/mascot/generated/explain-six__barcelona-home_full.png",
       "targetLayer": "assets/mascot/generated/explain-six__barcelona-home_layer.png",
       "status": "pending",
-      "outfitReferenceSha256": null,
+      "outfitReferenceSha256": "f4bacf98dd82c1c2704075a6a211f1bf4c3476d1626203e7384d5e0b931ea3e6",
       "basePoseSha256": "b3e12f039c665decead75e4f4d5777ebf686565b25841862726e9c5278c66399",
       "maskSha256": "3db427c97bdc1ecc1256ba3e7b613c51737231bb81d6e2c63531dbc68c7387f9",
-      "outfitSpecSha256": "a2e5faaa6669f07e9226f6546160f3720db57a885b3b1a668dac65cee74ed6c3"
+      "outfitSpecSha256": "dc81874dbce97380005a5d703c18de10502df57388e7b7a34da39805fc627fb8",
+      "outfitFingerprint": "2c5b6d20cbbdd3e0a973ac277805b48dbd751987ca1e960b410e37c7721a9dc7"
     },
     {
       "id": "mascot-job-010",
@@ -166,10 +175,11 @@
       "targetFullEdit": "assets/mascot/generated/explain-five__barcelona-home_full.png",
       "targetLayer": "assets/mascot/generated/explain-five__barcelona-home_layer.png",
       "status": "pending",
-      "outfitReferenceSha256": null,
+      "outfitReferenceSha256": "f4bacf98dd82c1c2704075a6a211f1bf4c3476d1626203e7384d5e0b931ea3e6",
       "basePoseSha256": "be06c183c51db0a9e83ab8fd89ca03d36c929cefd81f425c43e21f7041cf696f",
       "maskSha256": "fbe30fc0f5066b92161f86d2233dd07a6c48d97c114a399626cff509cdc9c1d1",
-      "outfitSpecSha256": "a2e5faaa6669f07e9226f6546160f3720db57a885b3b1a668dac65cee74ed6c3"
+      "outfitSpecSha256": "dc81874dbce97380005a5d703c18de10502df57388e7b7a34da39805fc627fb8",
+      "outfitFingerprint": "2c5b6d20cbbdd3e0a973ac277805b48dbd751987ca1e960b410e37c7721a9dc7"
     },
     {
       "id": "mascot-job-011",
@@ -183,10 +193,11 @@
       "targetFullEdit": "assets/mascot/generated/annoyed-two__barcelona-home_full.png",
       "targetLayer": "assets/mascot/generated/annoyed-two__barcelona-home_layer.png",
       "status": "pending",
-      "outfitReferenceSha256": null,
+      "outfitReferenceSha256": "f4bacf98dd82c1c2704075a6a211f1bf4c3476d1626203e7384d5e0b931ea3e6",
       "basePoseSha256": "8fa49fa61356f9abf5d92dbcccb45a276645c2d434fa922fd4784845f889c0bf",
       "maskSha256": "e5b6b9653e8b51de3ce09dda340c111fd69d4ec315c113d58096d8c8e2d5595e",
-      "outfitSpecSha256": "a2e5faaa6669f07e9226f6546160f3720db57a885b3b1a668dac65cee74ed6c3"
+      "outfitSpecSha256": "dc81874dbce97380005a5d703c18de10502df57388e7b7a34da39805fc627fb8",
+      "outfitFingerprint": "2c5b6d20cbbdd3e0a973ac277805b48dbd751987ca1e960b410e37c7721a9dc7"
     },
     {
       "id": "mascot-job-012",
@@ -200,10 +211,11 @@
       "targetFullEdit": "assets/mascot/generated/point-right-two__barcelona-home_full.png",
       "targetLayer": "assets/mascot/generated/point-right-two__barcelona-home_layer.png",
       "status": "pending",
-      "outfitReferenceSha256": null,
+      "outfitReferenceSha256": "f4bacf98dd82c1c2704075a6a211f1bf4c3476d1626203e7384d5e0b931ea3e6",
       "basePoseSha256": "81c43bcc6b1a1e9a02d4508e7fe37f605c525c667586a0676b75caad6274f324",
       "maskSha256": "764ead2106887a3a72a692f345a81d9d2487c453c72c21d6f0f23187284c25c4",
-      "outfitSpecSha256": "a2e5faaa6669f07e9226f6546160f3720db57a885b3b1a668dac65cee74ed6c3"
+      "outfitSpecSha256": "dc81874dbce97380005a5d703c18de10502df57388e7b7a34da39805fc627fb8",
+      "outfitFingerprint": "2c5b6d20cbbdd3e0a973ac277805b48dbd751987ca1e960b410e37c7721a9dc7"
     },
     {
       "id": "mascot-job-013",
@@ -220,44 +232,11 @@
       "outfitReferenceSha256": null,
       "basePoseSha256": "00904594a7705d3c001e62514c50ae9a9a3617d883c84f606fa673c1d310a37a",
       "maskSha256": "8129e483d8ee2efbf92af369e9513dc9f54d213bcba9cf51c1c82707c1b9b45f",
-      "outfitSpecSha256": "8e4fbfca54e51facbea1c7cb693c96854a9d53dd375381e7d930b61b09252872"
+      "outfitSpecSha256": "9b46dc771e1f2fc40e72a87341fe4f39725a12ef99c1371212a518da763c887b",
+      "outfitFingerprint": "9caaec6b4e8d8fa39d2c2f5c2db7c667db72c8e5fa824d203bbe334ab01d1542"
     },
     {
       "id": "mascot-job-014",
-      "asset": "mascot-count-2__spain-home-2022",
-      "basePose": "count-2",
-      "basePoseFile": "poses/count/count_2.png",
-      "canonicalReference": "references/mascot_reference_main.png",
-      "clothingMask": "pose-masks/count-2.png",
-      "outfit": "spain-home-2022",
-      "outfitDescription": "Spain national-team home kit 2022 / 2023 debut window: deep/intense red first kit with national-flag reference on the collar. Match Image C exactly. No player name or number unless explicitly requested.",
-      "targetFullEdit": "assets/mascot/generated/count-2__spain-home-2022_full.png",
-      "targetLayer": "assets/mascot/generated/count-2__spain-home-2022_layer.png",
-      "status": "pending",
-      "outfitReferenceSha256": null,
-      "basePoseSha256": "26082bb46bbef9a8021620419203284e46846c3c573a9aaa0503a925685c95a1",
-      "maskSha256": "4732ca9df30e325e846c1ea9bf8bb6595ce9c4eaac1e4f09d913ca2a0295a249",
-      "outfitSpecSha256": "d7d80d8c04a2dfdbb32b792bfd3ec0d6db522fe56c4806e203980025941da529"
-    },
-    {
-      "id": "mascot-job-015",
-      "asset": "mascot-count-3__spain-home-2024",
-      "basePose": "count-3",
-      "basePoseFile": "poses/count/count_3.png",
-      "canonicalReference": "references/mascot_reference_main.png",
-      "clothingMask": "pose-masks/count-3.png",
-      "outfit": "spain-home-2024",
-      "outfitDescription": "Spain national-team home kit EURO 2024: red base, yellow trim/details, yellow adidas stripes/badge details, carnation motif on back collar, subtle wavy motif in the shirt base. Match Image C exactly. No player name or number unless explicitly requested.",
-      "targetFullEdit": "assets/mascot/generated/count-3__spain-home-2024_full.png",
-      "targetLayer": "assets/mascot/generated/count-3__spain-home-2024_layer.png",
-      "status": "pending",
-      "outfitReferenceSha256": null,
-      "basePoseSha256": "d0e4cfeb6d41641cd2fbedae10df447bc65ba9d42d408b5087911d2e40ac1ab8",
-      "maskSha256": "35b5e35977fa6c2a54682df97757a152dfb973b702aaa52c8a2b5e725239d64b",
-      "outfitSpecSha256": "593bdf8e8d133bd9402b78ceb822cdea630d6860a38df800c7b886410c125f0e"
-    },
-    {
-      "id": "mascot-job-016",
       "asset": "mascot-celebrate__spain-home-2026",
       "basePose": "celebrate",
       "basePoseFile": "poses/celebrate/celebrate.png",
@@ -271,7 +250,44 @@
       "outfitReferenceSha256": null,
       "basePoseSha256": "6bc8d93d151b585217bde6ecd0e981a8372ade0490dfd47fbd4e02fe5ef1fc2f",
       "maskSha256": "d2faa1876c59bd3484b494c278fd6bddb90dc2e8a768d850bea36be7bf402eab",
-      "outfitSpecSha256": "8e4fbfca54e51facbea1c7cb693c96854a9d53dd375381e7d930b61b09252872"
+      "outfitSpecSha256": "9b46dc771e1f2fc40e72a87341fe4f39725a12ef99c1371212a518da763c887b",
+      "outfitFingerprint": "9caaec6b4e8d8fa39d2c2f5c2db7c667db72c8e5fa824d203bbe334ab01d1542"
+    },
+    {
+      "id": "mascot-job-015",
+      "asset": "mascot-count-2__spain-home-2026",
+      "basePose": "count-2",
+      "basePoseFile": "poses/count/count_2.png",
+      "canonicalReference": "references/mascot_reference_main.png",
+      "clothingMask": "pose-masks/count-2.png",
+      "outfit": "spain-home-2026",
+      "outfitDescription": "Spain national-team home kit 2026 / World Cup 2026: red base with fine yellow vertical pinstripes; España on the back collar; official 2026 home design. Match Image C exactly. No player name or number unless explicitly requested.",
+      "targetFullEdit": "assets/mascot/generated/count-2__spain-home-2026_full.png",
+      "targetLayer": "assets/mascot/generated/count-2__spain-home-2026_layer.png",
+      "status": "pending",
+      "outfitReferenceSha256": null,
+      "basePoseSha256": "26082bb46bbef9a8021620419203284e46846c3c573a9aaa0503a925685c95a1",
+      "maskSha256": "4732ca9df30e325e846c1ea9bf8bb6595ce9c4eaac1e4f09d913ca2a0295a249",
+      "outfitSpecSha256": "9b46dc771e1f2fc40e72a87341fe4f39725a12ef99c1371212a518da763c887b",
+      "outfitFingerprint": "9caaec6b4e8d8fa39d2c2f5c2db7c667db72c8e5fa824d203bbe334ab01d1542"
+    },
+    {
+      "id": "mascot-job-016",
+      "asset": "mascot-count-3__spain-home-2026",
+      "basePose": "count-3",
+      "basePoseFile": "poses/count/count_3.png",
+      "canonicalReference": "references/mascot_reference_main.png",
+      "clothingMask": "pose-masks/count-3.png",
+      "outfit": "spain-home-2026",
+      "outfitDescription": "Spain national-team home kit 2026 / World Cup 2026: red base with fine yellow vertical pinstripes; España on the back collar; official 2026 home design. Match Image C exactly. No player name or number unless explicitly requested.",
+      "targetFullEdit": "assets/mascot/generated/count-3__spain-home-2026_full.png",
+      "targetLayer": "assets/mascot/generated/count-3__spain-home-2026_layer.png",
+      "status": "pending",
+      "outfitReferenceSha256": null,
+      "basePoseSha256": "d0e4cfeb6d41641cd2fbedae10df447bc65ba9d42d408b5087911d2e40ac1ab8",
+      "maskSha256": "35b5e35977fa6c2a54682df97757a152dfb973b702aaa52c8a2b5e725239d64b",
+      "outfitSpecSha256": "9b46dc771e1f2fc40e72a87341fe4f39725a12ef99c1371212a518da763c887b",
+      "outfitFingerprint": "9caaec6b4e8d8fa39d2c2f5c2db7c667db72c8e5fa824d203bbe334ab01d1542"
     }
   ]
 }

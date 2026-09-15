@@ -13,9 +13,10 @@ from mascot_common import (
     DEFAULT_OUTFIT,
     entities_by_id,
     load_poses,
+    load_visual_style,
     outfit_by_id,
     pose_by_id,
-    resolve_outfit,
+    resolve_mascot_outfit,
 )
 
 def fail(message: str) -> int:
@@ -97,7 +98,7 @@ def match_pose_candidates(intent: str, poses: list[dict]) -> list[dict]:
 
 def resolve_base_pose(scene: dict, poses: list[dict]) -> str:
     mascot = scene.get("mascot") or {}
-    frozen = mascot.get("basePose")
+    frozen = mascot.get("basePose") or mascot.get("pose")
     if frozen:
         pose = pose_by_id(frozen)
         if pose is None or not pose.get("approved"):
@@ -105,7 +106,7 @@ def resolve_base_pose(scene: dict, poses: list[dict]) -> str:
                 f"{scene.get('id')}: frozen basePose `{frozen}` is missing or not approved"
             )
         return frozen
-    intent = mascot.get("poseIntent")
+    intent = mascot.get("poseIntent") or mascot.get("pose")
     if not intent:
         raise ValueError(f"{scene.get('id')}: mascot missing poseIntent")
     candidates = match_pose_candidates(intent, poses)
@@ -196,6 +197,7 @@ def sync(video_dir: Path) -> int:
     assets_payload = load_json(assets_path)
     assets = list(assets_payload.get("assets") or [])
     entities = entities_by_id(video_dir)
+    visual_style = load_visual_style(video_dir)
     poses = approved_poses()
     existing_ids = {a["id"] for a in assets if a.get("id")}
 
@@ -225,13 +227,20 @@ def sync(video_dir: Path) -> int:
             outfit_intent = scene_outfit_intent(scene)
             subject = resolve_subject(scene, outfit_intent, entities)
             entity = entities.get(subject) if subject else None
-            explicit_outfit = (scene.get("mascot") or {}).get("explicitOutfit")
+            explicit_outfit = (
+                (scene.get("mascot") or {}).get("outfit")
+                or (scene.get("mascot") or {}).get("explicitOutfit")
+            )
             if outfit_intent == "explicit" and not explicit_outfit:
-                raise ValueError(f"{scene_id}: outfitIntent=explicit requires mascot.explicitOutfit")
-            resolved = resolve_outfit(
+                raise ValueError(f"{scene_id}: outfitIntent=explicit requires mascot.outfit")
+            resolved = resolve_mascot_outfit(
                 outfit_intent,
-                {"explicitOutfit": explicit_outfit},
+                {
+                    "outfit": explicit_outfit,
+                    "explicitOutfit": explicit_outfit,
+                },
                 entity,
+                visual_style,
             )
             outfit = outfit_by_id(resolved)
             if not outfit:
@@ -280,6 +289,7 @@ def sync(video_dir: Path) -> int:
         scene["mascot"]["basePose"] = base_pose
         scene["mascot"]["assetId"] = asset["id"]
         if outfit_intent == "explicit":
+            scene["mascot"]["outfit"] = explicit_outfit
             scene["mascot"]["explicitOutfit"] = explicit_outfit
         scene_updates += 1
 

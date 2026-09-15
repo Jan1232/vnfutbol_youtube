@@ -1,0 +1,28 @@
+{
+  "id": "barcelona-home",
+  "season": "2025/26",
+  "type": "club",
+  "referenceRequired": true,
+  "description": "FC Barcelona official home kit 2025/26",
+  "branding": {
+    "crest": true,
+    "manufacturer": "Nike",
+    "sponsor": "Spotify icon only",
+    "forbiddenText": ["Spotify"]
+  },
+  "generationRules": [
+    "blue and garnet gradient vertical home design",
+    "FC Barcelona crest on left chest",
+    "yellow Nike swoosh on right chest",
+    "centered circular Spotify symbol",
+    "NO written Spotify word",
+    "no player name",
+    "no player number"
+  ],
+  "forbiddenRules": [
+    "written Spotify wordmark/text",
+    "player name",
+    "player number",
+    "invented logos not visible on the reference"
+  ]
+}

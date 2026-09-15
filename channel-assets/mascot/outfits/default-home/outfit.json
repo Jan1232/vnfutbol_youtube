@@ -1,0 +1,29 @@
+{
+  "id": "default-home",
+  "season": null,
+  "type": "default",
+  "referenceRequired": false,
+  "description": "Canonical channel mascot home kit with wide vertical dark garnet and navy stripes",
+  "branding": {
+    "crest": false,
+    "manufacturer": null,
+    "sponsor": null
+  },
+  "generationRules": [
+    "keep existing canonical mascot jersey",
+    "wide vertical muted dark garnet and deep dark navy stripes",
+    "dark navy shorts",
+    "no logo",
+    "no sponsor",
+    "no manufacturer mark",
+    "no crest",
+    "no number",
+    "no text"
+  ],
+  "forbiddenRules": [
+    "logos",
+    "sponsor marks",
+    "player name",
+    "player number"
+  ]
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic outfit resolver. Does not infer context from prose."""
+"""Deterministic outfit resolver CLI. Uses visual-style.json when present."""
 
 from __future__ import annotations
 
@@ -11,8 +11,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mascot_common import (
     entities_by_id,
     load_json,
+    load_visual_style,
     outfit_by_id,
-    resolve_outfit,
+    resolve_mascot_outfit,
     write_json,
 )
 
@@ -22,7 +23,7 @@ def fail(message: str) -> int:
     return 1
 
 
-def resolve_asset(asset: dict, entities: dict) -> str:
+def resolve_asset(asset: dict, entities: dict, visual_style: dict) -> str:
     if asset.get("type") != "MASCOT":
         raise ValueError("not a MASCOT asset")
     mascot = asset.get("mascot") or {}
@@ -35,7 +36,7 @@ def resolve_asset(asset: dict, entities: dict) -> str:
         entity = entities.get(subject)
         if entity is None:
             raise ValueError(f"subject `{subject}` is missing from entities.json")
-    resolved = resolve_outfit(intent, mascot, entity)
+    resolved = resolve_mascot_outfit(intent, mascot, entity, visual_style)
     if not outfit_by_id(resolved):
         raise ValueError(f"resolved outfit `{resolved}` is not in outfits.json")
     return resolved
@@ -59,6 +60,7 @@ def main() -> int:
 
     payload = load_json(assets_path)
     entities = entities_by_id(video_dir)
+    visual_style = load_visual_style(video_dir)
     targets = []
     for asset in payload.get("assets", []):
         if asset.get("type") != "MASCOT":
@@ -70,7 +72,7 @@ def main() -> int:
 
     for asset in targets:
         try:
-            resolved = resolve_asset(asset, entities)
+            resolved = resolve_asset(asset, entities, visual_style)
         except ValueError as exc:
             return fail(f"{asset.get('id')}: {exc}")
         mascot = asset.setdefault("mascot", {})

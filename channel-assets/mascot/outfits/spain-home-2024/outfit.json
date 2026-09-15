@@ -1,0 +1,27 @@
+{
+  "id": "spain-home-2024",
+  "season": "2024",
+  "type": "national-team",
+  "referenceRequired": true,
+  "description": "Spain home kit EURO 2024",
+  "branding": {
+    "crest": true,
+    "manufacturer": "adidas",
+    "sponsor": null
+  },
+  "generationRules": [
+    "red base",
+    "yellow trim and details",
+    "yellow adidas stripes/badge details",
+    "carnation motif on back collar",
+    "subtle wavy motif in shirt base",
+    "no sponsor",
+    "no player name",
+    "no player number"
+  ],
+  "forbiddenRules": [
+    "sponsor marks",
+    "player name",
+    "player number"
+  ]
+}

@@ -410,11 +410,10 @@
         "position": "right",
         "scale": "medium",
         "basePose": "count-2",
-        "assetId": "mascot-count-2__spain-home-2022",
-        "subject": "player-lamine-yamal",
-        "explicitOutfit": "spain-home-2022"
+        "assetId": "mascot-count-2__spain-home-2026",
+        "subject": "player-lamine-yamal"
       },
-      "outfitIntent": "explicit",
+      "outfitIntent": "national-team",
       "supportingVisual": {
         "type": "PLAYER_PHOTO",
         "subject": "Yamal Spain senior debut / first international goal 2023",
@@ -466,11 +465,10 @@
         "position": "left",
         "scale": "medium",
         "basePose": "count-3",
-        "assetId": "mascot-count-3__spain-home-2024",
-        "subject": "player-lamine-yamal",
-        "explicitOutfit": "spain-home-2024"
+        "assetId": "mascot-count-3__spain-home-2026",
+        "subject": "player-lamine-yamal"
       },
-      "outfitIntent": "explicit",
+      "outfitIntent": "national-team",
       "supportingVisual": {
         "type": "STAT",
         "subject": "EURO 2024 records and output"
