@@ -4,15 +4,17 @@
   "type": "club",
   "referenceRequired": true,
   "reference": {
-    "sourceUrl": "https://store.fcbarcelona.com/collections/men-home-kit/products/fc-barcelona-home-amshirt-25-26-ucl",
-    "sha256": null
+    "sourceUrl": "https://store.fcbarcelona.com/collections/men-kits/products/fc-barcelona-home-amshirt-25-26-ucl",
+    "sha256": "7f0593f7540c05631f043ad27270797ab721a526eaa00996ff6c69c0f5d67399"
   },
   "description": "FC Barcelona official home kit 2025/26",
   "branding": {
     "crest": true,
     "manufacturer": "Nike",
     "sponsor": "Spotify icon only",
-    "forbiddenText": ["Spotify"]
+    "forbiddenText": [
+      "Spotify"
+    ]
   },
   "generationRules": [
     "blue and garnet gradient vertical home design",
