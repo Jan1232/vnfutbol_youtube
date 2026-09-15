@@ -29,11 +29,14 @@ from mascot_common import (
     MASCOT,
     PROMPT_VERSION,
     VARIANTS_PATH,
-    compose_masked_replacement,
+    compose_identity_locked_final,
     composite_destination,
     extract_outfit_layer,
     find_same_outfit_mascot_composite,
+    full_edit_destination,
     hashes_current,
+    identity_mask_by_pose,
+    identity_mask_path,
     image_model,
     image_quality,
     layer_destination,
@@ -58,7 +61,7 @@ from mascot_common import (
     vision_qa_model,
     write_json,
 )
-from validate_mascot_variant import validate_variant_images
+from mascot_geometry_qa import geometry_qa, identity_lock_qa
 
 
 EditFn = Callable[..., Image.Image]
@@ -668,36 +671,69 @@ def generate_missing_variant(
 
         full_path = root / f"full-edit-attempt-{attempt}.png"
         full_edit.save(full_path, format="PNG")
+
+        identity_rec = identity_mask_by_pose(pose_id)
+        identity_img = None
+        if identity_rec and identity_rec.get("status") == "approved":
+            id_path = identity_mask_path(identity_rec)
+            if id_path.exists() and sha256_file(id_path) == identity_rec.get("sha256"):
+                identity_img = Image.open(id_path).convert("L")
+
+        geo = geometry_qa(base, full_edit, identity_mask=identity_img)
+        # Optional debug clothing layer (not production final).
         layer = extract_outfit_layer(full_edit, binary_mask)
-        composite = compose_masked_replacement(base, layer)
+        if identity_img is not None:
+            composite = compose_identity_locked_final(base, full_edit, identity_img, feather=1)
+            lock = identity_lock_qa(base, composite, identity_img)
+            det = {
+                "pass": bool(geo.get("pass") and lock.get("pass")),
+                "issues": list(geo.get("issues") or []) + list(lock.get("issues") or []),
+                "mode": "identity-lock",
+                "geometry": geo,
+                "identityLock": lock,
+            }
+        else:
+            # No approved identity mask yet: do not fall back to clothing-mask composite.
+            composite = full_edit.copy()
+            det = {
+                "pass": bool(geo.get("pass")),
+                "issues": list(geo.get("issues") or []),
+                "mode": "full-edit-geometry-only",
+                "geometry": geo,
+                "identityLock": {
+                    "pass": False,
+                    "issues": ["identity mask missing/unapproved; clothing composite disabled"],
+                },
+            }
         last_layer_img = layer
         last_comp_img = composite
 
         layer_dest = layer_destination(outfit, pose_id)
         composite_dest = composite_destination(outfit, pose_id)
+        full_dest = full_edit_destination(outfit, pose_id)
         layer_dest.parent.mkdir(parents=True, exist_ok=True)
         composite_dest.parent.mkdir(parents=True, exist_ok=True)
+        full_dest.parent.mkdir(parents=True, exist_ok=True)
         tmp_layer = root / f"layer-attempt-{attempt}.png"
         tmp_comp = root / f"composite-attempt-{attempt}.png"
         layer.save(tmp_layer, format="PNG")
         composite.save(tmp_comp, format="PNG")
 
-        det = validate_variant_images(
-            base_pose_path=pose_path(pose),
-            mask_path_file=mask_path(mask),
-            full_edit_path=full_path,
-            layer_path=tmp_layer,
-            composite_path=tmp_comp,
-        )
         if skip_vision:
             vis = {"pass": True, "skipped": True, "issues": [], "reason": "skip-vision"}
         else:
             vis = vision(composite_path=tmp_comp, outfit_ref=outfit_ref, outfit_id=outfit_id)
 
-        last_qa = {"deterministic": det, "visual": vis, "attempt": attempt}
-        if det.get("pass") and _vision_allows_auto_approve(vis, skip_vision=skip_vision):
-            layer.save(layer_dest, format="PNG")
+        last_qa = {"deterministic": det, "visual": vis, "attempt": attempt, "geometry": geo}
+        can_auto = (
+            identity_img is not None
+            and det.get("pass")
+            and _vision_allows_auto_approve(vis, skip_vision=skip_vision)
+        )
+        if can_auto:
+            layer.save(layer_dest, format="PNG")  # debug/optional
             composite.save(composite_dest, format="PNG")
+            full_edit.save(full_dest, format="PNG")
             record = register_variant(
                 pose=pose,
                 outfit=outfit,
@@ -706,12 +742,24 @@ def generate_missing_variant(
                 composite_file=composite_dest,
                 status="approved-auto",
                 attempts=attempt,
-                qa={"deterministic": "pass", "visual": "pass"},
+                qa={"deterministic": "pass", "visual": "pass", "finalization": "identity-lock"},
                 prompt=prompt,
                 full_edit_sha=sha256_file(full_path),
                 generation_reference_sha256=generation_reference_sha256,
                 consistency_reference_sha256=consistency_reference_sha256,
             )
+            record["fullEditFile"] = full_dest.relative_to(MASCOT).as_posix()
+            record["finalization"] = "identity-lock"
+            # re-write with extra fields
+            data = load_variants()
+            others = [
+                item
+                for item in data.get("variants", [])
+                if not (item.get("basePose") == pose["id"] and item.get("outfit") == outfit["id"])
+            ]
+            others.append(record)
+            others.sort(key=lambda item: item["id"])
+            write_json(VARIANTS_PATH, {"version": 1, "variants": others})
             return {
                 "result": "GENERATED",
                 "variant": record,

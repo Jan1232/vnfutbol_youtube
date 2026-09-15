@@ -13,6 +13,8 @@ POSES_PATH = MASCOT / "poses.json"
 OUTFITS_PATH = MASCOT / "outfits.json"
 OUTFITS_DIR = MASCOT / "outfits"
 MASKS_PATH = MASCOT / "pose-masks.json"
+IDENTITY_MASKS_PATH = MASCOT / "identity-masks.json"
+IDENTITY_MASKS_DIR = MASCOT / "identity-masks"
 VARIANTS_PATH = MASCOT / "variants.json"
 VARIANTS_DIR = MASCOT / "variants"
 
@@ -144,6 +146,12 @@ def load_masks() -> dict:
     if not MASKS_PATH.exists():
         return {"version": 1, "masks": []}
     return load_json(MASKS_PATH)
+
+
+def load_identity_masks() -> dict:
+    if not IDENTITY_MASKS_PATH.exists():
+        return {"version": 1, "masks": []}
+    return load_json(IDENTITY_MASKS_PATH)
 
 
 def load_variants() -> dict:
@@ -312,6 +320,13 @@ def mask_by_pose(pose_id: str) -> dict | None:
     return None
 
 
+def identity_mask_by_pose(pose_id: str) -> dict | None:
+    for mask in load_identity_masks().get("masks", []):
+        if mask.get("basePose") == pose_id:
+            return mask
+    return None
+
+
 def variant_by_pair(pose_id: str, outfit_id: str) -> dict | None:
     for variant in load_variants().get("variants", []):
         if variant.get("basePose") == pose_id and variant.get("outfit") == outfit_id:
@@ -394,6 +409,10 @@ def mask_path(mask: dict) -> Path:
     return MASCOT / mask["file"]
 
 
+def identity_mask_path(mask: dict) -> Path:
+    return MASCOT / mask["file"]
+
+
 def variant_path(variant: dict) -> Path:
     return MASCOT / variant["file"]
 
@@ -453,12 +472,7 @@ def extract_outfit_layer(
 
 
 def compose_masked_replacement(base, layer):
-    """Build final composite by masked pixel replacement (not alpha blending).
-
-    - layer alpha == 0: keep exact original pose pixel
-    - layer alpha == 255: copy RGB from layer (no mix with base jersey)
-    - 0 < alpha < 255: boundary antialiasing only (lerp with base)
-    """
+    """Legacy clothing-layer composite. Prefer compose_identity_locked_final for production."""
     from PIL import Image
 
     base_rgba = base.convert("RGBA")
@@ -477,10 +491,8 @@ def compose_masked_replacement(base, layer):
                 continue
             br, bg, bb, ba = bpx[x, y]
             if la >= 255:
-                # Solid clothing interior: exact full-edit RGB, opaque over character.
                 opx[x, y] = (lr, lg, lb, 255 if ba else 255)
             else:
-                # Boundary feather only.
                 t = la / 255.0
                 inv = 1.0 - t
                 opx[x, y] = (
@@ -490,6 +502,54 @@ def compose_masked_replacement(base, layer):
                     int(255 * t + ba * inv + 0.5),
                 )
     return out
+
+
+def compose_identity_locked_final(base, full_edit, identity_mask, *, feather: int = 1):
+    """Production final: full-edit owns clothing geometry; paste base only in identity zones.
+
+    Identity mask white = immutable (head/eyes/hands/fingers/exposed skin/props).
+    Clothing / garment boundaries stay from the full-edit.
+    """
+    from PIL import Image, ImageFilter
+
+    base_rgba = base.convert("RGBA")
+    edit = full_edit.convert("RGBA")
+    hard = identity_mask.convert("L")
+    if edit.size != base_rgba.size or hard.size != base_rgba.size:
+        raise ValueError("base, full-edit and identity mask sizes must match")
+    soft = hard.filter(ImageFilter.GaussianBlur(radius=feather)) if feather else hard
+    out = edit.copy()
+    bpx = base_rgba.load()
+    epx = edit.load()
+    hpx = hard.load()
+    spx = soft.load()
+    opx = out.load()
+    width, height = base_rgba.size
+    for y in range(height):
+        for x in range(width):
+            hard_v = hpx[x, y]
+            soft_v = spx[x, y]
+            if hard_v <= 0 and soft_v <= 0:
+                continue
+            br, bg, bb, ba = bpx[x, y]
+            er, eg, eb, ea = epx[x, y]
+            coverage = max(hard_v, soft_v) if hard_v > 0 else soft_v
+            if coverage >= 255:
+                opx[x, y] = (br, bg, bb, ba)
+            elif coverage > 0:
+                t = coverage / 255.0  # how much original identity to restore
+                inv = 1.0 - t
+                opx[x, y] = (
+                    int(br * t + er * inv + 0.5),
+                    int(bg * t + eg * inv + 0.5),
+                    int(bb * t + eb * inv + 0.5),
+                    int(ba * t + ea * inv + 0.5),
+                )
+    return out
+
+
+def full_edit_destination(outfit: dict, pose_id: str) -> Path:
+    return VARIANTS_DIR / outfit["id"] / "full-edits" / f"{pose_id}.png"
 
 
 def compose_from_full_edit(base, full_edit, binary_mask, *, feather: int = 2):

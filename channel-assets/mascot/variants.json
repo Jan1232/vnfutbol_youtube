@@ -5,22 +5,34 @@
       "id": "count-3__spain-home-2026",
       "basePose": "count-3",
       "outfit": "spain-home-2026",
-      "type": "outfit-layer",
+      "type": "identity-lock-final",
       "file": "variants/spain-home-2026/layers/count-3.png",
       "compositeFile": "variants/spain-home-2026/count-3.png",
-      "status": "approved-auto",
+      "fullEditFile": "variants/spain-home-2026/full-edits/count-3.png",
+      "status": "needs-review",
       "sha256": "3b36f0b96588ef2009bdbec7c99b87f8e76fa38f53d5a1eda2013dfb1d52680d",
-      "compositeSha256": "dea6ec5e905f5c0bfbeaf8a0eb0d1bb8e8204bc7ca09fcea48a0bf1fad72122e",
-      "model": "gpt-image-2.5-sunburst-2026-09-08",
-      "promptVersion": "mascot-outfit-auto-v1",
-      "promptSha256": "285d750c50c4da3eb0565894bda428bef8b227ae9eeee0e4e11ae6b82c7673a6",
-      "attempts": 1,
-      "generatedAt": "2026-09-15T03:33:12+00:00",
-      "qa": {
-        "deterministic": "pass",
-        "visual": "pass"
-      },
+      "compositeSha256": "0aa579014a81ef33b492d6626215e9280e7c4d8ebaa26af0cb5c3b6283b606bb",
       "fullEditSha256": "f5862c99051f7a7516a951dd0d485fec4314e67716f03c9d56864743d69df4cb",
+      "finalization": "identity-lock",
+      "identityMask": "identity-masks/count-3.png",
+      "identityMaskStatus": "generated",
+      "qa": {
+        "geometry": {
+          "pass": true,
+          "issues": [],
+          "identityProbe": {
+            "checked": 52624,
+            "mismatchedBeforeLock": 52278
+          }
+        },
+        "identityLock": {
+          "pass": true,
+          "issues": [],
+          "checked": 210491,
+          "mismatches": 0
+        },
+        "visual": "pending-editor-review"
+      },
       "basePoseSha256": "d0e4cfeb6d41641cd2fbedae10df447bc65ba9d42d408b5087911d2e40ac1ab8",
       "maskSha256": "35b5e35977fa6c2a54682df97757a152dfb973b702aaa52c8a2b5e725239d64b",
       "outfitSpecSha256": "38494c4b0c77e1dfe2524246ae8ac198191b530600fa10b66da8a8340f3979c4",

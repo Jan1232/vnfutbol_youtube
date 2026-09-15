@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "masks": [
+    {
+      "basePose": "count-3",
+      "file": "identity-masks/count-3.png",
+      "status": "generated",
+      "sha256": "1ac74c57a637bd86ddf4656315d7a4c78cab4e9963c9e28f64d32805b86dd766",
+      "basePoseSha256": "d0e4cfeb6d41641cd2fbedae10df447bc65ba9d42d408b5087911d2e40ac1ab8"
+    }
+  ]
+}
