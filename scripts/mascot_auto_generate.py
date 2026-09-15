@@ -11,6 +11,7 @@ import argparse
 import base64
 import io
 import json
+import math
 import os
 import sys
 import time
@@ -29,7 +30,6 @@ from mascot_common import (
     PROMPT_VERSION,
     VARIANTS_PATH,
     composite_destination,
-    find_official_outfit_reference,
     find_same_outfit_mascot_composite,
     hashes_current,
     image_model,
@@ -45,12 +45,14 @@ from mascot_common import (
     outfit_by_id,
     pose_by_id,
     pose_path,
+    recompute_composite_sha256,
     sha256_file,
     sha256_json,
     variant_by_pair,
     variant_cache_key,
     variant_id,
     variant_is_reusable,
+    verify_local_outfit_reference,
     vision_qa_model,
     write_json,
 )
@@ -63,6 +65,27 @@ VisionFn = Callable[..., dict]
 OUTFIT_CONSISTENCY_MIN = 0.90
 TRANSIENT_STATUS = {429, 500, 502, 503, 504}
 MAX_API_RETRIES = 5
+
+VISION_QA_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "pass": {"type": "boolean"},
+        "issues": {"type": "array", "items": {"type": "string"}},
+        "missingBranding": {"type": "array", "items": {"type": "string"}},
+        "extraBranding": {"type": "array", "items": {"type": "string"}},
+        "wrongText": {"type": "array", "items": {"type": "string"}},
+        "outfitConsistency": {"type": "number"},
+    },
+    "required": [
+        "pass",
+        "issues",
+        "missingBranding",
+        "extraBranding",
+        "wrongText",
+        "outfitConsistency",
+    ],
+    "additionalProperties": False,
+}
 
 
 def utc_now() -> str:
@@ -83,6 +106,46 @@ def build_api_mask(binary_mask: Image.Image) -> Image.Image:
             else:
                 apx[x, y] = (255, 255, 255, 255)
     return api
+
+
+def prepare_api_canvas(
+    base: Image.Image,
+    binary_mask: Image.Image,
+) -> tuple[Image.Image, Image.Image, tuple[int, int, int, int]]:
+    """Pad pose/mask to GPT Image dims (multiples of 16) without rescaling pixels."""
+    original = base.convert("RGBA")
+    mask = binary_mask.convert("L")
+    original_w, original_h = original.size
+    if mask.size != (original_w, original_h):
+        raise ValueError(f"mask size {mask.size} != base {original.size}")
+    api_w = math.ceil(original_w / 16) * 16
+    api_h = math.ceil(original_h / 16) * 16
+    padded_base = Image.new("RGBA", (api_w, api_h), (0, 0, 0, 0))
+    padded_base.paste(original, (0, 0))
+    # Outside the original canvas must stay non-editable (internal mask = 0).
+    padded_mask = Image.new("L", (api_w, api_h), 0)
+    padded_mask.paste(mask, (0, 0))
+    crop_box = (0, 0, original_w, original_h)
+    return padded_base, padded_mask, crop_box
+
+
+def crop_api_result(
+    full_edit: Image.Image,
+    crop_box: tuple[int, int, int, int],
+    *,
+    expected_api_size: tuple[int, int],
+) -> Image.Image:
+    edited = full_edit.convert("RGBA")
+    if edited.size != expected_api_size:
+        raise RuntimeError(
+            f"Images Edit returned {edited.size}, expected exact API canvas "
+            f"{expected_api_size}; refusing to resize AI output"
+        )
+    cropped = edited.crop(crop_box)
+    expected_orig = (crop_box[2] - crop_box[0], crop_box[3] - crop_box[1])
+    if cropped.size != expected_orig:
+        raise RuntimeError(f"crop produced {cropped.size}, expected {expected_orig}")
+    return cropped
 
 
 def extract_outfit_layer(
@@ -323,6 +386,41 @@ def default_openai_edit(
     raise RuntimeError("OpenAI Images Edit returned no b64_json payload")
 
 
+def evaluate_vision_payload(payload: dict) -> dict:
+    """Ignore model `pass`; compute pass locally from required fields."""
+    issues = [str(item) for item in (payload.get("issues") or [])]
+    missing = [str(item) for item in (payload.get("missingBranding") or [])]
+    extra = [str(item) for item in (payload.get("extraBranding") or [])]
+    wrong = [str(item) for item in (payload.get("wrongText") or [])]
+    consistency_raw = payload.get("outfitConsistency")
+    try:
+        consistency = float(consistency_raw)
+    except (TypeError, ValueError):
+        consistency = None
+        issues.append("outfitConsistency missing or non-numeric")
+    if consistency is not None and consistency < OUTFIT_CONSISTENCY_MIN:
+        issues.append(
+            f"outfitConsistency too low ({consistency:.3f} < {OUTFIT_CONSISTENCY_MIN})"
+        )
+    computed_pass = (
+        not issues
+        and not missing
+        and not extra
+        and not wrong
+        and consistency is not None
+        and consistency >= OUTFIT_CONSISTENCY_MIN
+    )
+    return {
+        "pass": computed_pass,
+        "issues": issues,
+        "missingBranding": missing,
+        "extraBranding": extra,
+        "wrongText": wrong,
+        "outfitConsistency": consistency,
+        "modelPass": payload.get("pass"),
+    }
+
+
 def default_vision_qa(
     *,
     composite_path: Path,
@@ -346,27 +444,18 @@ def default_vision_qa(
     def b64(path: Path) -> str:
         return base64.b64encode(path.read_bytes()).decode("ascii")
 
-    schema_hint = {
-        "pass": True,
-        "issues": [],
-        "missingBranding": [],
-        "extraBranding": [],
-        "wrongText": [],
-        "outfitConsistency": 1.0,
-    }
     content: list[dict[str, Any]] = [
         {
             "type": "input_text",
             "text": (
                 "Validate mascot outfit branding and kit consistency strictly. "
-                "Reply with a single JSON object matching this schema exactly "
-                f"(no markdown): {json.dumps(schema_hint)}. "
+                "Return the structured JSON fields only. "
                 f"Outfit id={outfit_id}. "
                 f"generationRules={json.dumps(generation_rules, ensure_ascii=False)}. "
                 f"forbiddenRules={json.dumps(forbidden_rules, ensure_ascii=False)}. "
                 f"branding={json.dumps(branding, ensure_ascii=False)}. "
-                f"pass must be false if required marks are missing, forbidden text appears, "
-                f"or outfitConsistency < {OUTFIT_CONSISTENCY_MIN}."
+                "Populate issues/missingBranding/extraBranding/wrongText when applicable. "
+                "outfitConsistency must be a number from 0 to 1."
             ),
         },
         {
@@ -385,19 +474,18 @@ def default_vision_qa(
         )
 
     def _vision_once():
-        try:
-            return client.responses.create(
-                model=vision_qa_model(),
-                input=[{"role": "user", "content": content}],
-                text={"format": {"type": "json_object"}},
-            )
-        except Exception as format_exc:  # noqa: BLE001
-            if "json_object" not in str(format_exc).lower() and "text" not in str(format_exc).lower():
-                raise
-            return client.responses.create(
-                model=vision_qa_model(),
-                input=[{"role": "user", "content": content}],
-            )
+        return client.responses.create(
+            model=vision_qa_model(),
+            input=[{"role": "user", "content": content}],
+            text={
+                "format": {
+                    "type": "json_schema",
+                    "name": "mascot_outfit_vision_qa",
+                    "strict": True,
+                    "schema": VISION_QA_SCHEMA,
+                }
+            },
+        )
 
     try:
         response = call_with_backoff(_vision_once)
@@ -406,23 +494,7 @@ def default_vision_qa(
         end = text.rfind("}")
         if start >= 0 and end > start:
             payload = json.loads(text[start : end + 1])
-            issues = list(payload.get("issues") or [])
-            consistency = payload.get("outfitConsistency")
-            try:
-                consistency_f = float(consistency) if consistency is not None else None
-            except (TypeError, ValueError):
-                consistency_f = None
-                issues.append("outfitConsistency missing or non-numeric")
-            if consistency_f is not None and consistency_f < OUTFIT_CONSISTENCY_MIN:
-                issues.append(
-                    f"outfitConsistency too low ({consistency_f:.3f} < {OUTFIT_CONSISTENCY_MIN})"
-                )
-            if "pass" not in payload:
-                payload["pass"] = not issues
-            if issues:
-                payload["pass"] = False
-                payload["issues"] = issues
-            return payload
+            return evaluate_vision_payload(payload)
         return {"pass": False, "issues": ["vision QA returned non-JSON"], "raw": text[:500]}
     except Exception as exc:  # noqa: BLE001
         return {"pass": False, "issues": [f"vision QA error: {exc}"]}
@@ -441,7 +513,9 @@ def register_variant(
     prompt: str,
     full_edit_sha: str | None = None,
     generation_reference_sha256: str | None = None,
+    consistency_reference_sha256: str | None = None,
 ) -> dict:
+    composite_sha = recompute_composite_sha256(pose, layer_file)
     record = {
         "id": variant_id(pose["id"], outfit["id"]),
         "basePose": pose["id"],
@@ -451,6 +525,7 @@ def register_variant(
         "compositeFile": composite_file.relative_to(MASCOT).as_posix(),
         "status": status,
         "sha256": sha256_file(layer_file),
+        "compositeSha256": composite_sha,
         "model": image_model(),
         "promptVersion": PROMPT_VERSION,
         "promptSha256": sha256_json({"prompt": prompt, "version": PROMPT_VERSION}),
@@ -463,6 +538,7 @@ def register_variant(
             mask,
             outfit,
             generation_reference_sha256=generation_reference_sha256,
+            consistency_reference_sha256=consistency_reference_sha256,
         ),
     }
     data = load_variants()
@@ -517,14 +593,30 @@ def generate_missing_variant(
         }
 
     detail = load_outfit_detail(outfit_id)
-    outfit_ref = find_official_outfit_reference(outfit_id)
-    consistency_ref = find_same_outfit_mascot_composite(outfit_id, exclude_pose=pose_id)
-    generation_reference_sha256 = sha256_file(outfit_ref) if outfit_ref and outfit_ref.exists() else None
+    ref_check = verify_local_outfit_reference(outfit_id)
+    if ref_check.get("error") == "mismatch":
+        return {
+            "result": "BLOCKED_REFERENCE_MISMATCH",
+            "reason": (
+                f"local outfit reference SHA does not match tracked expected SHA "
+                f"for `{outfit_id}`"
+            ),
+            "expectedSha256": ref_check.get("sha256"),
+            "actualSha256": ref_check.get("actualSha256"),
+        }
+    outfit_ref = ref_check.get("path")
+    generation_reference_sha256 = ref_check.get("sha256")
     if detail.get("referenceRequired") and outfit_ref is None:
         return {
             "result": "BLOCKED_REFERENCE",
             "reason": f"missing outfit reference for `{outfit_id}`",
         }
+
+    consistency_anchor = find_same_outfit_mascot_composite(outfit_id, exclude_pose=pose_id)
+    consistency_ref = Path(consistency_anchor["path"]) if consistency_anchor else None
+    consistency_reference_sha256 = (
+        consistency_anchor.get("sha256") if consistency_anchor else None
+    )
 
     if edit_fn is None and not openai_api_key():
         return {"result": "BLOCKED_GENERATION", "reason": "missing OPENAI_API_KEY"}
@@ -538,41 +630,42 @@ def generate_missing_variant(
     root = work_dir or (LOCAL_MASCOT_WORK / f"{pose_id}__{outfit_id}")
     root.mkdir(parents=True, exist_ok=True)
     binary_mask = Image.open(mask_path(mask)).convert("L")
-    api_mask = build_api_mask(binary_mask)
+    base = Image.open(pose_path(pose)).convert("RGBA")
+    padded_base, padded_mask, crop_box = prepare_api_canvas(base, binary_mask)
+    api_size = padded_base.size
+    padded_pose_path = root / "pose_api_padded.png"
+    padded_base.save(padded_pose_path, format="PNG")
+    api_mask = build_api_mask(padded_mask)
     api_mask_path = root / "mask_api.png"
     api_mask.save(api_mask_path, format="PNG")
-    base = Image.open(pose_path(pose)).convert("RGBA")
-    target_size = base.size
 
     previous_issues: list[str] = []
     last_qa: dict = {}
     attempts = max_generation_attempts()
-    last_full_path: Path | None = None
     last_layer_img: Image.Image | None = None
     last_comp_img: Image.Image | None = None
     last_prompt = ""
     for attempt in range(1, attempts + 1):
         prompt = build_generation_prompt(
             outfit_id,
-            has_outfit_ref=bool(outfit_ref and outfit_ref.exists()),
+            has_outfit_ref=bool(outfit_ref and Path(outfit_ref).exists()),
             has_consistency_ref=bool(consistency_ref and consistency_ref.exists()),
             previous_issues=previous_issues or None,
         )
         last_prompt = prompt
         try:
             full_edit = edit(
-                pose_path_file=pose_path(pose),
+                pose_path_file=padded_pose_path,
                 outfit_ref=outfit_ref,
                 consistency_ref=consistency_ref,
                 canonical=canonical,
                 api_mask_path=api_mask_path,
                 prompt=prompt,
-                target_size=target_size,
+                target_size=api_size,
             )
         except TypeError:
-            # Test doubles may omit newer kwargs.
             full_edit = edit(
-                pose_path_file=pose_path(pose),
+                pose_path_file=padded_pose_path,
                 outfit_ref=outfit_ref,
                 canonical=canonical,
                 api_mask_path=api_mask_path,
@@ -586,12 +679,22 @@ def generate_missing_variant(
                 "outfit": outfit_id,
             }
 
-        if full_edit.size != target_size:
+        try:
+            full_edit = crop_api_result(full_edit, crop_box, expected_api_size=api_size)
+        except Exception as exc:  # noqa: BLE001
+            return {
+                "result": "ERROR",
+                "reason": str(exc),
+                "pose": pose_id,
+                "outfit": outfit_id,
+            }
+
+        if full_edit.size != base.size:
             return {
                 "result": "ERROR",
                 "reason": (
-                    f"Images Edit returned {full_edit.size}, expected exact "
-                    f"base-pose size {target_size}; refusing to resize AI output"
+                    f"cropped edit {full_edit.size} != original pose {base.size}; "
+                    "refusing to resize AI output"
                 ),
                 "pose": pose_id,
                 "outfit": outfit_id,
@@ -599,7 +702,6 @@ def generate_missing_variant(
 
         full_path = root / f"full-edit-attempt-{attempt}.png"
         full_edit.save(full_path, format="PNG")
-        last_full_path = full_path
         layer = extract_outfit_layer(full_edit, binary_mask)
         composite = Image.alpha_composite(base, layer)
         last_layer_img = layer
@@ -642,6 +744,7 @@ def generate_missing_variant(
                 prompt=prompt,
                 full_edit_sha=sha256_file(full_path),
                 generation_reference_sha256=generation_reference_sha256,
+                consistency_reference_sha256=consistency_reference_sha256,
             )
             return {
                 "result": "GENERATED",
@@ -653,6 +756,7 @@ def generate_missing_variant(
                     mask,
                     outfit_id,
                     generation_reference_sha256=generation_reference_sha256,
+                    consistency_reference_sha256=consistency_reference_sha256,
                 ),
             }
 
@@ -675,6 +779,7 @@ def generate_missing_variant(
                 prompt=prompt,
                 full_edit_sha=sha256_file(full_path),
                 generation_reference_sha256=generation_reference_sha256,
+                consistency_reference_sha256=consistency_reference_sha256,
             )
             return {
                 "result": "NEEDS_REVIEW",
@@ -717,6 +822,7 @@ def generate_missing_variant(
             mask,
             outfit,
             generation_reference_sha256=generation_reference_sha256,
+            consistency_reference_sha256=consistency_reference_sha256,
         ),
     }
     data = load_variants()

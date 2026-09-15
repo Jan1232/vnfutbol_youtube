@@ -3,6 +3,10 @@
   "season": "2026",
   "type": "national-team",
   "referenceRequired": true,
+  "reference": {
+    "sourceUrl": "https://rfef.es/en/noticias/A-new-kit-for-a-new-dream",
+    "sha256": null
+  },
   "description": "Spain official home kit 2026 / World Cup 2026",
   "branding": {
     "crest": true,

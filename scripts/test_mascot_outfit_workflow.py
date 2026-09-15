@@ -26,11 +26,13 @@ from mascot_common import (
     load_json,
     mask_by_pose,
     outfit_by_id,
+    outfit_detail_path,
     outfit_reference_path,
     pose_by_id,
     pose_path,
     resolve_outfit,
     sha256_file,
+    update_tracked_outfit_reference,
 )
 from promote_mascot_variant import main as promote_main
 import review_mascot_variants as review
@@ -383,12 +385,24 @@ def main() -> int:
     run("barcelona_not_aliased", test_barcelona_not_aliased)
     run("spain_seasonal_ids", test_spain_seasonal_ids)
     run("prompt_policy_rendering", test_prompt_policy_rendering)
-    with tempfile.TemporaryDirectory() as tmp:
-        t = Path(tmp)
-        run("import_outfit_reference", lambda: test_import_outfit_reference(t))
-        run("export_requires_reference_and_suit_without", lambda: test_export_requires_reference_and_suit_without(t))
-        run("reference_change_invalidates_import", lambda: test_reference_change_invalidates_import(t))
-        run("historical_and_current_outfit_resolution", lambda: test_historical_and_current_outfit_resolution(t))
+    barca_detail = outfit_detail_path("barcelona-home")
+    barca_snapshot = barca_detail.read_text(encoding="utf-8") if barca_detail.exists() else None
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            t = Path(tmp)
+            run("import_outfit_reference", lambda: test_import_outfit_reference(t))
+            run("export_requires_reference_and_suit_without", lambda: test_export_requires_reference_and_suit_without(t))
+            run("reference_change_invalidates_import", lambda: test_reference_change_invalidates_import(t))
+            run("historical_and_current_outfit_resolution", lambda: test_historical_and_current_outfit_resolution(t))
+    finally:
+        if barca_snapshot is not None:
+            barca_detail.write_text(barca_snapshot, encoding="utf-8")
+        else:
+            update_tracked_outfit_reference(
+                "barcelona-home",
+                source_url="https://store.fcbarcelona.com/collections/men-home-kit/products/fc-barcelona-home-amshirt-25-26-ucl",
+                sha256="",
+            )
 
     if failed:
         print(f"FAIL  {failed} test(s)")

@@ -3,6 +3,10 @@
   "season": "2022",
   "type": "national-team",
   "referenceRequired": true,
+  "reference": {
+    "sourceUrl": "https://rfef.es/en/news/new-kit-world-cup",
+    "sha256": null
+  },
   "description": "Spain home kit 2022 World Cup / 2023 debut window",
   "branding": {
     "crest": true,

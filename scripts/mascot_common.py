@@ -206,6 +206,53 @@ def outfit_requires_reference(outfit: dict | None) -> bool:
     return bool(detail.get("referenceRequired", outfit.get("referenceRequired")))
 
 
+def tracked_outfit_reference(outfit_id: str) -> dict:
+    """Tracked official reference metadata (committed). Bytes stay under .local-assets."""
+    detail = load_outfit_detail(outfit_id)
+    ref = detail.get("reference")
+    if isinstance(ref, dict):
+        return {
+            "sourceUrl": ref.get("sourceUrl") or detail.get("referenceSourceUrl"),
+            "sha256": ref.get("sha256"),
+        }
+    return {
+        "sourceUrl": detail.get("referenceSourceUrl"),
+        "sha256": detail.get("referenceSha256"),
+    }
+
+
+def expected_reference_sha256(outfit: dict | None) -> str | None:
+    if not outfit:
+        return None
+    outfit_id = outfit.get("id") if isinstance(outfit, dict) else None
+    if not outfit_id:
+        return None
+    sha = tracked_outfit_reference(outfit_id).get("sha256")
+    if isinstance(sha, str) and sha.strip():
+        return sha.strip()
+    return None
+
+
+def update_tracked_outfit_reference(
+    outfit_id: str,
+    *,
+    source_url: str | None,
+    sha256: str | None,
+) -> dict:
+    """Persist expected reference SHA into committed outfit detail metadata."""
+    path = outfit_detail_path(outfit_id)
+    detail = load_json(path) if path.exists() else {"id": outfit_id}
+    existing = detail.get("reference") if isinstance(detail.get("reference"), dict) else {}
+    source = source_url or existing.get("sourceUrl") or detail.get("referenceSourceUrl")
+    detail["reference"] = {
+        "sourceUrl": source,
+        "sha256": sha256 if sha256 else None,
+    }
+    detail["id"] = outfit_id
+    write_json(path, detail)
+    return detail["reference"]
+
+
 def find_official_outfit_reference(outfit_id: str) -> Path | None:
     """Official kit reference under .local-assets only (never channel-assets)."""
     candidates = [
@@ -218,24 +265,19 @@ def find_official_outfit_reference(outfit_id: str) -> Path | None:
     return None
 
 
-def find_same_outfit_mascot_composite(outfit_id: str, *, exclude_pose: str | None = None) -> Path | None:
-    """Optional consistency image: an existing reusable mascot in the same outfit."""
-    for variant in load_variants().get("variants", []):
-        if variant.get("outfit") != outfit_id:
-            continue
-        if variant.get("status") not in REUSABLE_VARIANT_STATUSES:
-            continue
-        if exclude_pose and variant.get("basePose") == exclude_pose:
-            continue
-        composite = variant.get("compositeFile")
-        if composite:
-            path = MASCOT / composite
-            if path.exists():
-                return path
-        composed = VARIANTS_DIR / outfit_id / f"{variant.get('basePose')}.png"
-        if composed.exists():
-            return composed
-    return None
+def verify_local_outfit_reference(outfit_id: str) -> dict:
+    """Validate local reference bytes against tracked expected SHA.
+
+    Returns keys: path, sha256, error (None | 'missing' | 'mismatch').
+    """
+    expected = expected_reference_sha256({"id": outfit_id})
+    path = find_official_outfit_reference(outfit_id)
+    if path is None:
+        return {"path": None, "sha256": expected, "error": "missing"}
+    actual = sha256_file(path)
+    if expected and actual != expected:
+        return {"path": path, "sha256": expected, "actualSha256": actual, "error": "mismatch"}
+    return {"path": path, "sha256": expected or actual, "error": None}
 
 
 def find_outfit_reference_image(outfit_id: str) -> Path | None:
@@ -244,8 +286,12 @@ def find_outfit_reference_image(outfit_id: str) -> Path | None:
 
 
 def current_outfit_reference_sha(outfit: dict | None) -> str | None:
+    """Preferred reference SHA for cache/staleness: tracked expected, else local."""
     if not outfit:
         return None
+    expected = expected_reference_sha256(outfit)
+    if expected:
+        return expected
     path = find_official_outfit_reference(outfit["id"])
     if path is None:
         return None
@@ -275,7 +321,14 @@ def variant_by_pair(pose_id: str, outfit_id: str) -> dict | None:
 
 def outfit_spec_sha256(outfit: dict) -> str:
     detail = load_outfit_detail(outfit["id"]) if outfit.get("id") else outfit
-    return sha256_json(detail)
+    stable = dict(detail)
+    # reference.sha256 is tracked separately for cache/reuse invalidation.
+    if isinstance(stable.get("reference"), dict):
+        ref = dict(stable["reference"])
+        ref.pop("sha256", None)
+        stable["reference"] = ref
+    stable.pop("referenceSha256", None)
+    return sha256_json(stable)
 
 
 def outfit_fingerprint(
@@ -284,16 +337,20 @@ def outfit_fingerprint(
     model: str | None = None,
     reference_path: Path | None = None,
     generation_reference_sha256: str | None = None,
+    consistency_reference_sha256: str | None = None,
 ) -> str:
     detail = load_outfit_detail(outfit_id)
-    ref = reference_path or find_official_outfit_reference(outfit_id)
     ref_sha = generation_reference_sha256
     if ref_sha is None:
-        ref_sha = sha256_file(ref) if ref and ref.exists() else ""
+        ref_sha = current_outfit_reference_sha({"id": outfit_id})
+        if ref_sha is None and reference_path and reference_path.exists():
+            ref_sha = sha256_file(reference_path)
+        ref_sha = ref_sha or ""
     payload = {
         "outfit": detail,
         "referenceSha256": ref_sha,
         "generationReferenceSha256": ref_sha,
+        "consistencyReferenceSha256": consistency_reference_sha256 or "",
         "model": model or image_model(),
         "promptVersion": PROMPT_VERSION,
     }
@@ -306,6 +363,7 @@ def variant_cache_key(
     outfit_id: str,
     *,
     generation_reference_sha256: str | None = None,
+    consistency_reference_sha256: str | None = None,
 ) -> str:
     ref_sha = (
         generation_reference_sha256
@@ -319,8 +377,11 @@ def variant_cache_key(
             "outfitFingerprint": outfit_fingerprint(
                 outfit_id,
                 generation_reference_sha256=ref_sha,
+                consistency_reference_sha256=consistency_reference_sha256,
             ),
             "generationReferenceSha256": ref_sha,
+            "referenceSha256": ref_sha,
+            "consistencyReferenceSha256": consistency_reference_sha256,
         }
     )
 
@@ -349,12 +410,27 @@ def composite_destination(outfit: dict, pose_id: str) -> Path:
     return VARIANTS_DIR / outfit["id"] / f"{pose_id}.png"
 
 
+def recompute_composite_sha256(pose: dict, layer_file: Path) -> str:
+    from PIL import Image
+    import io
+
+    base = Image.open(pose_path(pose)).convert("RGBA")
+    layer = Image.open(layer_file).convert("RGBA")
+    if layer.size != base.size:
+        raise ValueError(f"layer size {layer.size} != pose {base.size}")
+    composed = Image.alpha_composite(base, layer)
+    buf = io.BytesIO()
+    composed.save(buf, format="PNG")
+    return sha256_bytes(buf.getvalue())
+
+
 def hashes_current(
     pose: dict,
     mask: dict | None,
     outfit: dict,
     *,
     generation_reference_sha256: str | None = None,
+    consistency_reference_sha256: str | None = None,
 ) -> dict:
     ref_sha = (
         generation_reference_sha256
@@ -368,32 +444,37 @@ def hashes_current(
         "outfitFingerprint": outfit_fingerprint(
             outfit["id"],
             generation_reference_sha256=ref_sha,
+            consistency_reference_sha256=consistency_reference_sha256,
         ),
         "generationReferenceSha256": ref_sha,
+        "referenceSha256": ref_sha,
+        "consistencyReferenceSha256": consistency_reference_sha256,
     }
 
 
-def variant_is_stale(variant: dict, pose: dict, mask: dict | None, outfit: dict) -> bool:
-    current = hashes_current(pose, mask, outfit)
-    if variant.get("basePoseSha256") != current["basePoseSha256"]:
-        return True
-    if variant.get("maskSha256") != current["maskSha256"]:
-        return True
-    if variant.get("generationReferenceSha256") != current["generationReferenceSha256"]:
-        if current["generationReferenceSha256"] is not None or variant.get("generationReferenceSha256"):
+def variant_core_stale(variant: dict, pose: dict, mask: dict | None, outfit: dict) -> bool:
+    """Pose/mask/reference staleness without preferred-consistency lookup (no recursion)."""
+    expected_ref = current_outfit_reference_sha(outfit)
+    stored_ref = variant.get("referenceSha256") or variant.get("generationReferenceSha256")
+    if stored_ref != expected_ref:
+        if expected_ref is not None or stored_ref:
             return True
+    stored_consistency = variant.get("consistencyReferenceSha256")
+    expected_fp = outfit_fingerprint(
+        outfit["id"],
+        generation_reference_sha256=expected_ref,
+        consistency_reference_sha256=stored_consistency,
+    )
+    if variant.get("basePoseSha256") != pose.get("sha256"):
+        return True
+    if (mask.get("sha256") if mask else None) != variant.get("maskSha256"):
+        return True
     if variant.get("outfitFingerprint"):
-        return variant.get("outfitFingerprint") != current["outfitFingerprint"]
-    return variant.get("outfitSpecSha256") != current["outfitSpecSha256"]
+        return variant.get("outfitFingerprint") != expected_fp
+    return variant.get("outfitSpecSha256") != outfit_spec_sha256(outfit)
 
 
-def variant_is_reusable(variant: dict | None, pose: dict, mask: dict | None, outfit: dict) -> bool:
-    if variant is None:
-        return False
-    if variant.get("status") not in REUSABLE_VARIANT_STATUSES:
-        return False
-    if variant_is_stale(variant, pose, mask, outfit):
-        return False
+def variant_files_integrity(variant: dict, pose: dict) -> bool:
     layer_rel = variant.get("file")
     if not layer_rel:
         return False
@@ -409,7 +490,78 @@ def variant_is_reusable(variant: dict | None, pose: dict, mask: dict | None, out
     composite_file = MASCOT / composite_rel
     if not composite_file.exists():
         return False
+    try:
+        recomputed = recompute_composite_sha256(pose, layer_file)
+    except Exception:  # noqa: BLE001
+        return False
+    if sha256_file(composite_file) != recomputed:
+        return False
+    stored_comp = variant.get("compositeSha256")
+    if stored_comp and stored_comp != recomputed:
+        return False
     return True
+
+
+def find_same_outfit_mascot_composite(
+    outfit_id: str,
+    *,
+    exclude_pose: str | None = None,
+) -> dict | None:
+    """Deterministic consistency anchor: reusable same-outfit composite + sha256."""
+    outfit = outfit_by_id(outfit_id)
+    if outfit is None:
+        return None
+    candidates: list[tuple[str, dict, Path]] = []
+    for variant in load_variants().get("variants", []):
+        if variant.get("outfit") != outfit_id:
+            continue
+        if exclude_pose and variant.get("basePose") == exclude_pose:
+            continue
+        if variant.get("status") not in REUSABLE_VARIANT_STATUSES:
+            continue
+        pose = pose_by_id(variant.get("basePose") or "")
+        mask = mask_by_pose(variant.get("basePose") or "")
+        if pose is None or mask is None:
+            continue
+        if variant_core_stale(variant, pose, mask, outfit):
+            continue
+        if not variant_files_integrity(variant, pose):
+            continue
+        composite_rel = variant.get("compositeFile")
+        path = MASCOT / composite_rel
+        vid = variant.get("id") or variant_id(variant.get("basePose"), outfit_id)
+        candidates.append((vid, variant, path))
+    if not candidates:
+        return None
+    candidates.sort(key=lambda item: item[0])
+    vid, variant, path = candidates[0]
+    return {
+        "variantId": vid,
+        "path": path,
+        "sha256": variant.get("compositeSha256") or sha256_file(path),
+    }
+
+
+def variant_is_stale(variant: dict, pose: dict, mask: dict | None, outfit: dict) -> bool:
+    if variant_core_stale(variant, pose, mask, outfit):
+        return True
+    stored_consistency = variant.get("consistencyReferenceSha256")
+    if stored_consistency:
+        anchor = find_same_outfit_mascot_composite(outfit["id"], exclude_pose=pose.get("id"))
+        current_consistency = anchor.get("sha256") if anchor else None
+        if stored_consistency != current_consistency:
+            return True
+    return False
+
+
+def variant_is_reusable(variant: dict | None, pose: dict, mask: dict | None, outfit: dict) -> bool:
+    if variant is None:
+        return False
+    if variant.get("status") not in REUSABLE_VARIANT_STATUSES:
+        return False
+    if variant_is_stale(variant, pose, mask, outfit):
+        return False
+    return variant_files_integrity(variant, pose)
 
 
 def entities_by_id(video_dir: Path) -> dict[str, dict]:

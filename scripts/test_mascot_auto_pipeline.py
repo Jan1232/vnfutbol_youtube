@@ -36,6 +36,7 @@ from mascot_common import (
     outfit_fingerprint,
     pose_by_id,
     pose_path,
+    recompute_composite_sha256,
     resolve_mascot_outfit,
     sha256_file,
     variant_by_pair,
@@ -66,6 +67,37 @@ def paint_kit_for_pose(pose_id: str, color=(20, 80, 180, 255)) -> Image.Image:
             if mpx[x, y] > 0:
                 ipx[x, y] = color
     return img
+
+
+def edit_fn_for_pose(pose_id: str, color=(20, 80, 180, 255)):
+    """Fake Images Edit: paint kit on original pose, pad to API canvas size."""
+
+    def fake_edit(**kwargs):
+        img = paint_kit_for_pose(pose_id, color)
+        target = kwargs.get("target_size")
+        if target and img.size != target:
+            canvas = Image.new("RGBA", target, (0, 0, 0, 0))
+            canvas.paste(img, (0, 0))
+            return canvas
+        return img
+
+    return fake_edit
+
+
+def polluted_edit_for_pose(pose_id: str):
+    pose = pose_by_id(pose_id)
+    base = Image.open(pose_path(pose)).convert("RGBA")
+
+    def fake_edit(**kwargs):
+        polluted = Image.new("RGBA", base.size, (255, 0, 0, 255))
+        target = kwargs.get("target_size") or base.size
+        if polluted.size != target:
+            canvas = Image.new("RGBA", target, (255, 0, 0, 255))
+            canvas.paste(polluted, (0, 0))
+            return canvas
+        return polluted
+
+    return fake_edit
 
 
 def test_barcelona_branding_rules() -> None:
@@ -108,7 +140,7 @@ def test_reuse_never_calls_api(tmp: Path) -> None:
     layer_path = dest_dir / "explain-two-suit-layer.png"
     Image.new("RGBA", base.size, (0, 0, 0, 0)).save(layer_path)
     comp_path = dest_dir / "explain-two-suit.png"
-    base.save(comp_path)
+    Image.alpha_composite(base, Image.open(layer_path).convert("RGBA")).save(comp_path)
     record = {
         "id": "explain-two__suit-navy",
         "basePose": "explain-two",
@@ -118,6 +150,7 @@ def test_reuse_never_calls_api(tmp: Path) -> None:
         "compositeFile": comp_path.relative_to(MASCOT).as_posix(),
         "status": "approved-auto",
         "sha256": sha256_file(layer_path),
+        "compositeSha256": recompute_composite_sha256(pose, layer_path),
         **hashes_current(pose, mask, outfit),
     }
     original = load_variants()
@@ -154,11 +187,6 @@ def test_missing_triggers_generation_and_mask_lock(tmp: Path) -> None:
     assert pose and outfit and mask
     base = Image.open(pose_path(pose)).convert("RGBA")
     binary = Image.open(mask_path(mask)).convert("L")
-    # Fake full-edit: paint bright color everywhere (including outside mask)
-    polluted = Image.new("RGBA", base.size, (255, 0, 0, 255))
-
-    def fake_edit(**kwargs):
-        return polluted.copy()
 
     original = load_variants()
     # Ensure no existing suit-navy/explain-two variant
@@ -172,8 +200,8 @@ def test_missing_triggers_generation_and_mask_lock(tmp: Path) -> None:
         result = generate_missing_variant(
             "explain-two",
             "suit-navy",
-            edit_fn=fake_edit,
-            vision_fn=lambda **k: {"pass": True, "issues": []},
+            edit_fn=polluted_edit_for_pose("explain-two"),
+            vision_fn=lambda **k: {"pass": True, "issues": [], "outfitConsistency": 1.0, "missingBranding": [], "extraBranding": [], "wrongText": []},
             work_dir=tmp / "work",
             skip_vision=False,
         )
@@ -268,10 +296,17 @@ def test_qa_retries_and_no_promote_on_fail(tmp: Path) -> None:
 
     def fake_edit(**kwargs):
         calls["n"] += 1
-        return paint_kit_for_pose("explain-two")
+        return edit_fn_for_pose("explain-two")(**kwargs)
 
     def fail_vision(**kwargs):
-        return {"pass": False, "issues": ["Spotify word was added"]}
+        return {
+            "pass": False,
+            "issues": ["Spotify word was added"],
+            "missingBranding": [],
+            "extraBranding": [],
+            "wrongText": ["Spotify"],
+            "outfitConsistency": 0.5,
+        }
 
     original = load_variants()
     cleaned = [
@@ -307,7 +342,7 @@ def test_cross_video_reuse_after_success(tmp: Path) -> None:
 
     def fake_edit(**kwargs):
         calls["n"] += 1
-        return paint_kit_for_pose("explain-two", (30, 90, 40, 255))
+        return edit_fn_for_pose("explain-two", (30, 90, 40, 255))(**kwargs)
 
     original = load_variants()
     cleaned = [
@@ -321,7 +356,14 @@ def test_cross_video_reuse_after_success(tmp: Path) -> None:
             "explain-two",
             "suit-navy",
             edit_fn=fake_edit,
-            vision_fn=lambda **k: {"pass": True, "issues": []},
+            vision_fn=lambda **k: {
+                "pass": True,
+                "issues": [],
+                "missingBranding": [],
+                "extraBranding": [],
+                "wrongText": [],
+                "outfitConsistency": 1.0,
+            },
             work_dir=tmp / "gen1",
         )
         assert_true(first["result"] == "GENERATED", first)
@@ -329,7 +371,14 @@ def test_cross_video_reuse_after_success(tmp: Path) -> None:
             "explain-two",
             "suit-navy",
             edit_fn=fake_edit,
-            vision_fn=lambda **k: {"pass": True, "issues": []},
+            vision_fn=lambda **k: {
+                "pass": True,
+                "issues": [],
+                "missingBranding": [],
+                "extraBranding": [],
+                "wrongText": [],
+                "outfitConsistency": 1.0,
+            },
             work_dir=tmp / "gen2",
         )
         assert_true(second["result"] == "REUSED", second)

@@ -12,13 +12,12 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from mascot_common import (
     DEFAULT_OUTFIT,
-    REUSABLE_VARIANT_STATUSES,
     mask_by_pose,
     outfit_by_id,
     pose_by_id,
     pose_path,
     variant_by_pair,
-    variant_is_stale,
+    variant_is_reusable,
     variant_path,
 )
 
@@ -52,20 +51,22 @@ def main() -> int:
         return 0
 
     variant = variant_by_pair(args.pose, args.outfit)
-    if variant is None:
-        return fail(
-            f"no outfit layer for {args.pose} + {args.outfit}. "
-            "Run ensure_mascot_variants.py and generate the missing layer."
-        )
-    if variant.get("status") not in REUSABLE_VARIANT_STATUSES:
-        return fail(f"variant `{variant['id']}` is not approved (status={variant.get('status')})")
     mask = mask_by_pose(args.pose)
-    if variant_is_stale(variant, pose, mask, outfit):
-        return fail(f"variant `{variant['id']}` is stale; hashes no longer match")
+    if not variant_is_reusable(variant, pose, mask, outfit):
+        if variant is None:
+            return fail(
+                f"no outfit layer for {args.pose} + {args.outfit}. "
+                "Run ensure_mascot_variants.py and generate the missing layer."
+            )
+        return fail(
+            f"variant `{variant.get('id')}` is not reusable "
+            f"(status={variant.get('status')}); regenerate or re-approve"
+        )
 
     layer = Image.open(variant_path(variant)).convert("RGBA")
     if layer.size != base.size:
         return fail(f"layer size {layer.size} != pose {base.size}")
+    # Always rebuild from verified base pose + verified layer (do not trust stale composite bytes).
     composed = Image.alpha_composite(base, layer)
     composed.save(output, format="PNG")
     print(f"OK    composed {args.pose} + {args.outfit} -> {output}")

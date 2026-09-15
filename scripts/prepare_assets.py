@@ -30,9 +30,12 @@ from asset_prep_common import (
 )
 from mascot_common import (
     DEFAULT_OUTFIT,
-    REUSABLE_VARIANT_STATUSES,
+    mask_by_pose,
+    outfit_by_id,
+    pose_by_id,
     openai_api_key,
     variant_by_pair,
+    variant_is_reusable,
 )
 from resolve_mascot_assets import resolve_mascot_assets
 
@@ -351,7 +354,15 @@ def classify_plan_record(
             record["mascot"] = {"basePose": pose, "outfit": outfit, "mode": "base-pose"}
             return record
         variant = variant_by_pair(pose, outfit)
-        if variant and variant.get("status") in REUSABLE_VARIANT_STATUSES:
+        pose_meta = pose_by_id(pose)
+        mask_meta = mask_by_pose(pose)
+        outfit_meta = outfit_by_id(outfit)
+        if (
+            pose_meta
+            and outfit_meta
+            and mask_meta
+            and variant_is_reusable(variant, pose_meta, mask_meta, outfit_meta)
+        ):
             record["status"] = "READY_MASCOT"
             record["notes"] = f"reusable outfit variant ({variant.get('status')})"
             record["mascot"] = {

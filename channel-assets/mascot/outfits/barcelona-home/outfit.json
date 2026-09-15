@@ -3,6 +3,10 @@
   "season": "2025/26",
   "type": "club",
   "referenceRequired": true,
+  "reference": {
+    "sourceUrl": "https://store.fcbarcelona.com/collections/men-home-kit/products/fc-barcelona-home-amshirt-25-26-ucl",
+    "sha256": null
+  },
   "description": "FC Barcelona official home kit 2025/26",
   "branding": {
     "crest": true,

@@ -18,6 +18,7 @@ from mascot_common import (
     outfit_reference_meta_path,
     outfit_reference_path,
     sha256_file,
+    update_tracked_outfit_reference,
     write_json,
 )
 
@@ -88,6 +89,7 @@ def import_reference(
         "rights": OUTFIT_REF_RIGHTS,
     }
     write_json(outfit_reference_meta_path(outfit_id), meta)
+    update_tracked_outfit_reference(outfit_id, source_url=source_url, sha256=digest)
     print(f"OK    imported outfit reference `{outfit_id}` -> {dest} sha256={digest[:12]}…")
     return 0
 

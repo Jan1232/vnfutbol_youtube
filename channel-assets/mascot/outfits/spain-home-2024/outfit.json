@@ -3,6 +3,10 @@
   "season": "2024",
   "type": "national-team",
   "referenceRequired": true,
+  "reference": {
+    "sourceUrl": "https://rfef.es/en/noticias/spains-new-kit-for-euro-2024",
+    "sha256": null
+  },
   "description": "Spain home kit EURO 2024",
   "branding": {
     "crest": true,

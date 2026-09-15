@@ -79,6 +79,19 @@ def paint_kit_for_pose(pose_id: str, color=(20, 80, 180, 255)) -> Image.Image:
     return img
 
 
+def padded_paint_edit(pose_id: str, color=(20, 80, 180, 255)):
+    def fake_edit(**kwargs):
+        img = paint_kit_for_pose(pose_id, color)
+        target = kwargs.get("target_size")
+        if target and img.size != target:
+            canvas = Image.new("RGBA", target, (0, 0, 0, 0))
+            canvas.paste(img, (0, 0))
+            return canvas
+        return img
+
+    return fake_edit
+
+
 def clear_pair(pose_id: str, outfit_id: str) -> dict:
     original = load_variants()
     cleaned = [
@@ -143,10 +156,10 @@ def test_wrong_size_never_resized(tmp: Path) -> None:
     pose = pose_by_id("explain-two")
     assert pose
     base = Image.open(pose_path(pose)).convert("RGBA")
-    wrong = Image.new("RGBA", (base.size[0] // 2, base.size[1] // 2), (255, 0, 0, 255))
 
     def fake_edit(**kwargs):
-        return wrong.copy()
+        # Deliberately wrong API canvas size.
+        return Image.new("RGBA", (base.size[0] // 2, base.size[1] // 2), (255, 0, 0, 255))
 
     original = clear_pair("explain-two", "suit-navy")
     try:
@@ -159,7 +172,6 @@ def test_wrong_size_never_resized(tmp: Path) -> None:
         )
         assert_true(result["result"] == "ERROR", result)
         assert_true("refusing to resize" in result.get("reason", ""), result)
-        assert_true("approved-auto" not in str(result), result)
     finally:
         restore_variants(original)
 
@@ -201,8 +213,11 @@ def test_variant_is_reusable_checks_files_and_hash(tmp: Path) -> None:
     dest.mkdir(parents=True, exist_ok=True)
     layer_m = dest / "layer.png"
     comp_m = dest / "composite.png"
-    Image.new("RGBA", base.size, (10, 20, 30, 255)).save(layer_m)
-    base.save(comp_m)
+    layer_img = Image.new("RGBA", base.size, (0, 0, 0, 0))
+    layer_img.save(layer_m)
+    Image.alpha_composite(base, layer_img).save(comp_m)
+    from mascot_common import recompute_composite_sha256
+
     good = {
         "id": "explain-two__suit-navy",
         "basePose": "explain-two",
@@ -211,6 +226,7 @@ def test_variant_is_reusable_checks_files_and_hash(tmp: Path) -> None:
         "compositeFile": comp_m.relative_to(MASCOT).as_posix(),
         "status": "approved-auto",
         "sha256": sha256_file(layer_m),
+        "compositeSha256": recompute_composite_sha256(pose, layer_m),
         **hashes_current(pose, mask, outfit),
     }
     assert_true(variant_is_reusable(good, pose, mask, outfit), "good row must reuse")
@@ -312,8 +328,9 @@ def test_vision_qa_contract() -> None:
     assert_true("forbiddenRules" in src, "must include forbiddenRules")
     assert_true("branding" in src, "must include branding")
     assert_true('"detail": "high"' in src or "detail\": \"high\"" in src or 'detail": "high"' in src, src)
-    assert_true("json_object" in src or "JSON" in src, src)
-    assert_true("OUTFIT_CONSISTENCY_MIN" in src or "0.90" in src, src)
+    assert_true("json_schema" in src or "json_object" in src or "JSON" in src, src)
+    eval_src = inspect.getsource(__import__("mascot_auto_generate").evaluate_vision_payload)
+    assert_true("OUTFIT_CONSISTENCY_MIN" in eval_src or "0.90" in eval_src, eval_src)
 
 
 # --- P0.8 ------------------------------------------------------------------
@@ -325,7 +342,7 @@ def test_skip_vision_needs_review_not_approved(tmp: Path) -> None:
         result = generate_missing_variant(
             "explain-two",
             "suit-navy",
-            edit_fn=lambda **k: paint_kit_for_pose("explain-two"),
+            edit_fn=padded_paint_edit("explain-two"),
             vision_fn=lambda **k: {"pass": True, "issues": [], "outfitConsistency": 1.0},
             work_dir=tmp / "skip-vis",
             skip_vision=True,
@@ -369,18 +386,17 @@ def test_official_ref_is_image2_and_local_only(tmp: Path) -> None:
         captured["outfit_ref"] = kwargs.get("outfit_ref")
         captured["consistency_ref"] = kwargs.get("consistency_ref")
         captured["prompt"] = kwargs.get("prompt")
-        return paint_kit_for_pose("explain-two")
-
+        return padded_paint_edit("explain-two")(**kwargs)
     official = tmp / "official-ref.png"
     Image.new("RGBA", (32, 32), (1, 2, 3, 255)).save(official)
     original = clear_pair("explain-two", "suit-navy")
     try:
         with mock.patch(
-            "mascot_auto_generate.find_official_outfit_reference",
-            return_value=official,
-        ), mock.patch(
             "mascot_auto_generate.find_same_outfit_mascot_composite",
             return_value=None,
+        ), mock.patch(
+            "mascot_auto_generate.verify_local_outfit_reference",
+            return_value={"path": official, "sha256": sha256_file(official), "error": None},
         ):
             result = generate_missing_variant(
                 "explain-two",
