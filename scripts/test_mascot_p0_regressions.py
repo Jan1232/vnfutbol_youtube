@@ -229,6 +229,16 @@ def test_variant_is_reusable_checks_files_and_hash(tmp: Path) -> None:
 
     stale = dict(good, outfitFingerprint="deadbeef")
     assert_true(not variant_is_reusable(stale, pose, mask, outfit), "hashes current")
+    # Cleanup local test artifacts so they are never committed.
+    for path in (layer_m, comp_m):
+        try:
+            path.unlink()
+        except OSError:
+            pass
+    try:
+        dest.rmdir()
+    except OSError:
+        pass
 
 
 # --- P0.6 ------------------------------------------------------------------
