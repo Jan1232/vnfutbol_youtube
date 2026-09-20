@@ -637,6 +637,26 @@ def variant_files_integrity(variant: dict, pose: dict) -> bool:
     composite_file = MASCOT / composite_rel
     if not composite_file.exists():
         return False
+
+    # Identity-lock finals keep clothing geometry from the full-edit; the on-disk
+    # composite is NOT the clothing-mask recomposite.
+    if (
+        variant.get("type") == "identity-lock-final"
+        or variant.get("finalization") == "identity-lock"
+    ):
+        stored_comp = variant.get("compositeSha256")
+        if stored_comp and sha256_file(composite_file) != stored_comp:
+            return False
+        full_rel = variant.get("fullEditFile")
+        if full_rel:
+            full_file = MASCOT / full_rel
+            if not full_file.exists():
+                return False
+            stored_full = variant.get("fullEditSha256")
+            if stored_full and sha256_file(full_file) != stored_full:
+                return False
+        return True
+
     try:
         recomputed = recompute_composite_sha256(pose, layer_file)
     except Exception:  # noqa: BLE001

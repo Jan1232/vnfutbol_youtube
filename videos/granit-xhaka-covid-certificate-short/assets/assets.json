@@ -1,7 +1,7 @@
 {
   "version": 2,
   "video": "granit-xhaka-covid-certificate-short",
-  "stage": "assets-sourced",
+  "stage": "ready-for-editing",
   "policy": {
     "reuseOrder": [
       "channel-library",
@@ -40,10 +40,24 @@
       "usedInScenes": [
         "scene-01"
       ],
-      "sourceUrl": "https://football.ch/sfv/nationalteams/a-team/team.aspx/t-41641/p-493715/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Granit_Xhaka_05092026_%282%29.jpg",
       "selection": "Granit Xhaka in Switzerland national team kit, clean portrait or match still",
       "rightsStatus": "editorial-source; reuse rights not verified",
-      "downloadToPublicRepo": false
+      "downloadToPublicRepo": false,
+      "pageUrl": "https://football.ch/sfv/nationalteams/a-team/team.aspx/t-41641/p-493715/",
+      "localStaging": ".local-assets/granit-xhaka-covid-certificate-short/source/player-xhaka-switzerland.jpg",
+      "sourceSha256": "068377c858629cbf76f83a906423e5fe8b988ac4a57aa898c7a28d458dac7271",
+      "width": 5184,
+      "height": 3888,
+      "provenance": {
+        "kind": "wikimedia-commons",
+        "publisher": "Wikimedia Commons",
+        "file": "File:Granit Xhaka 05092026 (2).jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Granit_Xhaka_05092026_(2).jpg",
+        "note": "Official SFV profile blocked by Cloudflare; used recent public NT photo (Switzerland kit) suitable for 9:16 crop",
+        "kit": "Switzerland national team kit",
+        "dateHint": "2026-09-05"
+      }
     },
     {
       "id": "player-xhaka-sunderland",
@@ -55,10 +69,22 @@
         "scene-02",
         "scene-08"
       ],
-      "sourceUrl": "https://www.safc.com/news/2025/august/14/xhaka-te/",
+      "sourceUrl": "https://images.gc.safcservices.com/fit-in/1600x1600/4eb034e0-78e5-11f0-a7ed-a1588243ae5b.webp",
       "selection": "Granit Xhaka in Sunderland 2025/26 home kit, clean portrait or match still",
       "rightsStatus": "editorial-source; reuse rights not verified",
-      "downloadToPublicRepo": false
+      "downloadToPublicRepo": false,
+      "pageUrl": "https://www.safc.com/news/2025/august/14/xhaka-te/",
+      "localStaging": ".local-assets/granit-xhaka-covid-certificate-short/source/player-xhaka-sunderland.webp",
+      "sourceSha256": "8ac831593aa780d700ef3a24950c9ab12ac17ee4cb60db71b600e541456ccf89",
+      "width": 1600,
+      "height": 900,
+      "provenance": {
+        "kind": "official-club",
+        "publisher": "Sunderland AFC",
+        "page": "https://www.safc.com/news/2025/august/14/xhaka-te/",
+        "note": "Hero image from official captain announcement page",
+        "kit": "Sunderland club kit"
+      }
     },
     {
       "id": "stat-xhaka-spokesman-date-correction",
@@ -70,7 +96,8 @@
       ],
       "renderSpec": "Shorts card: spokesman said 11 Nov then corrected to 8 Nov and called first date his mistake; Blick document shows 8 Nov",
       "rightsStatus": "owned/generated",
-      "downloadToPublicRepo": false
+      "downloadToPublicRepo": false,
+      "file": "assets/rendered/stat-xhaka-spokesman-date-correction.png"
     },
     {
       "id": "stat-xhaka-nov-6-8-9-chronology",
@@ -82,7 +109,8 @@
       ],
       "renderSpec": "Mobile chronology card: 6 Nov London (Chelsea-Arsenal) → 8 Nov Lucerne per document → 9 Nov London (Arsenal-Brighton); not proof of guilt",
       "rightsStatus": "owned/generated",
-      "downloadToPublicRepo": false
+      "downloadToPublicRepo": false,
+      "file": "assets/rendered/stat-xhaka-nov-6-8-9-chronology.png"
     },
     {
       "id": "stat-xhaka-nov-6-8-9-route",
@@ -94,7 +122,8 @@
       ],
       "renderSpec": "Full-bleed Shorts graphic: 6→8→9 route; Blick says theoretically possible; dates matter for investigation; chronology is not proof of guilt",
       "rightsStatus": "owned/generated",
-      "downloadToPublicRepo": false
+      "downloadToPublicRepo": false,
+      "file": "assets/rendered/stat-xhaka-nov-6-8-9-route.png"
     },
     {
       "id": "text-doctor-lawyer-statement",
@@ -106,7 +135,8 @@
       ],
       "renderSpec": "Quote card: адвокат врача — клиентка утверждает, что привила Джаку",
       "rightsStatus": "owned/generated",
-      "downloadToPublicRepo": false
+      "downloadToPublicRepo": false,
+      "file": "assets/rendered/text-doctor-lawyer-statement.png"
     },
     {
       "id": "text-presumption-of-innocence",
@@ -118,7 +148,8 @@
       ],
       "renderSpec": "Legal disclaimer card: презумпция невиновности — Джака и врач",
       "rightsStatus": "owned/generated",
-      "downloadToPublicRepo": false
+      "downloadToPublicRepo": false,
+      "file": "assets/rendered/text-presumption-of-innocence.png"
     },
     {
       "id": "mascot-shock-one__switzerland-home-current",

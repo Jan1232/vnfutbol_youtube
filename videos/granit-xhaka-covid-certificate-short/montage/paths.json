@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "video": "granit-xhaka-covid-certificate-short",
+  "items": [
+    {
+      "slot": "audio/narration.wav",
+      "source": "videos/granit-xhaka-covid-certificate-short/audio/final/narration.wav",
+      "mode": "hardlink"
+    },
+    {
+      "slot": "photos/xhaka-switzerland.png",
+      "source": ".local-assets/granit-xhaka-covid-certificate-short/prepared/player-xhaka-switzerland.png",
+      "mode": "path-pointer",
+      "provenance": {
+        "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Granit_Xhaka_05092026_%282%29.jpg",
+        "resolvedUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Granit_Xhaka_05092026_%282%29.jpg",
+        "localPath": ".local-assets/granit-xhaka-covid-certificate-short/source/player-xhaka-switzerland.jpg",
+        "sha256": "068377c858629cbf76f83a906423e5fe8b988ac4a57aa898c7a28d458dac7271",
+        "bytes": 9862144,
+        "contentType": "image/jpeg",
+        "width": 5184,
+        "height": 3888,
+        "format": "MPO",
+        "pageUrl": "https://football.ch/sfv/nationalteams/a-team/team.aspx/t-41641/p-493715/",
+        "attemptedOfficial": "https://football.ch/sfv/nationalteams/a-team/team.aspx/t-41641/p-493715/",
+        "officialAccess": "blocked-cloudflare-bot-protection",
+        "provenance": {
+          "kind": "wikimedia-commons",
+          "publisher": "Wikimedia Commons",
+          "file": "File:Granit Xhaka 05092026 (2).jpg",
+          "page": "https://commons.wikimedia.org/wiki/File:Granit_Xhaka_05092026_(2).jpg",
+          "note": "Official SFV profile blocked by Cloudflare; used recent public NT photo (Switzerland kit) suitable for 9:16 crop",
+          "kit": "Switzerland national team kit",
+          "dateHint": "2026-09-05"
+        }
+      },
+      "pointer": "photos/xhaka-switzerland.path.txt"
+    },
+    {
+      "slot": "photos/xhaka-sunderland.png",
+      "source": ".local-assets/granit-xhaka-covid-certificate-short/prepared/player-xhaka-sunderland.png",
+      "mode": "path-pointer",
+      "provenance": {
+        "sourceUrl": "https://images.gc.safcservices.com/fit-in/1600x1600/4eb034e0-78e5-11f0-a7ed-a1588243ae5b.webp",
+        "resolvedUrl": "https://images.gc.safcservices.com/fit-in/1600x1600/4eb034e0-78e5-11f0-a7ed-a1588243ae5b.webp",
+        "localPath": ".local-assets/granit-xhaka-covid-certificate-short/source/player-xhaka-sunderland.webp",
+        "sha256": "8ac831593aa780d700ef3a24950c9ab12ac17ee4cb60db71b600e541456ccf89",
+        "bytes": 73312,
+        "contentType": "image/webp",
+        "width": 1600,
+        "height": 900,
+        "format": "WEBP",
+        "pageUrl": "https://www.safc.com/news/2025/august/14/xhaka-te/",
+        "provenance": {
+          "kind": "official-club",
+          "publisher": "Sunderland AFC",
+          "page": "https://www.safc.com/news/2025/august/14/xhaka-te/",
+          "note": "Hero image from official captain announcement page",
+          "kit": "Sunderland club kit"
+        }
+      },
+      "pointer": "photos/xhaka-sunderland.path.txt"
+    },
+    {
+      "slot": "mascot/scene-01.png",
+      "source": "channel-assets/mascot/variants/switzerland-home-current/shock-one.png",
+      "mode": "hardlink",
+      "assetId": "mascot-shock-one__switzerland-home-current"
+    },
+    {
+      "slot": "mascot/scene-02.png",
+      "source": "channel-assets/mascot/variants/sunderland-home-current/point-left-one.png",
+      "mode": "hardlink",
+      "assetId": "mascot-point-left-one__sunderland-home-current"
+    },
+    {
+      "slot": "mascot/scene-03.png",
+      "source": "channel-assets/mascot/variants/sunderland-home-current/think-one.png",
+      "mode": "hardlink",
+      "assetId": "mascot-think-one__sunderland-home-current"
+    },
+    {
+      "slot": "mascot/scene-04.png",
+      "source": "channel-assets/mascot/variants/sunderland-home-current/explain-two.png",
+      "mode": "hardlink",
+      "assetId": "mascot-explain-two__sunderland-home-current"
+    },
+    {
+      "slot": "mascot/scene-06.png",
+      "source": "channel-assets/mascot/variants/sunderland-home-current/suspicious.png",
+      "mode": "hardlink",
+      "assetId": "mascot-suspicious__sunderland-home-current"
+    },
+    {
+      "slot": "mascot/scene-07.png",
+      "source": "channel-assets/mascot/variants/switzerland-home-current/stop.png",
+      "mode": "hardlink",
+      "assetId": "mascot-stop__switzerland-home-current"
+    },
+    {
+      "slot": "mascot/scene-08.png",
+      "source": "channel-assets/mascot/variants/sunderland-home-current/point-right-one.png",
+      "mode": "hardlink",
+      "assetId": "mascot-point-right-one__sunderland-home-current"
+    },
+    {
+      "slot": "graphics/scene-03.png",
+      "source": "videos/granit-xhaka-covid-certificate-short/assets/rendered/stat-xhaka-spokesman-date-correction.png",
+      "mode": "hardlink",
+      "assetId": "stat-xhaka-spokesman-date-correction"
+    },
+    {
+      "slot": "graphics/scene-04.png",
+      "source": "videos/granit-xhaka-covid-certificate-short/assets/rendered/stat-xhaka-nov-6-8-9-chronology.png",
+      "mode": "hardlink",
+      "assetId": "stat-xhaka-nov-6-8-9-chronology"
+    },
+    {
+      "slot": "graphics/scene-05.png",
+      "source": "videos/granit-xhaka-covid-certificate-short/assets/rendered/stat-xhaka-nov-6-8-9-route.png",
+      "mode": "hardlink",
+      "assetId": "stat-xhaka-nov-6-8-9-route"
+    },
+    {
+      "slot": "graphics/scene-06.png",
+      "source": "videos/granit-xhaka-covid-certificate-short/assets/rendered/text-doctor-lawyer-statement.png",
+      "mode": "hardlink",
+      "assetId": "text-doctor-lawyer-statement"
+    },
+    {
+      "slot": "graphics/scene-07.png",
+      "source": "videos/granit-xhaka-covid-certificate-short/assets/rendered/text-presumption-of-innocence.png",
+      "mode": "hardlink",
+      "assetId": "text-presumption-of-innocence"
+    },
+    {
+      "slot": "timeline.json",
+      "source": "videos/granit-xhaka-covid-certificate-short/scenes/timeline.json",
+      "mode": "copy"
+    }
+  ]
+}

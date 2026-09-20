@@ -72,6 +72,43 @@ def main() -> int:
         if job.get(key) != current[key]:
             return fail(f"{key} changed since the job was created; extract the layer again")
 
+    data = load_variants()
+    existing = next(
+        (
+            item
+            for item in data.get("variants", [])
+            if item.get("basePose") == pose["id"] and item.get("outfit") == outfit["id"]
+        ),
+        None,
+    )
+
+    # Identity-lock finals already live in the shared library (composite + full-edit).
+    # Promote only flips status; do not downgrade to clothing-mask outfit-layer.
+    if existing and (
+        existing.get("type") == "identity-lock-final"
+        or existing.get("finalization") == "identity-lock"
+    ):
+        if existing.get("status") == "needs-review":
+            existing["status"] = "approved"
+            existing.pop("rejectedReason", None)
+        elif existing.get("status") not in {"approved", "approved-auto"}:
+            return fail(
+                f"identity-lock variant status={existing.get('status')} cannot be promoted"
+            )
+        others = [
+            item
+            for item in data.get("variants", [])
+            if not (item.get("basePose") == pose["id"] and item.get("outfit") == outfit["id"])
+        ]
+        others.append(existing)
+        others.sort(key=lambda item: item["id"])
+        write_json(VARIANTS_PATH, {"version": 1, "variants": others})
+        print(
+            f"OK    promoted {existing['id']} -> {existing.get('compositeFile')} "
+            f"(identity-lock approved)"
+        )
+        return 0
+
     source = video_dir / job["targetLayer"]
     if not source.exists():
         return fail(f"missing extracted layer {source}")
@@ -91,7 +128,6 @@ def main() -> int:
         **hashes_current(pose, mask, outfit),
     }
 
-    data = load_variants()
     others = [
         item
         for item in data.get("variants", [])

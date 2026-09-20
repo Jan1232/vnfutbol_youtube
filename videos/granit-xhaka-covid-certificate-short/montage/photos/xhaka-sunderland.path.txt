@@ -1,0 +1,3 @@
+LOCAL ONLY — do not commit binary
+source=.local-assets/granit-xhaka-covid-certificate-short/prepared/player-xhaka-sunderland.png
+Also see .local-assets/granit-xhaka-covid-certificate-short/ and photo-provenance.json

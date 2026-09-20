@@ -1,7 +1,7 @@
 {
   "version": 1,
   "video": "granit-xhaka-covid-certificate-short",
-  "generatedAt": "2026-09-20T13:06:54+00:00",
+  "generatedAt": "2026-09-20T14:29:48+00:00",
   "localRoot": ".local-assets/granit-xhaka-covid-certificate-short",
   "assets": [
     {
@@ -25,13 +25,13 @@
     {
       "id": "player-xhaka-switzerland",
       "type": "PLAYER_PHOTO",
-      "status": "NEEDS_SOURCE_FILE",
-      "sourcePath": null,
-      "preparedPath": null,
-      "sourceSha256": null,
-      "sha256": null,
-      "width": null,
-      "height": null,
+      "status": "READY",
+      "sourcePath": ".local-assets/granit-xhaka-covid-certificate-short/source/player-xhaka-switzerland.jpg",
+      "preparedPath": ".local-assets/granit-xhaka-covid-certificate-short/prepared/player-xhaka-switzerland.png",
+      "sourceSha256": "068377c858629cbf76f83a906423e5fe8b988ac4a57aa898c7a28d458dac7271",
+      "sha256": "5944418a29ad5046cb00c8c1ce84bfb104ca86257750ad6290e442952b2c7894",
+      "width": 5184,
+      "height": 3888,
       "durationMs": null,
       "clipStartMs": null,
       "clipEndMs": null,
@@ -40,13 +40,17 @@
       "usedInScenes": [
         "scene-01"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external",
-      "candidates": []
+      "notes": "image prepared; original preserved in source/",
+      "candidates": [],
+      "previewPath": ".local-assets/granit-xhaka-covid-certificate-short/previews/player-xhaka-switzerland-preview.jpg",
+      "crop": {
+        "mode": "non-destructive-metadata"
+      }
     },
     {
       "id": "mascot-shock-one__switzerland-home-current",
       "type": "MASCOT",
-      "status": "BLOCKED",
+      "status": "READY_MASCOT",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -61,24 +65,23 @@
       "usedInScenes": [
         "scene-01"
       ],
-      "notes": "mascot variant needs review for shock-one + switzerland-home-current; final render blocked until approved",
-      "prepStatus": "NEEDS_REVIEW",
+      "notes": "reusable outfit variant (approved)",
       "mascot": {
         "basePose": "shock-one",
         "outfit": "switzerland-home-current",
-        "mode": "needs-review"
+        "variant": "shock-one__switzerland-home-current"
       }
     },
     {
       "id": "player-xhaka-sunderland",
       "type": "PLAYER_PHOTO",
-      "status": "NEEDS_SOURCE_FILE",
-      "sourcePath": null,
-      "preparedPath": null,
-      "sourceSha256": null,
-      "sha256": null,
-      "width": null,
-      "height": null,
+      "status": "READY",
+      "sourcePath": ".local-assets/granit-xhaka-covid-certificate-short/source/player-xhaka-sunderland.webp",
+      "preparedPath": ".local-assets/granit-xhaka-covid-certificate-short/prepared/player-xhaka-sunderland.png",
+      "sourceSha256": "8ac831593aa780d700ef3a24950c9ab12ac17ee4cb60db71b600e541456ccf89",
+      "sha256": "405349a1678deee87844d02f52ba941a02323891cdc2dbd3e4d607b6052df113",
+      "width": 1600,
+      "height": 900,
       "durationMs": null,
       "clipStartMs": null,
       "clipEndMs": null,
@@ -88,13 +91,17 @@
         "scene-02",
         "scene-08"
       ],
-      "notes": "external media; drop file into inbox/ or run --fetch-external",
-      "candidates": []
+      "notes": "image prepared; original preserved in source/",
+      "candidates": [],
+      "previewPath": ".local-assets/granit-xhaka-covid-certificate-short/previews/player-xhaka-sunderland-preview.jpg",
+      "crop": {
+        "mode": "non-destructive-metadata"
+      }
     },
     {
       "id": "mascot-point-left-one__sunderland-home-current",
       "type": "MASCOT",
-      "status": "BLOCKED",
+      "status": "READY_MASCOT",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -109,12 +116,11 @@
       "usedInScenes": [
         "scene-02"
       ],
-      "notes": "mascot variant needs review for point-left-one + sunderland-home-current; final render blocked until approved",
-      "prepStatus": "NEEDS_REVIEW",
+      "notes": "reusable outfit variant (approved)",
       "mascot": {
         "basePose": "point-left-one",
         "outfit": "sunderland-home-current",
-        "mode": "needs-review"
+        "variant": "point-left-one__sunderland-home-current"
       }
     },
     {
@@ -140,7 +146,7 @@
     {
       "id": "mascot-think-one__sunderland-home-current",
       "type": "MASCOT",
-      "status": "BLOCKED",
+      "status": "READY_MASCOT",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -155,12 +161,11 @@
       "usedInScenes": [
         "scene-03"
       ],
-      "notes": "mascot variant needs review for think-one + sunderland-home-current; final render blocked until approved",
-      "prepStatus": "NEEDS_REVIEW",
+      "notes": "reusable outfit variant (approved)",
       "mascot": {
         "basePose": "think-one",
         "outfit": "sunderland-home-current",
-        "mode": "needs-review"
+        "variant": "think-one__sunderland-home-current"
       }
     },
     {
@@ -186,7 +191,7 @@
     {
       "id": "mascot-explain-two__sunderland-home-current",
       "type": "MASCOT",
-      "status": "BLOCKED",
+      "status": "READY_MASCOT",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -201,12 +206,11 @@
       "usedInScenes": [
         "scene-04"
       ],
-      "notes": "mascot variant needs review for explain-two + sunderland-home-current; final render blocked until approved",
-      "prepStatus": "NEEDS_REVIEW",
+      "notes": "reusable outfit variant (approved)",
       "mascot": {
         "basePose": "explain-two",
         "outfit": "sunderland-home-current",
-        "mode": "needs-review"
+        "variant": "explain-two__sunderland-home-current"
       }
     },
     {
@@ -252,7 +256,7 @@
     {
       "id": "mascot-suspicious__sunderland-home-current",
       "type": "MASCOT",
-      "status": "BLOCKED",
+      "status": "READY_MASCOT",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -267,12 +271,11 @@
       "usedInScenes": [
         "scene-06"
       ],
-      "notes": "mascot variant needs review for suspicious + sunderland-home-current; final render blocked until approved",
-      "prepStatus": "NEEDS_REVIEW",
+      "notes": "reusable outfit variant (approved)",
       "mascot": {
         "basePose": "suspicious",
         "outfit": "sunderland-home-current",
-        "mode": "needs-review"
+        "variant": "suspicious__sunderland-home-current"
       }
     },
     {
@@ -298,7 +301,7 @@
     {
       "id": "mascot-stop__switzerland-home-current",
       "type": "MASCOT",
-      "status": "BLOCKED",
+      "status": "READY_MASCOT",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -313,18 +316,17 @@
       "usedInScenes": [
         "scene-07"
       ],
-      "notes": "mascot variant needs review for stop + switzerland-home-current; final render blocked until approved",
-      "prepStatus": "NEEDS_REVIEW",
+      "notes": "reusable outfit variant (approved)",
       "mascot": {
         "basePose": "stop",
         "outfit": "switzerland-home-current",
-        "mode": "needs-review"
+        "variant": "stop__switzerland-home-current"
       }
     },
     {
       "id": "mascot-point-right-one__sunderland-home-current",
       "type": "MASCOT",
-      "status": "BLOCKED",
+      "status": "READY_MASCOT",
       "sourcePath": null,
       "preparedPath": null,
       "sourceSha256": null,
@@ -339,12 +341,11 @@
       "usedInScenes": [
         "scene-08"
       ],
-      "notes": "mascot variant needs review for point-right-one + sunderland-home-current; final render blocked until approved",
-      "prepStatus": "NEEDS_REVIEW",
+      "notes": "reusable outfit variant (approved)",
       "mascot": {
         "basePose": "point-right-one",
         "outfit": "sunderland-home-current",
-        "mode": "needs-review"
+        "variant": "point-right-one__sunderland-home-current"
       }
     }
   ],
