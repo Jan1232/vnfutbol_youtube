@@ -7,7 +7,7 @@
     {
       "id": "scene-01",
       "start": 0.0,
-      "duration": 5.95,
+      "duration": 6.82,
       "script": "SCRIPT-001",
       "scriptRefs": [
         "SCRIPT-001"
@@ -41,8 +41,8 @@
     },
     {
       "id": "scene-02",
-      "start": 5.95,
-      "duration": 6.646,
+      "start": 6.82,
+      "duration": 6.902,
       "script": "SCRIPT-002",
       "scriptRefs": [
         "SCRIPT-002"
@@ -76,8 +76,8 @@
     },
     {
       "id": "scene-03",
-      "start": 12.596,
-      "duration": 7.633,
+      "start": 13.722,
+      "duration": 7.703,
       "script": "SCRIPT-003",
       "scriptRefs": [
         "SCRIPT-003"
@@ -110,8 +110,8 @@
     },
     {
       "id": "scene-04",
-      "start": 20.229,
-      "duration": 10.519,
+      "start": 21.425,
+      "duration": 12.145,
       "script": "SCRIPT-004",
       "scriptRefs": [
         "SCRIPT-004"
@@ -146,8 +146,8 @@
     },
     {
       "id": "scene-05",
-      "start": 30.748,
-      "duration": 7.447,
+      "start": 33.57,
+      "duration": 7.169,
       "script": "SCRIPT-005",
       "scriptRefs": [
         "SCRIPT-005"
@@ -171,8 +171,8 @@
     },
     {
       "id": "scene-06",
-      "start": 38.195,
-      "duration": 7.273,
+      "start": 40.739,
+      "duration": 8.597,
       "script": "SCRIPT-006",
       "scriptRefs": [
         "SCRIPT-006"
@@ -205,8 +205,8 @@
     },
     {
       "id": "scene-07",
-      "start": 45.468,
-      "duration": 6.089,
+      "start": 49.336,
+      "duration": 7.099,
       "script": "SCRIPT-007",
       "scriptRefs": [
         "SCRIPT-007"
@@ -239,8 +239,8 @@
     },
     {
       "id": "scene-08",
-      "start": 51.557,
-      "duration": 5.434,
+      "start": 56.435,
+      "duration": 6.536,
       "script": "SCRIPT-008",
       "scriptRefs": [
         "SCRIPT-008"
@@ -274,5 +274,5 @@
     }
   ],
   "draft": true,
-  "totalDuration": 56.991
+  "totalDuration": 62.971
 }

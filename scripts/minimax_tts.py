@@ -79,7 +79,7 @@ class MiniMaxTTS:
             "subtitle_enable": bool(cfg.get("subtitleEnable", False)),
             "voice_setting": {
                 "voice_id": cfg.get("voiceId"),
-                "speed": voice.get("speed", 1.16),
+                "speed": voice.get("speed", 1.05),
                 "vol": voice.get("vol", 1),
                 "pitch": voice.get("pitch", 0),
             },
