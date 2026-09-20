@@ -7,6 +7,55 @@
       "status": "generated",
       "sha256": "1ac74c57a637bd86ddf4656315d7a4c78cab4e9963c9e28f64d32805b86dd766",
       "basePoseSha256": "d0e4cfeb6d41641cd2fbedae10df447bc65ba9d42d408b5087911d2e40ac1ab8"
+    },
+    {
+      "basePose": "explain-two",
+      "file": "identity-masks/explain-two.png",
+      "status": "generated",
+      "sha256": "4636fa6141dc7991e9a0876434e97bbd0ae2a7707c3bc4c47cb88a32fd0ebc10",
+      "basePoseSha256": "3d7252d08e0b98ce7ac046cff4e96c5e03c2af2a61f652709275535b765add37"
+    },
+    {
+      "basePose": "point-left-one",
+      "file": "identity-masks/point-left-one.png",
+      "status": "generated",
+      "sha256": "aa08c077a4a4e86ac41208222a66e7a3eece8da36754a58ab47622c29767785a",
+      "basePoseSha256": "863fcfce1f5a2f1570f063959663ab9eecfe9e925cf3ea8274e4a39143a1c305"
+    },
+    {
+      "basePose": "point-right-one",
+      "file": "identity-masks/point-right-one.png",
+      "status": "generated",
+      "sha256": "6f818af6c31d4465264afc6727d3bfd9e15acbcd4ad3e0d67c1db3b7b978049a",
+      "basePoseSha256": "f1c6cdcc752e4069f175a2fac440fb60406d6a3df4ba03a4f40bc960b220c341"
+    },
+    {
+      "basePose": "shock-one",
+      "file": "identity-masks/shock-one.png",
+      "status": "generated",
+      "sha256": "58b45a9d97e7846995146a90823aa3a70c62ea2391782200b14efa3f9d7bcefb",
+      "basePoseSha256": "9fc471c592209dfcc78333d8e7a1f4fcd22f87617690c067f651caf6e59cd4fa"
+    },
+    {
+      "basePose": "stop",
+      "file": "identity-masks/stop.png",
+      "status": "generated",
+      "sha256": "842d62c4a2093b29babfce4226894f854d8533171b7c5dba58be6284dd4e943f",
+      "basePoseSha256": "e49f28ce12411d1c22a74635e3bedda9901c51bc3ce22f02b6327b45fd68bd6b"
+    },
+    {
+      "basePose": "suspicious",
+      "file": "identity-masks/suspicious.png",
+      "status": "generated",
+      "sha256": "661de80c115fd768974cddf13cc3b82b2d8d939e62ce23ce7d3f956892520304",
+      "basePoseSha256": "21abba43bfc9a132edf1ce97fc30d2bb4891218c982983649e52f6371c9f195a"
+    },
+    {
+      "basePose": "think-one",
+      "file": "identity-masks/think-one.png",
+      "status": "generated",
+      "sha256": "db46ce793d4f4b68041e918d5f540c9dcc1f52f9d83bb15fb5e330c7556b3c4d",
+      "basePoseSha256": "da89496ac37e56c7f7c810d5d4c7dccab2154696a6a033227f619e9fc5969ea7"
     }
   ]
 }

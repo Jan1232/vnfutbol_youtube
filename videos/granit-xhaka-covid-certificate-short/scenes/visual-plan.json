@@ -2,216 +2,260 @@
   "version": 1,
   "video": "granit-xhaka-covid-certificate-short",
   "stage": "visual-plan",
-  "format": "shorts",
-  "canvas": {
-    "width": 1080,
-    "height": 1920,
-    "fps": 30
-  },
   "strategy": {
-    "mascotScreenTimeTarget": 0.65,
+    "mascotScreenTimeTarget": 0.85,
+    "mascotSceneShare": 0.875,
+    "principle": "Mascot hosts a legal-news short; photos act as evidence context; presumption of innocence is visible in overlays.",
     "newMascotPosesAllowed": false,
-    "outfitPolicy": "default-home-only-for-pilot",
-    "principle": "Mascot is the vertical host; renderer-owned evidence cards carry the legal/news facts; use one external Xhaka photo repeatedly rather than sourcing many redundant photos.",
     "layoutRotation": [
-      "vertical-mascot-bottom-media-top",
-      "vertical-mascot-side-card",
-      "vertical-full-card",
-      "vertical-mascot-bottom-diagram-top"
+      "mascot-left-media-right",
+      "media-left-mascot-right",
+      "mascot-center",
+      "full",
+      "mascot-overlay-left-video-full"
     ]
   },
   "scenes": [
     {
       "id": "scene-01",
-      "scriptRefs": ["SCRIPT-001", "SCRIPT-002"],
+      "scriptRefs": [
+        "SCRIPT-001"
+      ],
       "primaryType": "MASCOT",
-      "layout": "vertical-mascot-bottom-media-top",
+      "layout": "mascot-left-media-right",
       "mascot": {
         "poseIntent": "shock",
+        "position": "left",
+        "scale": "medium",
         "basePose": "shock-one",
-        "position": "bottom-right",
-        "scale": "medium"
+        "assetId": "mascot-shock-one__switzerland-home-current",
+        "subject": "player-granit-xhaka"
       },
-      "outfitIntent": "default",
+      "outfitIntent": "national-team",
       "supportingVisual": {
         "type": "PLAYER_PHOTO",
-        "subject": "Current Granit Xhaka portrait",
-        "assetId": "player-xhaka-current"
+        "subject": "Granit Xhaka, Switzerland national team, recent official portrait / match",
+        "assetId": "player-xhaka-switzerland"
       },
       "overlay": {
-        "text": "ДЖАКА ПОД СЛЕДСТВИЕМ",
-        "subtext": "ВОЗМОЖНЫЙ ПОДДЕЛЬНЫЙ COVID-СЕРТИФИКАТ",
-        "style": "shorts-hook"
+        "text": "ЛЮЦЕРН · РАССЛЕДОВАНИЕ",
+        "style": "news-tag"
       },
-      "animation": "hardCut",
-      "notes": "First 2 seconds must read instantly. Do not write that Xhaka forged anything as a fact.",
-      "assetRequests": ["player-xhaka-current"]
+      "animation": "shake",
+      "notes": "Hook: Swiss NT captain context.",
+      "assetRequests": [
+        "player-xhaka-switzerland"
+      ]
     },
     {
       "id": "scene-02",
-      "scriptRefs": ["SCRIPT-003"],
-      "primaryType": "NEWSPAPER",
-      "layout": "vertical-mascot-side-card",
+      "scriptRefs": [
+        "SCRIPT-002"
+      ],
+      "primaryType": "MASCOT",
+      "layout": "media-left-mascot-right",
       "mascot": {
         "poseIntent": "point-left",
+        "position": "right",
+        "scale": "medium",
         "basePose": "point-left-one",
-        "position": "bottom-right",
-        "scale": "small"
+        "assetId": "mascot-point-left-one__sunderland-home-current",
+        "subject": "player-granit-xhaka"
       },
-      "outfitIntent": "default",
+      "outfitIntent": "current-club",
       "supportingVisual": {
-        "type": "NEWSPAPER",
-        "subject": "Rendered SRF prosecutor confirmation card",
-        "assetId": "card-xhaka-investigation"
-      },
-      "overlay": {
-        "text": "ПРОКУРАТУРА ПОДТВЕРДИЛА ДЕЛО",
-        "style": "news-card"
-      },
-      "animation": "slideUp",
-      "assetRequests": ["card-xhaka-investigation"]
-    },
-    {
-      "id": "scene-03",
-      "scriptRefs": ["SCRIPT-003"],
-      "primaryType": "DIAGRAM",
-      "layout": "vertical-mascot-bottom-media-top",
-      "mascot": {
-        "poseIntent": "think",
-        "basePose": "think-one",
-        "position": "bottom-left",
-        "scale": "small"
-      },
-      "outfitIntent": "default",
-      "supportingVisual": {
-        "type": "DIAGRAM",
-        "subject": "Generic COVID certificate question graphic",
-        "assetId": "graphic-covid-certificate-question"
-      },
-      "overlay": {
-        "text": "ЧТО ИМЕННО ПРОВЕРЯЮТ?",
-        "style": "question"
-      },
-      "animation": "slowZoom",
-      "notes": "Generic graphic only; never depict it as Xhaka's actual document.",
-      "assetRequests": ["graphic-covid-certificate-question"]
-    },
-    {
-      "id": "scene-04",
-      "scriptRefs": ["SCRIPT-004"],
-      "primaryType": "MASCOT",
-      "layout": "vertical-mascot-side-card",
-      "mascot": {
-        "poseIntent": "explain",
-        "basePose": "explain-two",
-        "position": "bottom-left",
-        "scale": "small"
-      },
-      "outfitIntent": "default",
-      "supportingVisual": {
-        "type": "TEXT",
-        "subject": "Defense statements + Xhaka portrait",
-        "assetIds": ["card-xhaka-defense", "player-xhaka-current"]
-      },
-      "overlay": {
-        "text": "ДЖАКА: СОТРУДНИЧАЮ СО СЛЕДСТВИЕМ",
-        "style": "statement"
-      },
-      "animation": "slideRight",
-      "assetRequests": ["card-xhaka-defense", "player-xhaka-current"]
-    },
-    {
-      "id": "scene-05",
-      "scriptRefs": ["SCRIPT-005"],
-      "primaryType": "DIAGRAM",
-      "layout": "vertical-full-card",
-      "mascot": null,
-      "outfitIntent": null,
-      "supportingVisual": {
-        "type": "DIAGRAM",
-        "subject": "6/8/9 November 2022 London-Lucerne-London timeline",
-        "assetId": "diagram-xhaka-nov-2022-route"
-      },
-      "overlay": {
-        "text": "6 → 8 → 9 НОЯБРЯ",
-        "style": "timeline-hook"
-      },
-      "animation": "counter",
-      "notes": "Main retention beat. Persistent footer must say route is possible and not proof of guilt.",
-      "assetRequests": ["diagram-xhaka-nov-2022-route"]
-    },
-    {
-      "id": "scene-06",
-      "scriptRefs": ["SCRIPT-006"],
-      "primaryType": "MASCOT",
-      "layout": "vertical-mascot-bottom-diagram-top",
-      "mascot": {
-        "poseIntent": "suspicious",
-        "basePose": "suspicious",
-        "position": "bottom-right",
-        "scale": "medium"
-      },
-      "outfitIntent": "default",
-      "supportingVisual": {
-        "type": "DIAGRAM",
-        "subject": "Same chronology, dimmed",
-        "assetId": "diagram-xhaka-nov-2022-route"
-      },
-      "overlay": {
-        "text": "ВОЗМОЖНО — НО ВОПРОСЫ ЕСТЬ",
-        "style": "analysis"
-      },
-      "animation": "fade",
-      "assetRequests": ["diagram-xhaka-nov-2022-route"]
-    },
-    {
-      "id": "scene-07",
-      "scriptRefs": ["SCRIPT-007"],
-      "primaryType": "MASCOT",
-      "layout": "vertical-mascot-side-card",
-      "mascot": {
-        "poseIntent": "stop",
-        "basePose": "stop",
-        "position": "bottom-left",
-        "scale": "medium"
-      },
-      "outfitIntent": "default",
-      "supportingVisual": {
-        "type": "TEXT",
-        "subject": "Presumption of innocence card",
-        "assetId": "card-presumption-innocence"
+        "type": "PLAYER_PHOTO",
+        "subject": "Granit Xhaka, Sunderland AFC, 2025/26",
+        "assetId": "player-xhaka-sunderland"
       },
       "overlay": {
         "text": "ВИНА НЕ ДОКАЗАНА",
-        "style": "warning"
+        "style": "legal-disclaimer"
+      },
+      "animation": "panLeft",
+      "notes": "Club kit; suspicion framed carefully.",
+      "assetRequests": [
+        "player-xhaka-sunderland"
+      ]
+    },
+    {
+      "id": "scene-03",
+      "scriptRefs": [
+        "SCRIPT-003"
+      ],
+      "primaryType": "MASCOT",
+      "layout": "mascot-left-media-right",
+      "mascot": {
+        "poseIntent": "think",
+        "position": "left",
+        "scale": "medium",
+        "basePose": "think-one",
+        "assetId": "mascot-think-one__sunderland-home-current",
+        "subject": "player-granit-xhaka"
+      },
+      "outfitIntent": "current-club",
+      "supportingVisual": {
+        "type": "NEWSPAPER",
+        "subject": "Swiss media reporting Lucerne doctor office search 2023 / investigation context graphic",
+        "assetId": "news-lucerne-doctor-search-2023"
+      },
+      "overlay": {
+        "text": "ОБЫСК 2023",
+        "style": "date-card"
+      },
+      "animation": "fade",
+      "notes": null,
+      "assetRequests": [
+        "news-lucerne-doctor-search-2023"
+      ]
+    },
+    {
+      "id": "scene-04",
+      "scriptRefs": [
+        "SCRIPT-004"
+      ],
+      "primaryType": "MASCOT",
+      "layout": "mascot-center",
+      "mascot": {
+        "poseIntent": "explain",
+        "position": "center",
+        "scale": "medium",
+        "basePose": "explain-two",
+        "assetId": "mascot-explain-two__sunderland-home-current",
+        "subject": "player-granit-xhaka"
+      },
+      "outfitIntent": "current-club",
+      "supportingVisual": {
+        "type": "STAT",
+        "subject": "Vaccination dates card: 25 Jan 2022 / media-reported Nov 8 vs Nov 11 2022",
+        "assetId": "stat-xhaka-vax-dates-media"
+      },
+      "overlay": {
+        "text": "25.01.2022 · 8 / 11.11.2022",
+        "style": "stat-card"
+      },
+      "animation": "slideUp",
+      "notes": "Denial + date discrepancy beat.",
+      "assetRequests": [
+        "stat-xhaka-vax-dates-media"
+      ]
+    },
+    {
+      "id": "scene-05",
+      "scriptRefs": [
+        "SCRIPT-005"
+      ],
+      "primaryType": "STAT",
+      "layout": "full",
+      "mascot": null,
+      "outfitIntent": null,
+      "supportingVisual": {
+        "type": "STAT",
+        "subject": "Mobile-readable date conflict: Nov 8 vs Nov 11 as media-reported",
+        "assetId": "stat-xhaka-nov-date-conflict"
+      },
+      "overlay": {
+        "text": "СМИ: 8 vs 11 НОЯБРЯ",
+        "style": "big-title"
       },
       "animation": "hardCut",
-      "notes": "Mandatory legal/factual safety beat. Do not shorten out.",
-      "assetRequests": ["card-presumption-innocence"]
+      "notes": "NO mascot. Pure date-conflict graphic.",
+      "assetRequests": [
+        "stat-xhaka-nov-date-conflict"
+      ]
+    },
+    {
+      "id": "scene-06",
+      "scriptRefs": [
+        "SCRIPT-006"
+      ],
+      "primaryType": "MASCOT",
+      "layout": "mascot-left-media-right",
+      "mascot": {
+        "poseIntent": "suspicious",
+        "position": "left",
+        "scale": "medium",
+        "basePose": "suspicious",
+        "assetId": "mascot-suspicious__sunderland-home-current",
+        "subject": "player-granit-xhaka"
+      },
+      "outfitIntent": "current-club",
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Doctor lawyer statement card: client says she vaccinated him",
+        "assetId": "text-doctor-lawyer-statement"
+      },
+      "overlay": {
+        "text": "ВРАЧ: «Я ПРИВИЛА»",
+        "style": "quote-card"
+      },
+      "animation": "fade",
+      "notes": null,
+      "assetRequests": [
+        "text-doctor-lawyer-statement"
+      ]
+    },
+    {
+      "id": "scene-07",
+      "scriptRefs": [
+        "SCRIPT-007"
+      ],
+      "primaryType": "MASCOT",
+      "layout": "mascot-center",
+      "mascot": {
+        "poseIntent": "stop",
+        "position": "center",
+        "scale": "large",
+        "basePose": "stop",
+        "assetId": "mascot-stop__switzerland-home-current",
+        "subject": "player-granit-xhaka"
+      },
+      "outfitIntent": "national-team",
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Presumption of innocence legal card for Xhaka and doctor",
+        "assetId": "text-presumption-of-innocence"
+      },
+      "overlay": {
+        "text": "ПРЕЗУМПЦИЯ НЕВИНОВНОСТИ",
+        "style": "legal-disclaimer"
+      },
+      "animation": "hardCut",
+      "notes": "Mandatory legal beat; Swiss kit.",
+      "assetRequests": [
+        "text-presumption-of-innocence"
+      ]
     },
     {
       "id": "scene-08",
-      "scriptRefs": ["SCRIPT-008"],
+      "scriptRefs": [
+        "SCRIPT-008"
+      ],
       "primaryType": "MASCOT",
-      "layout": "vertical-mascot-bottom-media-top",
+      "layout": "media-left-mascot-right",
       "mascot": {
-        "poseIntent": "explain",
+        "poseIntent": "point-right",
+        "position": "right",
+        "scale": "medium",
         "basePose": "point-right-one",
-        "position": "bottom-left",
-        "scale": "medium"
+        "assetId": "mascot-point-right-one__sunderland-home-current",
+        "subject": "player-granit-xhaka"
       },
-      "outfitIntent": "default",
+      "outfitIntent": "current-club",
       "supportingVisual": {
         "type": "PLAYER_PHOTO",
-        "subject": "Granit Xhaka portrait",
-        "assetId": "player-xhaka-current"
+        "subject": "Granit Xhaka Sunderland / investigation ongoing end card",
+        "assetId": "player-xhaka-sunderland"
       },
       "overlay": {
-        "text": "ПУТАНИЦА ИЛИ НАЧАЛО БОЛЬШОЙ ИСТОРИИ?",
-        "style": "cta-question"
+        "text": "РАССЛЕДОВАНИЕ ИДЁТ",
+        "style": "news-tag"
       },
-      "animation": "slideUp",
-      "assetRequests": ["player-xhaka-current"]
+      "animation": "panRight",
+      "notes": "Close: under question, not convicted.",
+      "assetRequests": [
+        "player-xhaka-sunderland"
+      ]
     }
   ]
 }

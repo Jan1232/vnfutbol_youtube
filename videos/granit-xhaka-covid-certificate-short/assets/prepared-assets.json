@@ -1,0 +1,359 @@
+{
+  "version": 1,
+  "video": "granit-xhaka-covid-certificate-short",
+  "generatedAt": "2026-09-20T09:33:12+00:00",
+  "localRoot": ".local-assets/granit-xhaka-covid-certificate-short",
+  "assets": [
+    {
+      "id": "narration",
+      "type": "AUDIO",
+      "status": "READY",
+      "sourcePath": "audio/final/narration.wav",
+      "preparedPath": "audio/final/narration.wav",
+      "sourceSha256": "05f6f046906dbda9fb712531a0f9905d74d1086ae75a9ac41da4154f1aa434f4",
+      "sha256": "05f6f046906dbda9fb712531a0f9905d74d1086ae75a9ac41da4154f1aa434f4",
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [],
+      "notes": "channel-owned narration"
+    },
+    {
+      "id": "player-xhaka-switzerland",
+      "type": "PLAYER_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.football.ch/",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-01"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external",
+      "candidates": []
+    },
+    {
+      "id": "mascot-shock-one__switzerland-home-current",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-01"
+      ],
+      "notes": "mascot variant needs review for shock-one + switzerland-home-current; final render blocked until approved",
+      "prepStatus": "NEEDS_REVIEW",
+      "mascot": {
+        "basePose": "shock-one",
+        "outfit": "switzerland-home-current",
+        "mode": "needs-review"
+      }
+    },
+    {
+      "id": "player-xhaka-sunderland",
+      "type": "PLAYER_PHOTO",
+      "status": "NEEDS_SOURCE_FILE",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": "https://www.safc.com/",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "usedInScenes": [
+        "scene-02",
+        "scene-08"
+      ],
+      "notes": "external media; drop file into inbox/ or run --fetch-external",
+      "candidates": []
+    },
+    {
+      "id": "mascot-point-left-one__sunderland-home-current",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-02"
+      ],
+      "notes": "mascot variant needs review for point-left-one + sunderland-home-current; final render blocked until approved",
+      "prepStatus": "NEEDS_REVIEW",
+      "mascot": {
+        "basePose": "point-left-one",
+        "outfit": "sunderland-home-current",
+        "mode": "needs-review"
+      }
+    },
+    {
+      "id": "news-lucerne-doctor-search-2023",
+      "type": "NEWSPAPER",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-03"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "mascot-think-one__sunderland-home-current",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-03"
+      ],
+      "notes": "mascot variant needs review for think-one + sunderland-home-current; final render blocked until approved",
+      "prepStatus": "NEEDS_REVIEW",
+      "mascot": {
+        "basePose": "think-one",
+        "outfit": "sunderland-home-current",
+        "mode": "needs-review"
+      }
+    },
+    {
+      "id": "stat-xhaka-vax-dates-media",
+      "type": "STAT",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-04"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "mascot-explain-two__sunderland-home-current",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-04"
+      ],
+      "notes": "mascot variant needs review for explain-two + sunderland-home-current; final render blocked until approved",
+      "prepStatus": "NEEDS_REVIEW",
+      "mascot": {
+        "basePose": "explain-two",
+        "outfit": "sunderland-home-current",
+        "mode": "needs-review"
+      }
+    },
+    {
+      "id": "stat-xhaka-nov-date-conflict",
+      "type": "STAT",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-05"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "text-doctor-lawyer-statement",
+      "type": "TEXT",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-06"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "mascot-suspicious__sunderland-home-current",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-06"
+      ],
+      "notes": "mascot variant needs review for suspicious + sunderland-home-current; final render blocked until approved",
+      "prepStatus": "NEEDS_REVIEW",
+      "mascot": {
+        "basePose": "suspicious",
+        "outfit": "sunderland-home-current",
+        "mode": "needs-review"
+      }
+    },
+    {
+      "id": "text-presumption-of-innocence",
+      "type": "TEXT",
+      "status": "READY_RENDER_SPEC",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-07"
+      ],
+      "notes": "renderer-owned; no download required"
+    },
+    {
+      "id": "mascot-stop__switzerland-home-current",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-07"
+      ],
+      "notes": "mascot variant needs review for stop + switzerland-home-current; final render blocked until approved",
+      "prepStatus": "NEEDS_REVIEW",
+      "mascot": {
+        "basePose": "stop",
+        "outfit": "switzerland-home-current",
+        "mode": "needs-review"
+      }
+    },
+    {
+      "id": "mascot-point-right-one__sunderland-home-current",
+      "type": "MASCOT",
+      "status": "BLOCKED",
+      "sourcePath": null,
+      "preparedPath": null,
+      "sourceSha256": null,
+      "sha256": null,
+      "width": null,
+      "height": null,
+      "durationMs": null,
+      "clipStartMs": null,
+      "clipEndMs": null,
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "usedInScenes": [
+        "scene-08"
+      ],
+      "notes": "mascot variant needs review for point-right-one + sunderland-home-current; final render blocked until approved",
+      "prepStatus": "NEEDS_REVIEW",
+      "mascot": {
+        "basePose": "point-right-one",
+        "outfit": "sunderland-home-current",
+        "mode": "needs-review"
+      }
+    }
+  ],
+  "sourceReuse": {
+    "movedToNeedsSelection": [],
+    "distinctSourceFilesNeeded": [
+      "player-xhaka-switzerland",
+      "player-xhaka-sunderland"
+    ],
+    "distinctSourceFileCount": 2
+  }
+}

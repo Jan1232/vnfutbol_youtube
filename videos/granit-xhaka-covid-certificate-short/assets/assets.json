@@ -1,101 +1,312 @@
 {
   "version": 2,
   "video": "granit-xhaka-covid-certificate-short",
-  "stage": "assets-planned",
+  "stage": "assets-sourced",
   "policy": {
     "reuseOrder": [
       "channel-library",
       "official-source",
-      "render",
       "major-media",
+      "render",
       "generate"
     ],
-    "publicRepoRule": "Do not commit third-party photos or article screenshots unless reuse rights are cleared. Store source URLs and local/private staging paths instead.",
+    "publicRepoRule": "Do not commit third-party photos or match footage unless reuse rights are cleared. Store source URLs and local/private staging paths instead.",
     "defaultRightsStatus": "editorial-source; reuse rights not verified"
   },
   "assets": [
     {
-      "id": "player-xhaka-current",
+      "id": "narration",
+      "type": "AUDIO",
+      "source": "generated",
+      "status": "generated",
+      "provider": "minimax",
+      "file": "audio/final/narration.wav",
+      "usedInScenes": [],
+      "tags": [
+        "voice",
+        "narration"
+      ],
+      "sourceUrl": null,
+      "rightsStatus": "owned/generated",
+      "author": null
+    },
+    {
+      "id": "player-xhaka-switzerland",
       "type": "PLAYER_PHOTO",
       "source": "official-source",
       "status": "found",
-      "provider": "Swiss Football Association",
+      "provider": "SFV / major media",
       "usedInScenes": [
-        "scene-01",
-        "scene-04",
-        "scene-08"
+        "scene-01"
       ],
-      "sourceUrl": "https://football.ch/sfv/nationalteams/a-team/team.aspx/t-41641/p-493715/",
-      "selection": "Current/recognizable Granit Xhaka portrait or medium shot; face clearly readable; vertical crop friendly.",
+      "sourceUrl": "https://www.football.ch/",
+      "selection": "Granit Xhaka in Switzerland national team kit, clean portrait or match still",
       "rightsStatus": "editorial-source; reuse rights not verified",
-      "downloadToPublicRepo": false,
-      "fallback": "https://www.safc.com/news/2025/august/14/xhaka-te/"
+      "downloadToPublicRepo": false
     },
     {
-      "id": "card-xhaka-investigation",
+      "id": "player-xhaka-sunderland",
+      "type": "PLAYER_PHOTO",
+      "source": "official-source",
+      "status": "found",
+      "provider": "Sunderland AFC / major media",
+      "usedInScenes": [
+        "scene-02",
+        "scene-08"
+      ],
+      "sourceUrl": "https://www.safc.com/",
+      "selection": "Granit Xhaka in Sunderland 2025/26 home kit, clean portrait or match still",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "downloadToPublicRepo": false
+    },
+    {
+      "id": "news-lucerne-doctor-search-2023",
       "type": "NEWSPAPER",
       "source": "render",
       "status": "planned-render",
-      "provider": "Remotion",
-      "usedInScenes": [
-        "scene-02"
-      ],
-      "sourceUrl": "https://www.srf.ch/sport/fussball/fussball-allgemein/verfahren-eingeleitet-ermittlungen-gegen-xhaka-wegen-gefaelschtem-covid-zertifikat",
-      "renderSpec": "Channel-owned newspaper card, NOT a screenshot: source label 'SRF • 18.09.2026', headline paraphrase 'Прокуратура Люцерна открыла производство', small subline 'возможный ложный COVID-сертификат'.",
-      "rightsStatus": "generated/rendered"
-    },
-    {
-      "id": "graphic-covid-certificate-question",
-      "type": "DIAGRAM",
-      "source": "render",
-      "status": "planned-render",
-      "provider": "Remotion",
       "usedInScenes": [
         "scene-03"
       ],
-      "sourceUrl": null,
-      "renderSpec": "Generic stylized COVID certificate card with QR-like decorative blocks and large question mark. Explicitly generic; do not reproduce or imply this is Xhaka's alleged real document; no personal data.",
-      "rightsStatus": "generated/rendered"
+      "renderSpec": "Shorts graphic: Lucerne doctor office search 2023 context card; no forged verdict language; Swiss news-style typography",
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": false
     },
     {
-      "id": "card-xhaka-defense",
-      "type": "TEXT",
+      "id": "stat-xhaka-vax-dates-media",
+      "type": "STAT",
       "source": "render",
       "status": "planned-render",
-      "provider": "Remotion",
       "usedInScenes": [
         "scene-04"
       ],
-      "sourceUrl": "https://www.afp.com/de/corona-impfzertifikat-ermittlungen-gegen-xhaka",
-      "renderSpec": "Two stacked quote-summary cards: 'ДЖАКА: есть подтверждение 2 прививок' and 'АДВОКАТ ВРАЧА: она говорит, что вакцинировала Джаку'. Label both clearly as statements/claims, not established facts.",
-      "rightsStatus": "generated/rendered"
+      "renderSpec": "Mobile card: 25.01.2022 first dose; second dose media-reported Nov 8 vs Nov 11 2022; label as media dates",
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": false
     },
     {
-      "id": "diagram-xhaka-nov-2022-route",
-      "type": "DIAGRAM",
+      "id": "stat-xhaka-nov-date-conflict",
+      "type": "STAT",
       "source": "render",
       "status": "planned-render",
-      "provider": "Remotion",
       "usedInScenes": [
-        "scene-05",
-        "scene-06"
+        "scene-05"
       ],
-      "sourceUrl": "https://www.blick.ch/schweiz/das-steht-in-seiner-impfbescheinigung-neue-ungereimtheiten-im-fall-xhaka-id22267790.html",
-      "renderSpec": "Vertical 3-stop timeline: '6 НОЯ • ЛОНДОН • Chelsea–Arsenal', '8 НОЯ • ЛЮЦЕРН • дата прививки в документе', '9 НОЯ • ЛОНДОН • Arsenal–Brighton'. Add persistent small footer: 'По данным Blick. Маршрут возможен и НЕ доказывает вину.'",
-      "rightsStatus": "generated/rendered"
+      "renderSpec": "Full-bleed shorts graphic: 8 vs 11 ноября — СМИ; not a court finding",
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": false
     },
     {
-      "id": "card-presumption-innocence",
+      "id": "text-doctor-lawyer-statement",
       "type": "TEXT",
       "source": "render",
       "status": "planned-render",
-      "provider": "Remotion",
+      "usedInScenes": [
+        "scene-06"
+      ],
+      "renderSpec": "Quote card: адвокат врача — клиентка утверждает, что привила Джаку",
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": false
+    },
+    {
+      "id": "text-presumption-of-innocence",
+      "type": "TEXT",
+      "source": "render",
+      "status": "planned-render",
       "usedInScenes": [
         "scene-07"
       ],
-      "sourceUrl": "https://www.srf.ch/sport/fussball/fussball-allgemein/verfahren-eingeleitet-ermittlungen-gegen-xhaka-wegen-gefaelschtem-covid-zertifikat",
-      "renderSpec": "Large clean legal-safety card: 'ВИНА НЕ ДОКАЗАНА' / smaller 'Действует презумпция невиновности'.",
-      "rightsStatus": "generated/rendered"
+      "renderSpec": "Legal disclaimer card: презумпция невиновности — Джака и врач",
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": false
+    },
+    {
+      "id": "mascot-shock-one__switzerland-home-current",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-01"
+      ],
+      "tags": [
+        "mascot",
+        "shock-one",
+        "switzerland-home-current"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "shock-one",
+        "outfitIntent": "national-team",
+        "resolvedOutfit": "switzerland-home-current",
+        "subject": "player-granit-xhaka",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-point-left-one__sunderland-home-current",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-02"
+      ],
+      "tags": [
+        "mascot",
+        "point-left-one",
+        "sunderland-home-current"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "point-left-one",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "sunderland-home-current",
+        "subject": "player-granit-xhaka",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-think-one__sunderland-home-current",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-03"
+      ],
+      "tags": [
+        "mascot",
+        "think-one",
+        "sunderland-home-current"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "think-one",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "sunderland-home-current",
+        "subject": "player-granit-xhaka",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-explain-two__sunderland-home-current",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-04"
+      ],
+      "tags": [
+        "mascot",
+        "explain-two",
+        "sunderland-home-current"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "explain-two",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "sunderland-home-current",
+        "subject": "player-granit-xhaka",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-suspicious__sunderland-home-current",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-06"
+      ],
+      "tags": [
+        "mascot",
+        "suspicious",
+        "sunderland-home-current"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "suspicious",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "sunderland-home-current",
+        "subject": "player-granit-xhaka",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-stop__switzerland-home-current",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-07"
+      ],
+      "tags": [
+        "mascot",
+        "stop",
+        "switzerland-home-current"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "stop",
+        "outfitIntent": "national-team",
+        "resolvedOutfit": "switzerland-home-current",
+        "subject": "player-granit-xhaka",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
+    },
+    {
+      "id": "mascot-point-right-one__sunderland-home-current",
+      "type": "MASCOT",
+      "source": "library",
+      "status": "planned",
+      "usedInScenes": [
+        "scene-08"
+      ],
+      "tags": [
+        "mascot",
+        "point-right-one",
+        "sunderland-home-current"
+      ],
+      "sourceUrl": null,
+      "license": null,
+      "author": null,
+      "rightsStatus": "owned/generated",
+      "downloadToPublicRepo": true,
+      "mascot": {
+        "basePose": "point-right-one",
+        "outfitIntent": "current-club",
+        "resolvedOutfit": "sunderland-home-current",
+        "subject": "player-granit-xhaka",
+        "variantPolicy": "reuse-else-generate",
+        "explicitOutfit": null
+      }
     }
   ]
 }

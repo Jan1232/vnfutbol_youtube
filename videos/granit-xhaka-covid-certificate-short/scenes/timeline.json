@@ -1,0 +1,278 @@
+{
+  "version": 1,
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "start": 0.0,
+      "duration": 5.95,
+      "script": "SCRIPT-001",
+      "scriptRefs": [
+        "SCRIPT-001"
+      ],
+      "voiceIds": [
+        "voice-001"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-001:000"
+      ],
+      "layout": "mascot-left-media-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-shock-one__switzerland-home-current",
+        "pose": "shock-one",
+        "outfit": "switzerland-home-current",
+        "supportingAsset": "player-xhaka-switzerland",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "ЛЮЦЕРН · РАССЛЕДОВАНИЕ",
+        "style": "news-tag"
+      },
+      "animation": "shake",
+      "unresolvedAssets": [
+        "mascot-shock-one__switzerland-home-current",
+        "player-xhaka-switzerland"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-02",
+      "start": 5.95,
+      "duration": 6.646,
+      "script": "SCRIPT-002",
+      "scriptRefs": [
+        "SCRIPT-002"
+      ],
+      "voiceIds": [
+        "voice-002"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-002:000"
+      ],
+      "layout": "media-left-mascot-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-point-left-one__sunderland-home-current",
+        "pose": "point-left-one",
+        "outfit": "sunderland-home-current",
+        "supportingAsset": "player-xhaka-sunderland",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "ВИНА НЕ ДОКАЗАНА",
+        "style": "legal-disclaimer"
+      },
+      "animation": "panLeft",
+      "unresolvedAssets": [
+        "mascot-point-left-one__sunderland-home-current",
+        "player-xhaka-sunderland"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-03",
+      "start": 12.596,
+      "duration": 7.633,
+      "script": "SCRIPT-003",
+      "scriptRefs": [
+        "SCRIPT-003"
+      ],
+      "voiceIds": [
+        "voice-003"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-003:000"
+      ],
+      "layout": "mascot-left-media-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-think-one__sunderland-home-current",
+        "pose": "think-one",
+        "outfit": "sunderland-home-current",
+        "supportingAsset": "news-lucerne-doctor-search-2023",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "ОБЫСК 2023",
+        "style": "date-card"
+      },
+      "animation": "fade",
+      "unresolvedAssets": [
+        "mascot-think-one__sunderland-home-current"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-04",
+      "start": 20.229,
+      "duration": 10.519,
+      "script": "SCRIPT-004",
+      "scriptRefs": [
+        "SCRIPT-004"
+      ],
+      "voiceIds": [
+        "voice-004",
+        "voice-005"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-004:000",
+        "SCRIPT-004:001"
+      ],
+      "layout": "mascot-center",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-explain-two__sunderland-home-current",
+        "pose": "explain-two",
+        "outfit": "sunderland-home-current",
+        "supportingAsset": "stat-xhaka-vax-dates-media",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "25.01.2022 · 8 / 11.11.2022",
+        "style": "stat-card"
+      },
+      "animation": "slideUp",
+      "unresolvedAssets": [
+        "mascot-explain-two__sunderland-home-current"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-05",
+      "start": 30.748,
+      "duration": 7.447,
+      "script": "SCRIPT-005",
+      "scriptRefs": [
+        "SCRIPT-005"
+      ],
+      "voiceIds": [
+        "voice-006"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-005:000"
+      ],
+      "layout": "full",
+      "visual": {
+        "type": "STAT",
+        "asset": "stat-xhaka-nov-date-conflict"
+      },
+      "overlay": {
+        "text": "СМИ: 8 vs 11 НОЯБРЯ",
+        "style": "big-title"
+      },
+      "animation": "hardCut"
+    },
+    {
+      "id": "scene-06",
+      "start": 38.195,
+      "duration": 7.273,
+      "script": "SCRIPT-006",
+      "scriptRefs": [
+        "SCRIPT-006"
+      ],
+      "voiceIds": [
+        "voice-007"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-006:000"
+      ],
+      "layout": "mascot-left-media-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-suspicious__sunderland-home-current",
+        "pose": "suspicious",
+        "outfit": "sunderland-home-current",
+        "supportingAsset": "text-doctor-lawyer-statement",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "ВРАЧ: «Я ПРИВИЛА»",
+        "style": "quote-card"
+      },
+      "animation": "fade",
+      "unresolvedAssets": [
+        "mascot-suspicious__sunderland-home-current"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-07",
+      "start": 45.468,
+      "duration": 6.089,
+      "script": "SCRIPT-007",
+      "scriptRefs": [
+        "SCRIPT-007"
+      ],
+      "voiceIds": [
+        "voice-008"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-007:000"
+      ],
+      "layout": "mascot-center",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-stop__switzerland-home-current",
+        "pose": "stop",
+        "outfit": "switzerland-home-current",
+        "supportingAsset": "text-presumption-of-innocence",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "ПРЕЗУМПЦИЯ НЕВИНОВНОСТИ",
+        "style": "legal-disclaimer"
+      },
+      "animation": "hardCut",
+      "unresolvedAssets": [
+        "mascot-stop__switzerland-home-current"
+      ],
+      "draftPlaceholders": true
+    },
+    {
+      "id": "scene-08",
+      "start": 51.557,
+      "duration": 5.434,
+      "script": "SCRIPT-008",
+      "scriptRefs": [
+        "SCRIPT-008"
+      ],
+      "voiceIds": [
+        "voice-009"
+      ],
+      "voiceSourceKeys": [
+        "SCRIPT-008:000"
+      ],
+      "layout": "media-left-mascot-right",
+      "visual": {
+        "type": "MASCOT",
+        "asset": "mascot-point-right-one__sunderland-home-current",
+        "pose": "point-right-one",
+        "outfit": "sunderland-home-current",
+        "supportingAsset": "player-xhaka-sunderland",
+        "placeholderOutfit": true,
+        "prepStatus": "BLOCKED"
+      },
+      "overlay": {
+        "text": "РАССЛЕДОВАНИЕ ИДЁТ",
+        "style": "news-tag"
+      },
+      "animation": "panRight",
+      "unresolvedAssets": [
+        "mascot-point-right-one__sunderland-home-current",
+        "player-xhaka-sunderland"
+      ],
+      "draftPlaceholders": true
+    }
+  ],
+  "draft": true,
+  "totalDuration": 56.991
+}

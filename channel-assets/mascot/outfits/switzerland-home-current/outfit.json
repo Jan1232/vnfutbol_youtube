@@ -1,0 +1,32 @@
+{
+  "id": "switzerland-home-current",
+  "season": "2026",
+  "type": "national-team",
+  "referenceRequired": true,
+  "reference": {
+    "sourceUrl": "https://eu.puma.com/ch/en/pd/switzerland-2026-home-jersey-men/783218",
+    "sha256": "e7e30bd4386c4408504d86bd2e322beb03b41ab2d956d2bfe46e92fb48ac909d"
+  },
+  "description": "Switzerland official home kit 2026 / World Cup 2026 (Puma Red-White)",
+  "branding": {
+    "crest": true,
+    "manufacturer": "Puma",
+    "sponsor": null
+  },
+  "generationRules": [
+    "red base (PUMA Red)",
+    "Helvetic / passport-inspired detailing as on official Puma product",
+    "Swiss cross crest on left chest",
+    "Puma logo on right chest",
+    "white accents / collar details per reference",
+    "no sponsor",
+    "no player name",
+    "no player number"
+  ],
+  "forbiddenRules": [
+    "sponsor marks",
+    "player name",
+    "player number",
+    "invented logos not visible on the reference"
+  ]
+}

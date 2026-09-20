@@ -166,6 +166,307 @@
       "generationReferenceSha256": "551ed7a098abd12bf7f6e3d7e0d60478fef0507a789f785b186cdd7d866d308b",
       "referenceSha256": "551ed7a098abd12bf7f6e3d7e0d60478fef0507a789f785b186cdd7d866d308b",
       "consistencyReferenceSha256": null
+    },
+    {
+      "id": "explain-two__sunderland-home-current",
+      "basePose": "explain-two",
+      "outfit": "sunderland-home-current",
+      "type": "identity-lock-final",
+      "file": "variants/sunderland-home-current/layers/explain-two.png",
+      "compositeFile": "variants/sunderland-home-current/explain-two.png",
+      "fullEditFile": "variants/sunderland-home-current/full-edits/explain-two.png",
+      "status": "needs-review",
+      "sha256": "2eb86a27701873931df1b9cc36e0545ca64c9d7f6d3e0c742e4fa3689939c19b",
+      "compositeSha256": "e6430abac724eb0e54a5e3d12ef7600aec221be1409360713c81f9a5f6edb495",
+      "fullEditSha256": "7b261106f940aa1685862cf65485d3870cb4b41150e748428be50937d455401e",
+      "finalization": "identity-lock",
+      "identityMask": "identity-masks/explain-two.png",
+      "identityMaskStatus": "generated",
+      "qa": {
+        "geometry": {
+          "pass": false,
+          "issues": [
+            "eye centroid shifted 541.8px"
+          ],
+          "identityProbe": {
+            "checked": 55005,
+            "mismatchedBeforeLock": 54805
+          }
+        },
+        "identityLock": {
+          "pass": true,
+          "issues": [],
+          "checked": 219971,
+          "mismatches": 0
+        },
+        "visual": "pending-editor-review",
+        "sourceAttempt": "full-edit-attempt-1.png"
+      },
+      "basePoseSha256": "3d7252d08e0b98ce7ac046cff4e96c5e03c2af2a61f652709275535b765add37",
+      "maskSha256": "47a79eb6f8d0102858c89de1d82e9b43f93757034066bc7594f539db1d0fe9e8",
+      "outfitSpecSha256": "58f3da00277242654dfd97f204a76a220979c590263e5abde83b549de086b181",
+      "outfitFingerprint": "2ce71b51b054e47dc4b628e53d3f5aced8a6aabe0ffb772a658ac06bebf7bfc5",
+      "generationReferenceSha256": "0a094f2f454ba779bc24391448e8ca208bd52d36f1ad7c89cafeb3aea8c6edbd",
+      "referenceSha256": "0a094f2f454ba779bc24391448e8ca208bd52d36f1ad7c89cafeb3aea8c6edbd",
+      "consistencyReferenceSha256": null
+    },
+    {
+      "id": "point-left-one__sunderland-home-current",
+      "basePose": "point-left-one",
+      "outfit": "sunderland-home-current",
+      "type": "identity-lock-final",
+      "file": "variants/sunderland-home-current/layers/point-left-one.png",
+      "compositeFile": "variants/sunderland-home-current/point-left-one.png",
+      "fullEditFile": "variants/sunderland-home-current/full-edits/point-left-one.png",
+      "status": "needs-review",
+      "sha256": "a1b2f102506b27428e322e1c7bc5d1ba5548ceed0d1dbd6c1641366b95d3973a",
+      "compositeSha256": "be0c952b76975f1ffd86186a12f2d2f157d56ad18a70009b026fb620129e17c0",
+      "fullEditSha256": "39a2b262b80a995c2825323490c523f5c94921b50f6a516a5223d9e6ffdb55aa",
+      "finalization": "identity-lock",
+      "identityMask": "identity-masks/point-left-one.png",
+      "identityMaskStatus": "generated",
+      "qa": {
+        "geometry": {
+          "pass": false,
+          "issues": [
+            "eye centroid shifted 479.3px"
+          ],
+          "identityProbe": {
+            "checked": 44699,
+            "mismatchedBeforeLock": 44515
+          }
+        },
+        "identityLock": {
+          "pass": true,
+          "issues": [],
+          "checked": 178927,
+          "mismatches": 0
+        },
+        "visual": "pending-editor-review",
+        "sourceAttempt": "full-edit-attempt-2.png"
+      },
+      "basePoseSha256": "863fcfce1f5a2f1570f063959663ab9eecfe9e925cf3ea8274e4a39143a1c305",
+      "maskSha256": "3d077673b0b0b6290ee69e4263615ce3aa659856633d3f1fc41339b31396acd7",
+      "outfitSpecSha256": "58f3da00277242654dfd97f204a76a220979c590263e5abde83b549de086b181",
+      "outfitFingerprint": "2ce71b51b054e47dc4b628e53d3f5aced8a6aabe0ffb772a658ac06bebf7bfc5",
+      "generationReferenceSha256": "0a094f2f454ba779bc24391448e8ca208bd52d36f1ad7c89cafeb3aea8c6edbd",
+      "referenceSha256": "0a094f2f454ba779bc24391448e8ca208bd52d36f1ad7c89cafeb3aea8c6edbd",
+      "consistencyReferenceSha256": null
+    },
+    {
+      "id": "point-right-one__sunderland-home-current",
+      "basePose": "point-right-one",
+      "outfit": "sunderland-home-current",
+      "type": "identity-lock-final",
+      "file": "variants/sunderland-home-current/layers/point-right-one.png",
+      "compositeFile": "variants/sunderland-home-current/point-right-one.png",
+      "fullEditFile": "variants/sunderland-home-current/full-edits/point-right-one.png",
+      "status": "needs-review",
+      "sha256": "6fe5689be61f131d7a9f01a4aa8568cbfd86a61d7bf022e2cc5c72794d58063b",
+      "compositeSha256": "1905d60d8f4a90bdcc4c2355b4b1cbc7390d67586ff2997a9b57520d1ea04893",
+      "fullEditSha256": "0c9157f643ac7211a3ddac3171870cc8dd9cc4a666ec9737441112a666b1bdea",
+      "finalization": "identity-lock",
+      "identityMask": "identity-masks/point-right-one.png",
+      "identityMaskStatus": "generated",
+      "qa": {
+        "geometry": {
+          "pass": false,
+          "issues": [
+            "eye centroid shifted 464.4px"
+          ],
+          "identityProbe": {
+            "checked": 51257,
+            "mismatchedBeforeLock": 51173
+          }
+        },
+        "identityLock": {
+          "pass": true,
+          "issues": [],
+          "checked": 205189,
+          "mismatches": 0
+        },
+        "visual": "pending-editor-review",
+        "sourceAttempt": "full-edit-attempt-3.png"
+      },
+      "basePoseSha256": "f1c6cdcc752e4069f175a2fac440fb60406d6a3df4ba03a4f40bc960b220c341",
+      "maskSha256": "f01e64f9b286613bef9143af6cd865252f8d54467cbc8c7abe79fa4cab09d4f1",
+      "outfitSpecSha256": "58f3da00277242654dfd97f204a76a220979c590263e5abde83b549de086b181",
+      "outfitFingerprint": "2ce71b51b054e47dc4b628e53d3f5aced8a6aabe0ffb772a658ac06bebf7bfc5",
+      "generationReferenceSha256": "0a094f2f454ba779bc24391448e8ca208bd52d36f1ad7c89cafeb3aea8c6edbd",
+      "referenceSha256": "0a094f2f454ba779bc24391448e8ca208bd52d36f1ad7c89cafeb3aea8c6edbd",
+      "consistencyReferenceSha256": null
+    },
+    {
+      "id": "shock-one__switzerland-home-current",
+      "basePose": "shock-one",
+      "outfit": "switzerland-home-current",
+      "type": "identity-lock-final",
+      "file": "variants/switzerland-home-current/layers/shock-one.png",
+      "compositeFile": "variants/switzerland-home-current/shock-one.png",
+      "fullEditFile": "variants/switzerland-home-current/full-edits/shock-one.png",
+      "status": "needs-review",
+      "sha256": "a0021de9d9468d78b761a7824be683ce1b0dd3255227e590f29794849679a676",
+      "compositeSha256": "0c9cdaedea030de9181add7d883568d117869eb05cec9c7a26a9089c60f616be",
+      "fullEditSha256": "63f1d692d97ec884a8a0a6d0f6d2a87a49573e6ae76b055bc85ac6113325b767",
+      "finalization": "identity-lock",
+      "identityMask": "identity-masks/shock-one.png",
+      "identityMaskStatus": "generated",
+      "qa": {
+        "geometry": {
+          "pass": false,
+          "issues": [
+            "eye centroid shifted 105.0px"
+          ],
+          "identityProbe": {
+            "checked": 79008,
+            "mismatchedBeforeLock": 78566
+          }
+        },
+        "identityLock": {
+          "pass": true,
+          "issues": [],
+          "checked": 316047,
+          "mismatches": 0
+        },
+        "visual": "pending-editor-review",
+        "sourceAttempt": "full-edit-attempt-3.png"
+      },
+      "basePoseSha256": "9fc471c592209dfcc78333d8e7a1f4fcd22f87617690c067f651caf6e59cd4fa",
+      "maskSha256": "542fcd6051d08342267ccbb05ee2e4390ea30add478bc710deaad8e6cccf52f7",
+      "outfitSpecSha256": "7c37314b6292adc1d27c3ec2732682cbb8c009c0e9c027968100caf3a82b2dca",
+      "outfitFingerprint": "27270f0147c8f1fb40d7de6bba24d1bac420a190482a2ad61a49f3465f7a1de2",
+      "generationReferenceSha256": "e7e30bd4386c4408504d86bd2e322beb03b41ab2d956d2bfe46e92fb48ac909d",
+      "referenceSha256": "e7e30bd4386c4408504d86bd2e322beb03b41ab2d956d2bfe46e92fb48ac909d",
+      "consistencyReferenceSha256": null
+    },
+    {
+      "id": "stop__switzerland-home-current",
+      "basePose": "stop",
+      "outfit": "switzerland-home-current",
+      "type": "identity-lock-final",
+      "file": "variants/switzerland-home-current/layers/stop.png",
+      "compositeFile": "variants/switzerland-home-current/stop.png",
+      "fullEditFile": "variants/switzerland-home-current/full-edits/stop.png",
+      "status": "needs-review",
+      "sha256": "4f843382c1ef8da542e41467ae0958a14f2c650b88f58e005ca6f7750f7be98a",
+      "compositeSha256": "0cc95c10eae626d20b31cdda2297bbe938bc6775db9a783a705d9975f9c88359",
+      "fullEditSha256": "1af647f0f0e0f6adb57a3b886b41cfe060619fb1a4a085975595089480c373c3",
+      "finalization": "identity-lock",
+      "identityMask": "identity-masks/stop.png",
+      "identityMaskStatus": "generated",
+      "qa": {
+        "geometry": {
+          "pass": false,
+          "issues": [
+            "eye centroid shifted 255.9px"
+          ],
+          "identityProbe": {
+            "checked": 82055,
+            "mismatchedBeforeLock": 81522
+          }
+        },
+        "identityLock": {
+          "pass": true,
+          "issues": [],
+          "checked": 328197,
+          "mismatches": 0
+        },
+        "visual": "pending-editor-review",
+        "sourceAttempt": "full-edit-attempt-1.png"
+      },
+      "basePoseSha256": "e49f28ce12411d1c22a74635e3bedda9901c51bc3ce22f02b6327b45fd68bd6b",
+      "maskSha256": "8d2f895465d40fabe335a89d94ffef25d0a09198d62f45412f2bfd3a46af6e70",
+      "outfitSpecSha256": "7c37314b6292adc1d27c3ec2732682cbb8c009c0e9c027968100caf3a82b2dca",
+      "outfitFingerprint": "27270f0147c8f1fb40d7de6bba24d1bac420a190482a2ad61a49f3465f7a1de2",
+      "generationReferenceSha256": "e7e30bd4386c4408504d86bd2e322beb03b41ab2d956d2bfe46e92fb48ac909d",
+      "referenceSha256": "e7e30bd4386c4408504d86bd2e322beb03b41ab2d956d2bfe46e92fb48ac909d",
+      "consistencyReferenceSha256": null
+    },
+    {
+      "id": "suspicious__sunderland-home-current",
+      "basePose": "suspicious",
+      "outfit": "sunderland-home-current",
+      "type": "identity-lock-final",
+      "file": "variants/sunderland-home-current/layers/suspicious.png",
+      "compositeFile": "variants/sunderland-home-current/suspicious.png",
+      "fullEditFile": "variants/sunderland-home-current/full-edits/suspicious.png",
+      "status": "needs-review",
+      "sha256": "97dc1751ac741b855c9946dc8810a5e0a5663d250262afd72dd732a210fceabb",
+      "compositeSha256": "44bb6aa17d71f820d947244adaac2024dd94857c3d0fd9cee8ad7b5af14fb23d",
+      "fullEditSha256": "c6d073fe0ee85f2fcebdf551322ebe1c888d06d122d644baf56b199cdd29b001",
+      "finalization": "identity-lock",
+      "identityMask": "identity-masks/suspicious.png",
+      "identityMaskStatus": "generated",
+      "qa": {
+        "geometry": {
+          "pass": false,
+          "issues": [
+            "eye centroid shifted 524.9px"
+          ],
+          "identityProbe": {
+            "checked": 47315,
+            "mismatchedBeforeLock": 46995
+          }
+        },
+        "identityLock": {
+          "pass": true,
+          "issues": [],
+          "checked": 189291,
+          "mismatches": 0
+        },
+        "visual": "pending-editor-review",
+        "sourceAttempt": "full-edit-attempt-1.png"
+      },
+      "basePoseSha256": "21abba43bfc9a132edf1ce97fc30d2bb4891218c982983649e52f6371c9f195a",
+      "maskSha256": "36e83ada131e2437695f7e027075c5d2e418fe574ff54fdacf67308bbd84b416",
+      "outfitSpecSha256": "58f3da00277242654dfd97f204a76a220979c590263e5abde83b549de086b181",
+      "outfitFingerprint": "2ce71b51b054e47dc4b628e53d3f5aced8a6aabe0ffb772a658ac06bebf7bfc5",
+      "generationReferenceSha256": "0a094f2f454ba779bc24391448e8ca208bd52d36f1ad7c89cafeb3aea8c6edbd",
+      "referenceSha256": "0a094f2f454ba779bc24391448e8ca208bd52d36f1ad7c89cafeb3aea8c6edbd",
+      "consistencyReferenceSha256": null
+    },
+    {
+      "id": "think-one__sunderland-home-current",
+      "basePose": "think-one",
+      "outfit": "sunderland-home-current",
+      "type": "identity-lock-final",
+      "file": "variants/sunderland-home-current/layers/think-one.png",
+      "compositeFile": "variants/sunderland-home-current/think-one.png",
+      "fullEditFile": "variants/sunderland-home-current/full-edits/think-one.png",
+      "status": "needs-review",
+      "sha256": "4a0b65c97ddc0ed5230d0483b275e5722b256ac9de1f517a25dd1f12bcae245b",
+      "compositeSha256": "91d48f6ad098f2024354632e426296098a7adaee211086ec84cc96a95ecef002",
+      "fullEditSha256": "7f947ee0ef331f3eaa8667503a02e25bee420ba2564009d2b51c3365b2d9aa49",
+      "finalization": "identity-lock",
+      "identityMask": "identity-masks/think-one.png",
+      "identityMaskStatus": "generated",
+      "qa": {
+        "geometry": {
+          "pass": false,
+          "issues": [
+            "eye centroid shifted 578.0px"
+          ],
+          "identityProbe": {
+            "checked": 56057,
+            "mismatchedBeforeLock": 55852
+          }
+        },
+        "identityLock": {
+          "pass": true,
+          "issues": [],
+          "checked": 224194,
+          "mismatches": 0
+        },
+        "visual": "pending-editor-review",
+        "sourceAttempt": "full-edit-attempt-3.png"
+      },
+      "basePoseSha256": "da89496ac37e56c7f7c810d5d4c7dccab2154696a6a033227f619e9fc5969ea7",
+      "maskSha256": "46d4e27bc2d81c0aa9759cdcbc1ff20c976200812e9b817399493ccafb9f4920",
+      "outfitSpecSha256": "58f3da00277242654dfd97f204a76a220979c590263e5abde83b549de086b181",
+      "outfitFingerprint": "2ce71b51b054e47dc4b628e53d3f5aced8a6aabe0ffb772a658ac06bebf7bfc5",
+      "generationReferenceSha256": "0a094f2f454ba779bc24391448e8ca208bd52d36f1ad7c89cafeb3aea8c6edbd",
+      "referenceSha256": "0a094f2f454ba779bc24391448e8ca208bd52d36f1ad7c89cafeb3aea8c6edbd",
+      "consistencyReferenceSha256": null
     }
   ]
 }

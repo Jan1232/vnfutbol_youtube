@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "video": "granit-xhaka-covid-certificate-short",
+  "stage": "planned",
+  "inputs": {
+    "visualPlan": "scenes/visual-plan.json",
+    "assetManifest": "assets/assets.json",
+    "voice": "audio/voice.json",
+    "entities": "context/entities.json"
+  },
+  "paths": {
+    "localRoot": ".local-assets/granit-xhaka-covid-certificate-short",
+    "inbox": ".local-assets/granit-xhaka-covid-certificate-short/inbox",
+    "source": ".local-assets/granit-xhaka-covid-certificate-short/source",
+    "candidates": ".local-assets/granit-xhaka-covid-certificate-short/candidates",
+    "prepared": ".local-assets/granit-xhaka-covid-certificate-short/prepared",
+    "previews": ".local-assets/granit-xhaka-covid-certificate-short/previews",
+    "outputManifest": "videos/granit-xhaka-covid-certificate-short/assets/prepared-assets.json"
+  },
+  "policy": {
+    "externalMediaNeverCommit": true,
+    "generatedChannelOwnedMayCommit": true,
+    "reuseBeforeFetch": true,
+    "fetchRequiresExplicitFlag": true,
+    "doNotInventSourceTimestamps": true,
+    "doNotTreatSourcePageAsReusableLicense": true
+  },
+  "imagePrep": {
+    "preferredMinWidth": 1080,
+    "preferredMinHeight": 1350,
+    "outputFormat": "png",
+    "preserveOriginal": true,
+    "cropMode": "non-destructive-metadata",
+    "contactSheet": true
+  },
+  "videoPrep": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "codec": "h264",
+    "pixelFormat": "yuv420p",
+    "stripAudioByDefault": true,
+    "maxPreparedExcerptSeconds": 8,
+    "contactSheetIntervalSeconds": 5,
+    "preserveOriginal": true
+  },
+  "renderOnlyAssetIds": [
+    "stat-xhaka-vax-dates-media",
+    "stat-xhaka-nov-date-conflict",
+    "text-doctor-lawyer-statement",
+    "text-presumption-of-innocence",
+    "news-lucerne-doctor-search-2023"
+  ],
+  "externalAssetIds": [
+    "player-xhaka-switzerland",
+    "player-xhaka-sunderland"
+  ],
+  "mascot": {
+    "source": "visual-plan",
+    "poseSelection": "resolve poseIntent only to existing approved poses; never create a new pose",
+    "outfitResolution": "scripts/resolve_mascot_outfit.py --all",
+    "variantResolution": "scripts/ensure_mascot_variants.py",
+    "dedupeBy": [
+      "basePose",
+      "resolvedOutfit"
+    ],
+    "defaultOutfitNeedsLayer": false
+  },
+  "completion": {
+    "external": "Every external asset is either READY with a local prepared path or explicitly NEEDS_SELECTION/MISSING.",
+    "renderOnly": "Every render-only asset has a renderSpec and is READY_RENDER_SPEC.",
+    "mascot": "Every mascot scene resolves to an approved base pose and outfit; every non-default pair is REUSED or has a queued generation job.",
+    "timelineGate": "Do not build final timeline until prepared-assets.json exists and voice segments have generated startMs/endMs."
+  }
+}

@@ -109,6 +109,38 @@
       "crestPolicy": "omit",
       "referenceRequired": false,
       "active": true
+    },
+    {
+      "id": "switzerland-home-current",
+      "type": "national-team",
+      "team": "Switzerland",
+      "slug": "switzerland",
+      "variant": "home-current",
+      "season": "2026",
+      "description": "Switzerland official home kit 2026 (Puma): PUMA Red / White Helvetic-inspired WC 2026 home jersey.",
+      "generationDescription": "Switzerland national-team home kit 2026 by Puma: red base with Helvetic / futuristic-passport inspired detailing, white accents, Swiss cross crest on left chest, Puma logo on right chest as on the official reference. No player name, no player number, no invented sponsors. Match Image C exactly.",
+      "sponsorPolicy": "omit",
+      "manufacturerPolicy": "match-reference",
+      "crestPolicy": "match-reference",
+      "referenceRequired": true,
+      "referenceSourceUrl": "https://eu.puma.com/ch/en/pd/switzerland-2026-home-jersey-men/783218",
+      "active": true
+    },
+    {
+      "id": "sunderland-home-current",
+      "type": "club",
+      "team": "Sunderland AFC",
+      "slug": "sunderland",
+      "variant": "home-current",
+      "season": "2025/26",
+      "description": "Sunderland AFC official home kit 2025/26 (hummel): classic red and white stripes, Keel Crossing / Wear Footbridge inspired patterning, centred crest and hummel logo.",
+      "generationDescription": "Official Sunderland AFC home kit 2025/26 by hummel: classic red and white vertical stripes; subtle Wear Footbridge / Keel Crossing pattern on white panels; overlapped black/red/white V-neck; raglan sleeves; centred club crest and hummel logo on chest; printed hummel chevrons on shoulders as on the official reference. Sponsor: match Image C (omit if reference shows unsponsored retail packshot). No player name, no player number. Match Image C exactly.",
+      "sponsorPolicy": "match-reference",
+      "manufacturerPolicy": "match-reference",
+      "crestPolicy": "match-reference",
+      "referenceRequired": true,
+      "referenceSourceUrl": "https://www.hummel.dk/en/sun-25-26-home-ss-jersey-true-red/237728-3062.html",
+      "active": true
     }
   ]
 }

@@ -144,7 +144,7 @@
     {
       "basePose": "explain-two",
       "file": "pose-masks/explain-two.png",
-      "status": "generated",
+      "status": "approved",
       "sha256": "47a79eb6f8d0102858c89de1d82e9b43f93757034066bc7594f539db1d0fe9e8",
       "basePoseSha256": "3d7252d08e0b98ce7ac046cff4e96c5e03c2af2a61f652709275535b765add37"
     },
@@ -249,7 +249,7 @@
     {
       "basePose": "point-left-one",
       "file": "pose-masks/point-left-one.png",
-      "status": "generated",
+      "status": "approved",
       "sha256": "3d077673b0b0b6290ee69e4263615ce3aa659856633d3f1fc41339b31396acd7",
       "basePoseSha256": "863fcfce1f5a2f1570f063959663ab9eecfe9e925cf3ea8274e4a39143a1c305"
     },
@@ -270,7 +270,7 @@
     {
       "basePose": "point-right-one",
       "file": "pose-masks/point-right-one.png",
-      "status": "generated",
+      "status": "approved",
       "sha256": "f01e64f9b286613bef9143af6cd865252f8d54467cbc8c7abe79fa4cab09d4f1",
       "basePoseSha256": "f1c6cdcc752e4069f175a2fac440fb60406d6a3df4ba03a4f40bc960b220c341"
     },
@@ -340,7 +340,7 @@
     {
       "basePose": "shock-one",
       "file": "pose-masks/shock-one.png",
-      "status": "generated",
+      "status": "approved",
       "sha256": "542fcd6051d08342267ccbb05ee2e4390ea30add478bc710deaad8e6cccf52f7",
       "basePoseSha256": "9fc471c592209dfcc78333d8e7a1f4fcd22f87617690c067f651caf6e59cd4fa"
     },
@@ -361,21 +361,21 @@
     {
       "basePose": "stop",
       "file": "pose-masks/stop.png",
-      "status": "generated",
+      "status": "approved",
       "sha256": "8d2f895465d40fabe335a89d94ffef25d0a09198d62f45412f2bfd3a46af6e70",
       "basePoseSha256": "e49f28ce12411d1c22a74635e3bedda9901c51bc3ce22f02b6327b45fd68bd6b"
     },
     {
       "basePose": "suspicious",
       "file": "pose-masks/suspicious.png",
-      "status": "generated",
+      "status": "approved",
       "sha256": "36e83ada131e2437695f7e027075c5d2e418fe574ff54fdacf67308bbd84b416",
       "basePoseSha256": "21abba43bfc9a132edf1ce97fc30d2bb4891218c982983649e52f6371c9f195a"
     },
     {
       "basePose": "think-one",
       "file": "pose-masks/think-one.png",
-      "status": "generated",
+      "status": "approved",
       "sha256": "46d4e27bc2d81c0aa9759cdcbc1ff20c976200812e9b817399493ccafb9f4920",
       "basePoseSha256": "da89496ac37e56c7f7c810d5d4c7dccab2154696a6a033227f619e9fc5969ea7"
     },

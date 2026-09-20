@@ -5,17 +5,14 @@
       "id": "player-granit-xhaka",
       "type": "PLAYER",
       "name": "Granit Xhaka",
-      "displayName": "Гранит Джака",
       "currentClub": {
-        "name": "Sunderland AFC"
+        "name": "Sunderland AFC",
+        "outfit": "sunderland-home-current"
       },
       "nationalTeam": {
-        "name": "Switzerland"
+        "name": "Switzerland",
+        "outfit": "switzerland-home-current"
       },
-      "roles": [
-        "Switzerland captain",
-        "Sunderland captain"
-      ],
       "asOf": "2026-09-20"
     }
   ]

@@ -1,0 +1,32 @@
+{
+  "id": "sunderland-home-current",
+  "season": "2025/26",
+  "type": "club",
+  "referenceRequired": true,
+  "reference": {
+    "sourceUrl": "https://www.hummel.dk/en/sun-25-26-home-ss-jersey-true-red/237728-3062.html",
+    "sha256": "0a094f2f454ba779bc24391448e8ca208bd52d36f1ad7c89cafeb3aea8c6edbd"
+  },
+  "description": "Sunderland AFC official home kit 2025/26 (hummel red/white stripes)",
+  "branding": {
+    "crest": true,
+    "manufacturer": "hummel",
+    "sponsor": "match-reference"
+  },
+  "generationRules": [
+    "classic red and white vertical stripes",
+    "subtle Wear Footbridge / Keel Crossing pattern on white panels",
+    "overlapped black/red/white V-neck",
+    "raglan sleeves",
+    "centred club crest and hummel logo",
+    "printed hummel chevrons on shoulders",
+    "sponsor only if visible on Image C",
+    "no player name",
+    "no player number"
+  ],
+  "forbiddenRules": [
+    "player name",
+    "player number",
+    "invented logos not visible on the reference"
+  ]
+}
