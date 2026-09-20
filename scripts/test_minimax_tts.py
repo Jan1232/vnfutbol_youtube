@@ -42,7 +42,7 @@ def run_offline() -> int:
     assert config.get("provider") == "minimax"
     assert config.get("model") == "speech-2.8-hd"
     assert config.get("voiceId") == "moss_audio_6246e496-b4e2-11f1-bf36-dabba993c40d"
-    assert config.get("voiceSetting", {}).get("speed") == 1.05
+    assert config.get("voiceSetting", {}).get("speed") == 1.0
     assert config.get("audioSetting", {}).get("format") == "wav"
     print("OK    config")
 
@@ -56,7 +56,7 @@ def run_offline() -> int:
     assert payload["language_boost"] == "Russian"
     assert payload["output_format"] == "hex"
     assert payload["voice_setting"]["voice_id"] == "moss_audio_6246e496-b4e2-11f1-bf36-dabba993c40d"
-    assert payload["voice_setting"]["speed"] == 1.05
+    assert payload["voice_setting"]["speed"] == 1.0
     assert payload["voice_setting"]["pitch"] == 0
     assert payload["voice_setting"]["vol"] == 1
     assert payload["audio_setting"]["format"] == "wav"

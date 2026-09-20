@@ -368,12 +368,40 @@ def build(video_dir: Path, allow_placeholders: bool) -> int:
         last = timeline_scenes[-1]
         total_duration = float(last["start"]) + float(last["duration"])
 
-    existing = load_json(paths["timeline"]) if paths["timeline"].exists() else {}
+    metadata_path = video_dir / "metadata.json"
+    metadata = load_json(metadata_path) if metadata_path.exists() else {}
+    if not isinstance(metadata, dict):
+        metadata = {}
+
+    fps = 30
+    width = 1920
+    height = 1080
+    if metadata.get("format") == "shorts":
+        try:
+            width = int(metadata["width"])
+            height = int(metadata["height"])
+            fps = int(metadata.get("fps") or 30)
+        except (KeyError, TypeError, ValueError) as exc:
+            return fail(
+                [
+                    "shorts metadata must define integer width/height "
+                    f"(and optional fps): {exc}"
+                ]
+            )
+    else:
+        # Landscape default; honor explicit metadata when present.
+        if isinstance(metadata.get("width"), int):
+            width = int(metadata["width"])
+        if isinstance(metadata.get("height"), int):
+            height = int(metadata["height"])
+        if isinstance(metadata.get("fps"), int):
+            fps = int(metadata["fps"])
+
     payload = {
         "version": 1,
-        "fps": int(existing.get("fps") or 30),
-        "width": int(existing.get("width") or 1920),
-        "height": int(existing.get("height") or 1080),
+        "fps": fps,
+        "width": width,
+        "height": height,
         "scenes": timeline_scenes,
         "draft": bool(allow_placeholders),
         "totalDuration": round(total_duration, 3),
@@ -382,7 +410,7 @@ def build(video_dir: Path, allow_placeholders: bool) -> int:
     mode = "draft-placeholders" if allow_placeholders else "final"
     print(
         f"OK    timeline scenes={len(timeline_scenes)} mode={mode} "
-        f"duration={total_duration:.3f}s"
+        f"canvas={width}x{height}@{fps} duration={total_duration:.3f}s"
     )
     return 0
 

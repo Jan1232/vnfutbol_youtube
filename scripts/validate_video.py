@@ -146,6 +146,38 @@ def validate_metadata(payload, folder_name: str, report: Report) -> None:
         report.error("metadata.json: createdAt must be a non-empty string")
     if payload.get("status") not in METADATA_STATUSES:
         report.error(f"metadata.json: invalid status `{payload.get('status')}`")
+    fmt = payload.get("format")
+    if fmt is not None and fmt not in {"shorts", "longform", "standard"}:
+        report.error(f"metadata.json: invalid format `{fmt}`")
+    if fmt == "shorts":
+        width = payload.get("width")
+        height = payload.get("height")
+        if not isinstance(width, int) or not isinstance(height, int):
+            report.error("metadata.json: shorts require integer width/height")
+        elif width >= height:
+            report.error(
+                f"metadata.json: shorts require width < height (got {width}x{height})"
+            )
+        fps = payload.get("fps")
+        if fps is not None and not isinstance(fps, int):
+            report.error("metadata.json: fps must be an integer when set")
+    target = payload.get("targetDurationSec")
+    if target is not None:
+        if not isinstance(target, dict):
+            report.error("metadata.json: targetDurationSec must be an object")
+        else:
+            for key in ("min", "max"):
+                if key in target and not isinstance(target.get(key), (int, float)):
+                    report.error(f"metadata.json: targetDurationSec.{key} must be a number")
+            if (
+                isinstance(target.get("min"), (int, float))
+                and isinstance(target.get("max"), (int, float))
+                and float(target["min"]) > float(target["max"])
+            ):
+                report.error("metadata.json: targetDurationSec.min must be <= max")
+    hard_max = payload.get("hardMaxNarrationSec")
+    if hard_max is not None and not isinstance(hard_max, (int, float)):
+        report.error("metadata.json: hardMaxNarrationSec must be a number when set")
 
 
 def validate_assets(payload, folder_name: str, report: Report) -> set[str]:
@@ -288,6 +320,7 @@ def validate_timeline(
     script_ids: set[str],
     pose_ids: set[str],
     report: Report,
+    metadata: dict | None = None,
 ) -> set[str]:
     ids: list[str] = []
     if not isinstance(payload, dict):
@@ -298,6 +331,29 @@ def validate_timeline(
     for field in ("fps", "width", "height"):
         if not isinstance(payload.get(field), int):
             report.error(f"timeline.json: {field} must be an integer")
+    meta = metadata if isinstance(metadata, dict) else {}
+    if meta.get("format") == "shorts":
+        width = payload.get("width")
+        height = payload.get("height")
+        if isinstance(width, int) and isinstance(height, int) and width >= height:
+            report.error(
+                f"timeline.json: shorts require width < height (got {width}x{height})"
+            )
+        for field in ("width", "height", "fps"):
+            if field in meta and isinstance(meta.get(field), int):
+                if payload.get(field) != meta.get(field):
+                    report.error(
+                        f"timeline.json: {field}={payload.get(field)} "
+                        f"does not match metadata.{field}={meta.get(field)}"
+                    )
+    hard_max = meta.get("hardMaxNarrationSec")
+    if isinstance(hard_max, (int, float)):
+        total = payload.get("totalDuration")
+        if isinstance(total, (int, float)) and float(total) > float(hard_max):
+            report.error(
+                f"timeline.json: totalDuration {total}s exceeds "
+                f"metadata.hardMaxNarrationSec {hard_max}s"
+            )
     scenes = payload.get("scenes")
     if not isinstance(scenes, list):
         report.error("timeline.json: scenes must be a list")
@@ -398,6 +454,7 @@ def validate_video(video_dir: Path) -> Report:
         script_ids,
         mascot_ids(),
         report,
+        metadata_payload if isinstance(metadata_payload, dict) else None,
     )
 
     if isinstance(assets_payload, dict):

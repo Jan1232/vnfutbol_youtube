@@ -7,7 +7,7 @@
     {
       "id": "scene-01",
       "start": 0.0,
-      "duration": 6.82,
+      "duration": 7.262,
       "script": "SCRIPT-001",
       "scriptRefs": [
         "SCRIPT-001"
@@ -29,7 +29,7 @@
         "prepStatus": "BLOCKED"
       },
       "overlay": {
-        "text": "ЛЮЦЕРН · РАССЛЕДОВАНИЕ",
+        "text": "РАССЛЕДОВАНИЕ",
         "style": "news-tag"
       },
       "animation": "shake",
@@ -41,8 +41,8 @@
     },
     {
       "id": "scene-02",
-      "start": 6.82,
-      "duration": 6.902,
+      "start": 7.262,
+      "duration": 8.028,
       "script": "SCRIPT-002",
       "scriptRefs": [
         "SCRIPT-002"
@@ -76,8 +76,8 @@
     },
     {
       "id": "scene-03",
-      "start": 13.722,
-      "duration": 7.703,
+      "start": 15.29,
+      "duration": 11.813,
       "script": "SCRIPT-003",
       "scriptRefs": [
         "SCRIPT-003"
@@ -94,12 +94,12 @@
         "asset": "mascot-think-one__sunderland-home-current",
         "pose": "think-one",
         "outfit": "sunderland-home-current",
-        "supportingAsset": "news-lucerne-doctor-search-2023",
+        "supportingAsset": "stat-xhaka-spokesman-date-correction",
         "placeholderOutfit": true,
         "prepStatus": "BLOCKED"
       },
       "overlay": {
-        "text": "ОБЫСК 2023",
+        "text": "11 → 8 НОЯБРЯ",
         "style": "date-card"
       },
       "animation": "fade",
@@ -110,8 +110,8 @@
     },
     {
       "id": "scene-04",
-      "start": 21.425,
-      "duration": 12.145,
+      "start": 27.103,
+      "duration": 11.796,
       "script": "SCRIPT-004",
       "scriptRefs": [
         "SCRIPT-004"
@@ -130,12 +130,12 @@
         "asset": "mascot-explain-two__sunderland-home-current",
         "pose": "explain-two",
         "outfit": "sunderland-home-current",
-        "supportingAsset": "stat-xhaka-vax-dates-media",
+        "supportingAsset": "stat-xhaka-nov-6-8-9-chronology",
         "placeholderOutfit": true,
         "prepStatus": "BLOCKED"
       },
       "overlay": {
-        "text": "25.01.2022 · 8 / 11.11.2022",
+        "text": "6 → 8 → 9 НОЯБРЯ",
         "style": "stat-card"
       },
       "animation": "slideUp",
@@ -146,8 +146,8 @@
     },
     {
       "id": "scene-05",
-      "start": 33.57,
-      "duration": 7.169,
+      "start": 38.899,
+      "duration": 6.96,
       "script": "SCRIPT-005",
       "scriptRefs": [
         "SCRIPT-005"
@@ -161,18 +161,18 @@
       "layout": "full",
       "visual": {
         "type": "STAT",
-        "asset": "stat-xhaka-nov-date-conflict"
+        "asset": "stat-xhaka-nov-6-8-9-route"
       },
       "overlay": {
-        "text": "СМИ: 8 vs 11 НОЯБРЯ",
+        "text": "6 → 8 → 9 · ВОЗМОЖНО",
         "style": "big-title"
       },
       "animation": "hardCut"
     },
     {
       "id": "scene-06",
-      "start": 40.739,
-      "duration": 8.597,
+      "start": 45.859,
+      "duration": 10.292,
       "script": "SCRIPT-006",
       "scriptRefs": [
         "SCRIPT-006"
@@ -205,8 +205,8 @@
     },
     {
       "id": "scene-07",
-      "start": 49.336,
-      "duration": 7.099,
+      "start": 56.151,
+      "duration": 5.346,
       "script": "SCRIPT-007",
       "scriptRefs": [
         "SCRIPT-007"
@@ -239,8 +239,8 @@
     },
     {
       "id": "scene-08",
-      "start": 56.435,
-      "duration": 6.536,
+      "start": 61.497,
+      "duration": 6.304,
       "script": "SCRIPT-008",
       "scriptRefs": [
         "SCRIPT-008"
@@ -262,7 +262,7 @@
         "prepStatus": "BLOCKED"
       },
       "overlay": {
-        "text": "РАССЛЕДОВАНИЕ ИДЁТ",
+        "text": "СЛЕДСТВИЕ ИДЁТ",
         "style": "news-tag"
       },
       "animation": "panRight",
@@ -274,5 +274,5 @@
     }
   ],
   "draft": true,
-  "totalDuration": 62.971
+  "totalDuration": 67.801
 }

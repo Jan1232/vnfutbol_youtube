@@ -1,70 +1,73 @@
 # Factcheck — Гранит Джака / COVID-сертификат (short)
 
-Проверено: 20.09.2026
+Проверено: 20.09.2026 (обновление)
 
-Основа: `script.md`, `research/research.md`, репортажи сентября 2026 (Blick / Blue News / NZZ / Goal).
+Основа: `script.md`, `research/research.md`, SRF / Blick / AFP.
 
 ## Итог
 
 - критических фактических ошибок в сюжете нет;
-- расхождение дат второй прививки (8 vs 11 ноября 2022) отражено честно как медиа-расхождение;
-- презумпция невиновности для Джаки и врача сохранена;
-- последовательность «6 → 8 → 9 ноября» в источниках не найдена — в сценарий не внесена.
+- «11 → 8 ноября» подано как коррекция представителя (он назвал первое число ошибкой), не как неразрешимое медиа-противоречие;
+- Blick: в рассмотренном документе — **8 ноября**;
+- главный visual beat — **6 → 8 → 9 ноября** (матч Лондон / документ Люцерн / матч Лондон);
+- Blick отдельно: маршрут теоретически возможен; хронология ≠ доказательство вины;
+- презумпция невиновности для Джаки и врача сохранена.
 
 ---
 
 ### CHECK-001
 
 **Script:** SCRIPT-001 — SCRIPT-002  
-**Claim:** прокуратура Люцерна открыла уголовное дело; Джака — капитан сборной Швейцарии и игрок Sunderland; подозрение связано с возможным поддельным COVID-сертификатом; вина не доказана.  
+**Claim:** уголовное расследование из-за возможного поддельного COVID-сертификата; прокуратура Люцерна проверяет капитана Швейцарии; вина не доказана.  
 **Result:** confirmed
 
 **Sources:**  
-Blue News — https://www.bluewin.ch/en/sport/football/criminal-proceedings-have-been-initiated-against-granit-xhaka-li.3605005  
-Goal.com — https://www.goal.com/en/news/the-public-prosecutor-opens-an-investigation-into-xhaka-what-happened/blt4db8573dee258cdc
+SRF — https://www.srf.ch/sport/fussball/fussball-allgemein/verfahren-eingeleitet-ermittlungen-gegen-xhaka-wegen-gefaelschtem-covid-zertifikat  
+Blick — https://www.blick.ch/schweiz/strafverfahren-gegen-nati-captain-eingeleitet-hat-xhaka-gefaelschtes-covid-zertifikat-gekauft-id22266006.html  
+AFP — https://www.afp.com/de/corona-impfzertifikat-ermittlungen-gegen-xhaka
 
 ---
 
 ### CHECK-002
 
 **Script:** SCRIPT-003  
-**Claim:** в 2023 полиция обыскала кабинет врача в Люцерне; Джака среди клиентов под проверкой.  
+**Claim:** представитель сначала назвал 11 ноября 2022, затем исправил на 8-е и назвал первое число своей ошибкой.  
 **Result:** confirmed as reported
 
-**Sources:** Blue News, Blick (via Blue News/Goal), NZZ.
+**Sources:**  
+Blick follow-up — https://www.blick.ch/schweiz/das-steht-in-seiner-impfbescheinigung-neue-ungereimtheiten-im-fall-xhaka-id22267790.html
 
-**Notes:** точный перечень изъятого публично не раскрыт — сценарий не утверждает большего.
+**Notes:** Blick также пишет, что документ содержит 8 ноября.
 
 ---
 
 ### CHECK-003
 
 **Script:** SCRIPT-004 — SCRIPT-005  
-**Claim:** Джака отрицает; первая прививка 25.01.2022; вторая — 8 ноября в одних СМИ и 11 ноября в других; это расхождение репортажей, не приговор.  
-**Result:** confirmed as reported discrepancy
+**Claim:** 6 ноября — матч за Arsenal в Лондоне; 8-го — дата в документе (Люцерн); 9-го — снова матч в Лондоне; маршрут физически возможен (Blick); для следствия даты важны; это не доказательство вины.  
+**Result:** confirmed as reported chronology + Blick analysis
 
 **Sources:**  
-NZZ (8 Nov quoting Bantel) — https://www.nzz.ch/sport/ist-es-der-eine-skandal-zu-viel-die-wichtigsten-fragen-und-antworten-zum-strafverfahren-gegen-granit-xhaka-ld.10024562  
-Blue News / Blick (11 Nov quoting Bantel)
-
-**Notes:** «6→8→9 Nov» в источниках не подтверждена — намеренно не использована.
+Blick follow-up (document date + «theoretisch möglich»)  
+Chelsea–Arsenal 6 Nov 2022 (BBC/ESPN)  
+Arsenal–Brighton 9 Nov 2022 (ESPN / match reports)
 
 ---
 
 ### CHECK-004
 
 **Script:** SCRIPT-006  
-**Claim:** адвокат врача говорит, что клиентка утверждает: привила Джаку.  
+**Claim:** представитель — подтверждение двух прививок и сотрудничество; адвокат врача — клиентка утверждает, что вакцинировала.  
 **Result:** confirmed as statement
 
-**Sources:** Blick / Blue News / Goal / NZZ (Cornel Borbély).
+**Sources:** Blick, SRF, AFP
 
 ---
 
 ### CHECK-005
 
 **Script:** SCRIPT-007 — SCRIPT-008  
-**Claim:** презумпция невиновности; дело на стадии расследования; нет приговора.  
+**Claim:** пока только расследование; ни Джака, ни врач не признаны виновными; прокуратуре предстоит выяснить факт вакцинации vs фиктивный сертификат.  
 **Result:** confirmed
 
-**Sources:** заявления прокуратуры (presumption of innocence), Goal.com, Blue News.
+**Sources:** SRF, Blick, AFP (presumption of innocence / pending investigation)

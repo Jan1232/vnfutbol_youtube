@@ -40,7 +40,7 @@
       "usedInScenes": [
         "scene-01"
       ],
-      "sourceUrl": "https://www.football.ch/",
+      "sourceUrl": "https://football.ch/sfv/nationalteams/a-team/team.aspx/t-41641/p-493715/",
       "selection": "Granit Xhaka in Switzerland national team kit, clean portrait or match still",
       "rightsStatus": "editorial-source; reuse rights not verified",
       "downloadToPublicRepo": false
@@ -55,44 +55,44 @@
         "scene-02",
         "scene-08"
       ],
-      "sourceUrl": "https://www.safc.com/",
+      "sourceUrl": "https://www.safc.com/news/2025/august/14/xhaka-te/",
       "selection": "Granit Xhaka in Sunderland 2025/26 home kit, clean portrait or match still",
       "rightsStatus": "editorial-source; reuse rights not verified",
       "downloadToPublicRepo": false
     },
     {
-      "id": "news-lucerne-doctor-search-2023",
-      "type": "NEWSPAPER",
+      "id": "stat-xhaka-spokesman-date-correction",
+      "type": "STAT",
       "source": "render",
       "status": "planned-render",
       "usedInScenes": [
         "scene-03"
       ],
-      "renderSpec": "Shorts graphic: Lucerne doctor office search 2023 context card; no forged verdict language; Swiss news-style typography",
+      "renderSpec": "Shorts card: spokesman said 11 Nov then corrected to 8 Nov and called first date his mistake; Blick document shows 8 Nov",
       "rightsStatus": "owned/generated",
       "downloadToPublicRepo": false
     },
     {
-      "id": "stat-xhaka-vax-dates-media",
+      "id": "stat-xhaka-nov-6-8-9-chronology",
       "type": "STAT",
       "source": "render",
       "status": "planned-render",
       "usedInScenes": [
         "scene-04"
       ],
-      "renderSpec": "Mobile card: 25.01.2022 first dose; second dose media-reported Nov 8 vs Nov 11 2022; label as media dates",
+      "renderSpec": "Mobile chronology card: 6 Nov London (Chelsea-Arsenal) → 8 Nov Lucerne per document → 9 Nov London (Arsenal-Brighton); not proof of guilt",
       "rightsStatus": "owned/generated",
       "downloadToPublicRepo": false
     },
     {
-      "id": "stat-xhaka-nov-date-conflict",
+      "id": "stat-xhaka-nov-6-8-9-route",
       "type": "STAT",
       "source": "render",
       "status": "planned-render",
       "usedInScenes": [
         "scene-05"
       ],
-      "renderSpec": "Full-bleed shorts graphic: 8 vs 11 ноября — СМИ; not a court finding",
+      "renderSpec": "Full-bleed Shorts graphic: 6→8→9 route; Blick says theoretically possible; dates matter for investigation; chronology is not proof of guilt",
       "rightsStatus": "owned/generated",
       "downloadToPublicRepo": false
     },

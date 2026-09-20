@@ -4,7 +4,7 @@
   "voiceId": "moss_audio_6246e496-b4e2-11f1-bf36-dabba993c40d",
   "languageBoost": "Russian",
   "voiceSetting": {
-    "speed": 1.05,
+    "speed": 1.0,
     "vol": 1,
     "pitch": 0
   },

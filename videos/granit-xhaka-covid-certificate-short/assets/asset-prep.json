@@ -45,11 +45,11 @@
     "preserveOriginal": true
   },
   "renderOnlyAssetIds": [
-    "stat-xhaka-vax-dates-media",
-    "stat-xhaka-nov-date-conflict",
+    "stat-xhaka-spokesman-date-correction",
+    "stat-xhaka-nov-6-8-9-chronology",
+    "stat-xhaka-nov-6-8-9-route",
     "text-doctor-lawyer-statement",
-    "text-presumption-of-innocence",
-    "news-lucerne-doctor-search-2023"
+    "text-presumption-of-innocence"
   ],
   "externalAssetIds": [
     "player-xhaka-switzerland",

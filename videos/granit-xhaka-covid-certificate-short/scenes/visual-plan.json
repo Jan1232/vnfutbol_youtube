@@ -5,7 +5,7 @@
   "strategy": {
     "mascotScreenTimeTarget": 0.85,
     "mascotSceneShare": 0.875,
-    "principle": "Mascot hosts a legal-news short; photos act as evidence context; presumption of innocence is visible in overlays.",
+    "principle": "Mascot hosts a legal-news short; main retention beat is 6→8→9 Nov chronology; presumption of innocence stays explicit.",
     "newMascotPosesAllowed": false,
     "layoutRotation": [
       "mascot-left-media-right",
@@ -34,15 +34,15 @@
       "outfitIntent": "national-team",
       "supportingVisual": {
         "type": "PLAYER_PHOTO",
-        "subject": "Granit Xhaka, Switzerland national team, recent official portrait / match",
+        "subject": "Granit Xhaka, Switzerland national team",
         "assetId": "player-xhaka-switzerland"
       },
       "overlay": {
-        "text": "ЛЮЦЕРН · РАССЛЕДОВАНИЕ",
+        "text": "РАССЛЕДОВАНИЕ",
         "style": "news-tag"
       },
       "animation": "shake",
-      "notes": "Hook: Swiss NT captain context.",
+      "notes": "Hook: Swiss NT captain.",
       "assetRequests": [
         "player-xhaka-switzerland"
       ]
@@ -65,7 +65,7 @@
       "outfitIntent": "current-club",
       "supportingVisual": {
         "type": "PLAYER_PHOTO",
-        "subject": "Granit Xhaka, Sunderland AFC, 2025/26",
+        "subject": "Granit Xhaka, Sunderland AFC",
         "assetId": "player-xhaka-sunderland"
       },
       "overlay": {
@@ -73,7 +73,7 @@
         "style": "legal-disclaimer"
       },
       "animation": "panLeft",
-      "notes": "Club kit; suspicion framed carefully.",
+      "notes": "Lucerne prosecutor; innocence.",
       "assetRequests": [
         "player-xhaka-sunderland"
       ]
@@ -95,18 +95,18 @@
       },
       "outfitIntent": "current-club",
       "supportingVisual": {
-        "type": "NEWSPAPER",
-        "subject": "Swiss media reporting Lucerne doctor office search 2023 / investigation context graphic",
-        "assetId": "news-lucerne-doctor-search-2023"
+        "type": "STAT",
+        "subject": "Spokesman correction card: 11 Nov → 8 Nov (own mistake); Blick document = 8 Nov",
+        "assetId": "stat-xhaka-spokesman-date-correction"
       },
       "overlay": {
-        "text": "ОБЫСК 2023",
+        "text": "11 → 8 НОЯБРЯ",
         "style": "date-card"
       },
       "animation": "fade",
-      "notes": null,
+      "notes": "Correction beat, not unresolved media contradiction.",
       "assetRequests": [
-        "news-lucerne-doctor-search-2023"
+        "stat-xhaka-spokesman-date-correction"
       ]
     },
     {
@@ -127,17 +127,17 @@
       "outfitIntent": "current-club",
       "supportingVisual": {
         "type": "STAT",
-        "subject": "Vaccination dates card: 25 Jan 2022 / media-reported Nov 8 vs Nov 11 2022",
-        "assetId": "stat-xhaka-vax-dates-media"
+        "subject": "Mobile chronology 6→8→9 Nov 2022: London match / Lucerne document / London match",
+        "assetId": "stat-xhaka-nov-6-8-9-chronology"
       },
       "overlay": {
-        "text": "25.01.2022 · 8 / 11.11.2022",
+        "text": "6 → 8 → 9 НОЯБРЯ",
         "style": "stat-card"
       },
       "animation": "slideUp",
-      "notes": "Denial + date discrepancy beat.",
+      "notes": "Main retention chronology beat starts here.",
       "assetRequests": [
-        "stat-xhaka-vax-dates-media"
+        "stat-xhaka-nov-6-8-9-chronology"
       ]
     },
     {
@@ -151,17 +151,17 @@
       "outfitIntent": null,
       "supportingVisual": {
         "type": "STAT",
-        "subject": "Mobile-readable date conflict: Nov 8 vs Nov 11 as media-reported",
-        "assetId": "stat-xhaka-nov-date-conflict"
+        "subject": "Full-bleed Shorts graphic: 6 London → 8 Lucerne (document) → 9 London; theoretically possible (Blick); not proof of guilt",
+        "assetId": "stat-xhaka-nov-6-8-9-route"
       },
       "overlay": {
-        "text": "СМИ: 8 vs 11 НОЯБРЯ",
+        "text": "6 → 8 → 9 · ВОЗМОЖНО",
         "style": "big-title"
       },
       "animation": "hardCut",
-      "notes": "NO mascot. Pure date-conflict graphic.",
+      "notes": "NO mascot. Give chronology enough mobile screen time.",
       "assetRequests": [
-        "stat-xhaka-nov-date-conflict"
+        "stat-xhaka-nov-6-8-9-route"
       ]
     },
     {
@@ -182,7 +182,7 @@
       "outfitIntent": "current-club",
       "supportingVisual": {
         "type": "TEXT",
-        "subject": "Doctor lawyer statement card: client says she vaccinated him",
+        "subject": "Statements: Xhaka side cooperates; doctor lawyer says she vaccinated him",
         "assetId": "text-doctor-lawyer-statement"
       },
       "overlay": {
@@ -213,7 +213,7 @@
       "outfitIntent": "national-team",
       "supportingVisual": {
         "type": "TEXT",
-        "subject": "Presumption of innocence legal card for Xhaka and doctor",
+        "subject": "Presumption of innocence for Xhaka and doctor",
         "assetId": "text-presumption-of-innocence"
       },
       "overlay": {
@@ -244,15 +244,15 @@
       "outfitIntent": "current-club",
       "supportingVisual": {
         "type": "PLAYER_PHOTO",
-        "subject": "Granit Xhaka Sunderland / investigation ongoing end card",
+        "subject": "Granit Xhaka Sunderland / investigation ongoing",
         "assetId": "player-xhaka-sunderland"
       },
       "overlay": {
-        "text": "РАССЛЕДОВАНИЕ ИДЁТ",
+        "text": "СЛЕДСТВИЕ ИДЁТ",
         "style": "news-tag"
       },
       "animation": "panRight",
-      "notes": "Close: under question, not convicted.",
+      "notes": "Close: open question, not conviction.",
       "assetRequests": [
         "player-xhaka-sunderland"
       ]
