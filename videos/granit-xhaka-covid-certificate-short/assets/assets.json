@@ -1,0 +1,101 @@
+{
+  "version": 2,
+  "video": "granit-xhaka-covid-certificate-short",
+  "stage": "assets-planned",
+  "policy": {
+    "reuseOrder": [
+      "channel-library",
+      "official-source",
+      "render",
+      "major-media",
+      "generate"
+    ],
+    "publicRepoRule": "Do not commit third-party photos or article screenshots unless reuse rights are cleared. Store source URLs and local/private staging paths instead.",
+    "defaultRightsStatus": "editorial-source; reuse rights not verified"
+  },
+  "assets": [
+    {
+      "id": "player-xhaka-current",
+      "type": "PLAYER_PHOTO",
+      "source": "official-source",
+      "status": "found",
+      "provider": "Swiss Football Association",
+      "usedInScenes": [
+        "scene-01",
+        "scene-04",
+        "scene-08"
+      ],
+      "sourceUrl": "https://football.ch/sfv/nationalteams/a-team/team.aspx/t-41641/p-493715/",
+      "selection": "Current/recognizable Granit Xhaka portrait or medium shot; face clearly readable; vertical crop friendly.",
+      "rightsStatus": "editorial-source; reuse rights not verified",
+      "downloadToPublicRepo": false,
+      "fallback": "https://www.safc.com/news/2025/august/14/xhaka-te/"
+    },
+    {
+      "id": "card-xhaka-investigation",
+      "type": "NEWSPAPER",
+      "source": "render",
+      "status": "planned-render",
+      "provider": "Remotion",
+      "usedInScenes": [
+        "scene-02"
+      ],
+      "sourceUrl": "https://www.srf.ch/sport/fussball/fussball-allgemein/verfahren-eingeleitet-ermittlungen-gegen-xhaka-wegen-gefaelschtem-covid-zertifikat",
+      "renderSpec": "Channel-owned newspaper card, NOT a screenshot: source label 'SRF • 18.09.2026', headline paraphrase 'Прокуратура Люцерна открыла производство', small subline 'возможный ложный COVID-сертификат'.",
+      "rightsStatus": "generated/rendered"
+    },
+    {
+      "id": "graphic-covid-certificate-question",
+      "type": "DIAGRAM",
+      "source": "render",
+      "status": "planned-render",
+      "provider": "Remotion",
+      "usedInScenes": [
+        "scene-03"
+      ],
+      "sourceUrl": null,
+      "renderSpec": "Generic stylized COVID certificate card with QR-like decorative blocks and large question mark. Explicitly generic; do not reproduce or imply this is Xhaka's alleged real document; no personal data.",
+      "rightsStatus": "generated/rendered"
+    },
+    {
+      "id": "card-xhaka-defense",
+      "type": "TEXT",
+      "source": "render",
+      "status": "planned-render",
+      "provider": "Remotion",
+      "usedInScenes": [
+        "scene-04"
+      ],
+      "sourceUrl": "https://www.afp.com/de/corona-impfzertifikat-ermittlungen-gegen-xhaka",
+      "renderSpec": "Two stacked quote-summary cards: 'ДЖАКА: есть подтверждение 2 прививок' and 'АДВОКАТ ВРАЧА: она говорит, что вакцинировала Джаку'. Label both clearly as statements/claims, not established facts.",
+      "rightsStatus": "generated/rendered"
+    },
+    {
+      "id": "diagram-xhaka-nov-2022-route",
+      "type": "DIAGRAM",
+      "source": "render",
+      "status": "planned-render",
+      "provider": "Remotion",
+      "usedInScenes": [
+        "scene-05",
+        "scene-06"
+      ],
+      "sourceUrl": "https://www.blick.ch/schweiz/das-steht-in-seiner-impfbescheinigung-neue-ungereimtheiten-im-fall-xhaka-id22267790.html",
+      "renderSpec": "Vertical 3-stop timeline: '6 НОЯ • ЛОНДОН • Chelsea–Arsenal', '8 НОЯ • ЛЮЦЕРН • дата прививки в документе', '9 НОЯ • ЛОНДОН • Arsenal–Brighton'. Add persistent small footer: 'По данным Blick. Маршрут возможен и НЕ доказывает вину.'",
+      "rightsStatus": "generated/rendered"
+    },
+    {
+      "id": "card-presumption-innocence",
+      "type": "TEXT",
+      "source": "render",
+      "status": "planned-render",
+      "provider": "Remotion",
+      "usedInScenes": [
+        "scene-07"
+      ],
+      "sourceUrl": "https://www.srf.ch/sport/fussball/fussball-allgemein/verfahren-eingeleitet-ermittlungen-gegen-xhaka-wegen-gefaelschtem-covid-zertifikat",
+      "renderSpec": "Large clean legal-safety card: 'ВИНА НЕ ДОКАЗАНА' / smaller 'Действует презумпция невиновности'.",
+      "rightsStatus": "generated/rendered"
+    }
+  ]
+}

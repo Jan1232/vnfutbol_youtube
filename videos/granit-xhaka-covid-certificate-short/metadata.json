@@ -1,0 +1,17 @@
+{
+  "slug": "granit-xhaka-covid-certificate-short",
+  "title": "Против Джаки открыли дело из-за COVID-сертификата",
+  "format": "shorts",
+  "aspectRatio": "9:16",
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "targetDurationSec": 64,
+  "hardMaxDurationSec": 72,
+  "firstFrameText": "ФАЛЬШИВЫЙ СЕРТИФИКАТ?",
+  "status": "visual-plan",
+  "createdAt": "2026-09-20T08:47:00Z",
+  "asOf": "2026-09-20"
+}

@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "video": "granit-xhaka-covid-certificate-short",
+  "stage": "visual-plan",
+  "format": "shorts",
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "strategy": {
+    "mascotScreenTimeTarget": 0.65,
+    "newMascotPosesAllowed": false,
+    "outfitPolicy": "default-home-only-for-pilot",
+    "principle": "Mascot is the vertical host; renderer-owned evidence cards carry the legal/news facts; use one external Xhaka photo repeatedly rather than sourcing many redundant photos.",
+    "layoutRotation": [
+      "vertical-mascot-bottom-media-top",
+      "vertical-mascot-side-card",
+      "vertical-full-card",
+      "vertical-mascot-bottom-diagram-top"
+    ]
+  },
+  "scenes": [
+    {
+      "id": "scene-01",
+      "scriptRefs": ["SCRIPT-001", "SCRIPT-002"],
+      "primaryType": "MASCOT",
+      "layout": "vertical-mascot-bottom-media-top",
+      "mascot": {
+        "poseIntent": "shock",
+        "basePose": "shock-one",
+        "position": "bottom-right",
+        "scale": "medium"
+      },
+      "outfitIntent": "default",
+      "supportingVisual": {
+        "type": "PLAYER_PHOTO",
+        "subject": "Current Granit Xhaka portrait",
+        "assetId": "player-xhaka-current"
+      },
+      "overlay": {
+        "text": "ДЖАКА ПОД СЛЕДСТВИЕМ",
+        "subtext": "ВОЗМОЖНЫЙ ПОДДЕЛЬНЫЙ COVID-СЕРТИФИКАТ",
+        "style": "shorts-hook"
+      },
+      "animation": "hardCut",
+      "notes": "First 2 seconds must read instantly. Do not write that Xhaka forged anything as a fact.",
+      "assetRequests": ["player-xhaka-current"]
+    },
+    {
+      "id": "scene-02",
+      "scriptRefs": ["SCRIPT-003"],
+      "primaryType": "NEWSPAPER",
+      "layout": "vertical-mascot-side-card",
+      "mascot": {
+        "poseIntent": "point-left",
+        "basePose": "point-left-one",
+        "position": "bottom-right",
+        "scale": "small"
+      },
+      "outfitIntent": "default",
+      "supportingVisual": {
+        "type": "NEWSPAPER",
+        "subject": "Rendered SRF prosecutor confirmation card",
+        "assetId": "card-xhaka-investigation"
+      },
+      "overlay": {
+        "text": "ПРОКУРАТУРА ПОДТВЕРДИЛА ДЕЛО",
+        "style": "news-card"
+      },
+      "animation": "slideUp",
+      "assetRequests": ["card-xhaka-investigation"]
+    },
+    {
+      "id": "scene-03",
+      "scriptRefs": ["SCRIPT-003"],
+      "primaryType": "DIAGRAM",
+      "layout": "vertical-mascot-bottom-media-top",
+      "mascot": {
+        "poseIntent": "think",
+        "basePose": "think-one",
+        "position": "bottom-left",
+        "scale": "small"
+      },
+      "outfitIntent": "default",
+      "supportingVisual": {
+        "type": "DIAGRAM",
+        "subject": "Generic COVID certificate question graphic",
+        "assetId": "graphic-covid-certificate-question"
+      },
+      "overlay": {
+        "text": "ЧТО ИМЕННО ПРОВЕРЯЮТ?",
+        "style": "question"
+      },
+      "animation": "slowZoom",
+      "notes": "Generic graphic only; never depict it as Xhaka's actual document.",
+      "assetRequests": ["graphic-covid-certificate-question"]
+    },
+    {
+      "id": "scene-04",
+      "scriptRefs": ["SCRIPT-004"],
+      "primaryType": "MASCOT",
+      "layout": "vertical-mascot-side-card",
+      "mascot": {
+        "poseIntent": "explain",
+        "basePose": "explain-two",
+        "position": "bottom-left",
+        "scale": "small"
+      },
+      "outfitIntent": "default",
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Defense statements + Xhaka portrait",
+        "assetIds": ["card-xhaka-defense", "player-xhaka-current"]
+      },
+      "overlay": {
+        "text": "ДЖАКА: СОТРУДНИЧАЮ СО СЛЕДСТВИЕМ",
+        "style": "statement"
+      },
+      "animation": "slideRight",
+      "assetRequests": ["card-xhaka-defense", "player-xhaka-current"]
+    },
+    {
+      "id": "scene-05",
+      "scriptRefs": ["SCRIPT-005"],
+      "primaryType": "DIAGRAM",
+      "layout": "vertical-full-card",
+      "mascot": null,
+      "outfitIntent": null,
+      "supportingVisual": {
+        "type": "DIAGRAM",
+        "subject": "6/8/9 November 2022 London-Lucerne-London timeline",
+        "assetId": "diagram-xhaka-nov-2022-route"
+      },
+      "overlay": {
+        "text": "6 → 8 → 9 НОЯБРЯ",
+        "style": "timeline-hook"
+      },
+      "animation": "counter",
+      "notes": "Main retention beat. Persistent footer must say route is possible and not proof of guilt.",
+      "assetRequests": ["diagram-xhaka-nov-2022-route"]
+    },
+    {
+      "id": "scene-06",
+      "scriptRefs": ["SCRIPT-006"],
+      "primaryType": "MASCOT",
+      "layout": "vertical-mascot-bottom-diagram-top",
+      "mascot": {
+        "poseIntent": "suspicious",
+        "basePose": "suspicious",
+        "position": "bottom-right",
+        "scale": "medium"
+      },
+      "outfitIntent": "default",
+      "supportingVisual": {
+        "type": "DIAGRAM",
+        "subject": "Same chronology, dimmed",
+        "assetId": "diagram-xhaka-nov-2022-route"
+      },
+      "overlay": {
+        "text": "ВОЗМОЖНО — НО ВОПРОСЫ ЕСТЬ",
+        "style": "analysis"
+      },
+      "animation": "fade",
+      "assetRequests": ["diagram-xhaka-nov-2022-route"]
+    },
+    {
+      "id": "scene-07",
+      "scriptRefs": ["SCRIPT-007"],
+      "primaryType": "MASCOT",
+      "layout": "vertical-mascot-side-card",
+      "mascot": {
+        "poseIntent": "stop",
+        "basePose": "stop",
+        "position": "bottom-left",
+        "scale": "medium"
+      },
+      "outfitIntent": "default",
+      "supportingVisual": {
+        "type": "TEXT",
+        "subject": "Presumption of innocence card",
+        "assetId": "card-presumption-innocence"
+      },
+      "overlay": {
+        "text": "ВИНА НЕ ДОКАЗАНА",
+        "style": "warning"
+      },
+      "animation": "hardCut",
+      "notes": "Mandatory legal/factual safety beat. Do not shorten out.",
+      "assetRequests": ["card-presumption-innocence"]
+    },
+    {
+      "id": "scene-08",
+      "scriptRefs": ["SCRIPT-008"],
+      "primaryType": "MASCOT",
+      "layout": "vertical-mascot-bottom-media-top",
+      "mascot": {
+        "poseIntent": "explain",
+        "basePose": "point-right-one",
+        "position": "bottom-left",
+        "scale": "medium"
+      },
+      "outfitIntent": "default",
+      "supportingVisual": {
+        "type": "PLAYER_PHOTO",
+        "subject": "Granit Xhaka portrait",
+        "assetId": "player-xhaka-current"
+      },
+      "overlay": {
+        "text": "ПУТАНИЦА ИЛИ НАЧАЛО БОЛЬШОЙ ИСТОРИИ?",
+        "style": "cta-question"
+      },
+      "animation": "slideUp",
+      "assetRequests": ["player-xhaka-current"]
+    }
+  ]
+}

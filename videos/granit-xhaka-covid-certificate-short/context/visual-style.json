@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "format": "shorts",
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "safeZones": {
+    "top": 170,
+    "bottom": 300,
+    "sides": 80
+  },
+  "mascotOutfits": {
+    "default": "default-home",
+    "currentClub": "default-home",
+    "nationalTeam": "default-home",
+    "formal": "default-home"
+  },
+  "rules": [
+    "Pilot Short: use only the canonical default-home mascot outfit; do not generate club/national-team outfit variants.",
+    "Keep primary captions inside the vertical safe area.",
+    "Prefer one strong visual per beat; avoid rapid decorative cutting.",
+    "All allegation wording must remain conditional: possible/alleged; presumption of innocence must appear on screen and in narration."
+  ]
+}
