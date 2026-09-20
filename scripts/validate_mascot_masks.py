@@ -21,7 +21,9 @@ from mascot_common import (
 )
 
 MIN_CHARACTER_COVER = 0.08
-MAX_CHARACTER_COVER = 0.80
+# Waist-up / jersey-heavy poses often have clothing covering ~80–87% of opaque
+# character pixels even when head/hands are correctly excluded.
+MAX_CHARACTER_COVER = 0.90
 OUTSIDE_TOLERANCE = 0.02
 
 
