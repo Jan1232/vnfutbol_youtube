@@ -113,8 +113,8 @@ def ordinal(n: int) -> str:
     return num2words(n, lang="ru", to="ordinal")
 
 
-def inflect_phrase(phrase: str, case: str) -> str:
-    """Inflect the last adjective/numeral word of an ordinal phrase (masc)."""
+def inflect_phrase(phrase: str, case: str, gender: str = "masc") -> str:
+    """Inflect the last adjective/numeral word of an ordinal phrase."""
     morph = _morph()
     words = phrase.split()
     if not words:
@@ -127,18 +127,33 @@ def inflect_phrase(phrase: str, case: str) -> str:
         return phrase
     preferred = None
     for item in parses:
-        if "ADJF" in item.tag and "masc" in item.tag:
+        if "ADJF" in item.tag and gender in item.tag:
             preferred = item
             break
     if preferred is None:
+        for item in parses:
+            if "ADJF" in item.tag:
+                preferred = item
+                break
+    if preferred is None:
         preferred = parses[0]
-    form = preferred.inflect({case, "masc", "sing"})
+    form = preferred.inflect({case, gender, "sing"})
+    if form is None:
+        form = preferred.inflect({case, gender})
     if form is None:
         form = preferred.inflect({case})
     if form is None:
         return phrase
     words[-1] = form.word
     return " ".join(words)
+
+
+def ordinal_words(n: int, case: str = "nomn", gender: str = "masc") -> str:
+    """Ordinal number with the grammatical form implied by Russian numeric suffixes."""
+    base = ordinal(n)
+    if case == "nomn" and gender == "masc":
+        return base
+    return inflect_phrase(base, case, gender)
 
 
 def year_words(year: int, case: str = "nomn") -> str:
@@ -208,16 +223,42 @@ def restore_tokens(text: str, vault: dict[str, str]) -> str:
 
 def normalize_dates(text: str) -> str:
     months = "|".join(sorted(MONTHS, key=len, reverse=True))
+    dash = r"[-‑–—]"
 
-    def repl_numeric_day(match: re.Match[str]) -> str:
+    def repl_day_year_word(match: re.Match[str]) -> str:
         day = int(match.group(1))
         month = match.group(2)
         year = int(match.group(3))
         return f"{day_words(day, 'gent')} {month} {year_words(year, 'gent')} года"
 
+    def repl_day_year_suffix(match: re.Match[str]) -> str:
+        day = int(match.group(1))
+        month = match.group(2)
+        year = int(match.group(3))
+        return f"{day_words(day, 'gent')} {month} {year_words(year, 'gent')}"
+
+    def repl_day_month(match: re.Match[str]) -> str:
+        day = int(match.group(1))
+        month = match.group(2)
+        return f"{day_words(day, 'gent')} {month}"
+
+    # Full dates first, before the generic day+month rule consumes their prefix.
     text = re.sub(
         rf"\b(\d{{1,2}})\s+({months})\s+(\d{{4}})\s+года\b",
-        repl_numeric_day,
+        repl_day_year_word,
+        text,
+        flags=re.IGNORECASE,
+    )
+    text = re.sub(
+        rf"\b(\d{{1,2}})\s+({months})\s+(\d{{4}}){dash}(?:го|ого)\b",
+        repl_day_year_suffix,
+        text,
+        flags=re.IGNORECASE,
+    )
+    # Calendar days without an explicit year are ordinal/genitive in Russian.
+    text = re.sub(
+        rf"\b(\d{{1,2}})\s+({months})\b",
+        repl_day_month,
         text,
         flags=re.IGNORECASE,
     )
@@ -275,6 +316,38 @@ def normalize_years(text: str) -> str:
     text = re.sub(r"\b(\d{4})\s+года\b", year_gen_bare, text)
     text = re.sub(r"\b(\d{4})\s+год\b", year_nom, text)
     return text
+
+
+def normalize_ordinal_suffixes(text: str) -> str:
+    """Expand Russian numeric ordinals such as 8-го, 8-е, 2026-й."""
+    dash = r"[-‑–—]"
+    suffix_forms = {
+        "го": ("gent", "masc"),
+        "ого": ("gent", "masc"),
+        "му": ("datv", "masc"),
+        "ому": ("datv", "masc"),
+        "м": ("loct", "masc"),
+        "ом": ("loct", "masc"),
+        "е": ("nomn", "neut"),
+        "ое": ("nomn", "neut"),
+        "й": ("nomn", "masc"),
+        "ый": ("nomn", "masc"),
+        "ий": ("nomn", "masc"),
+    }
+    suffixes = "|".join(sorted(suffix_forms, key=len, reverse=True))
+
+    def repl(match: re.Match[str]) -> str:
+        number = int(match.group(1))
+        suffix = match.group(2).lower()
+        case, gender = suffix_forms[suffix]
+        return ordinal_words(number, case, gender)
+
+    return re.sub(
+        rf"\b(\d{{1,4}}){dash}({suffixes})\b",
+        repl,
+        text,
+        flags=re.IGNORECASE,
+    )
 
 
 def normalize_ages(text: str) -> str:
@@ -353,6 +426,7 @@ def normalize_russian_tts(text: str) -> str:
     out = normalize_seasons(out)
     out = normalize_scores(out)
     out = normalize_years(out)
+    out = normalize_ordinal_suffixes(out)
     out = normalize_ages(out)
     out = normalize_percentages(out)
     out = normalize_jersey(out)
