@@ -274,6 +274,50 @@ def test_plan_and_preserve(video: Path) -> None:
     assert_true(merged["status"] == "READY", f"rerun must preserve READY, got {merged}")
 
 
+def test_rendered_file_promotes_to_ready(tmp: Path) -> None:
+    """Renderer-owned assets become READY when a validated rendered file exists."""
+    from prepare_assets import classify_plan_record, resolve_rendered_asset_file
+    from PIL import Image
+
+    video = tmp / "render-ready-video"
+    (video / "assets" / "rendered").mkdir(parents=True)
+    (video / "scenes").mkdir(parents=True)
+    asset = {
+        "id": "stat-generic-demo",
+        "type": "STAT",
+        "source": "render",
+        "status": "planned-render",
+        "renderSpec": "generic card",
+        "downloadToPublicRepo": False,
+    }
+    plan = {"scenes": [{"id": "scene-01", "assetRequests": ["stat-generic-demo"]}]}
+    prep = {"renderOnlyAssetIds": [], "externalMediaAssetIds": []}
+
+    before = classify_plan_record(asset["id"], asset, prep, video, plan)
+    assert_true(
+        before["status"] == "READY_RENDER_SPEC",
+        f"missing file must stay READY_RENDER_SPEC, got {before}",
+    )
+    assert_true(resolve_rendered_asset_file(video, asset["id"], asset) is None, "no file yet")
+
+    path = video / "assets" / "rendered" / "stat-generic-demo.png"
+    Image.new("RGB", (1080, 1920), (20, 30, 60)).save(path, format="PNG")
+
+    after = classify_plan_record(asset["id"], asset, prep, video, plan)
+    assert_true(after["status"] == "READY", f"existing rendered PNG must be READY, got {after}")
+    assert_true(after.get("preparedPath"), "preparedPath required")
+    assert_true(after.get("sha256"), "sha256 required")
+    assert_true(after.get("width") == 1080 and after.get("height") == 1920, after)
+
+    # Explicit file field also works without id-named default path
+    alt = video / "assets" / "rendered" / "custom-card.webp"
+    Image.new("RGB", (720, 1280), (40, 40, 40)).save(alt, format="WEBP")
+    asset_file = dict(asset, id="other-render", file="assets/rendered/custom-card.webp")
+    via_file = classify_plan_record(asset_file["id"], asset_file, prep, video, plan)
+    assert_true(via_file["status"] == "READY", via_file)
+    assert_true(via_file.get("width") == 720 and via_file.get("height") == 1280, via_file)
+
+
 def test_ingest_hash(video: Path) -> None:
     prep = json.loads((video / "assets" / "asset-prep.json").read_text(encoding="utf-8"))
     local_root = Path(prep["paths"]["localRoot"])
@@ -776,6 +820,7 @@ def main() -> int:
         run("no_invented_pose", test_no_invented_pose)
         run("mascot_dedupe", lambda: test_mascot_dedupe(video))
         run("plan_and_preserve", lambda: test_plan_and_preserve(video))
+        run("rendered_file_promotes_to_ready", lambda: test_rendered_file_promotes_to_ready(tmp))
         run("ingest_hash", lambda: test_ingest_hash(video))
         run("timeline_partition", test_timeline_partition)
         run("validator_v1_v2", test_validator_v1_v2)

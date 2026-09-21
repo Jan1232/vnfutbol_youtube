@@ -1,0 +1,26 @@
+{
+  "name": "vnfutbol-youtube",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ВСЕ НА ФУТБОЛ production tooling and Shorts Remotion renderer",
+  "scripts": {
+    "remotion:studio": "remotion studio remotion/src/index.ts",
+    "remotion:render": "node remotion/scripts/render-draft.mjs",
+    "remotion:qa": "node remotion/scripts/qa-draft.mjs",
+    "remotion:upgrade": "remotion upgrade"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.526",
+    "@remotion/media-utils": "^4.0.526",
+    "@remotion/renderer": "^4.0.526",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "^4.0.526"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}

@@ -71,6 +71,54 @@ def rel_to_repo(path: Path) -> str:
         return path.as_posix()
 
 
+def rendered_asset_candidates(video_dir: Path, asset_id: str, asset: dict) -> list[Path]:
+    """Generic locations for renderer-owned files. No per-video id hardcoding."""
+    candidates: list[Path] = []
+    file_rel = asset.get("file")
+    if isinstance(file_rel, str) and file_rel.strip():
+        rel = file_rel.strip().replace("\\", "/")
+        candidates.append(video_dir / rel)
+        candidates.append(ROOT / rel)
+    rendered_dir = video_dir / "assets" / "rendered"
+    for ext in (".png", ".webp", ".jpg", ".jpeg"):
+        candidates.append(rendered_dir / f"{asset_id}{ext}")
+    seen: set[str] = set()
+    unique: list[Path] = []
+    for path in candidates:
+        key = str(path.resolve()) if path.exists() else str(path)
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(path)
+    return unique
+
+
+def resolve_rendered_asset_file(
+    video_dir: Path, asset_id: str, asset: dict
+) -> dict[str, Any] | None:
+    """Return validated rendered file metadata, or None if not ready."""
+    if Image is None:
+        return None
+    for path in rendered_asset_candidates(video_dir, asset_id, asset):
+        if not path.is_file():
+            continue
+        try:
+            digest = sha256_file(path)
+            with Image.open(path) as img:
+                width, height = img.size
+            if width <= 0 or height <= 0:
+                continue
+            return {
+                "path": path.resolve(),
+                "sha256": digest,
+                "width": int(width),
+                "height": int(height),
+            }
+        except OSError:
+            continue
+    return None
+
+
 def load_prepared(video_dir: Path) -> dict:
     path = video_paths(video_dir)["prepared"]
     if path.exists():
@@ -331,10 +379,21 @@ def classify_plan_record(
         return record
 
     if asset_id in render_ids or asset.get("source") == "render":
+        rendered = resolve_rendered_asset_file(video_dir, asset_id, asset)
+        if rendered is not None:
+            record["status"] = "READY"
+            record["preparedPath"] = rel_to_repo(rendered["path"])
+            record["sourcePath"] = record["preparedPath"]
+            record["sha256"] = rendered["sha256"]
+            record["sourceSha256"] = rendered["sha256"]
+            record["width"] = rendered["width"]
+            record["height"] = rendered["height"]
+            record["notes"] = "renderer-owned file present and validated"
+            return record
         spec = asset.get("renderSpec")
         if isinstance(spec, str) and spec.strip():
             record["status"] = "READY_RENDER_SPEC"
-            record["notes"] = "renderer-owned; no download required"
+            record["notes"] = "renderer-owned; waiting for rendered file"
         else:
             record["status"] = "BLOCKED"
             record["notes"] = "render-only asset missing renderSpec"

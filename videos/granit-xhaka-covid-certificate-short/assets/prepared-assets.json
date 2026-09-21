@@ -1,7 +1,7 @@
 {
   "version": 1,
   "video": "granit-xhaka-covid-certificate-short",
-  "generatedAt": "2026-09-20T14:29:48+00:00",
+  "generatedAt": "2026-09-21T01:54:19+00:00",
   "localRoot": ".local-assets/granit-xhaka-covid-certificate-short",
   "assets": [
     {
@@ -35,17 +35,17 @@
       "durationMs": null,
       "clipStartMs": null,
       "clipEndMs": null,
-      "sourceUrl": "https://football.ch/sfv/nationalteams/a-team/team.aspx/t-41641/p-493715/",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Granit_Xhaka_05092026_%282%29.jpg",
       "rightsStatus": "editorial-source; reuse rights not verified",
       "usedInScenes": [
         "scene-01"
       ],
-      "notes": "image prepared; original preserved in source/",
-      "candidates": [],
-      "previewPath": ".local-assets/granit-xhaka-covid-certificate-short/previews/player-xhaka-switzerland-preview.jpg",
+      "notes": "external media; drop file into inbox/ or run --fetch-external",
       "crop": {
         "mode": "non-destructive-metadata"
-      }
+      },
+      "candidates": [],
+      "previewPath": ".local-assets/granit-xhaka-covid-certificate-short/previews/player-xhaka-switzerland-preview.jpg"
     },
     {
       "id": "mascot-shock-one__switzerland-home-current",
@@ -85,18 +85,18 @@
       "durationMs": null,
       "clipStartMs": null,
       "clipEndMs": null,
-      "sourceUrl": "https://www.safc.com/news/2025/august/14/xhaka-te/",
+      "sourceUrl": "https://images.gc.safcservices.com/fit-in/1600x1600/4eb034e0-78e5-11f0-a7ed-a1588243ae5b.webp",
       "rightsStatus": "editorial-source; reuse rights not verified",
       "usedInScenes": [
         "scene-02",
         "scene-08"
       ],
-      "notes": "image prepared; original preserved in source/",
-      "candidates": [],
-      "previewPath": ".local-assets/granit-xhaka-covid-certificate-short/previews/player-xhaka-sunderland-preview.jpg",
+      "notes": "external media; drop file into inbox/ or run --fetch-external",
       "crop": {
         "mode": "non-destructive-metadata"
-      }
+      },
+      "candidates": [],
+      "previewPath": ".local-assets/granit-xhaka-covid-certificate-short/previews/player-xhaka-sunderland-preview.jpg"
     },
     {
       "id": "mascot-point-left-one__sunderland-home-current",
@@ -126,13 +126,13 @@
     {
       "id": "stat-xhaka-spokesman-date-correction",
       "type": "STAT",
-      "status": "READY_RENDER_SPEC",
-      "sourcePath": null,
-      "preparedPath": null,
-      "sourceSha256": null,
-      "sha256": null,
-      "width": null,
-      "height": null,
+      "status": "READY",
+      "sourcePath": "videos/granit-xhaka-covid-certificate-short/assets/rendered/stat-xhaka-spokesman-date-correction.png",
+      "preparedPath": "videos/granit-xhaka-covid-certificate-short/assets/rendered/stat-xhaka-spokesman-date-correction.png",
+      "sourceSha256": "401dc21a944e152501b71eb4e16a193348d5da58957139b3700730dcce65b671",
+      "sha256": "401dc21a944e152501b71eb4e16a193348d5da58957139b3700730dcce65b671",
+      "width": 1080,
+      "height": 1920,
       "durationMs": null,
       "clipStartMs": null,
       "clipEndMs": null,
@@ -141,7 +141,7 @@
       "usedInScenes": [
         "scene-03"
       ],
-      "notes": "renderer-owned; no download required"
+      "notes": "renderer-owned file present and validated"
     },
     {
       "id": "mascot-think-one__sunderland-home-current",
@@ -171,13 +171,13 @@
     {
       "id": "stat-xhaka-nov-6-8-9-chronology",
       "type": "STAT",
-      "status": "READY_RENDER_SPEC",
-      "sourcePath": null,
-      "preparedPath": null,
-      "sourceSha256": null,
-      "sha256": null,
-      "width": null,
-      "height": null,
+      "status": "READY",
+      "sourcePath": "videos/granit-xhaka-covid-certificate-short/assets/rendered/stat-xhaka-nov-6-8-9-chronology.png",
+      "preparedPath": "videos/granit-xhaka-covid-certificate-short/assets/rendered/stat-xhaka-nov-6-8-9-chronology.png",
+      "sourceSha256": "913ab8705a86f8767c957fdbdbea671a2fd1238d6ef6649c5d718509b766b03b",
+      "sha256": "913ab8705a86f8767c957fdbdbea671a2fd1238d6ef6649c5d718509b766b03b",
+      "width": 1080,
+      "height": 1920,
       "durationMs": null,
       "clipStartMs": null,
       "clipEndMs": null,
@@ -186,7 +186,7 @@
       "usedInScenes": [
         "scene-04"
       ],
-      "notes": "renderer-owned; no download required"
+      "notes": "renderer-owned file present and validated"
     },
     {
       "id": "mascot-explain-two__sunderland-home-current",
@@ -216,13 +216,13 @@
     {
       "id": "stat-xhaka-nov-6-8-9-route",
       "type": "STAT",
-      "status": "READY_RENDER_SPEC",
-      "sourcePath": null,
-      "preparedPath": null,
-      "sourceSha256": null,
-      "sha256": null,
-      "width": null,
-      "height": null,
+      "status": "READY",
+      "sourcePath": "videos/granit-xhaka-covid-certificate-short/assets/rendered/stat-xhaka-nov-6-8-9-route.png",
+      "preparedPath": "videos/granit-xhaka-covid-certificate-short/assets/rendered/stat-xhaka-nov-6-8-9-route.png",
+      "sourceSha256": "a94e59a35379f08e90425673f234c5291dabf2ba6c5ea5e791ff470975ea2695",
+      "sha256": "a94e59a35379f08e90425673f234c5291dabf2ba6c5ea5e791ff470975ea2695",
+      "width": 1080,
+      "height": 1920,
       "durationMs": null,
       "clipStartMs": null,
       "clipEndMs": null,
@@ -231,18 +231,18 @@
       "usedInScenes": [
         "scene-05"
       ],
-      "notes": "renderer-owned; no download required"
+      "notes": "renderer-owned file present and validated"
     },
     {
       "id": "text-doctor-lawyer-statement",
       "type": "TEXT",
-      "status": "READY_RENDER_SPEC",
-      "sourcePath": null,
-      "preparedPath": null,
-      "sourceSha256": null,
-      "sha256": null,
-      "width": null,
-      "height": null,
+      "status": "READY",
+      "sourcePath": "videos/granit-xhaka-covid-certificate-short/assets/rendered/text-doctor-lawyer-statement.png",
+      "preparedPath": "videos/granit-xhaka-covid-certificate-short/assets/rendered/text-doctor-lawyer-statement.png",
+      "sourceSha256": "c663fd71403755a3488b7903a22739a15f7447e8d1712f7a6d7aed1cd41e5b57",
+      "sha256": "c663fd71403755a3488b7903a22739a15f7447e8d1712f7a6d7aed1cd41e5b57",
+      "width": 1080,
+      "height": 1920,
       "durationMs": null,
       "clipStartMs": null,
       "clipEndMs": null,
@@ -251,7 +251,7 @@
       "usedInScenes": [
         "scene-06"
       ],
-      "notes": "renderer-owned; no download required"
+      "notes": "renderer-owned file present and validated"
     },
     {
       "id": "mascot-suspicious__sunderland-home-current",
@@ -281,13 +281,13 @@
     {
       "id": "text-presumption-of-innocence",
       "type": "TEXT",
-      "status": "READY_RENDER_SPEC",
-      "sourcePath": null,
-      "preparedPath": null,
-      "sourceSha256": null,
-      "sha256": null,
-      "width": null,
-      "height": null,
+      "status": "READY",
+      "sourcePath": "videos/granit-xhaka-covid-certificate-short/assets/rendered/text-presumption-of-innocence.png",
+      "preparedPath": "videos/granit-xhaka-covid-certificate-short/assets/rendered/text-presumption-of-innocence.png",
+      "sourceSha256": "b3ee7c7d2064cb972d6f7148ad8be405d7c1ee8a2e5d2444709f7cd31323a8c9",
+      "sha256": "b3ee7c7d2064cb972d6f7148ad8be405d7c1ee8a2e5d2444709f7cd31323a8c9",
+      "width": 1080,
+      "height": 1920,
       "durationMs": null,
       "clipStartMs": null,
       "clipEndMs": null,
@@ -296,7 +296,7 @@
       "usedInScenes": [
         "scene-07"
       ],
-      "notes": "renderer-owned; no download required"
+      "notes": "renderer-owned file present and validated"
     },
     {
       "id": "mascot-stop__switzerland-home-current",
@@ -351,10 +351,7 @@
   ],
   "sourceReuse": {
     "movedToNeedsSelection": [],
-    "distinctSourceFilesNeeded": [
-      "player-xhaka-switzerland",
-      "player-xhaka-sunderland"
-    ],
-    "distinctSourceFileCount": 2
+    "distinctSourceFilesNeeded": [],
+    "distinctSourceFileCount": 0
   }
 }
