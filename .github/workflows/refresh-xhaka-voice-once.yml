@@ -1,0 +1,99 @@
+name: Refresh Xhaka voice once
+
+on:
+  push:
+    paths:
+      - ".github/workflows/refresh-xhaka-voice-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Require MiniMax secret
+        shell: bash
+        run: |
+          if [ -z "$MINIMAX_API_KEY" ]; then
+            echo "MINIMAX_API_KEY repository secret is not configured"
+            exit 1
+          fi
+
+      - name: Test Russian TTS normalization
+        run: python scripts/test_voice_normalizer.py
+
+      - name: Regenerate stale Xhaka narration segments
+        run: python scripts/generate_voice.py videos/granit-xhaka-covid-certificate-short
+
+      - name: Rebuild final timeline
+        run: python scripts/build_timeline.py videos/granit-xhaka-covid-certificate-short
+
+      - name: Sync montage narration and timeline
+        shell: bash
+        run: |
+          cp videos/granit-xhaka-covid-certificate-short/audio/final/narration.wav \
+             videos/granit-xhaka-covid-certificate-short/montage/audio/narration.wav
+          cp videos/granit-xhaka-covid-certificate-short/scenes/timeline.json \
+             videos/granit-xhaka-covid-certificate-short/montage/timeline.json
+
+      - name: Refresh narration hash in prepared-assets
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          video = Path("videos/granit-xhaka-covid-certificate-short")
+          audio = video / "audio/final/narration.wav"
+          prepared = video / "assets/prepared-assets.json"
+
+          sha = hashlib.sha256(audio.read_bytes()).hexdigest()
+          data = json.loads(prepared.read_text(encoding="utf-8"))
+          for item in data.get("assets", []):
+              if item.get("id") == "narration":
+                  item["sourceSha256"] = sha
+                  item["sha256"] = sha
+                  break
+          prepared.write_text(
+              json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Validate video
+        run: python scripts/validate_video.py videos/granit-xhaka-covid-certificate-short
+
+      - name: Commit refreshed voice
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            videos/granit-xhaka-covid-certificate-short/audio/voice.json \
+            videos/granit-xhaka-covid-certificate-short/audio/segments \
+            videos/granit-xhaka-covid-certificate-short/audio/final/narration.wav \
+            videos/granit-xhaka-covid-certificate-short/assets/prepared-assets.json \
+            videos/granit-xhaka-covid-certificate-short/scenes/timeline.json \
+            videos/granit-xhaka-covid-certificate-short/montage/audio/narration.wav \
+            videos/granit-xhaka-covid-certificate-short/montage/timeline.json
+          if git diff --cached --quiet; then
+            echo "No voice changes to commit"
+          else
+            git commit -m "Regenerate Xhaka voice with corrected Russian dates"
+            git push
+          fi
